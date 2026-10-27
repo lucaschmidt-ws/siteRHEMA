@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Início | RHEMA</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="home-page">
+  <header class="site-header">
+  <a class="brand" href="index.html" aria-label="RHEMA, página inicial">
+    <img src="imagens/logo-rhema-claro.png" alt="RHEMA">
+  </a>
+
+  <nav class="main-nav" aria-label="Navegação principal">
+    <a href="index.html" aria-current="page">Início</a>
+    <a href="produtos.html">Roupas</a>
+    <a href="index.html#lifestyle">Lifestyle</a>
+    <a href="index.html#sobre">Sobre</a>
+  </nav>
+
+  <div class="header-actions">
+    <a class="header-action" href="produtos.html#search-input" aria-label="Buscar produtos">
+      <span class="icon-search" aria-hidden="true"></span>
+    </a>
+    <a class="header-action" href="carrinho.html" aria-label="Abrir sacola, 0 itens">
+      <span class="icon-bag" aria-hidden="true"></span>
+      <span class="cart-count" data-cart-count>0</span>
+    </a>
+  </div>
+</header>
+
+  <main>
+    <!-- hero apresenta a identidade da RHEMA -->
+    <section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p>Mais que roupas<br>um propósito<br>em cada detalhe</p>
+    <a class="btn" href="produtos.html">Explorar coleção</a>
+  </div>
+
+  <div class="hero-art" role="img" aria-label="Imagem de campanha da RHEMA">
+    <div class="hero-brand-lockup">
+      <h1 id="hero-title">RHEMA</h1>
+      <p>STREETWEAR</p>
+      <span>Sal na terra e luz no mundo</span>
+    </div>
+  </div>
+</section>
+<!-- O gradiente serve como fundo provisório. Quando existir uma arte de campanha aprovada, coloque-a em `imagens/hero-rhema.webp` e acrescente `url("../imagens/hero-rhema.webp")` ao `background`. Não redesenhe nem distorça o símbolo original. Se ainda não houver a imagem, mantenha o gradiente e teste a estrutura. -->
+
+<section class="benefits" aria-label="Diferenciais RHEMA">
+  <article><span aria-hidden="true">✦</span><h2>Propósito</h2><p>Mais que roupas</p></article>
+  <article><span aria-hidden="true">◇</span><h2>Qualidade</h2><p>Em cada detalhe</p></article>
+  <article><span aria-hidden="true">○</span><h2>Envio</h2><p>Consulte as condições</p></article>
+  <article><span aria-hidden="true">□</span><h2>Pagamento</h2><p>Veja as opções disponíveis</p></article>
+</section>
+
+<section class="brand-statement" aria-label="Manifesto da RHEMA">
+  <p>Streetwear com identidade</p>
+</section>
+
+<section class="collection" aria-labelledby="collection-title">
+  <div class="collection-heading">
+    <div>
+      <p class="eyebrow">Coleção 2026</p>
+      <h2 id="collection-title">ESSENCIAIS</h2>
+      <p>Peças que expressam fé, identidade e estilo.</p>
+    </div>
+    <a class="btn" href="produtos.html">Ver todos</a>
+  </div>
+
+  <div class="carousel-controls">
+    <button id="products-prev" type="button" aria-label="Ver produtos anteriores">‹</button>
+    <button id="products-next" type="button" aria-label="Ver próximos produtos">›</button>
+  </div>
+
+  <div class="product-track" id="product-track" tabindex="0" aria-label="Produtos em destaque">
+    <article class="home-product-card">
+      <a href="produto.html?id=1">
+        <div class="product-photo" data-product-id="1"></div>
+        <h3>Camiseta Streetwear</h3><p>R$ 109,90</p>
+      </a>
+    </article>
+    <article class="home-product-card">
+      <a href="produto.html?id=2">
+        <div class="product-photo" data-product-id="2"></div>
+        <h3>Calça Reta</h3><p>R$ 189,90</p>
+      </a>
+    </article>
+    <article class="home-product-card">
+      <a href="produto.html?id=3">
+        <div class="product-photo" data-product-id="3"></div>
+        <h3>Moletom</h3><p>R$ 259,90</p>
+      </a>
+    </article>
+    <article class="home-product-card">
+      <a href="produto.html?id=4">
+        <div class="product-photo" data-product-id="4"></div>
+        <h3>Boné RHEMA</h3><p>R$ 99,90</p>
+      </a>
+    </article>
+    <article class="home-product-card">
+      <a href="produto.html?id=5">
+        <div class="product-photo" data-product-id="5"></div>
+        <h3>Hoodie</h3><p>R$ 129,90</p>
+      </a>
+    </article>
+    <article class="home-product-card">
+      <a href="produto.html?id=6">
+        <div class="product-photo" data-product-id="6"></div>
+        <h3>Jaqueta</h3><p>R$ 199,90</p>
+      </a>
+    </article>
+  </div>
+
+  <div class="carousel-dots" aria-label="Posição da vitrine">
+    <button class="carousel-dot active" type="button" aria-label="Início da vitrine" aria-current="true"></button>
+    <button class="carousel-dot" type="button" aria-label="Fim da vitrine" aria-current="false"></button>
+  </div>
+</section>
+
+<section class="editorial-grid" aria-label="História e lifestyle RHEMA">
+  <article class="editorial-card editorial-large" id="sobre">
+    <div class="editorial-image">[FOTO EDITORIAL RHEMA]</div>
+    <div><p>Propósito também é estilo</p><a href="index.html#historia">Conheça a RHEMA</a></div>
+  </article>
+  <article class="editorial-card" id="lifestyle">
+    <div class="editorial-image">[FOTO DE LIFESTYLE]</div>
+    <div><p>Fé na rotina. Estilo em cada passo.</p><a href="produtos.html?categoria=Lifestyle#search-input">Ver lifestyle</a></div>
+  </article>
+  <article class="editorial-card" id="historia">
+    <div class="editorial-image">[DETALHE DO SÍMBOLO ORIGINAL]</div>
+    <div><p>Sal na terra e luz no mundo</p><a href="index.html#sobre">Nossa história</a></div>
+  </article>
+</section>
+
+<section class="category-shortcuts" aria-labelledby="category-title">
+  <h2 id="category-title">Explore por categoria</h2>
+  <div class="category-shortcuts-grid">
+    <a href="produtos.html?categoria=Camisetas#search-input">Camisetas <span>Ver coleção</span></a>
+    <a href="produtos.html?categoria=Moletons#search-input">Moletons <span>Ver coleção</span></a>
+    <a href="produtos.html?categoria=Cal%C3%A7as#search-input">Calças <span>Ver coleção</span></a>
+    <a href="produtos.html?categoria=Acess%C3%B3rios#search-input">Acessórios <span>Ver coleção</span></a>
+    <a href="produtos.html?categoria=Lifestyle#search-input">Lifestyle <span>Ver coleção</span></a>
+  </div>
+</section>
+
+    <!-- Call to action -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Vista sua fé com estilo</h2>
+        <p>Descubra nossa coleção exclusiva de streetwear cristão</p>
+        <a href="produtos.html" class="btn btn-primary">Começar a Comprar</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-brand">
+    <img src="imagens/logo-rhema-claro.png" alt="RHEMA">
+    <p>Sal na terra e luz no mundo</p>
+  </div>
+  <div><h2>Institucional</h2><a href="#sobre">Sobre a marca</a><a href="produtos.html">Coleções</a></div>
+  <div><h2>Ajuda</h2><a href="#atendimento">Trocas e devoluções</a><a href="#atendimento">Entrega</a></div>
+  <div id="atendimento"><h2>Atendimento</h2><p>WhatsApp e e-mail oficiais da loja</p></div>
+  <form class="newsletter" id="newsletter-form">
+    <label for="newsletter-email">Receba novidades</label>
+    <div><input id="newsletter-email" type="email" placeholder="Seu melhor e-mail" required>
+      <button type="submit" aria-label="Enviar e-mail">→</button></div>
+    <p id="newsletter-message" role="status">Demonstração: o formulário ainda não envia seus dados.</p>
+  </form>
+  <p class="footer-legal">© 2026 Rhema Streetwear. Todos os direitos reservados.</p>
+  <p class="footer-credit">Este site foi desenvolvido com ajuda do OpenAI Codex, assistente de IA, sob direção e revisão da pessoa responsável pela RHEMA.</p>
+</footer>
+  <div class="floating-buttons">
+  <a href="carrinho.html" class="fab fab-cart" aria-label="Ver carrinho">
+    <span class="icon-bag" aria-hidden="true"></span>
+    <span class="fab-badge" id="fab-cart-count">0</span>
+  </a>
+  <button class="fab fab-top" id="fab-top" aria-label="Voltar ao topo">↑</button>
+  <a href="https://wa.me/5551999218124" class="fab fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <svg class="fab-chat-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.5Z"/><path d="M9 9.2c.4 2.1 2 3.8 4.1 4.4l1-1 1.8.7-.2 1.7c-.1.5-.6.8-1.1.8-3.7-.4-6.8-3.4-7.2-7.1 0-.5.3-1 .8-1.1l1.7-.2.7 1.8-1 .9Z"/></svg>
+  </a>
+</div>
+  <script src="js/main.js"></script>
+</body>
+</html>
