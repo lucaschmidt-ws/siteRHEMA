@@ -798,8 +798,10 @@ input:focus {
 }
 
 .site-header .main-nav {
-  grid-column: 1;
-  justify-self: start;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  justify-self: center;
+  justify-content: center;
 }
 
 .site-header .header-actions {
