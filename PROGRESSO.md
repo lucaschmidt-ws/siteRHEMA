@@ -2,6 +2,8 @@
 
 **Última atualização:** 27/10/2026
 
+**Fase 9:** a microetapa 9.2 está concluída. `js/main.js` contém 66 devocionais originais, com uma referência para cada livro do cânon de 66 livros e paráfrases no campo `versiculo`. A próxima etapa é a **9.3 — Mostrar o devocional do dia**; ela ainda não foi implementada.
+
 **Correção desta revisão:** removido o hero duplicado; corrigidos o link interno quebrado, o espaçamento do rodapé e a responsividade do hero e dos benefícios. A vitrine e o catálogo agora mostram fotos reais associadas aos produtos. Os atalhos de categoria filtram o catálogo, a busca ignora acentos, os botões flutuantes usam ícones lineares e a faixa “Streetwear com identidade” foi incluída.
 
 **Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard, Elo e American Express. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
@@ -9,6 +11,9 @@
 **Planejamento futuro:** implementar criação de conta real somente depois de estruturar o banco de dados e o back-end. A autenticação demonstrativa descrita no manual não representa cadastro real.
 
 ## Estado atual
+
+- [x] 9.2 — lista com 66 devocionais, abrangendo Gênesis a Apocalipse; referências, paráfrases, reflexões e orações.
+- [ ] 9.3 — escolher e exibir o devocional do dia; próxima etapa.
 
 As microetapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 estão implementadas. As etapas 8.4 e 8.7 estão parciais por dependerem das imagens de campanha/editoriais. A etapa 8.11 e a conferência visual no navegador continuam pendentes.
 

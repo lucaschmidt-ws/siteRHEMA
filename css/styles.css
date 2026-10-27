@@ -1180,3 +1180,43 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+.devocional {
+  max-width: 600px;
+  margin: var(--espaco-grande) auto;
+  padding: var(--espaco-grande) var(--espaco-medio);
+  text-align: center;
+  border-top: 1px solid var(--cor-dourado);
+  border-bottom: 1px solid var(--cor-dourado);
+}
+
+.devocional-referencia {
+  color: var(--cor-dourado);
+  font-weight: bold;
+  margin-bottom: var(--espaco-pequeno);
+}
+
+.devocional-versiculo {
+  font-style: italic;
+  font-size: 18px;
+  margin-bottom: var(--espaco-medio);
+}
+
+.devocional-reflexao,
+.devocional-oracao {
+  color: var(--cor-texto-claro);
+  margin-bottom: var(--espaco-pequeno);
+}
+
+.devocional-acoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-pequeno);
+  margin-top: var(--espaco-medio);
+}
+
+.devocional-sequencia {
+  font-size: 14px;
+  color: var(--cor-dourado);
+}

@@ -2740,7 +2740,7 @@ A RHEMA vende roupa, mas a marca é fé. O site deve convidar a pessoa a voltar 
 | Microetapa | O que entra | Mexe em |
 |-----------|-------------|---------|
 | 9.1 | Seção do devocional acima do rodapé da `index.html` (estrutura e estilo) | `index.html` + `styles.css` |
-| 9.2 | Lista de devocionais em JavaScript (começamos com 7 e crescemos depois) | `main.js` |
+| 9.2 | ✅ Concluída — lista autoral de 66 devocionais, um baseado em cada livro do cânon de 66 livros | `main.js` |
 | 9.3 | Mostrar o devocional do dia, escolhido pela data | `main.js` |
 | 9.4 | Botão "Li hoje" e contador de dias seguidos (LocalStorage) | `main.js` |
 | 9.5 | Compartilhar o devocional (WhatsApp e copiar texto) | `main.js` |
@@ -2750,7 +2750,7 @@ A RHEMA vende roupa, mas a marca é fé. O site deve convidar a pessoa a voltar 
 | 9.9 | Revisão: todas as interações, no celular e sem erros no Console | todos |
 
 **Cuidados importantes**
-- **Versículos:** use uma tradução de domínio público (por exemplo, Almeida Corrigida Fiel) ou escreva a referência com sua própria paráfrase, para não violar direitos autorais. Confira sempre o texto na sua Bíblia antes de publicar.
+- **Versículos:** confira a referência na Bíblia escolhida pela RHEMA. Se usar o texto exato de uma tradução, confirme antes os direitos e as condições de reutilização; uma paráfrase original evita reproduzir a redação daquela tradução.
 - **Reflexões e orações:** você pode escrevê-las com suas próprias palavras. Peça ao Claude um rascunho e revise com o seu pastor ou líder, se quiser.
 - **Mural de oração (9.8):** sem back-end, os pedidos ficam só no navegador de quem escreveu, e ninguém mais os vê. O mural compartilhado de verdade exige a Fase 11. Por isso nunca peça dados sensíveis nele.
 
@@ -2846,89 +2846,36 @@ Mantenha esta seção no mesmo sistema de cores e tipografia definido no site: p
 Seção visualmente pronta, no estilo do site, mas ainda vazia de conteúdo.
 
 ✅ Checklist
-- [ ] Adicionei a seção no `index.html`
-- [ ] Adicionei o CSS
-- [ ] Testei visualmente (ainda sem conteúdo real)
+- [x] Adicionei a seção no `index.html`
+- [x] Adicionei o CSS
+- [x] Testei visualmente (ainda sem conteúdo real)
 
 ---
 
-### 📍 Microetapa 9.2 — Lista de devocionais em JavaScript
+### 📍 Microetapa 9.2 — Lista de devocionais em JavaScript — concluída
 
 **Objetivo**
-Criar, no `main.js`, uma lista com 7 devocionais (um para cada dia), cada um com referência, versículo, reflexão e oração.
+Preparar a lista de dados que a microetapa 9.3 usará para mostrar a Palavra do Dia.
 
-**Conceito Novo**
-Nenhum conceito técnico novo — é mais um `array` de `objetos`, igual ao `catalogo` de produtos (R1.6), só que com textos de devocional em vez de dados de produto.
+**O que foi feito**
+- O array `devocionais` está no final de `js/main.js`, com **66 itens**, um para cada livro do cânon protestante/evangélico de 66 livros, de Gênesis a Apocalipse.
+- Cada item mantém as quatro propriedades que a 9.3 espera: `referencia`, `versiculo`, `reflexao` e `oracao`.
+- O texto no campo `versiculo` é uma **paráfrase original da passagem indicada**, não uma citação literal de uma tradução. O nome do campo foi mantido para que a próxima etapa possa usá-lo sem alterar sua estrutura.
+- As reflexões e orações também são textos originais. A lista representa uma seleção de passagens de todos os livros; não pretende resumir cada capítulo nem substituir a leitura da Bíblia.
 
-**Onde Digitar**
-📁 Arquivo: `js/main.js`
-📍 Local: no final do arquivo
+**Como a 9.3 vai usar a lista**
+Não é necessário copiar novamente o array. Na 9.3, a função escolherá um item usando o índice e `devocionais.length`, e preencherá os quatro elementos HTML já criados na 9.1. A lista continua podendo crescer depois: novos objetos devem manter as mesmas quatro propriedades.
 
-**Fragmento (JavaScript)**
-```javascript
-const devocionais = [
-  {
-    referencia: 'Salmos 23:1',
-    versiculo: '"O Senhor é o meu pastor; nada me faltará."',
-    reflexao: 'Deus cuida de cada detalhe da sua vida, até daquilo que parece pequeno demais para orar.',
-    oracao: 'Senhor, obrigado por cuidar de mim. Ensina-me a confiar no Teu cuidado hoje.'
-  },
-  {
-    referencia: 'Provérbios 3:5',
-    versiculo: '"Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento."',
-    reflexao: 'Nem sempre entendemos o caminho, mas podemos confiar em quem o traçou.',
-    oracao: 'Pai, ajuda-me a confiar em Ti mesmo quando eu não entender o que está acontecendo.'
-  },
-  {
-    referencia: 'Filipenses 4:13',
-    versiculo: '"Posso todas as coisas naquele que me fortalece."',
-    reflexao: 'A força para o seu dia não vem de você, vem Dele. Você não está sozinho nisso.',
-    oracao: 'Senhor, Tu és a minha força. Fortalece-me para os desafios de hoje.'
-  },
-  {
-    referencia: 'Isaías 41:10',
-    versiculo: '"Não temas, porque eu sou contigo."',
-    reflexao: 'O medo tenta nos isolar, mas a promessa é clara: Ele está contigo, agora.',
-    oracao: 'Deus, acalma o meu coração. Lembra-me da Tua presença em cada momento de hoje.'
-  },
-  {
-    referencia: 'Romanos 8:28',
-    versiculo: '"Todas as coisas contribuem juntamente para o bem daqueles que amam a Deus."',
-    reflexao: 'Mesmo o que parece sem sentido hoje, Ele pode transformar em propósito.',
-    oracao: 'Senhor, eu creio que Tu estás trabalhando, mesmo quando eu não vejo.'
-  },
-  {
-    referencia: 'Salmos 46:1',
-    versiculo: '"Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia."',
-    reflexao: 'Em qualquer dificuldade de hoje, há um lugar seguro para ir primeiro.',
-    oracao: 'Pai, Tu és o meu refúgio. Eu corro para Ti antes de qualquer outra coisa.'
-  },
-  {
-    referencia: 'Mateus 6:33',
-    versiculo: '"Buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas."',
-    reflexao: 'Suas prioridades de hoje dizem muito sobre o que você está buscando primeiro.',
-    oracao: 'Senhor, que o meu dia comece e termine buscando a Ti antes de tudo.'
-  }
-];
-```
-
-**Entendendo o código**
-- `const devocionais = [ {...}, {...}, ... ]`: um array com 7 objetos, mesmo formato do `catalogo` de produtos — cada devocional tem as mesmas 4 propriedades (`referencia`, `versiculo`, `reflexao`, `oracao`).
-- Os versículos usados aqui são de domínio público (tradução Almeida, já sem direitos autorais) — mas **confira o texto exato na sua Bíblia** antes de publicar, para garantir fidelidade.
-- As reflexões e orações foram escritas como rascunho — revise com suas próprias palavras ou com seu pastor/líder antes de publicar, como já conversamos.
-
-**Como Testar**
-1. Adicione o array no `main.js`
-2. Não há teste visual ainda — isso é só a "matéria-prima" de dados; a 9.3 vai usá-la para mostrar na tela
-3. Para conferir que não há erro de digitação, abra qualquer página com o Console (F12) aberto: não deve aparecer nenhum erro vermelho relacionado ao `main.js`
-
-**Resultado Esperado**
-Nenhuma mudança visual ainda — o array existe no JavaScript, pronto para ser usado.
+**Resultado esperado**
+Os dados estão preparados. Ainda não há mudança visual nesta microetapa; mostrar um item na página é o objetivo da 9.3.
 
 ✅ Checklist
-- [ ] Adicionei o array `devocionais`
-- [ ] Conferi no Console que não há erro de sintaxe
-- [ ] Revisei/vou revisar os textos com cuidado antes de publicar
+- [x] Criei o array `devocionais` com 66 itens e referências distribuídas pelos 66 livros.
+- [x] Mantive as quatro propriedades usadas na etapa seguinte.
+- [x] Escrevi paráfrases, reflexões e orações originais em vez de reproduzir uma tradução bíblica.
+- [x] Registrei a 9.2 como concluída; a próxima microetapa é a 9.3.
+
+**Nota de fidelidade:** confira as referências na Bíblia usada pela RHEMA antes da publicação final. As palavras em `versiculo` são paráfrases e não devem aparecer entre aspas como se fossem texto exato de uma tradução.
 
 ---
 
@@ -2974,7 +2921,7 @@ document.addEventListener('DOMContentLoaded', function() {
 - `hoje - inicioDoAno`: subtrair duas datas em JavaScript devolve a diferença em **milissegundos**.
 - `1000 * 60 * 60 * 24`: milissegundos de um dia inteiro (1000ms = 1s, × 60 = 1min, × 60 = 1h, × 24 = 1 dia). Dividir pela diferença em milissegundos converte para "quantos dias se passaram".
 - `Math.floor(...)`: arredonda para baixo, removendo casas decimais (já que "dias passados" tem que ser um número inteiro).
-- `diasPassados % devocionais.length`: o resto da divisão garante um índice sempre entre `0` e `6` (porque a lista tem 7 itens) — o mesmo truque do `%` usado na galeria de fotos (8.6).
+- `diasPassados % devocionais.length`: o resto da divisão garante um índice válido entre `0` e `devocionais.length - 1`. Com os 66 itens atuais, os índices vão de `0` a `65`; se a lista crescer, o cálculo se ajusta sozinho — é o mesmo truque do `%` usado na galeria de fotos (8.6).
 - `if (elementoReferencia)`: só roda em páginas que têm a seção de devocional — hoje só a `index.html`.
 
 **Como Testar**
