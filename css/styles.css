@@ -1041,6 +1041,21 @@ input:focus {
 .collection { padding: 44px 5%; background: var(--cor-fundo-claro); color: var(--cor-texto-escuro); }
 .collection-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 22px; }
 .collection-heading h2 { margin: 4px 0; font-size: clamp(28px, 4vw, 48px); font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
+.collection-heading .collection-title-animated { display: flex; gap: .035em; color: #B8892E; white-space: nowrap; }
+.collection-title-animated span { display: inline-block; animation: disciple-letter-glow 1.8s ease-in-out infinite; }
+.collection-title-animated span:nth-child(2) { animation-delay: .12s; }
+.collection-title-animated span:nth-child(3) { animation-delay: .24s; }
+.collection-title-animated span:nth-child(4) { animation-delay: .36s; }
+.collection-title-animated span:nth-child(5) { animation-delay: .48s; }
+.collection-title-animated span:nth-child(6) { animation-delay: .60s; }
+.collection-title-animated span:nth-child(7) { animation-delay: .72s; }
+.collection-title-animated span:nth-child(8) { animation-delay: .84s; }
+.collection-title-animated span:nth-child(9) { animation-delay: .96s; }
+.collection-title-animated span:nth-child(10) { animation-delay: 1.08s; }
+@keyframes disciple-letter-glow {
+  0%, 100% { color: #9A6C19; text-shadow: 0 0 2px rgba(154, 108, 25, .2); transform: translateY(0); }
+  50% { color: #E0BD67; text-shadow: 0 0 12px rgba(224, 189, 103, .65); transform: translateY(-2px); }
+}
 .collection-heading p { margin: 4px 0; }
 .collection .eyebrow { color: #9A6C19; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; }
 .collection .btn { color: #202020; border-color: #9A6C19; }
@@ -1154,6 +1169,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .newsletter input { min-width: 0; width: 100%; }
 .newsletter button { min-width: 44px; border: 0; background: var(--cor-dourado); color: #080808; }
 .newsletter p, .footer-legal { grid-column: 1 / -1; color: #D9D7D1; font-size: 10px; }
+.site-footer .footer-legal { margin: 0; text-align: center; }
 .footer-credit { color: #D9D7D1; font-size: 10px; opacity: .8; }
 .site-footer .footer-credit { grid-column: 1 / -1; }
 .site-footer .footer-contact h2,
