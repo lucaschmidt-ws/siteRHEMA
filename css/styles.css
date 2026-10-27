@@ -783,6 +783,10 @@ input:focus {
   gap: 24px;
   padding: 16px 4%;
   background: rgba(8, 8, 8, 0.94);
+  background-image: linear-gradient(rgba(8, 8, 8, 0.44), rgba(8, 8, 8, 0.44)), url("../imagens/Fundo Abstrato de Ônix e Ouro PARA CABEÇALHO.png");
+  background-size: cover;
+  background-position: center 48%;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--cor-dourado);
   margin: 0;
   text-align: left;
@@ -931,7 +935,11 @@ input:focus {
   min-height: 460px;
   padding: 48px 5%;
   gap: 32px;
-  background: #080808;
+  background-color: #080808;
+  background-image: linear-gradient(rgba(8, 8, 8, 0.38), rgba(8, 8, 8, 0.38)), url("../imagens/Cânion Sombrio com Veios Dourados Fundo para uma área de exposição.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--cor-dourado);
 }
 
@@ -949,9 +957,7 @@ input:focus {
   min-height: 360px;
   display: grid;
   place-items: center;
-  background:
-    radial-gradient(ellipse at center, rgba(201,149,46,.25), transparent 55%),
-    linear-gradient(120deg, #080808, #202020 55%, #080808);
+  background: linear-gradient(120deg, rgba(8, 8, 8, 0.42), rgba(8, 8, 8, 0.16) 55%, rgba(8, 8, 8, 0.42));
   background-position: center;
   background-size: cover;
 }
@@ -1108,7 +1114,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .thumbnail.active, .thumbnail:focus-visible { border: 2px solid #9A6C19; outline: none; }
 .gallery-empty { padding: 32px; background: #F2F0EA; color: #202020; text-align: center; }
 
-.site-footer { display: grid; grid-template-columns: 1.3fr repeat(3, 1fr) 1.4fr; gap: 24px; padding: 40px 5% 18px; margin-top: 0; background: #080808; color: #F2F0EA; border-top: 1px solid var(--cor-dourado); text-align: left; }
+.site-footer { display: grid; grid-template-columns: 1.3fr repeat(3, 1fr) 1.4fr; gap: 24px; padding: 40px 5% 18px; margin-top: 0; background-color: #080808; background-image: linear-gradient(rgba(8, 8, 8, 0.4), rgba(8, 8, 8, 0.4)), url("../imagens/Painel de Pedra Escura com Veios Dourados PARA RODA PÉ.png"); background-size: cover; background-position: center 56%; background-repeat: no-repeat; color: #F2F0EA; border-top: 1px solid var(--cor-dourado); text-align: left; }
 .site-footer h2, .newsletter label { display: block; margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
 .site-footer a { display: block; margin: 8px 0; color: inherit; text-decoration: none; font-size: 12px; }
 .site-footer a:hover { color: var(--cor-dourado); }
