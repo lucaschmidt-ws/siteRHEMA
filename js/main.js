@@ -838,3 +838,47 @@ const devocionais = [
     oracao: 'Senhor, consola quem sofre, dá-me força para cuidar do próximo e mantém viva a esperança da renovação.'
   }
 ];
+
+// Microetapa 9.7: favoritos locais no catálogo.
+function carregarFavoritos() {
+  try {
+    const favoritosSalvos = JSON.parse(localStorage.getItem('favoritos') || '[]');
+    if (!Array.isArray(favoritosSalvos)) return [];
+
+    return Array.from(new Set(favoritosSalvos.filter(function(id) {
+      return Number.isSafeInteger(id) && id > 0;
+    })));
+  } catch (erro) {
+    return [];
+  }
+}
+
+function atualizarBotaoFavorito(botao, favoritado) {
+  botao.classList.toggle('favoritado', favoritado);
+  botao.textContent = favoritado ? '♥' : '♡';
+  botao.setAttribute('aria-pressed', favoritado ? 'true' : 'false');
+  botao.setAttribute('aria-label', favoritado ? 'Remover dos favoritos' : 'Favoritar produto');
+}
+
+document.querySelectorAll('.favorito').forEach(function(botao) {
+  const id = Number(botao.dataset.id);
+  botao.type = 'button';
+
+  if (!Number.isSafeInteger(id) || id <= 0) {
+    botao.disabled = true;
+    return;
+  }
+
+  atualizarBotaoFavorito(botao, carregarFavoritos().includes(id));
+
+  botao.addEventListener('click', function() {
+    const favoritos = carregarFavoritos();
+    const favoritado = favoritos.includes(id);
+    const favoritosAtualizados = favoritado
+      ? favoritos.filter(function(favId) { return favId !== id; })
+      : favoritos.concat(id);
+
+    localStorage.setItem('favoritos', JSON.stringify(favoritosAtualizados));
+    atualizarBotaoFavorito(botao, !favoritado);
+  });
+});

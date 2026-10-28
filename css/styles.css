@@ -1301,3 +1301,38 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   font-size: 14px;
   color: var(--cor-dourado);
 }
+
+.favorito {
+  display: grid;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(242, 240, 234, .45);
+  border-radius: 50%;
+  background: rgba(8, 8, 8, .82);
+  color: #F2F0EA;
+  font: 24px/1 Inter, sans-serif;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.favorito:hover {
+  transform: scale(1.15);
+}
+
+.favorito:focus-visible {
+  outline: 2px solid var(--cor-dourado);
+  outline-offset: 3px;
+}
+
+.favorito.favoritado {
+  color: var(--cor-dourado);
+}
+
+.product-card {
+  position: relative;
+}

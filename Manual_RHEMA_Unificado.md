@@ -2745,7 +2745,7 @@ A RHEMA vende roupa, mas a marca é fé. O site deve convidar a pessoa a voltar 
 | 9.4 | ✅ Concluída — botão "Li hoje" e contador de dias seguidos (LocalStorage) | `main.js` |
 | 9.5 | ✅ Concluída — compartilhar o devocional (WhatsApp e copiar texto) | `main.js` |
 | 9.6 | ✅ Concluída — versículo e significado de cada peça na página do produto | `main.js` + `produto.html` + `css/styles.css` |
-| 9.7 | Favoritos: coração nos produtos, salvo no LocalStorage | `main.js` + CSS |
+| 9.7 | ✅ Concluída — favoritos nos seis cards do catálogo, salvos no LocalStorage | `produtos.html` + `main.js` + `css/styles.css` |
 | 9.8 | Mural de oração: a pessoa escreve um pedido e vê os pedidos *neste navegador* | `index.html` + `main.js` |
 | 9.9 | Revisão: todas as interações, no celular e sem erros no Console | todos |
 
@@ -3166,130 +3166,53 @@ Cada URL `produto.html?id=1` até `produto.html?id=6` mostra a passagem parafras
 - [ ] Conferi visualmente os seis produtos no navegador; essa revisão ficará para a microetapa 9.9.
 
 **Próxima microetapa**  
-9.7 — Favoritos: incluir um coração nos produtos e guardar as escolhas no LocalStorage.
+9.8 — Mural de oração local: salvar os pedidos somente no navegador da pessoa.
 
 ---
 
-### 📍 Microetapa 9.7 — Favoritos (coração nos produtos)
+### 📍 Microetapa 9.7 — Favoritos (coração nos produtos) — concluída
 
 **Objetivo**
-Adicionar um ícone de coração em cada card de produto, que a pessoa pode clicar para favoritar, salvo no LocalStorage.
 
-**Onde Digitar**
-📁 Arquivo: `produtos.html`
-📍 Local: dentro de cada `.product-card`, antes do `h3`
 
-**Fragmento 1 (HTML)**
-```html
-<button class="favorito" data-id="1" aria-label="Favoritar produto" aria-pressed="false">♡</button>
-```
+Permitir favoritar ou desfavoritar cada produto e lembrar a escolha neste navegador.
 
-**Onde Digitar**
-📁 Arquivo: `css/styles.css`
+**O que foi implementado**
+- Cada um dos seis cards de `produtos.html` tem um botão de coração com o `data-id` correspondente ao produto.
+- O botão é do tipo `button`, tem área de toque de 44 × 44 px e mostra um contorno de foco ao navegar pelo teclado.
+- `js/main.js` lê e salva uma lista de IDs inteiros positivos na chave `favoritos` do `localStorage`. Dados inválidos ou que não sejam uma lista são tratados como lista vazia.
+- Ao carregar o catálogo, cada botão recupera seu estado. Ao clicar, alterna entre coração vazado e preenchido, cor dourada, `aria-pressed` e rótulo acessível.
+- O fundo escuro circular do botão mantém contraste quando ele aparece sobre as fotos.
 
-**Fragmento 2 (CSS)**
-```css
-.favorito {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: var(--cor-texto-claro);
-  cursor: pointer;
-  transition: color 0.3s, transform 0.2s;
-}
+**Como o estado funciona**
+1. O `data-id` liga cada botão ao ID do item no catálogo.
+2. `carregarFavoritos()` lê a lista e filtra valores inválidos ou repetidos.
+3. `atualizarBotaoFavorito()` mantém ícone, estilo e atributos acessíveis em sincronia.
+4. O clique salva a nova lista no `localStorage`; uma nova carga da página restaura os corações salvos.
 
-.favorito:hover {
-  transform: scale(1.15);
-}
+**Como conferir no navegador**
+1. Abra `produtos.html` e favorize um produto: o coração deve ficar cheio e dourado, e o rótulo acessível deve indicar “Remover dos favoritos”.
+2. Recarregue a página: o coração deve continuar favoritado.
+3. Clique novamente: o coração deve voltar ao estado vazado e o ID sair da lista salva.
+4. Use Tab para chegar ao botão e confirme que o foco fica visível.
 
-.favorito:focus-visible {
-  outline: 2px solid var(--cor-dourado);
-  outline-offset: 3px;
-}
+**Resultado esperado**
 
-.favorito.favoritado {
-  color: var(--cor-dourado);
-}
 
-.product-card {
-  position: relative;
-}
-```
+Os seis favoritos alternam individualmente, são identificáveis por leitores de tela e persistem entre recarregamentos no mesmo navegador.
 
-**Explicação**
-- `data-id="1"`: guarda qual produto aquele coração representa (igual ao `data-index` usado no botão "Remover" do carrinho, na 7.2) — troque o número para cada produto.
-- `.product-card { position: relative; }`: necessário para o `.favorito` (que é `absolute`) se posicionar em relação ao card, e não à página inteira — mesma lógica da 8.3.
-- `♡` é o coração vazado (não favoritado); vamos trocar para `♥` (preenchido) via JavaScript quando favoritado.
-- `aria-pressed` informa o estado do botão a leitores de tela. O ícone, o rótulo acessível e a cor mudam juntos, então a seleção não depende apenas do dourado. `:focus-visible` deixa claro onde o teclado está.
+✅ Checklist da implementação
+- [x] Adicionei botões com IDs correspondentes nos seis cards.
+- [x] Adicionei estados visuais, foco de teclado e área de toque acessível.
+- [x] Implementei leitura, alternância e gravação no LocalStorage.
+- [x] Tratei conteúdo inválido na chave de favoritos.
+- [x] Conferi alternância, estado acessível e persistência em teste isolado do JavaScript.
+- [ ] Conferi visualmente o catálogo no navegador; essa revisão ficará para a microetapa 9.9.
 
-**Onde Digitar**
-📁 Arquivo: `js/main.js`
-📍 Local: no final do arquivo
+**Próxima microetapa**
 
-**Fragmento 3 (JavaScript)**
-```javascript
-function carregarFavoritos() {
-  return JSON.parse(localStorage.getItem('favoritos')) || [];
-}
 
-document.querySelectorAll('.favorito').forEach(function(botao) {
-  const id = Number(botao.dataset.id);
-  const favoritos = carregarFavoritos();
-
-  if (favoritos.includes(id)) {
-    botao.classList.add('favoritado');
-    botao.textContent = '♥';
-    botao.setAttribute('aria-pressed', 'true');
-    botao.setAttribute('aria-label', 'Remover dos favoritos');
-  }
-
-  botao.addEventListener('click', function() {
-    let favoritos = carregarFavoritos();
-
-    if (favoritos.includes(id)) {
-      favoritos = favoritos.filter(function(favId) { return favId !== id; });
-      botao.classList.remove('favoritado');
-      botao.textContent = '♡';
-      botao.setAttribute('aria-pressed', 'false');
-      botao.setAttribute('aria-label', 'Favoritar produto');
-    } else {
-      favoritos.push(id);
-      botao.classList.add('favoritado');
-      botao.textContent = '♥';
-      botao.setAttribute('aria-pressed', 'true');
-      botao.setAttribute('aria-label', 'Remover dos favoritos');
-    }
-
-    localStorage.setItem('favoritos', JSON.stringify(favoritos));
-  });
-});
-```
-
-**Entendendo o código**
-- `carregarFavoritos()`: função pequena e reutilizável que lê a lista de ids favoritados do LocalStorage (ou devolve uma lista vazia).
-- `favoritos.includes(id)`: verifica se aquele id já está na lista de favoritos.
-- Ao carregar a página, cada coração já verifica se o seu produto está favoritado e ajusta a aparência (`♥` dourado) — assim o favorito "lembra" mesmo depois de fechar e reabrir o navegador.
-- `favoritos.filter(function(favId) { return favId !== id; })`: cria uma nova lista **sem** aquele id — é a forma mais comum em JavaScript de "remover um item de um array mantendo os outros".
-- O `addEventListener('click', ...)` alterna (toggle) entre favoritar e desfavoritar, dependendo do estado atual.
-
-**Como Testar**
-1. Adicione o botão de coração em cada card (trocando o `data-id`), o CSS e o JavaScript
-2. Abra `produtos.html`: clique num coração — deve ficar dourado e preenchido
-3. Recarregue a página: o coração deve continuar favoritado
-4. Clique de novo: deve voltar ao estado normal (vazado)
-
-**Resultado Esperado**
-Favoritos funcionando e persistindo entre recarregamentos da página.
-
-✅ Checklist
-- [ ] Adicionei o botão de coração nos cards
-- [ ] Adicionei o CSS
-- [ ] Adicionei o JavaScript
-- [ ] Testei favoritar e desfavoritar
-- [ ] Testei que o favorito persiste ao recarregar
+9.8 — Mural de oração local: salvar os pedidos somente no navegador da pessoa.
 
 ---
 

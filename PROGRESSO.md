@@ -2,7 +2,7 @@
 
 **Última atualização:** 28/10/2026
 
-**Fase 9:** as microetapas 9.1–9.6 estão implementadas. O site já exibe o devocional do dia, permite marcar a leitura e compartilhar o conteúdo, e mostra uma paráfrase bíblica e seu significado para cada um dos seis produtos. A próxima é a **9.7 — Favoritos**.
+**Fase 9:** as microetapas 9.1–9.7 estão implementadas. O site exibe o devocional do dia, permite marcar e compartilhar a leitura, mostra uma paráfrase bíblica para cada produto e guarda os favoritos no navegador. A próxima é a **9.8 — Mural de oração local**.
 
 **Correção desta revisão:** removido o hero duplicado; corrigidos o link interno quebrado, o espaçamento do rodapé e a responsividade do hero e dos benefícios. A vitrine e o catálogo agora mostram fotos reais associadas aos produtos. Os atalhos de categoria filtram o catálogo, a busca ignora acentos, os botões flutuantes usam ícones lineares e a faixa “Streetwear com identidade” foi incluída.
 
@@ -17,8 +17,8 @@
 - [x] 9.4 — registrar a leitura diária e a sequência no LocalStorage.
 - [x] 9.5 — compartilhar o devocional pelo WhatsApp ou copiá-lo.
 - [x] 9.6 — exibir paráfrase bíblica e significado para os seis produtos.
-- [ ] 9.7 — favoritos no catálogo, salvos no LocalStorage; próxima etapa.
-- [ ] 9.8 — mural de oração local.
+- [x] 9.7 — favoritar e desfavoritar os seis produtos; preferências salvas no LocalStorage.
+- [ ] 9.8 — mural de oração local; próxima etapa.
 - [ ] 9.9 — revisão conjunta da Fase 9, incluindo conferência visual e Console.
 
 As microetapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 estão implementadas. As etapas 8.4 e 8.7 estão parciais por dependerem das imagens de campanha/editoriais. A etapa 8.11 e a conferência visual no navegador continuam pendentes.
