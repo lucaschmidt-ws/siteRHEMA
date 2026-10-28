@@ -2350,7 +2350,7 @@ Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens
     </div>
     <div><p>Fé na rotina. Estilo em cada passo.</p><a href="produtos.html?categoria=Lifestyle#search-input">Ver lifestyle</a></div>
   </article>
-  <article class="editorial-card" id="historia">
+  <article class="editorial-card" id="simbolo-rhema">
     <div class="editorial-image editorial-symbol-scene">
       <img class="editorial-photo" src="imagens/editorial/textura-simbolo-rhema.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <img class="editorial-symbol" src="Logo%20Rhema/image0%20%281%29.png"
@@ -2358,6 +2358,19 @@ Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens
     </div>
     <div><p>Sal na terra e luz no mundo</p><a href="index.html#sobre">Nossa história</a></div>
   </article>
+</section>
+
+<section class="brand-story" id="historia" aria-labelledby="brand-story-title">
+  <div class="brand-story-content">
+    <p class="brand-story-kicker">Nossa história</p>
+    <h2 id="brand-story-title">Um sonho que encontrou propósito</h2>
+    <div class="brand-story-copy">
+      <p>A RHEMA nasceu de um sonho que carrego desde muito jovem: criar uma marca de roupas. Por muito tempo, esse desejo existiu como um projeto pessoal. Depois de enfrentar problemas de saúde, conheci Deus, e esse encontro mudou a forma como eu via a vida e o futuro.</p>
+      <p>Foi nessa jornada que compreendi que aquele sonho poderia servir a um propósito maior. Decidi transformar a RHEMA em uma marca baseada na fé, capaz de levar essa mensagem às pessoas por meio de algo presente no cotidiano: o que vestimos.</p>
+      <p>Não importa o rumo que a vida tome ou os desafios que apareçam: cremos que Deus pode transformar nossas vidas e permanece conosco em cada etapa. Queremos que cada peça seja um lembrete dessa fé — uma forma de expressar esperança, propósito e luz.</p>
+    </div>
+    <p class="brand-story-signature">RHEMA — Sal na terra e luz no mundo</p>
+  </div>
 </section>
 
 <section class="category-shortcuts" aria-labelledby="category-title">
@@ -2388,6 +2401,14 @@ No CSS, adicione:
 .editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 3; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
 .editorial-card p { font-size: clamp(18px, 2.5vw, 30px); }
 .editorial-card a { display: inline-block; padding: 10px 16px; border: 1px solid var(--cor-dourado); color: inherit; text-decoration: none; }
+.brand-story { position: relative; width: min(100% - 40px, 900px); margin: clamp(52px, 7vw, 96px) auto; padding: clamp(28px, 6vw, 64px); overflow: hidden; border: 1px solid rgba(201,149,46,.28); background: radial-gradient(circle at 50% 0%, rgba(201,149,46,.09), transparent 48%), linear-gradient(145deg, #151412, #080808 72%); color: var(--cor-texto-claro); }
+.brand-story::before { content: ''; position: absolute; top: 0; left: 50%; width: min(180px, 42%); height: 1px; transform: translateX(-50%); background: var(--cor-dourado); }
+.brand-story-content { position: relative; max-width: 720px; margin: 0 auto; }
+.brand-story-kicker { margin: 0 0 14px; color: var(--cor-dourado); font-size: 12px; letter-spacing: .22em; text-align: center; text-transform: uppercase; }
+.brand-story h2 { margin: 0 auto 28px; color: var(--cor-texto-claro); font-size: clamp(24px, 4vw, 38px); font-weight: 500; line-height: 1.25; text-align: center; }
+.brand-story-copy { display: grid; gap: 16px; color: var(--cor-cinza-mineral); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.8; }
+.brand-story-copy p { margin: 0; }
+.brand-story-signature { margin: 30px 0 0; color: var(--cor-dourado); font-size: 12px; letter-spacing: .14em; text-align: center; text-transform: uppercase; }
 .category-shortcuts { padding: 40px 5%; background: #111; color: #F2F0EA; }
 .category-shortcuts h2 { font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
 .category-shortcuts-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
@@ -2397,6 +2418,8 @@ No CSS, adicione:
 @media (max-width: 700px) {
   .editorial-grid { grid-template-columns: 1fr; }
   .editorial-large { grid-row: auto; min-height: 320px; }
+  .brand-story-copy,
+  .brand-story-signature { padding-right: 60px; }
   .category-shortcuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 ```
@@ -2406,7 +2429,7 @@ No CSS, adicione:
 - `grid-row: span 2` faz o bloco maior ocupar duas fileiras, como uma composição editorial.
 - `position: absolute` posiciona texto e símbolo sobre a fotografia; a camada escura em `::after` melhora o contraste do texto.
 - Os arquivos em `imagens/editorial/` são as três novas artes. O último quadro reaproveita o símbolo original da marca por cima de uma textura; não substitua o logo por uma geração artificial.
-- Os ids `sobre`, `lifestyle` e `historia` transformam links internos em destinos reais. O devocional será criado na Fase 9; até lá, não use `#devocional` como destino.
+- Os ids `sobre`, `lifestyle`, `simbolo-rhema` e `historia` transformam links internos em destinos reais. `#historia` aponta para a seção institucional abaixo dos cards; o devocional fica na Fase 9.
 - Use imagens com luz e temperatura de cor consistentes; não altere o desenho do símbolo.
 
 **Teste**

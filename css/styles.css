@@ -1130,6 +1130,14 @@ input:focus {
 .editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 3; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
 .editorial-card p { font-size: clamp(18px, 2.5vw, 30px); }
 .editorial-card a { display: inline-block; padding: 10px 16px; border: 1px solid var(--cor-dourado); color: inherit; text-decoration: none; }
+.brand-story { position: relative; width: min(100% - 40px, 900px); margin: clamp(52px, 7vw, 96px) auto; padding: clamp(28px, 6vw, 64px); overflow: hidden; border: 1px solid rgba(201, 149, 46, .28); background: radial-gradient(circle at 50% 0%, rgba(201, 149, 46, .09), transparent 48%), linear-gradient(145deg, #151412, #080808 72%); color: var(--cor-texto-claro); }
+.brand-story::before { content: ''; position: absolute; top: 0; left: 50%; width: min(180px, 42%); height: 1px; transform: translateX(-50%); background: var(--cor-dourado); }
+.brand-story-content { position: relative; max-width: 720px; margin: 0 auto; }
+.brand-story-kicker { margin: 0 0 14px; color: var(--cor-dourado); font-size: 12px; letter-spacing: .22em; text-align: center; text-transform: uppercase; }
+.brand-story h2 { margin: 0 auto 28px; color: var(--cor-texto-claro); font-size: clamp(24px, 4vw, 38px); font-weight: 500; line-height: 1.25; text-align: center; }
+.brand-story-copy { display: grid; gap: 16px; color: var(--cor-cinza-mineral); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.8; }
+.brand-story-copy p { margin: 0; }
+.brand-story-signature { margin: 30px 0 0; color: var(--cor-dourado); font-size: 12px; letter-spacing: .14em; text-align: center; text-transform: uppercase; }
 .category-shortcuts { padding: 40px 5%; background: #111; color: #F2F0EA; }
 .category-shortcuts h2 { font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
 .category-shortcuts-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
@@ -1139,6 +1147,8 @@ input:focus {
 @media (max-width: 700px) {
   .editorial-grid { grid-template-columns: 1fr; }
   .editorial-large { grid-row: auto; min-height: 320px; }
+  .brand-story-copy,
+  .brand-story-signature { padding-right: 60px; }
   .category-shortcuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
