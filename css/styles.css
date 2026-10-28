@@ -1120,8 +1120,14 @@ input:focus {
 .editorial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #202020; }
 .editorial-card { position: relative; min-height: 260px; overflow: hidden; background: #080808; color: #F2F0EA; }
 .editorial-large { grid-row: span 2; min-height: 520px; }
-.editorial-image { position: absolute; inset: 0; background: radial-gradient(circle at 60% 40%, #493415, #111 50%, #080808); opacity: .75; }
-.editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 1; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
+.editorial-image { position: absolute; inset: 0; overflow: hidden; background: #080808; }
+.editorial-image::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(8, 8, 8, .9) 0%, rgba(8, 8, 8, .34) 42%, rgba(8, 8, 8, .04) 100%); pointer-events: none; }
+.editorial-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.editorial-photo-portrait { object-position: center 38%; }
+.editorial-photo-lifestyle { object-position: center 46%; }
+.editorial-card:hover .editorial-photo { transform: scale(1.035); }
+.editorial-symbol { position: absolute; left: 50%; top: 30%; z-index: 2; width: 46%; max-height: 42%; object-fit: contain; transform: translate(-50%, -50%); filter: brightness(1.8) contrast(1.12) drop-shadow(0 0 10px rgba(201, 149, 46, .5)); mix-blend-mode: screen; opacity: .96; }
+.editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 3; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
 .editorial-card p { font-size: clamp(18px, 2.5vw, 30px); }
 .editorial-card a { display: inline-block; padding: 10px 16px; border: 1px solid var(--cor-dourado); color: inherit; text-decoration: none; }
 .category-shortcuts { padding: 40px 5%; background: #111; color: #F2F0EA; }

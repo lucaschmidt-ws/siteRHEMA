@@ -24,7 +24,7 @@
 
 **Registro da revisão 9.9:** Chrome verificou as quatro páginas em 390 px sem rolagem horizontal, os seis produtos e suas fotos, o devocional e a sequência diária, o compartilhamento, favoritos, mural, armazenamento, exclusão e entradas vazias/inválidas. As capturas do mural e dos favoritos foram revisadas visualmente. O teste isolado não teve acesso de rede às fontes Google; isso gerou mensagens de falha de DNS para Manrope/Inter, enquanto o site usou a fonte alternativa. Não houve exceções de JavaScript.
 
-As microetapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 estão implementadas. As etapas 8.4 e 8.7 estão parciais por dependerem das imagens de campanha/editoriais. A etapa 8.11 e a conferência visual no navegador continuam pendentes.
+As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi concluída com três imagens editoriais novas e conferência responsiva; a etapa 8.4 permanece parcial por depender da arte final do hero. A etapa 8.11 e a revisão visual completa da homepage continuam pendentes.
 
 - [x] 8.1 — paleta retificada nos tokens existentes.
 - [x] 8.2 — Manrope nos títulos e Inter nos textos das quatro páginas.
@@ -71,7 +71,7 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 | 8.4 — Hero de campanha | Parcial | Falta arte de campanha aprovada; estrutura responsiva está no site |
 | 8.5 — Faixa de benefícios | Implementada | Confirmar as promessas e revisar visualmente |
 | 8.6 — Vitrine com carrossel | Implementada | Conferir fotos e navegação no navegador |
-| 8.7 — Seções editoriais e categorias | Parcial | Falta substituir as imagens editoriais provisórias |
+| 8.7 — Seções editoriais e categorias | Implementada | Fotos editoriais incluídas; símbolo original preservado no quadro de história |
 | 8.8 — Estados e interações | Implementada | Revisão visual dos controles no navegador |
 | 8.9 — Galeria do produto | Implementada | Revisão visual no navegador |
 | 8.10 — Rodapé e redução de movimento | Implementada | Formulário é demonstrativo; revisar visualmente |
@@ -85,7 +85,8 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 - As imagens dos cards usam a primeira foto cadastrada em `catalogo` no `js/main.js`; confira se cada foto representa a versão comercial que será vendida.
 - A categoria Lifestyle está associada ao produto Jaqueta por ser a opção disponível no catálogo atual; revise essa classificação quando a organização comercial estiver definida.
 - O catálogo ainda repete nome, preço e ID entre `produtos.html` e `js/main.js`; mantenha esses dados sincronizados.
-- As imagens editoriais permanecem provisórias, e a arte final do hero ainda não foi fornecida.
+- A arte final do hero da etapa 8.4 ainda não foi fornecida.
+- As imagens editoriais de 8.7 estão em `imagens/editorial/`: editorial, lifestyle e textura para o símbolo original.
 
 ## Histórico anterior
 
@@ -93,4 +94,4 @@ As Fases 1 a 7 e as correções R1 continuam registradas nos documentos anterior
 
 ## Próximo passo
 
-A Fase 9 está concluída. O próximo trabalho de desenvolvimento é a Fase 10; o cadastro real deve aguardar o banco de dados e o back-end da Fase 11. A Fase 8 ainda tem itens visuais pendentes: arte final do hero, imagens editoriais e revisão completa da homepage.
+A Fase 9 está concluída. O próximo trabalho de desenvolvimento é a Fase 10; o cadastro real deve aguardar o banco de dados e o back-end da Fase 11. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage.

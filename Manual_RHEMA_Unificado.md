@@ -4,9 +4,9 @@
 **Versão:** 2.0  
 **Data:** 28/10/2026
 
-**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 têm implementação; 8.4 e 8.7 estão parciais, e a revisão visual completa da homepage (8.11) continua pendente.
+**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1 a 8.3 e 8.5 a 8.10 têm implementação; 8.4 está parcial, e a revisão visual completa da homepage (8.11) continua pendente.
 
-> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. A arte final do hero, as imagens editoriais e a revisão visual ainda precisam ser resolvidos.
+> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. A arte final do hero e a revisão visual completa da homepage ainda precisam ser resolvidas.
 
 ---
 
@@ -47,7 +47,7 @@ A RHEMA é uma marca de roupas **streetwear cristã** que você está criando co
 | Carrinho de compras | ✅ Concluído (o erro do botão foi corrigido na R1.2) |
 | Filtros e busca | Busca por nome (sem distinção de acentos) e filtro por categoria concluídos; filtro por tamanho ainda não existe |
 | Responsividade | ✅ Concluído (`viewport` na R1.1 e `@media` na R1.7) |
-| Visual luxuoso e clean | Etapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 implementadas; 8.4 e 8.7 parciais; 8.11 pendente |
+| Visual luxuoso e clean | Etapas 8.1 a 8.3 e 8.5 a 8.10 implementadas; 8.4 parcial; 8.11 pendente |
 | Devocional diário e interatividade | ✅ Fase 9.1 a 9.9 implementadas e revisadas |
 | Sistema de login/cadastro | ⏳ Fase 10 escrita |
 | Back-end e banco de dados | ⏳ Fase 11 escrita |
@@ -2326,22 +2326,36 @@ Adicionar blocos de campanha para propósito, detalhes da peça, história e lif
 Esses blocos dão ritmo à homepage e mostram a relação entre fé, cultura e estilo sem transformar cada seção em um anúncio.
 
 **Implementação**  
-Em `index.html`, depois da vitrine, adicione estes blocos. As áreas de imagem continuam como placeholders até existirem fotos de campanha aprovadas.
+Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens foram criadas para esta composição e estão em `imagens/editorial/`. O terceiro quadro usa como camada o arquivo original do símbolo em `Logo Rhema/image0 (1).png`; mantenha essa arte sem redesenhar ou distorcer.
 
-> **Estado atual:** os blocos e os cinco atalhos já existem. Os atalhos filtram o catálogo. As imagens editoriais ainda são provisórias e aguardam fotos aprovadas.
+> **Estado atual:** etapa implementada. As três imagens carregam na homepage, os atalhos filtram o catálogo e o layout foi conferido em telas desktop e celular. A arte final do hero da etapa 8.4 ainda é um item separado.
 
 ```html
 <section class="editorial-grid" aria-label="História e lifestyle RHEMA">
   <article class="editorial-card editorial-large" id="sobre">
-    <div class="editorial-image">[FOTO EDITORIAL RHEMA]</div>
+    <div class="editorial-image">
+      <img class="editorial-photo editorial-photo-portrait"
+           src="imagens/editorial/foto-editorial-rhema.png"
+           alt="Modelo adulto com streetwear preto em um corredor de pedra iluminado por luz âmbar"
+           loading="lazy" decoding="async">
+    </div>
     <div><p>Propósito também é estilo</p><a href="index.html#historia">Conheça a RHEMA</a></div>
   </article>
   <article class="editorial-card" id="lifestyle">
-    <div class="editorial-image">[FOTO DE LIFESTYLE]</div>
+    <div class="editorial-image">
+      <img class="editorial-photo editorial-photo-lifestyle"
+           src="imagens/editorial/foto-lifestyle-rhema.png"
+           alt="Pessoa caminhando pela cidade usando streetwear preto no fim da tarde"
+           loading="lazy" decoding="async">
+    </div>
     <div><p>Fé na rotina. Estilo em cada passo.</p><a href="produtos.html?categoria=Lifestyle#search-input">Ver lifestyle</a></div>
   </article>
   <article class="editorial-card" id="historia">
-    <div class="editorial-image">[DETALHE DO SÍMBOLO ORIGINAL]</div>
+    <div class="editorial-image editorial-symbol-scene">
+      <img class="editorial-photo" src="imagens/editorial/textura-simbolo-rhema.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="editorial-symbol" src="Logo%20Rhema/image0%20%281%29.png"
+           alt="Símbolo original da RHEMA em dourado sobre tecido preto" loading="lazy" decoding="async">
+    </div>
     <div><p>Sal na terra e luz no mundo</p><a href="index.html#sobre">Nossa história</a></div>
   </article>
 </section>
@@ -2364,8 +2378,14 @@ No CSS, adicione:
 .editorial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #202020; }
 .editorial-card { position: relative; min-height: 260px; overflow: hidden; background: #080808; color: #F2F0EA; }
 .editorial-large { grid-row: span 2; min-height: 520px; }
-.editorial-image { position: absolute; inset: 0; background: radial-gradient(circle at 60% 40%, #493415, #111 50%, #080808); opacity: .75; }
-.editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 1; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
+.editorial-image { position: absolute; inset: 0; overflow: hidden; background: #080808; }
+.editorial-image::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(8,8,8,.9), rgba(8,8,8,.34) 42%, rgba(8,8,8,.04)); }
+.editorial-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.editorial-photo-portrait { object-position: center 38%; }
+.editorial-photo-lifestyle { object-position: center 46%; }
+.editorial-card:hover .editorial-photo { transform: scale(1.035); }
+.editorial-symbol { position: absolute; left: 50%; top: 30%; z-index: 2; width: 46%; max-height: 42%; object-fit: contain; transform: translate(-50%, -50%); mix-blend-mode: screen; }
+.editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 3; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
 .editorial-card p { font-size: clamp(18px, 2.5vw, 30px); }
 .editorial-card a { display: inline-block; padding: 10px 16px; border: 1px solid var(--cor-dourado); color: inherit; text-decoration: none; }
 .category-shortcuts { padding: 40px 5%; background: #111; color: #F2F0EA; }
@@ -2384,7 +2404,8 @@ No CSS, adicione:
 **Entendendo o código**
 
 - `grid-row: span 2` faz o bloco maior ocupar duas fileiras, como uma composição editorial.
-- `position: absolute` posiciona o texto sobre a imagem; `z-index` mantém o texto legível.
+- `position: absolute` posiciona texto e símbolo sobre a fotografia; a camada escura em `::after` melhora o contraste do texto.
+- Os arquivos em `imagens/editorial/` são as três novas artes. O último quadro reaproveita o símbolo original da marca por cima de uma textura; não substitua o logo por uma geração artificial.
 - Os ids `sobre`, `lifestyle` e `historia` transformam links internos em destinos reais. O devocional será criado na Fase 9; até lá, não use `#devocional` como destino.
 - Use imagens com luz e temperatura de cor consistentes; não altere o desenho do símbolo.
 
