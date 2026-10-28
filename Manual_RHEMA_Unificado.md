@@ -6,7 +6,7 @@
 
 **Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1 a 8.3 e 8.5 a 8.10 têm implementação; 8.4 está parcial, e a revisão visual completa da homepage (8.11) continua pendente. A página Sobre tem interface própria e formulário de testemunhos; a publicação compartilhada aguarda a ativação do Supabase.
 
-> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. O item Sobre abre a página `sobre.html`, separada da homepage. O mural global depende de um banco online ativo; veja `database/rhema_testimonies.sql`.
+> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. O item **Histórias** abre a página `sobre.html`, separada da homepage. O mural global depende de um banco online ativo; veja `database/rhema_testimonies.sql`.
 
 ---
 
@@ -1773,7 +1773,7 @@ No `index.html`, substitua o `<header>` atual e o `<nav class="main-nav">` separ
     <a href="index.html" aria-current="page">Início</a>
     <a href="produtos.html">Roupas</a>
     <a href="index.html#lifestyle">Lifestyle</a>
-    <a href="sobre.html">Sobre</a>
+    <a href="sobre.html">Histórias</a>
   </nav>
 
   <div class="header-actions">

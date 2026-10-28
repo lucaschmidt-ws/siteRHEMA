@@ -38,7 +38,7 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] Os cinco atalhos de categoria filtram os produtos; a Jaqueta está marcada como Lifestyle.
 - [x] Busca aceita termos sem acento, como “bone” para encontrar “Boné”.
 - [x] Correções estruturais: hero duplicado removido, link interno consertado e rodapé ajustado.
-- [x] Navegação Sobre separada da homepage; testemunho do fundador e interface responsiva do mural em `sobre.html`.
+- [x] Item “Histórias” abre uma página separada com o testemunho do fundador e a interface responsiva do mural em `sobre.html`.
 - [x] Tabela do mural preparada com RLS: visitantes só leem relatos aprovados e enviam relatos como pendentes.
 - [ ] Ativar o projeto Supabase, executar `database/rhema_testimonies.sql`, expor a tabela na Data API e configurar a chave pública em `js/sobre-config.js`; testar envio e aprovação antes de liberar o mural.
 - [x] Verificação de sintaxe do `js/main.js` e existência dos caminhos cadastrados no catálogo.
