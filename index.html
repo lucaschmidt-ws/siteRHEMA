@@ -158,24 +158,44 @@
     </section>
   </main>
 
-  <section class="devocional">
-  <h2>Palavra do Dia</h2>
-  <p class="devocional-referencia" id="devocional-referencia">Carregando...</p>
-  <p class="devocional-versiculo" id="devocional-versiculo"></p>
-  <p class="devocional-reflexao" id="devocional-reflexao"></p>
-  <p class="devocional-oracao" id="devocional-oracao"></p>
+  <section class="devocional" aria-labelledby="devocional-titulo">
+    <h2 id="devocional-titulo">Palavra do Dia</h2>
+    <p class="devocional-referencia" id="devocional-referencia">Carregando...</p>
+    <p class="devocional-versiculo" id="devocional-versiculo"></p>
+    <p class="devocional-reflexao" id="devocional-reflexao"></p>
+    <p class="devocional-oracao" id="devocional-oracao"></p>
 
-  <div class="devocional-acoes">
-    <button class="btn btn-small" id="btn-li-hoje">Já li hoje</button>
-    <span class="devocional-sequencia" id="devocional-sequencia"></span>
-  </div>
-</section>
+    <div class="devocional-acoes">
+      <button class="btn btn-small" id="btn-li-hoje" type="button">Já li hoje</button>
+      <span class="devocional-sequencia" id="devocional-sequencia" role="status" aria-live="polite"></span>
+      <div class="devocional-compartilhar" role="group" aria-label="Compartilhar o devocional">
+        <button class="btn-small" id="btn-compartilhar-whatsapp" type="button">Compartilhar no WhatsApp</button>
+        <button class="btn-small" id="btn-copiar-texto" type="button">Copiar texto</button>
+      </div>
+      <p class="devocional-status" id="devocional-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="mural-oracao" aria-labelledby="mural-oracao-titulo">
+    <p class="mural-kicker">Um espaço pessoal</p>
+    <h2 id="mural-oracao-titulo">Mural de Oração</h2>
+    <p class="mural-aviso" id="mural-aviso">Seus pedidos ficam salvos somente neste navegador e não são enviados para a RHEMA. Evite incluir dados pessoais ou informações sensíveis.</p>
+
+    <form id="form-oracao" novalidate>
+      <label for="texto-oracao">Escreva seu pedido de oração</label>
+      <textarea id="texto-oracao" name="pedido" rows="4" maxlength="500" aria-describedby="mural-aviso mural-contador" placeholder="Compartilhe o que você gostaria de levar em oração..." required></textarea>
+      <div class="mural-form-meta">
+        <span id="mural-contador">0 / 500 caracteres</span>
+        <button class="btn btn-primary" type="submit">Salvar pedido</button>
+      </div>
+      <p class="mural-status" id="mural-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="mural-vazio" id="mural-vazio">Seus pedidos salvos aparecerão aqui.</p>
+    <ul class="lista-oracoes" id="lista-oracoes" aria-label="Pedidos de oração salvos neste navegador"></ul>
+  </section>
 
   <footer class="site-footer">
-  <div class="footer-brand">
-    <a class="footer-brand-link" href="index.html" aria-label="Página inicial da RHEMA"><img src="imagens/logo-rhema-claro.png" alt="RHEMA"></a>
-    <p>Sal na terra e luz no mundo</p>
-  </div>
   <div><h2>Institucional</h2><a href="#sobre">Sobre a marca</a><a href="produtos.html">Coleções</a></div>
   <div><h2>Ajuda</h2><a href="#atendimento">Trocas e devoluções</a><a href="#atendimento">Entrega</a></div>
   <div id="atendimento">

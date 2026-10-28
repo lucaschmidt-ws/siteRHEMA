@@ -2,8 +2,9 @@
 
 **Guia passo a passo de desenvolvimento web**  
 **Versão:** 2.0  
-**Data:** 27/10/2026  
-**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As etapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 têm implementação no site. As etapas 8.4 e 8.7 estão parciais; a revisão visual da homepage (8.11) continua pendente.
+**Data:** 28/10/2026
+
+**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 têm implementação; 8.4 e 8.7 estão parciais, e a revisão visual completa da homepage (8.11) continua pendente.
 
 > Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. A arte final do hero, as imagens editoriais e a revisão visual ainda precisam ser resolvidos.
 
@@ -47,7 +48,7 @@ A RHEMA é uma marca de roupas **streetwear cristã** que você está criando co
 | Filtros e busca | Busca por nome (sem distinção de acentos) e filtro por categoria concluídos; filtro por tamanho ainda não existe |
 | Responsividade | ✅ Concluído (`viewport` na R1.1 e `@media` na R1.7) |
 | Visual luxuoso e clean | Etapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 implementadas; 8.4 e 8.7 parciais; 8.11 pendente |
-| Devocional diário e interatividade | ⏳ Fase 9 toda escrita (9.1 a 9.9) |
+| Devocional diário e interatividade | ✅ Fase 9.1 a 9.9 implementadas e revisadas |
 | Sistema de login/cadastro | ⏳ Fase 10 escrita |
 | Back-end e banco de dados | ⏳ Fase 11 escrita |
 
@@ -2739,20 +2740,20 @@ A RHEMA vende roupa, mas a marca é fé. O site deve convidar a pessoa a voltar 
 
 | Microetapa | O que entra | Mexe em |
 |-----------|-------------|---------|
-| 9.1 | Seção do devocional acima do rodapé da `index.html` (estrutura e estilo) | `index.html` + `styles.css` |
+| 9.1 | ✅ Concluída — seção do devocional com ações acessíveis | `index.html` + `styles.css` |
 | 9.2 | ✅ Concluída — lista autoral de 66 devocionais, um baseado em cada livro do cânon de 66 livros | `main.js` |
 | 9.3 | ✅ Concluída — mostrar o devocional do dia, escolhido pela data | `main.js` |
 | 9.4 | ✅ Concluída — botão "Li hoje" e contador de dias seguidos (LocalStorage) | `main.js` |
 | 9.5 | ✅ Concluída — compartilhar o devocional (WhatsApp e copiar texto) | `main.js` |
 | 9.6 | ✅ Concluída — versículo e significado de cada peça na página do produto | `main.js` + `produto.html` + `css/styles.css` |
 | 9.7 | ✅ Concluída — favoritos nos seis cards do catálogo, salvos no LocalStorage | `produtos.html` + `main.js` + `css/styles.css` |
-| 9.8 | Mural de oração: a pessoa escreve um pedido e vê os pedidos *neste navegador* | `index.html` + `main.js` |
-| 9.9 | Revisão: todas as interações, no celular e sem erros no Console | todos |
+| 9.8 | ✅ Concluída — mural pessoal para salvar, consultar e excluir pedidos neste navegador | `index.html` + `main.js` + `styles.css` |
+| 9.9 | ✅ Concluída — revisão funcional, responsiva e de Console em todas as páginas | todos |
 
 **Cuidados importantes**
 - **Versículos:** confira a referência na Bíblia escolhida pela RHEMA. Se usar o texto exato de uma tradução, confirme antes os direitos e as condições de reutilização; uma paráfrase original evita reproduzir a redação daquela tradução.
 - **Reflexões e orações:** você pode escrevê-las com suas próprias palavras. Peça ao Claude um rascunho e revise com o seu pastor ou líder, se quiser.
-- **Mural de oração (9.8):** sem back-end, os pedidos ficam só no navegador de quem escreveu, e ninguém mais os vê. O mural compartilhado de verdade exige a Fase 11. Por isso nunca peça dados sensíveis nele.
+- **Mural de oração (9.8):** sem back-end, os pedidos ficam no armazenamento local deste navegador e não são enviados para a RHEMA. Outra pessoa que usa o mesmo perfil do navegador pode ver ou excluir esses dados. Não escreva informações sensíveis. O mural compartilhado exige a Fase 11.
 
 ### 📍 Microetapa 9.1 — Seção do devocional
 
@@ -2879,7 +2880,7 @@ Os dados estão preparados. Ainda não há mudança visual nesta microetapa; mos
 
 ---
 
-### 📍 Microetapa 9.3 — Mostrar o devocional do dia
+### 📍 Microetapa 9.3 — Mostrar o devocional do dia — concluída
 
 **Objetivo**
 Escolher automaticamente um devocional da lista, baseado na data de hoje, e preencher a seção criada na 9.1.
@@ -2896,8 +2897,9 @@ Escolher automaticamente um devocional da lista, baseado na data de hoje, e pree
 ```javascript
 function obterDevocionalDeHoje() {
   const hoje = new Date();
-  const inicioDoAno = new Date(hoje.getFullYear(), 0, 1);
-  const diasPassados = Math.floor((hoje - inicioDoAno) / (1000 * 60 * 60 * 24));
+  const hojeEmUTC = Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  const inicioDoAnoEmUTC = Date.UTC(hoje.getFullYear(), 0, 1);
+  const diasPassados = Math.floor((hojeEmUTC - inicioDoAnoEmUTC) / 86400000);
   const indice = diasPassados % devocionais.length;
   return devocionais[indice];
 }
@@ -2917,9 +2919,8 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 
 **Entendendo o código**
-- `new Date(hoje.getFullYear(), 0, 1)`: cria a data do dia 1º de janeiro do ano atual (o `0` é o mês — em JavaScript, os meses começam em 0 para janeiro).
-- `hoje - inicioDoAno`: subtrair duas datas em JavaScript devolve a diferença em **milissegundos**.
-- `1000 * 60 * 60 * 24`: milissegundos de um dia inteiro (1000ms = 1s, × 60 = 1min, × 60 = 1h, × 24 = 1 dia). Dividir pela diferença em milissegundos converte para "quantos dias se passaram".
+- `Date.UTC(...)`: transforma datas do calendário em números de dias padronizados, sem o horário local nem mudanças de horário de verão alterarem o resultado.
+- `hojeEmUTC - inicioDoAnoEmUTC`: subtrai os dois dias padronizados; dividir por `86400000` (milissegundos de 24 horas) resulta nos dias desde o início do ano.
 - `Math.floor(...)`: arredonda para baixo, removendo casas decimais (já que "dias passados" tem que ser um número inteiro).
 - `diasPassados % devocionais.length`: o resto da divisão garante um índice válido entre `0` e `devocionais.length - 1`. Com os 66 itens atuais, os índices vão de `0` a `65`; se a lista crescer, o cálculo se ajusta sozinho — é o mesmo truque do `%` usado na galeria de fotos (8.6).
 - `if (elementoReferencia)`: só roda em páginas que têm a seção de devocional — hoje só a `index.html`.
@@ -2934,14 +2935,14 @@ document.addEventListener('DOMContentLoaded', function() {
 Devocional do dia aparecendo corretamente, trocando automaticamente conforme a data.
 
 ✅ Checklist
-- [ ] Adicionei a função `obterDevocionalDeHoje`
-- [ ] Preenchi os elementos da seção com o devocional do dia
-- [ ] Testei visualmente na `index.html`
-- [ ] Entendi a conta dos dias e o uso do `%`
+- [x] Adicionei a função `obterDevocionalDeHoje`
+- [x] Preenchi os elementos da seção com o devocional do dia
+- [x] Testei visualmente na `index.html`
+- [x] Entendi a conta dos dias e o uso do `%`
 
 ---
 
-### 📍 Microetapa 9.4 — Botão "Li hoje" e contador de dias seguidos
+### 📍 Microetapa 9.4 — Botão "Li hoje" e contador de dias seguidos — concluída
 
 **Objetivo**
 Fazer o botão "Já li hoje" guardar, no LocalStorage, a data da última leitura e quantos dias seguidos a pessoa leu o devocional.
@@ -2957,7 +2958,10 @@ Fazer o botão "Já li hoje" guardar, no LocalStorage, a data da última leitura
 **Fragmento (JavaScript)**
 ```javascript
 function formatarDataISO(data) {
-  return data.toISOString().split('T')[0]; // "AAAA-MM-DD"
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, '0');
+  const dia = String(data.getDate()).padStart(2, '0');
+  return `${ano}-${mes}-${dia}`;
 }
 
 function atualizarSequenciaDevocional() {
@@ -2981,7 +2985,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const ultimaLeitura = localStorage.getItem('devocional-ultima-leitura');
 
       if (ultimaLeitura === hojeTexto) {
-        alert('Você já marcou a leitura de hoje!');
+        mostrarStatusDevocional('Você já marcou a leitura de hoje.');
         return;
       }
 
@@ -2996,14 +3000,14 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('devocional-sequencia', sequencia);
 
       atualizarSequenciaDevocional();
-      alert(`Leitura marcada! Sequência: ${sequencia} dia(s) 🙏`);
+      mostrarStatusDevocional(`Leitura marcada. Sua sequência é de ${sequencia} dia(s).`);
     });
   }
 });
 ```
 
 **Entendendo o código**
-- `data.toISOString()`: converte a data para um texto padrão tipo `"2026-10-15T20:45:00.000Z"`. `.split('T')[0]` pega só a parte antes do `T`, ou seja, `"2026-10-15"`.
+- `formatarDataISO()`: monta o texto com a data do calendário local. Evita usar `toISOString()`, que converte para UTC e pode trocar o dia perto da meia-noite.
 - `atualizarSequenciaDevocional()`: função separada, reutilizável — chamada tanto ao carregar a página quanto depois de marcar "li hoje", para o texto da sequência atualizar na hora.
 - `if (ultimaLeitura === hojeTexto) { ...; return; }`: se a pessoa já leu hoje, mostra aviso e **para a função ali** (`return` dentro de uma função encerra sua execução imediatamente).
 - `ontem.setDate(ontem.getDate() - 1)`: pega a data de hoje e subtrai 1 dia — o JavaScript lida sozinho com casos como virar o mês (ex.: dia 1 menos 1 vira o último dia do mês anterior).
@@ -3011,9 +3015,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 **Como Testar**
 1. Adicione o código
-2. Abra `index.html`, clique em "Já li hoje": deve aparecer o alerta de sucesso com "Sequência: 1 dia(s)"
-3. Clique de novo no mesmo botão: deve avisar que você já leu hoje
-4. Para simular o dia seguinte sem esperar: no DevTools → Console, rode `localStorage.setItem('devocional-ultima-leitura', '2026-10-14')` (um dia antes de hoje) e recarregue a página — ao clicar em "Já li hoje", a sequência deve ir para 2
+2. Abra `index.html`, clique em "Já li hoje": deve aparecer na página a confirmação da leitura e da sequência
+3. Clique de novo no mesmo botão: deve avisar na própria página que você já leu hoje
+4. Para simular uma leitura ontem sem esperar: no DevTools → Console, rode `const ontem = new Date(); ontem.setDate(ontem.getDate() - 1); localStorage.setItem('devocional-ultima-leitura', [ontem.getFullYear(), String(ontem.getMonth() + 1).padStart(2, '0'), String(ontem.getDate()).padStart(2, '0')].join('-'))` — ao clicar em "Já li hoje", a sequência deve aumentar
 
 **Resultado Esperado**
 - Primeira marcação do dia: sequência soma
@@ -3021,21 +3025,24 @@ document.addEventListener('DOMContentLoaded', function() {
 - Sequência reinicia se um dia for pulado
 
 ✅ Checklist
-- [ ] Adicionei as funções no `main.js`
-- [ ] Testei marcar "li hoje" pela primeira vez
-- [ ] Testei marcar de novo no mesmo dia (aviso)
-- [ ] Simulei o dia anterior no Console para testar a sequência subindo
+- [x] Adicionei as funções no `main.js`
+- [x] Testei marcar "li hoje" pela primeira vez
+- [x] Testei marcar de novo no mesmo dia (aviso)
+- [x] Simulei o dia anterior no Console para testar a sequência subindo
 
 ---
 
-### 📍 Microetapa 9.5 — Compartilhar o devocional
+### 📍 Microetapa 9.5 — Compartilhar o devocional — concluída
 
 **Objetivo**
 Adicionar dois botões para compartilhar o devocional do dia: um que abre o WhatsApp com o texto pronto, e outro que copia o texto para a área de transferência.
 
+**Versão implementada**
+O botão do WhatsApp abre uma nova aba protegida contra acesso à página de origem. O botão de cópia tenta a Clipboard API e depois usa uma alternativa de compatibilidade. Os dois informam o resultado numa mensagem acessível, sem depender de alertas.
+
 **Conceito Novo**
 - **`encodeURIComponent()`**: função que transforma um texto comum em um formato seguro para ir dentro de um link (substitui espaços, quebras de linha e acentuação por códigos especiais que a URL entende).
-- **Clipboard API (`navigator.clipboard`)**: recurso do navegador que permite copiar texto para a área de transferência (o "Ctrl+C" por código).
+- **Clipboard API (`navigator.clipboard`)**: recurso do navegador que permite copiar texto para a área de transferência (o "Ctrl+C" por código). Como alguns navegadores exigem uma conexão segura, o site também tenta uma cópia de compatibilidade e informa quando não consegue copiar.
 
 **Onde Digitar**
 📁 Arquivo: `index.html`
@@ -3085,7 +3092,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const devocionalHoje = obterDevocionalDeHoje();
       const texto = montarTextoDevocional(devocionalHoje);
       const link = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-      window.open(link, '_blank');
+      window.open(link, '_blank', 'noopener,noreferrer');
+      mostrarStatusDevocional('Abrindo o compartilhamento do WhatsApp.');
     });
   }
 
@@ -3094,8 +3102,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const devocionalHoje = obterDevocionalDeHoje();
       const texto = montarTextoDevocional(devocionalHoje);
 
-      navigator.clipboard.writeText(texto).then(function() {
-        alert('Texto copiado!');
+      copiarTextoComFallback(texto).then(function() {
+        mostrarStatusDevocional('Texto do devocional copiado.');
+      }).catch(function() {
+        mostrarStatusDevocional('Não foi possível copiar automaticamente. Selecione e copie o texto manualmente.');
       });
     });
   }
@@ -3106,22 +3116,22 @@ document.addEventListener('DOMContentLoaded', function() {
 - `montarTextoDevocional(devocional)`: função que monta o texto final a ser compartilhado, juntando referência, versículo e reflexão num único bloco de texto. `\n` cria uma quebra de linha dentro da template string.
 - `https://wa.me/?text=...`: o link oficial do WhatsApp para "compartilhar", sem precisar escolher um contato específico — abre o WhatsApp (ou WhatsApp Web) já com o texto preenchido, pronto para a pessoa escolher para quem enviar.
 - `encodeURIComponent(texto)`: sem isso, espaços, acentos e quebras de linha quebrariam o link. Essa função "traduz" o texto para um formato seguro de URL.
-- `navigator.clipboard.writeText(texto)`: copia o texto para a área de transferência do sistema. É uma operação **assíncrona** (não acontece instantaneamente), por isso usamos `.then(function() {...})` — "quando terminar de copiar, então mostra o alerta".
+- `navigator.clipboard.writeText(texto)`: tenta copiar o texto para a área de transferência. É uma operação **assíncrona**; a mensagem de sucesso só aparece quando a cópia termina. Se o navegador negar a permissão, o site tenta o método de compatibilidade e mostra uma orientação caso também não consiga.
 
 **Como Testar**
 1. Adicione o HTML, o CSS e o JavaScript
 2. Clique em "Compartilhar no WhatsApp": deve abrir uma nova aba com o WhatsApp e o texto do devocional já preenchido
-3. Clique em "Copiar texto": deve aparecer o alerta "Texto copiado!" — cole (Ctrl+V) em qualquer lugar para conferir
+3. Clique em "Copiar texto": a página confirma o resultado; cole (Ctrl+V) em qualquer lugar para conferir
 
 **Resultado Esperado**
 Os dois botões de compartilhamento funcionando, com o texto do devocional do dia.
 
 ✅ Checklist
-- [ ] Adicionei os botões no HTML
-- [ ] Adicionei o CSS
-- [ ] Adicionei o JavaScript
-- [ ] Testei o botão do WhatsApp
-- [ ] Testei o botão de copiar
+- [x] Adicionei os botões no HTML
+- [x] Adicionei o CSS
+- [x] Adicionei o JavaScript
+- [x] Testei o botão do WhatsApp
+- [x] Testei o botão de copiar e a alternativa para navegadores sem Clipboard API
 
 ---
 
@@ -3163,10 +3173,10 @@ Cada URL `produto.html?id=1` até `produto.html?id=6` mostra a passagem parafras
 - [x] Integrei o preenchimento dos dados ao produto selecionado.
 - [x] Apliquei o estilo secundário e dourado, mantendo o contraste.
 - [x] Deixei as paráfrases identificadas e registrei as referências usadas.
-- [ ] Conferi visualmente os seis produtos no navegador; essa revisão ficará para a microetapa 9.9.
+- [x] Conferi visualmente os seis produtos no navegador durante a microetapa 9.9.
 
 **Próxima microetapa**  
-9.8 — Mural de oração local: salvar os pedidos somente no navegador da pessoa.
+9.7 — Favoritos no catálogo (concluída; detalhes abaixo).
 
 ---
 
@@ -3207,19 +3217,28 @@ Os seis favoritos alternam individualmente, são identificáveis por leitores de
 - [x] Implementei leitura, alternância e gravação no LocalStorage.
 - [x] Tratei conteúdo inválido na chave de favoritos.
 - [x] Conferi alternância, estado acessível e persistência em teste isolado do JavaScript.
-- [ ] Conferi visualmente o catálogo no navegador; essa revisão ficará para a microetapa 9.9.
+- [x] Conferi visualmente o catálogo no navegador durante a microetapa 9.9.
 
 **Próxima microetapa**
 
-
-9.8 — Mural de oração local: salvar os pedidos somente no navegador da pessoa.
+9.8 — Mural de oração local (concluída; detalhes abaixo).
 
 ---
 
-### 📍 Microetapa 9.8 — Mural de oração
+### 📍 Microetapa 9.8 — Mural de oração — concluída
 
 **Objetivo**
 Criar um espaço onde a pessoa escreve um pedido de oração e vê os pedidos que ela mesma escreveu (guardados só no navegador dela).
+
+**Implementação concluída**
+- O formulário identifica o campo, informa a quantidade de caracteres e aceita pedidos de até 500 caracteres.
+- A lista fica na chave `muralOracao` do LocalStorage, limitada a 100 pedidos para evitar crescimento sem controle.
+- O pedido mais recente aparece primeiro; cada item mostra a data local e tem um botão acessível para excluí-lo.
+- O texto é inserido com `textContent`, nunca interpretado como HTML. Dados salvos inválidos são ignorados sem interromper a página.
+- O status informa quando um pedido foi salvo, removido, rejeitado vazio ou não pôde ser gravado.
+- O aviso explica que os dados ficam somente neste navegador e orienta a não escrever informações sensíveis. O mural não envia nem sincroniza pedidos.
+
+O HTML, o CSS e o JavaScript abaixo servem para entender os elementos principais. A versão completa do projeto também inclui limite de tamanho, contador, estados acessíveis, exclusão e tratamento de falhas de armazenamento.
 
 **Onde Digitar**
 📁 Arquivo: `index.html`
@@ -3358,24 +3377,25 @@ document.addEventListener('DOMContentLoaded', function() {
 - `new Date().toLocaleDateString('pt-BR')`: formata a data atual no padrão brasileiro (`dd/mm/aaaa`), diferente do formato ISO (`aaaa-mm-dd`) usado na 9.4 — aqui é só para exibição, então o formato brasileiro é mais natural de ler.
 
 **Como Testar**
-1. Adicione o HTML, CSS e JavaScript
-2. Abra `index.html`, escreva um pedido e clique em "Enviar pedido"
-3. O pedido deve aparecer na lista, com a data de hoje
-4. Recarregue a página: o pedido deve continuar lá
-5. Tente enviar o formulário vazio: nada deve ser adicionado
+1. Abra `index.html`, escreva um pedido e clique em "Salvar pedido"
+2. O pedido deve aparecer na lista, com a data de hoje
+3. Recarregue a página: o pedido deve continuar lá
+4. Tente enviar o formulário vazio: nada deve ser adicionado
+5. Use "Excluir pedido": o item deve desaparecer e deixar de ficar salvo
 
 **Resultado Esperado**
 Mural funcionando, guardando e mostrando os pedidos de oração daquele navegador.
 
 ✅ Checklist
-- [ ] Adicionei o HTML, CSS e JavaScript
-- [ ] Testei enviar um pedido
-- [ ] Testei que ele persiste ao recarregar
-- [ ] Testei que não envia vazio
+- [x] Adicionei o HTML, CSS e JavaScript
+- [x] Testei enviar um pedido e exibir texto literal sem interpretar HTML
+- [x] Testei a persistência após recarregar
+- [x] Testei a rejeição de pedido vazio
+- [x] Testei excluir pedidos e recuperar dados inválidos
 
 ---
 
-### 📍 Microetapa 9.9 — Revisão final da Fase 9
+### 📍 Microetapa 9.9 — Revisão final da Fase 9 — concluída
 
 **Objetivo**
 Conferir toda a Fase 9 funcionando junto, sem erros, em desktop e celular.
@@ -3390,7 +3410,7 @@ Conferir toda a Fase 9 funcionando junto, sem erros, em desktop e celular.
 | Versículo e significado em cada produto | `produto.html` (todos os ids) |
 | Favoritos marcando/desmarcando e persistindo | `produtos.html` |
 | Mural de oração enviando e listando pedidos | `index.html` |
-| Nenhum erro no Console (F12) | Todas as páginas |
+| Nenhum erro de execução do JavaScript no Console | Todas as páginas |
 | Tudo funcionando no modo celular do DevTools | Todas as páginas |
 | Contraste e leitura claros, sem usar só o dourado para indicar estados | Todas as páginas |
 | Foco visível ao navegar com Tab e botões fáceis de tocar | Todas as páginas |
@@ -3404,12 +3424,18 @@ Conferir toda a Fase 9 funcionando junto, sem erros, em desktop e celular.
 4. Navegue também com a tecla Tab e confira o foco visível; confira que o estado dos favoritos continua compreensível sem depender só da cor.
 
 **Resultado Esperado**
-Site com conteúdo de fé, interativo, funcionando sem erros — pronto para a Fase 10 (autenticação).
+As páginas da Fase 9 funcionam em desktop e celular, sem erros de execução do JavaScript — prontas para a Fase 10 (autenticação demonstrativa).
+
+**Registro da revisão (28/10/2026)**
+- Conferidos `index.html`, `produtos.html`, `produto.html?id=1` até `?id=6` e `carrinho.html` no Chrome, com largura de celular de 390 px. Não houve rolagem horizontal.
+- Testados devocional, marcação diária, continuidade da sequência, URL do WhatsApp, cópia principal e alternativa, seis conteúdos de produto, favoritos, mural, persistência, exclusão, campo vazio e dados inválidos.
+- As fotos principais dos seis produtos carregaram. As capturas do mural e do card de favorito foram conferidas em desktop e celular; foco, contraste e áreas de toque foram revisados.
+- Não ocorreram exceções de JavaScript. O teste isolado não conseguiu buscar as fontes do Google porque o ambiente bloqueou a conexão externa; o navegador mostrou a fonte alternativa. Com conexão normal, Manrope e Inter carregam pelos links já existentes.
 
 ✅ Checklist
-- [ ] Revisei todos os itens da tabela
-- [ ] Testei no modo celular
-- [ ] Conferi o Console sem erros
+- [x] Revisei os itens funcionais da tabela nas quatro páginas
+- [x] Testei no modo celular e confirmei ausência de rolagem horizontal
+- [x] Conferi o Console: sem exceções de JavaScript; falha de rede das fontes externas anotada acima
 
 ---
 

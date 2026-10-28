@@ -1302,6 +1302,178 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   color: var(--cor-dourado);
 }
 
+.devocional-compartilhar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco-pequeno);
+  margin-top: var(--espaco-pequeno);
+}
+
+.devocional-acoes button {
+  min-height: 44px;
+}
+
+.devocional-status {
+  min-height: 1.5em;
+  color: var(--cor-cinza-mineral);
+  font-size: 13px;
+}
+
+.mural-oracao {
+  width: min(100% - 32px, 720px);
+  margin: var(--espaco-grande) auto;
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid rgba(201, 149, 46, .5);
+  border-radius: var(--raio-borda);
+  background: linear-gradient(145deg, rgba(32, 32, 32, .94), rgba(8, 8, 8, .98));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .24);
+  text-align: center;
+}
+
+.mural-kicker {
+  margin-bottom: 8px;
+  color: var(--cor-dourado);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.mural-oracao h2 {
+  margin-bottom: var(--espaco-pequeno);
+  color: var(--cor-texto-claro);
+}
+
+.mural-aviso {
+  max-width: 560px;
+  margin: 0 auto var(--espaco-medio);
+  color: var(--cor-cinza-mineral);
+  font-size: 14px;
+}
+
+#form-oracao {
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+#form-oracao label {
+  color: var(--cor-texto-claro);
+  font-weight: 600;
+}
+
+#texto-oracao {
+  width: 100%;
+  min-height: 124px;
+  padding: 14px 16px;
+  resize: vertical;
+  border: 1px solid rgba(242, 240, 234, .32);
+  border-radius: var(--raio-borda);
+  background: rgba(8, 8, 8, .76);
+  color: var(--cor-texto-claro);
+  font: inherit;
+}
+
+#texto-oracao::placeholder {
+  color: #a7a49d;
+}
+
+#texto-oracao:focus-visible {
+  outline: 2px solid var(--cor-dourado);
+  outline-offset: 3px;
+}
+
+.mural-form-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-pequeno);
+  color: var(--cor-cinza-mineral);
+  font-size: 13px;
+}
+
+.mural-form-meta button {
+  min-height: 44px;
+}
+
+.mural-status {
+  min-height: 1.5em;
+  color: var(--cor-dourado);
+  font-size: 14px;
+}
+
+.mural-vazio {
+  margin-top: var(--espaco-grande);
+  color: var(--cor-cinza-mineral);
+  font-size: 14px;
+}
+
+.lista-oracoes {
+  display: grid;
+  gap: 12px;
+  margin-top: var(--espaco-medio);
+  list-style: none;
+}
+
+.oracao-item {
+  padding: 16px;
+  border: 1px solid rgba(242, 240, 234, .14);
+  border-left: 3px solid var(--cor-dourado);
+  border-radius: 4px var(--raio-borda) var(--raio-borda) 4px;
+  background: rgba(8, 8, 8, .62);
+  color: var(--cor-texto-claro);
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.oracao-texto {
+  white-space: pre-wrap;
+}
+
+.oracao-data {
+  display: block;
+  margin-top: 8px;
+  color: var(--cor-dourado);
+  font-size: 12px;
+}
+
+.oracao-remover {
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(242, 240, 234, .32);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--cor-cinza-mineral);
+  cursor: pointer;
+}
+
+.oracao-remover:hover,
+.oracao-remover:focus-visible {
+  border-color: var(--cor-dourado);
+  color: var(--cor-dourado);
+}
+
+.oracao-remover:focus-visible {
+  outline: 2px solid var(--cor-dourado);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .devocional-compartilhar {
+    width: 100%;
+  }
+
+  .devocional-compartilhar button {
+    flex: 1 1 100%;
+  }
+
+  .mural-form-meta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
 .favorito {
   display: grid;
   position: absolute;

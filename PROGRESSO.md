@@ -2,7 +2,7 @@
 
 **Última atualização:** 28/10/2026
 
-**Fase 9:** as microetapas 9.1–9.7 estão implementadas. O site exibe o devocional do dia, permite marcar e compartilhar a leitura, mostra uma paráfrase bíblica para cada produto e guarda os favoritos no navegador. A próxima é a **9.8 — Mural de oração local**.
+**Fase 9:** microetapas 9.1–9.9 concluídas. O site exibe e compartilha o devocional, registra a sequência de leitura, mostra as passagens dos seis produtos, salva favoritos e oferece um mural de oração privado no navegador.
 
 **Correção desta revisão:** removido o hero duplicado; corrigidos o link interno quebrado, o espaçamento do rodapé e a responsividade do hero e dos benefícios. A vitrine e o catálogo agora mostram fotos reais associadas aos produtos. Os atalhos de categoria filtram o catálogo, a busca ignora acentos, os botões flutuantes usam ícones lineares e a faixa “Streetwear com identidade” foi incluída.
 
@@ -12,14 +12,17 @@
 
 ## Estado atual
 
+- [x] 9.1 — seção do devocional e ações acessíveis na homepage.
 - [x] 9.2 — lista com 66 devocionais, abrangendo Gênesis a Apocalipse; referências, paráfrases, reflexões e orações.
 - [x] 9.3 — escolher e exibir o devocional do dia.
 - [x] 9.4 — registrar a leitura diária e a sequência no LocalStorage.
 - [x] 9.5 — compartilhar o devocional pelo WhatsApp ou copiá-lo.
 - [x] 9.6 — exibir paráfrase bíblica e significado para os seis produtos.
 - [x] 9.7 — favoritar e desfavoritar os seis produtos; preferências salvas no LocalStorage.
-- [ ] 9.8 — mural de oração local; próxima etapa.
-- [ ] 9.9 — revisão conjunta da Fase 9, incluindo conferência visual e Console.
+- [x] 9.8 — mural pessoal: salvar, consultar e excluir até 100 pedidos de até 500 caracteres, somente neste navegador.
+- [x] 9.9 — revisão funcional e visual em desktop e celular; JavaScript sem exceções.
+
+**Registro da revisão 9.9:** Chrome verificou as quatro páginas em 390 px sem rolagem horizontal, os seis produtos e suas fotos, o devocional e a sequência diária, o compartilhamento, favoritos, mural, armazenamento, exclusão e entradas vazias/inválidas. As capturas do mural e dos favoritos foram revisadas visualmente. O teste isolado não teve acesso de rede às fontes Google; isso gerou mensagens de falha de DNS para Manrope/Inter, enquanto o site usou a fonte alternativa. Não houve exceções de JavaScript.
 
 As microetapas 8.1, 8.2, 8.3, 8.5, 8.6, 8.8, 8.9 e 8.10 estão implementadas. As etapas 8.4 e 8.7 estão parciais por dependerem das imagens de campanha/editoriais. A etapa 8.11 e a conferência visual no navegador continuam pendentes.
 
@@ -90,4 +93,4 @@ As Fases 1 a 7 e as correções R1 continuam registradas nos documentos anterior
 
 ## Próximo passo
 
-A galeria 8.9 está implementada. Confira visualmente `produto.html?id=1` até `?id=6` no navegador. Antes de considerar a Fase 8 pronta, substitua as imagens provisórias de campanha e revise o site em desktop e celular.
+A Fase 9 está concluída. O próximo trabalho de desenvolvimento é a Fase 10; o cadastro real deve aguardar o banco de dados e o back-end da Fase 11. A Fase 8 ainda tem itens visuais pendentes: arte final do hero, imagens editoriais e revisão completa da homepage.

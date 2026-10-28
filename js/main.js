@@ -839,6 +839,166 @@ const devocionais = [
   }
 ];
 
+function obterDevocionalDeHoje() {
+  const hoje = new Date();
+  const hojeEmUTC = Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+  const inicioDoAnoEmUTC = Date.UTC(hoje.getFullYear(), 0, 1);
+  const diasPassados = Math.floor((hojeEmUTC - inicioDoAnoEmUTC) / 86400000);
+  const indice = diasPassados % devocionais.length;
+  return devocionais[indice];
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const elementoReferencia = document.getElementById('devocional-referencia');
+
+  if (elementoReferencia) {
+    const devocionalHoje = obterDevocionalDeHoje();
+
+    elementoReferencia.textContent = devocionalHoje.referencia;
+    document.getElementById('devocional-versiculo').textContent = devocionalHoje.versiculo;
+    document.getElementById('devocional-reflexao').textContent = devocionalHoje.reflexao;
+    document.getElementById('devocional-oracao').textContent = devocionalHoje.oracao;
+  }
+});
+
+function formatarDataISO(data) {
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, '0');
+  const dia = String(data.getDate()).padStart(2, '0');
+  return `${ano}-${mes}-${dia}`;
+}
+
+function atualizarSequenciaDevocional() {
+  const elementoSequencia = document.getElementById('devocional-sequencia');
+  if (!elementoSequencia) return;
+
+  let sequencia = 0;
+  try {
+    const valorSalvo = Number(localStorage.getItem('devocional-sequencia'));
+    if (Number.isSafeInteger(valorSalvo) && valorSalvo > 0) sequencia = valorSalvo;
+  } catch (erro) {
+    // A leitura continua utilizável mesmo quando o navegador bloqueia o armazenamento local.
+  }
+
+  elementoSequencia.textContent = sequencia > 0
+    ? `🔥 ${sequencia} dia(s) seguido(s)`
+    : 'Comece sua sequência hoje!';
+}
+
+function mostrarStatusDevocional(mensagem) {
+  const status = document.getElementById('devocional-status');
+  if (status) status.textContent = mensagem;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  atualizarSequenciaDevocional();
+
+  const botaoLiHoje = document.getElementById('btn-li-hoje');
+
+  if (botaoLiHoje) {
+    botaoLiHoje.addEventListener('click', function() {
+      const hojeTexto = formatarDataISO(new Date());
+      let ultimaLeitura = null;
+      let sequencia = 0;
+
+      try {
+        ultimaLeitura = localStorage.getItem('devocional-ultima-leitura');
+        const valorSalvo = Number(localStorage.getItem('devocional-sequencia'));
+        if (Number.isSafeInteger(valorSalvo) && valorSalvo > 0) sequencia = valorSalvo;
+      } catch (erro) {
+        mostrarStatusDevocional('O navegador não permitiu acessar o armazenamento local.');
+        return;
+      }
+
+      if (ultimaLeitura === hojeTexto) {
+        mostrarStatusDevocional('Você já marcou a leitura de hoje.');
+        return;
+      }
+
+      const ontem = new Date();
+      ontem.setDate(ontem.getDate() - 1);
+      const ontemTexto = formatarDataISO(ontem);
+
+      sequencia = (ultimaLeitura === ontemTexto) ? sequencia + 1 : 1;
+
+      try {
+        localStorage.setItem('devocional-ultima-leitura', hojeTexto);
+        localStorage.setItem('devocional-sequencia', String(sequencia));
+      } catch (erro) {
+        mostrarStatusDevocional('Não foi possível salvar a leitura neste navegador.');
+        return;
+      }
+
+      atualizarSequenciaDevocional();
+      mostrarStatusDevocional(`Leitura marcada. Sua sequência é de ${sequencia} dia(s).`);
+    });
+  }
+});
+
+function montarTextoDevocional(devocional) {
+  return `📖 ${devocional.referencia}\n${devocional.versiculo}\n\n${devocional.reflexao}\n\nRHEMA | O jeito certo de vestir a fé.`;
+}
+
+function copiarTextoComFallback(texto) {
+  function copiarComSelecao() {
+    const campoTemporario = document.createElement('textarea');
+    campoTemporario.value = texto;
+    campoTemporario.setAttribute('readonly', '');
+    campoTemporario.setAttribute('aria-hidden', 'true');
+    campoTemporario.style.position = 'fixed';
+    campoTemporario.style.opacity = '0';
+    document.body.appendChild(campoTemporario);
+    campoTemporario.select();
+
+    let copiado = false;
+    try {
+      copiado = typeof document.execCommand === 'function' && document.execCommand('copy');
+    } catch (erro) {
+      copiado = false;
+    } finally {
+      campoTemporario.remove();
+    }
+
+    return copiado
+      ? Promise.resolve()
+      : Promise.reject(new Error('A cópia não foi autorizada pelo navegador.'));
+  }
+
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    return navigator.clipboard.writeText(texto).catch(copiarComSelecao);
+  }
+
+  return copiarComSelecao();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const botaoWhatsapp = document.getElementById('btn-compartilhar-whatsapp');
+  const botaoCopiar = document.getElementById('btn-copiar-texto');
+
+  if (botaoWhatsapp) {
+    botaoWhatsapp.addEventListener('click', function() {
+      const devocionalHoje = obterDevocionalDeHoje();
+      const texto = montarTextoDevocional(devocionalHoje);
+      const link = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+      window.open(link, '_blank', 'noopener,noreferrer');
+      mostrarStatusDevocional('Abrindo o compartilhamento do WhatsApp.');
+    });
+  }
+
+  if (botaoCopiar) {
+    botaoCopiar.addEventListener('click', function() {
+      const devocionalHoje = obterDevocionalDeHoje();
+      const texto = montarTextoDevocional(devocionalHoje);
+
+      copiarTextoComFallback(texto).then(function() {
+        mostrarStatusDevocional('Texto do devocional copiado.');
+      }).catch(function() {
+        mostrarStatusDevocional('Não foi possível copiar automaticamente. Selecione e copie o texto manualmente.');
+      });
+    });
+  }
+});
+
 // Microetapa 9.7: favoritos locais no catálogo.
 function carregarFavoritos() {
   try {
@@ -880,5 +1040,142 @@ document.querySelectorAll('.favorito').forEach(function(botao) {
 
     localStorage.setItem('favoritos', JSON.stringify(favoritosAtualizados));
     atualizarBotaoFavorito(botao, !favoritado);
+  });
+});
+
+// Microetapa 9.8: mural de oração salvo somente neste navegador.
+const LIMITE_CARACTERES_ORACAO = 500;
+const LIMITE_PEDIDOS_ORACAO = 100;
+
+function carregarOracoes() {
+  try {
+    const dadosSalvos = JSON.parse(localStorage.getItem('muralOracao') || '[]');
+    if (!Array.isArray(dadosSalvos)) return [];
+
+    return dadosSalvos
+      .filter(function(oracao) {
+        return oracao && typeof oracao.texto === 'string';
+      })
+      .map(function(oracao) {
+        return {
+          texto: oracao.texto.trim().slice(0, LIMITE_CARACTERES_ORACAO),
+          data: typeof oracao.data === 'string' ? oracao.data.slice(0, 40) : ''
+        };
+      })
+      .filter(function(oracao) { return oracao.texto.length > 0; })
+      .slice(0, LIMITE_PEDIDOS_ORACAO);
+  } catch (erro) {
+    return [];
+  }
+}
+
+function renderizarOracoes() {
+  const lista = document.getElementById('lista-oracoes');
+  if (!lista) return;
+
+  const oracoes = carregarOracoes();
+  const mensagemVazia = document.getElementById('mural-vazio');
+  lista.replaceChildren();
+  if (mensagemVazia) mensagemVazia.hidden = oracoes.length > 0;
+
+  oracoes.forEach(function(oracao, indice) {
+    const item = document.createElement('li');
+    item.className = 'oracao-item';
+
+    const texto = document.createElement('p');
+    texto.className = 'oracao-texto';
+    texto.textContent = oracao.texto;
+    item.appendChild(texto);
+
+    if (oracao.data) {
+      const data = document.createElement('span');
+      data.className = 'oracao-data';
+      data.textContent = oracao.data;
+      item.appendChild(data);
+    }
+
+    const botaoRemover = document.createElement('button');
+    botaoRemover.type = 'button';
+    botaoRemover.className = 'oracao-remover';
+    botaoRemover.textContent = 'Excluir pedido';
+    botaoRemover.setAttribute('aria-label', 'Excluir este pedido de oração');
+    botaoRemover.addEventListener('click', function() {
+      const statusRemocao = document.getElementById('mural-status');
+      const pedidosAtualizados = carregarOracoes();
+      pedidosAtualizados.splice(indice, 1);
+
+      try {
+        localStorage.setItem('muralOracao', JSON.stringify(pedidosAtualizados));
+      } catch (erro) {
+        if (statusRemocao) statusRemocao.textContent = 'Não foi possível atualizar o mural neste navegador.';
+        return;
+      }
+
+      renderizarOracoes();
+      if (statusRemocao) statusRemocao.textContent = 'Pedido removido deste navegador.';
+    });
+    item.appendChild(botaoRemover);
+
+    lista.appendChild(item);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const formulario = document.getElementById('form-oracao');
+  const campoTexto = document.getElementById('texto-oracao');
+  const contador = document.getElementById('mural-contador');
+  const status = document.getElementById('mural-status');
+
+  renderizarOracoes();
+  if (!formulario || !campoTexto) return;
+
+  function atualizarContador() {
+    if (contador) {
+      contador.textContent = `${campoTexto.value.length} / ${LIMITE_CARACTERES_ORACAO} caracteres`;
+    }
+  }
+
+  campoTexto.addEventListener('input', function() {
+    campoTexto.removeAttribute('aria-invalid');
+    if (status) status.textContent = '';
+    atualizarContador();
+  });
+
+  atualizarContador();
+
+  formulario.addEventListener('submit', function(evento) {
+    evento.preventDefault();
+    const texto = campoTexto.value.trim().slice(0, LIMITE_CARACTERES_ORACAO);
+
+    if (!texto) {
+      campoTexto.setAttribute('aria-invalid', 'true');
+      if (status) status.textContent = 'Escreva seu pedido antes de salvar.';
+      campoTexto.focus();
+      return;
+    }
+
+    const oracoes = carregarOracoes();
+    if (oracoes.length >= LIMITE_PEDIDOS_ORACAO) {
+      if (status) status.textContent = 'O mural chegou ao limite de 100 pedidos. Remova dados do navegador antes de salvar outro.';
+      return;
+    }
+
+    oracoes.unshift({
+      texto: texto,
+      data: new Date().toLocaleDateString('pt-BR')
+    });
+
+    try {
+      localStorage.setItem('muralOracao', JSON.stringify(oracoes));
+    } catch (erro) {
+      if (status) status.textContent = 'Não foi possível salvar. Confira o espaço disponível neste navegador.';
+      return;
+    }
+
+    campoTexto.value = '';
+    campoTexto.removeAttribute('aria-invalid');
+    atualizarContador();
+    renderizarOracoes();
+    if (status) status.textContent = 'Pedido salvo somente neste navegador.';
   });
 });
