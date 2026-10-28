@@ -6,6 +6,8 @@
 
 **Correção desta revisão:** removido o hero duplicado; corrigidos o link interno quebrado, o espaçamento do rodapé e a responsividade do hero e dos benefícios. A vitrine e o catálogo agora mostram fotos reais associadas aos produtos. Os atalhos de categoria filtram o catálogo, a busca ignora acentos, os botões flutuantes usam ícones lineares e a faixa “Streetwear com identidade” foi incluída.
 
+**Categorias da homepage:** adicionados estados sutis de hover e foco por teclado aos cinco cartões: elevação leve, borda dourada e filete lateral. A preferência por movimento reduzido desativa o deslocamento.
+
 **Página Sobre e mural:** criada `sobre.html` como página separada, com o testemunho do fundador, a apresentação do mural comunitário e um formulário que fica desativado até a conexão do banco online. O projeto Supabase conectado está com status `INACTIVE`; a lista de tabelas não pôde ser consultada e a publicação global ainda não está ativa. O SQL seguro para revisão/publicação manual está em `database/rhema_testimonies.sql`.
 
 **Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard, Elo e American Express. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
@@ -36,10 +38,11 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] Faixa “Streetwear com identidade” adicionada entre os benefícios e a vitrine.
 - [x] Fotos reais associadas aos cards da homepage e do catálogo.
 - [x] Os cinco atalhos de categoria filtram os produtos; a Jaqueta está marcada como Lifestyle.
+- [x] Os cartões de categoria têm animações sutis e foco visível, com respeito à preferência por movimento reduzido.
 - [x] Busca aceita termos sem acento, como “bone” para encontrar “Boné”.
 - [x] Correções estruturais: hero duplicado removido, link interno consertado e rodapé ajustado.
 - [x] Item “Histórias” abre uma página separada com o testemunho do fundador e a interface responsiva do mural em `sobre.html`.
-- [x] Tabela do mural preparada com RLS: visitantes só leem relatos aprovados e enviam relatos como pendentes.
+- [x] Script SQL do mural preparado com RLS: visitantes só poderão ler relatos aprovados e enviar novos relatos como pendentes depois da ativação do banco.
 - [ ] Ativar o projeto Supabase, executar `database/rhema_testimonies.sql`, expor a tabela na Data API e configurar a chave pública em `js/sobre-config.js`; testar envio e aprovação antes de liberar o mural.
 - [x] Verificação de sintaxe do `js/main.js` e existência dos caminhos cadastrados no catálogo.
 - [ ] Conferência visual das galerias em desktop e celular; fazer no navegador local.

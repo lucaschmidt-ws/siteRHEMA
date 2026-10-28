@@ -2326,9 +2326,9 @@ Adicionar blocos de campanha para propósito, detalhes da peça, história e lif
 Esses blocos dão ritmo à homepage e mostram a relação entre fé, cultura e estilo sem transformar cada seção em um anúncio.
 
 **Implementação**  
-Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens foram criadas para esta composição e estão em `imagens/editorial/`. O terceiro quadro usa como camada o arquivo original do símbolo em `Logo Rhema/image0 (1).png`; mantenha essa arte sem redesenhar ou distorcer. O link Sobre leva a uma página própria com o testemunho do fundador e o mural da comunidade.
+Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens foram criadas para esta composição e estão em `imagens/editorial/`. O terceiro quadro usa como camada o arquivo original do símbolo em `Logo Rhema/image0 (1).png`; mantenha essa arte sem redesenhar ou distorcer. O item “Histórias” abre `sobre.html`, página própria com o testemunho do fundador e o mural da comunidade. Os cartões de categoria também têm respostas animadas sutis ao mouse e ao teclado.
 
-> **Estado atual:** etapa implementada. As três imagens carregam na homepage, os atalhos filtram o catálogo e o layout foi conferido em telas desktop e celular. A arte final do hero da etapa 8.4 ainda é um item separado.
+> **Estado atual:** etapa implementada. As três imagens carregam na homepage, os atalhos filtram o catálogo e os estados de foco/hover foram estilizados; o layout responde em desktop e celular. A arte final do hero da etapa 8.4 ainda é um item separado.
 
 ```html
 <section class="editorial-grid" aria-label="História e lifestyle RHEMA">
@@ -2399,8 +2399,16 @@ No CSS, adicione:
 .category-shortcuts { padding: 40px 5%; background: #111; color: #F2F0EA; }
 .category-shortcuts h2 { font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
 .category-shortcuts-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
-.category-shortcuts-grid a { min-height: 130px; padding: 18px; display: flex; flex-direction: column; justify-content: end; gap: 6px; background: linear-gradient(145deg, #27231c, #080808); border: 1px solid rgba(201,149,46,.35); color: inherit; text-decoration: none; text-transform: uppercase; letter-spacing: .12em; }
-.category-shortcuts-grid span { color: var(--cor-dourado); font-size: 11px; }
+.category-shortcuts-grid a { position: relative; overflow: hidden; min-height: 130px; padding: 18px; display: flex; flex-direction: column; justify-content: end; gap: 6px; background: linear-gradient(145deg, #27231c, #080808); border: 1px solid rgba(201,149,46,.35); color: inherit; text-decoration: none; text-transform: uppercase; letter-spacing: .12em; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.category-shortcuts-grid a::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--cor-dourado); opacity: 0; transform: scaleY(.45); transform-origin: bottom; transition: opacity .22s ease, transform .22s ease; }
+.category-shortcuts-grid a:hover,
+.category-shortcuts-grid a:focus-visible { transform: translateY(-3px); border-color: var(--cor-dourado); box-shadow: 0 8px 22px rgba(201,149,46,.13); }
+.category-shortcuts-grid a:hover::before,
+.category-shortcuts-grid a:focus-visible::before { opacity: 1; transform: scaleY(1); }
+.category-shortcuts-grid a:focus-visible { outline: 2px solid var(--cor-dourado); outline-offset: 3px; }
+.category-shortcuts-grid span { color: var(--cor-dourado); font-size: 11px; transition: color .22s ease, letter-spacing .22s ease; }
+.category-shortcuts-grid a:hover span,
+.category-shortcuts-grid a:focus-visible span { color: #E7BB66; letter-spacing: .16em; }
 
 @media (max-width: 700px) {
   .editorial-grid { grid-template-columns: 1fr; }
@@ -2408,6 +2416,13 @@ No CSS, adicione:
   .brand-story-copy,
   .brand-story-signature { padding-right: 60px; }
   .category-shortcuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-shortcuts-grid a:hover,
+  .category-shortcuts-grid a:focus-visible { transform: none; }
+  .category-shortcuts-grid a:hover::before,
+  .category-shortcuts-grid a:focus-visible::before { transform: none; }
 }
 ```
 
@@ -2419,11 +2434,12 @@ Os estilos `.brand-story` mostrados no bloco CSS são usados na página Sobre, e
 - `position: absolute` posiciona texto e símbolo sobre a fotografia; a camada escura em `::after` melhora o contraste do texto.
 - Os arquivos em `imagens/editorial/` são as três novas artes. O último quadro reaproveita o símbolo original da marca por cima de uma textura; não substitua o logo por uma geração artificial.
 - Os ids `sobre`, `lifestyle` e `simbolo-rhema` identificam os cards editoriais da homepage. O link `sobre.html#historia` abre a história do fundador na página separada; o devocional fica na Fase 9.
+- Nas categorias, o leve deslocamento, a borda dourada e a linha lateral aparecem com mouse ou foco de teclado. A regra `prefers-reduced-motion` remove o deslocamento para quem prefere menos movimento.
 - Use imagens com luz e temperatura de cor consistentes; não altere o desenho do símbolo.
 
 **Teste**
 
-Clique nos links dos blocos e categorias. Cada um deve chegar a uma página ou seção existente. Se o conteúdo de destino ainda não existe, aponte para a página de produtos e não deixe o link sem ação.
+Clique nos links dos blocos e categorias. Cada um deve chegar a uma página ou seção existente. Passe o mouse e navegue com Tab pelas categorias para conferir a animação e o contorno de foco; com a preferência de movimento reduzido ativa, o cartão não deve saltar.
 
 **Resultado esperado**  
 Homepage com áreas de storytelling e atalhos de categoria, mantendo poucos elementos por bloco.
@@ -2433,6 +2449,7 @@ Depois de testar os links, avance para a 8.8.
 
 ☐ Adicionei os blocos editoriais  
 ☐ Adicionei os atalhos de categoria  
+☐ Conferi hover, foco de teclado e movimento reduzido
 ☐ Testei cada link
 
 ---
