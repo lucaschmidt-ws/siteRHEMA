@@ -2741,10 +2741,10 @@ A RHEMA vende roupa, mas a marca é fé. O site deve convidar a pessoa a voltar 
 |-----------|-------------|---------|
 | 9.1 | Seção do devocional acima do rodapé da `index.html` (estrutura e estilo) | `index.html` + `styles.css` |
 | 9.2 | ✅ Concluída — lista autoral de 66 devocionais, um baseado em cada livro do cânon de 66 livros | `main.js` |
-| 9.3 | Mostrar o devocional do dia, escolhido pela data | `main.js` |
-| 9.4 | Botão "Li hoje" e contador de dias seguidos (LocalStorage) | `main.js` |
-| 9.5 | Compartilhar o devocional (WhatsApp e copiar texto) | `main.js` |
-| 9.6 | Versículo e significado de cada peça na página do produto | `main.js` + `produto.html` |
+| 9.3 | ✅ Concluída — mostrar o devocional do dia, escolhido pela data | `main.js` |
+| 9.4 | ✅ Concluída — botão "Li hoje" e contador de dias seguidos (LocalStorage) | `main.js` |
+| 9.5 | ✅ Concluída — compartilhar o devocional (WhatsApp e copiar texto) | `main.js` |
+| 9.6 | ✅ Concluída — versículo e significado de cada peça na página do produto | `main.js` + `produto.html` + `css/styles.css` |
 | 9.7 | Favoritos: coração nos produtos, salvo no LocalStorage | `main.js` + CSS |
 | 9.8 | Mural de oração: a pessoa escreve um pedido e vê os pedidos *neste navegador* | `index.html` + `main.js` |
 | 9.9 | Revisão: todas as interações, no celular e sem erros no Console | todos |
@@ -3125,92 +3125,48 @@ Os dois botões de compartilhamento funcionando, com o texto do devocional do di
 
 ---
 
-### 📍 Microetapa 9.6 — Versículo em cada produto
+### 📍 Microetapa 9.6 — Versículo e significado em cada produto — concluída
 
-**Objetivo**
-Adicionar um versículo e um breve "significado" a cada peça do catálogo, mostrado na página do produto.
+**Objetivo**  
+Mostrar uma passagem bíblica e uma aplicação breve para cada peça, na página de detalhes do produto.
 
-**Direção visual Rhema**
-O versículo e seu significado entram como conteúdo secundário, sem competir com nome, preço, tamanho e compra. Para avaliar cor e tecido, mantenha as fotos principais do produto em fundo neutro claro; reserve imagens escuras e dramáticas para campanhas e storytelling. Use dourado com moderação e preserve o contraste do texto.
+**O que foi implementado**
+- Os seis objetos do array `catalogo`, em `js/main.js`, agora têm os campos `versiculo` e `significado`.
+- `produto.html` oferece uma seção “Palavra e propósito” depois da descrição do produto.
+- Ao abrir um produto, `main.js` preenche a seção com `textContent`, usando os dados correspondentes ao ID da URL. A seção fica oculta até existir um produto válido.
+- O estilo usa um detalhe dourado discreto, texto legível e espaçamento que mantém a informação secundária em relação a preço, tamanhos e compra.
+- Os textos do site são **paráfrases originais**, identificadas como paráfrases; não são citações literais de uma tradução bíblica.
 
-**Onde Digitar**
-📁 Arquivo: `js/main.js`
-📍 Local: dentro de cada objeto do array `catalogo` (criado na R1.6)
+| Produto | Referência | Tema da paráfrase |
+|---|---|---|
+| Camiseta Streetwear | Gálatas 3:27 | Nova identidade em Cristo |
+| Calça Reta | Colossenses 2:6-7 | Caminhar enraizado na fé |
+| Moletom | Salmo 46:1 | Deus como refúgio e auxílio |
+| Boné RHEMA | 1 Coríntios 2:16 | Aprender a olhar a vida a partir de Cristo |
+| Hoodie | Mateus 11:28-30 | O convite de Jesus ao descanso da alma |
+| Jaqueta | Colossenses 3:12-14 | Compaixão, humildade, paciência e amor |
 
-**Fragmento 1 (JavaScript)**
-```javascript
-const catalogo = [
-  {
-    id: 3,
-    nome: 'Hoodie Oversize',
-    preco: 149.90,
-    descricao: 'Hoodie oversize com caimento solto...',
-    tamanhos: ['P', 'M', 'G', 'GG'],
-    imagem: '[IMAGEM: Hoodie Oversize]',
-    versiculo: '"Vesti-vos do novo homem, criado segundo Deus." — Efésios 4:24',
-    significado: 'Assim como você escolhe o que veste, escolha diariamente viver como a nova pessoa que a fé te convida a ser.'
-  }
-  // ... adicione "versiculo" e "significado" nos outros produtos do catálogo
-];
-```
+**Referências para conferência**  
+[Gálatas 3:27](https://www.bible.com/pt/bible/129/GAL.3.27.NVI) · [Colossenses 2:6-7](https://www.bible.com/pt/bible/129/COL.2.6-7.NVI) · [Salmo 46:1](https://www.bible.com/pt/bible/129/PSA.46.1.NVI) · [1 Coríntios 2:16](https://www.bible.com/pt/bible/129/1CO.2.16.NVI) · [Mateus 11:28-30](https://www.bible.com/pt/bible/4360/MAT.11.28-30.NVI) · [Colossenses 3:12-14](https://www.bible.com/pt/bible/129/COL.3.12-14.nvi)
 
-**Onde Digitar**
-📁 Arquivo: `produto.html`
-📍 Local: dentro de `.product-info`, depois da descrição
+**Como os dados aparecem na página**
+1. Cada objeto de `catalogo` guarda seu próprio `versiculo` e `significado`.
+2. O bloco `produto-faith` contém os espaços `produto-versiculo` e `produto-significado`.
+3. O código que já identifica `produtoAtual` pela URL escreve os dois campos nos elementos da página. O uso de `textContent` mantém o conteúdo como texto simples.
 
-**Fragmento 2 (HTML)**
-```html
-<p class="product-description" id="produto-descricao"></p>
-<p class="product-versiculo" id="produto-versiculo"></p>
-<p class="product-significado" id="produto-significado"></p>
-```
+**Resultado esperado**  
+Cada URL `produto.html?id=1` até `produto.html?id=6` mostra a passagem parafraseada e seu significado, correspondentes à peça escolhida.
 
-**Onde Digitar**
-📁 Arquivo: `css/styles.css`
+✅ Checklist da implementação
+- [x] Incluí `versiculo` e `significado` nos seis produtos do catálogo.
+- [x] Adicionei a seção acessível na página do produto.
+- [x] Integrei o preenchimento dos dados ao produto selecionado.
+- [x] Apliquei o estilo secundário e dourado, mantendo o contraste.
+- [x] Deixei as paráfrases identificadas e registrei as referências usadas.
+- [ ] Conferi visualmente os seis produtos no navegador; essa revisão ficará para a microetapa 9.9.
 
-**Fragmento 3 (CSS)**
-```css
-.product-versiculo {
-  color: var(--cor-dourado);
-  font-style: italic;
-  margin-top: var(--espaco-pequeno);
-}
-
-.product-significado {
-  color: var(--cor-texto-claro);
-  font-size: 14px;
-  margin-top: 4px;
-}
-```
-
-**Onde Digitar**
-📁 Arquivo: `js/main.js`
-📍 Local: no bloco que já preenche `produto-nome`, `produto-preco`, etc. (criado na R1.6) — acrescente duas linhas
-
-**Fragmento 4 (JavaScript)**
-```javascript
-document.getElementById('produto-versiculo').textContent = produtoAtual.versiculo;
-document.getElementById('produto-significado').textContent = produtoAtual.significado;
-```
-
-**Entendendo o código**
-- Seguimos exatamente o mesmo padrão da R1.6: adicionar campos novos (`versiculo`, `significado`) ao objeto de cada produto, e preencher novos elementos HTML com eles usando `.textContent`.
-- Como o `produtoAtual` já era lido pela URL (`?id=`) desde a R1.6, bastou adicionar as duas linhas novas junto das que já preenchiam nome, preço e descrição.
-
-**Como Testar**
-1. Adicione `versiculo` e `significado` em pelo menos 1 produto do `catalogo` (depois complete os outros)
-2. Adicione o HTML, CSS e as duas linhas de JavaScript
-3. Abra `produto.html?id=3` (ou o id que você completou): deve aparecer o versículo em itálico dourado, e o significado abaixo
-
-**Resultado Esperado**
-Cada produto mostra seu próprio versículo e significado, junto com nome, preço e descrição.
-
-✅ Checklist
-- [ ] Adicionei `versiculo` e `significado` em pelo menos 1 produto
-- [ ] Adicionei o HTML e o CSS
-- [ ] Adicionei as linhas de JavaScript
-- [ ] Testei na página do produto
-- [ ] Completei os outros produtos do catálogo
+**Próxima microetapa**  
+9.7 — Favoritos: incluir um coração nos produtos e guardar as escolhas no LocalStorage.
 
 ---
 

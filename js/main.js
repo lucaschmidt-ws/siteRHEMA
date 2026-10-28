@@ -9,6 +9,8 @@ const catalogo = [
     categoria: 'Camisetas',
     preco: 109.90,
     descricao: 'Camiseta Streetwear da RHEMA.',
+    versiculo: 'Paráfrase de Gálatas 3:27: em Cristo recebemos uma nova identidade.',
+    significado: 'A roupa compõe o estilo, mas a identidade de quem segue Jesus encontra seu fundamento nele e se expressa nas escolhas diárias.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
       { src: 'imagens/camiseta%20preta/camiseta-preta-frente.png', alt: 'frente da camiseta preta' },
@@ -22,6 +24,8 @@ const catalogo = [
     categoria: 'Calças',
     preco: 189.90,
     descricao: 'Calça reta da RHEMA.',
+    versiculo: 'Paráfrase de Colossenses 2:6-7: continuem vivendo em Cristo, enraizados nele e firmes na fé.',
+    significado: 'Cada passo pode ser uma oportunidade de caminhar com gratidão, mantendo a fé como fundamento.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
       { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', alt: 'calça preta, vista principal' },
@@ -35,6 +39,8 @@ const catalogo = [
     categoria: 'Moletons',
     preco: 259.90,
     descricao: 'Moletom da RHEMA.',
+    versiculo: 'Paráfrase do Salmo 46:1: Deus é refúgio, força e auxílio presente nos momentos difíceis.',
+    significado: 'Em dias de frio ou incerteza, esta peça lembra o convite a buscar em Deus amparo e coragem.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
       { src: 'imagens/moleton/moleton-bege.jpeg', alt: 'moletom bege' }
@@ -46,6 +52,8 @@ const catalogo = [
     categoria: 'Acessórios',
     preco: 99.90,
     descricao: 'Boné RHEMA.',
+    versiculo: 'Paráfrase de 1 Coríntios 2:16: quem segue Cristo aprende a olhar a vida a partir dele.',
+    significado: 'O boné acompanha o dia a dia; que os pensamentos também sejam guiados pela sabedoria e pelo caráter de Cristo.',
     tamanhos: ['Único'],
     imagens: [
       { src: 'imagens/Nova%20pasta/bone-bege.jpeg', alt: 'boné bege' },
@@ -58,6 +66,8 @@ const catalogo = [
     categoria: 'Moletons',
     preco: 129.90,
     descricao: 'Hoodie da RHEMA.',
+    versiculo: 'Paráfrase de Mateus 11:28-30: Jesus chama os cansados a se aproximarem dele e encontrarem descanso para a alma.',
+    significado: 'O conforto pode lembrar o cuidado de Deus; o descanso que Jesus oferece à alma não significa ausência de dificuldades.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
       { src: 'imagens/moleton/moleton-preto.jpeg', alt: 'hoodie preto' }
@@ -69,6 +79,8 @@ const catalogo = [
     categoria: 'Lifestyle',
     preco: 199.90,
     descricao: 'Jaqueta da RHEMA.',
+    versiculo: 'Paráfrase de Colossenses 3:12-14: vistam-se de compaixão, bondade, humildade, mansidão, paciência e amor.',
+    significado: 'A jaqueta se torna um lembrete simbólico para levar essas atitudes às relações do cotidiano.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
       { src: 'imagens/jaqueta/jaqueta.jpeg', alt: 'jaqueta RHEMA, vistas e detalhes' }
@@ -183,6 +195,9 @@ if (botaoCarrinho) {
     document.getElementById('produto-nome').textContent = produtoAtual.nome;
     document.getElementById('produto-preco').textContent = 'R$ ' + formatarPreco(produtoAtual.preco);
     document.getElementById('produto-descricao').textContent = produtoAtual.descricao;
+    document.getElementById('produto-versiculo').textContent = produtoAtual.versiculo;
+    document.getElementById('produto-significado').textContent = produtoAtual.significado;
+    document.getElementById('produto-conteudo-fe').hidden = false;
     renderizarGaleria(produtoAtual);
 
     // Cria uma opção no seletor para cada tamanho do produto
