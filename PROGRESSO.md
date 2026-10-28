@@ -6,7 +6,7 @@
 
 **Correção desta revisão:** removido o hero duplicado; corrigidos o link interno quebrado, o espaçamento do rodapé e a responsividade do hero e dos benefícios. A vitrine e o catálogo agora mostram fotos reais associadas aos produtos. Os atalhos de categoria filtram o catálogo, a busca ignora acentos, os botões flutuantes usam ícones lineares e a faixa “Streetwear com identidade” foi incluída.
 
-**História da marca:** incluída na homepage uma seção institucional baseada no relato do fundador, sobre o sonho de criar a marca, o encontro com Deus após desafios de saúde e a decisão de transformar esse sonho em propósito de fé.
+**Página Sobre e mural:** criada `sobre.html` como página separada, com o testemunho do fundador, a apresentação do mural comunitário e um formulário que fica desativado até a conexão do banco online. O projeto Supabase conectado está com status `INACTIVE`; a lista de tabelas não pôde ser consultada e a publicação global ainda não está ativa. O SQL seguro para revisão/publicação manual está em `database/rhema_testimonies.sql`.
 
 **Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard, Elo e American Express. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
 
@@ -38,6 +38,9 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] Os cinco atalhos de categoria filtram os produtos; a Jaqueta está marcada como Lifestyle.
 - [x] Busca aceita termos sem acento, como “bone” para encontrar “Boné”.
 - [x] Correções estruturais: hero duplicado removido, link interno consertado e rodapé ajustado.
+- [x] Navegação Sobre separada da homepage; testemunho do fundador e interface responsiva do mural em `sobre.html`.
+- [x] Tabela do mural preparada com RLS: visitantes só leem relatos aprovados e enviam relatos como pendentes.
+- [ ] Ativar o projeto Supabase, executar `database/rhema_testimonies.sql`, expor a tabela na Data API e configurar a chave pública em `js/sobre-config.js`; testar envio e aprovação antes de liberar o mural.
 - [x] Verificação de sintaxe do `js/main.js` e existência dos caminhos cadastrados no catálogo.
 - [ ] Conferência visual das galerias em desktop e celular; fazer no navegador local.
 
@@ -96,4 +99,4 @@ As Fases 1 a 7 e as correções R1 continuam registradas nos documentos anterior
 
 ## Próximo passo
 
-A Fase 9 está concluída. O próximo trabalho de desenvolvimento é a Fase 10; o cadastro real deve aguardar o banco de dados e o back-end da Fase 11. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage.
+A Fase 9 está concluída. O próximo trabalho de desenvolvimento é a Fase 10; o cadastro real deve aguardar o banco de dados e o back-end da Fase 11. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage. O mural de testemunhos só poderá receber e mostrar relatos entre visitantes quando o Supabase estiver ativo e a tabela for exposta à Data API.

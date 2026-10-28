@@ -4,9 +4,9 @@
 **Versão:** 2.0  
 **Data:** 28/10/2026
 
-**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1 a 8.3 e 8.5 a 8.10 têm implementação; 8.4 está parcial, e a revisão visual completa da homepage (8.11) continua pendente.
+**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1 a 8.3 e 8.5 a 8.10 têm implementação; 8.4 está parcial, e a revisão visual completa da homepage (8.11) continua pendente. A página Sobre tem interface própria e formulário de testemunhos; a publicação compartilhada aguarda a ativação do Supabase.
 
-> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. A arte final do hero e a revisão visual completa da homepage ainda precisam ser resolvidas.
+> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. O item Sobre abre a página `sobre.html`, separada da homepage. O mural global depende de um banco online ativo; veja `database/rhema_testimonies.sql`.
 
 ---
 
@@ -1773,7 +1773,7 @@ No `index.html`, substitua o `<header>` atual e o `<nav class="main-nav">` separ
     <a href="index.html" aria-current="page">Início</a>
     <a href="produtos.html">Roupas</a>
     <a href="index.html#lifestyle">Lifestyle</a>
-    <a href="index.html#sobre">Sobre</a>
+    <a href="sobre.html">Sobre</a>
   </nav>
 
   <div class="header-actions">
@@ -2326,7 +2326,7 @@ Adicionar blocos de campanha para propósito, detalhes da peça, história e lif
 Esses blocos dão ritmo à homepage e mostram a relação entre fé, cultura e estilo sem transformar cada seção em um anúncio.
 
 **Implementação**  
-Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens foram criadas para esta composição e estão em `imagens/editorial/`. O terceiro quadro usa como camada o arquivo original do símbolo em `Logo Rhema/image0 (1).png`; mantenha essa arte sem redesenhar ou distorcer.
+Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens foram criadas para esta composição e estão em `imagens/editorial/`. O terceiro quadro usa como camada o arquivo original do símbolo em `Logo Rhema/image0 (1).png`; mantenha essa arte sem redesenhar ou distorcer. O link Sobre leva a uma página própria com o testemunho do fundador e o mural da comunidade.
 
 > **Estado atual:** etapa implementada. As três imagens carregam na homepage, os atalhos filtram o catálogo e o layout foi conferido em telas desktop e celular. A arte final do hero da etapa 8.4 ainda é um item separado.
 
@@ -2339,7 +2339,7 @@ Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens
            alt="Modelo adulto com streetwear preto em um corredor de pedra iluminado por luz âmbar"
            loading="lazy" decoding="async">
     </div>
-    <div><p>Propósito também é estilo</p><a href="index.html#historia">Conheça a RHEMA</a></div>
+    <div><p>Propósito também é estilo</p><a href="sobre.html#historia">Conheça a RHEMA</a></div>
   </article>
   <article class="editorial-card" id="lifestyle">
     <div class="editorial-image">
@@ -2356,21 +2356,8 @@ Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens
       <img class="editorial-symbol" src="Logo%20Rhema/image0%20%281%29.png"
            alt="Símbolo original da RHEMA em dourado sobre tecido preto" loading="lazy" decoding="async">
     </div>
-    <div><p>Sal na terra e luz no mundo</p><a href="index.html#sobre">Nossa história</a></div>
+    <div><p>Sal na terra e luz no mundo</p><a href="sobre.html#historia">Nossa história</a></div>
   </article>
-</section>
-
-<section class="brand-story" id="historia" aria-labelledby="brand-story-title">
-  <div class="brand-story-content">
-    <p class="brand-story-kicker">Nossa história</p>
-    <h2 id="brand-story-title">Um sonho que encontrou propósito</h2>
-    <div class="brand-story-copy">
-      <p>A RHEMA nasceu de um sonho que carrego desde muito jovem: criar uma marca de roupas. Por muito tempo, esse desejo existiu como um projeto pessoal. Depois de enfrentar problemas de saúde, conheci Deus, e esse encontro mudou a forma como eu via a vida e o futuro.</p>
-      <p>Foi nessa jornada que compreendi que aquele sonho poderia servir a um propósito maior. Decidi transformar a RHEMA em uma marca baseada na fé, capaz de levar essa mensagem às pessoas por meio de algo presente no cotidiano: o que vestimos.</p>
-      <p>Não importa o rumo que a vida tome ou os desafios que apareçam: cremos que Deus pode transformar nossas vidas e permanece conosco em cada etapa. Queremos que cada peça seja um lembrete dessa fé — uma forma de expressar esperança, propósito e luz.</p>
-    </div>
-    <p class="brand-story-signature">RHEMA — Sal na terra e luz no mundo</p>
-  </div>
 </section>
 
 <section class="category-shortcuts" aria-labelledby="category-title">
@@ -2424,12 +2411,14 @@ No CSS, adicione:
 }
 ```
 
+Os estilos `.brand-story` mostrados no bloco CSS são usados na página Sobre, em `sobre.html`, e não precisam ser adicionados novamente à homepage.
+
 **Entendendo o código**
 
 - `grid-row: span 2` faz o bloco maior ocupar duas fileiras, como uma composição editorial.
 - `position: absolute` posiciona texto e símbolo sobre a fotografia; a camada escura em `::after` melhora o contraste do texto.
 - Os arquivos em `imagens/editorial/` são as três novas artes. O último quadro reaproveita o símbolo original da marca por cima de uma textura; não substitua o logo por uma geração artificial.
-- Os ids `sobre`, `lifestyle`, `simbolo-rhema` e `historia` transformam links internos em destinos reais. `#historia` aponta para a seção institucional abaixo dos cards; o devocional fica na Fase 9.
+- Os ids `sobre`, `lifestyle` e `simbolo-rhema` identificam os cards editoriais da homepage. O link `sobre.html#historia` abre a história do fundador na página separada; o devocional fica na Fase 9.
 - Use imagens com luz e temperatura de cor consistentes; não altere o desenho do símbolo.
 
 **Teste**
@@ -2650,7 +2639,7 @@ Substitua o conteúdo do `footer` da homepage por:
     <img src="imagens/logo-rhema-claro.png" alt="RHEMA">
     <p>Sal na terra e luz no mundo</p>
   </div>
-  <div><h2>Institucional</h2><a href="#sobre">Sobre a marca</a><a href="produtos.html">Coleções</a></div>
+  <div><h2>Institucional</h2><a href="sobre.html#historia">Sobre a marca</a><a href="produtos.html">Coleções</a></div>
   <div><h2>Ajuda</h2><a href="#atendimento">Trocas e devoluções</a><a href="#atendimento">Entrega</a></div>
   <div id="atendimento"><h2>Atendimento</h2><p>WhatsApp e e-mail oficiais da loja</p></div>
   <form class="newsletter" id="newsletter-form">
@@ -3573,6 +3562,20 @@ Fase 11 — preparar deploy.
 ## Fase 11: Back-end e Deploy
 
 *Objetivo: Publicar o site na internet*
+
+### Página Sobre e mural de testemunhos
+
+`sobre.html` é a página separada para a história do fundador e as histórias da comunidade. O formulário já está desenhado, mas fica desativado enquanto não houver conexão com o banco. O Supabase conectado estava `INACTIVE` nesta revisão; a tabela ainda não foi criada.
+
+Quando o projeto estiver ativo:
+
+1. Execute `database/rhema_testimonies.sql` no SQL Editor do projeto.
+2. Confirme que `public.rhema_testimonies` está exposta na Data API.
+3. Preencha `url` e `publishableKey` em `js/sobre-config.js` usando a URL e a chave publicável do projeto. **Nunca use a chave `service_role` no navegador.**
+4. Envie um relato de teste. Ele deve entrar com status `pending`; revise-o no painel e altere o status para `published` para torná-lo público.
+5. Confirme que visitantes conseguem ler apenas relatos aprovados e que não conseguem alterar ou apagar relatos.
+
+O SQL ativa RLS, limita os campos que visitantes podem enviar e mantém novos relatos pendentes. O Supabase altera o padrão de exposição de tabelas na Data API em 30/10/2026; por isso, confirme a exposição explicitamente nas configurações do projeto ([aviso do Supabase](https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically)).
 
 ### 📍 Microetapa 11.1: Preparar para deploy
 

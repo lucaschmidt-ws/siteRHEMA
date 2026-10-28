@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça a história de fé e propósito da RHEMA e leia testemunhos que inspiram outras pessoas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Sobre a RHEMA | Fé, histórias e propósito</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="about-page">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="RHEMA, página inicial">
+      <img src="imagens/logo-rhema-claro.png" alt="RHEMA">
+    </a>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Roupas</a>
+      <a href="index.html#lifestyle">Lifestyle</a>
+      <a href="sobre.html" aria-current="page">Sobre</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-action" href="produtos.html#search-input" aria-label="Buscar produtos">
+        <span class="icon-search" aria-hidden="true"></span>
+      </a>
+      <a class="header-action" href="carrinho.html" aria-label="Abrir sacola, 0 itens">
+        <span class="icon-bag" aria-hidden="true"></span>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="about-main">
+    <section class="about-hero" aria-labelledby="about-title">
+      <p class="brand-story-kicker">Sobre a RHEMA</p>
+      <h1 id="about-title">Fé que se veste. Histórias que inspiram.</h1>
+      <p>Um sonho transformado em propósito e uma comunidade que pode compartilhar aquilo que a fé tem feito em suas vidas.</p>
+      <a class="btn btn-small" href="#testemunhos">Leia e compartilhe testemunhos</a>
+    </section>
+
+    <section class="brand-story" id="historia" aria-labelledby="brand-story-title">
+      <div class="brand-story-content">
+        <p class="brand-story-kicker">Testemunho do fundador</p>
+        <h2 id="brand-story-title">Um sonho que encontrou propósito</h2>
+        <div class="brand-story-copy">
+          <p>A RHEMA nasceu de um sonho que carrego desde muito jovem: criar uma marca de roupas. Por muito tempo, esse desejo existiu como um projeto pessoal. Depois de enfrentar problemas de saúde, conheci Deus, e esse encontro mudou a forma como eu via a vida e o futuro.</p>
+          <p>Foi nessa jornada que compreendi que aquele sonho poderia servir a um propósito maior. Decidi transformar a RHEMA em uma marca baseada na fé, capaz de levar essa mensagem às pessoas por meio de algo presente no cotidiano: o que vestimos.</p>
+          <p>Não importa o rumo que a vida tome ou os desafios que apareçam: cremos que Deus pode transformar nossas vidas e permanece conosco em cada etapa. Queremos que cada peça seja um lembrete dessa fé — uma forma de expressar esperança, propósito e luz.</p>
+        </div>
+        <p class="brand-story-signature">RHEMA — Sal na terra e luz no mundo</p>
+      </div>
+    </section>
+
+    <section class="testimony-wall" id="testemunhos" aria-labelledby="testimony-title">
+      <div class="testimony-heading">
+        <p class="brand-story-kicker">Vozes que inspiram</p>
+        <h2 id="testimony-title">Um testemunho pode alcançar alguém no momento certo.</h2>
+        <p>Leia as histórias compartilhadas pela comunidade e, se desejar, conte a sua. Relatos enviados serão revisados antes de aparecer publicamente.</p>
+      </div>
+
+      <div class="testimony-feed" id="testimony-feed" aria-live="polite" aria-busy="false">
+        <p class="testimony-feed-status" id="testimony-feed-status" role="status">O mural público será ativado quando o banco online da RHEMA estiver conectado.</p>
+      </div>
+
+      <form class="testimony-form" id="testimony-form">
+        <h3>Compartilhe seu testemunho</h3>
+        <p class="testimony-form-intro">Você pode assinar com seu primeiro nome ou escolher “Anônimo”. Não inclua telefone, endereço ou outras informações privadas.</p>
+
+        <fieldset class="testimony-fields" id="testimony-fields" disabled>
+          <label for="testimony-name">Como gostaria de assinar?</label>
+          <input id="testimony-name" name="display_name" type="text" maxlength="50" autocomplete="name" placeholder="Seu primeiro nome ou Anônimo" required>
+
+          <label for="testimony-content">Seu testemunho</label>
+          <textarea id="testimony-content" name="testimony" rows="6" minlength="20" maxlength="1200" aria-describedby="testimony-consent-note" placeholder="Conte sua história com suas palavras..." required></textarea>
+
+          <label class="testimony-consent">
+            <input id="testimony-consent" name="consent" type="checkbox" required>
+            <span>Autorizo que meu nome de exibição e meu testemunho sejam publicados caso o relato seja aprovado.</span>
+          </label>
+
+          <button class="btn btn-primary" type="submit">Enviar para revisão</button>
+        </fieldset>
+
+        <p class="testimony-consent-note" id="testimony-consent-note">Os relatos ficarão pendentes até serem revisados. Compartilhe apenas o que você se sente à vontade em tornar público.</p>
+        <p class="testimony-form-status" id="testimony-form-status" role="status" aria-live="polite">O envio será liberado quando o banco online estiver ativo.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer-compact">
+    <div class="footer-contact">
+      <h2>Atendimento</h2>
+      <div class="footer-social-list" role="group" aria-label="Redes sociais e contato da RHEMA">
+        <span class="footer-social-pending" role="img" aria-label="Instagram. Link oficial será adicionado depois" title="Adicionar o perfil oficial depois"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="icon-dot" cx="17.5" cy="6.5" r=".8"/></svg></span>
+        <a class="footer-social-link" href="https://wa.me/5551999218124" target="_blank" rel="noopener noreferrer" aria-label="Falar com a RHEMA pelo WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.5Z"/><path d="M9 9.2c.4 2.1 2 3.8 4.1 4.4l1-1 1.8.7-.2 1.7c-.1.5-.6.8-1.1.8-3.7-.4-6.8-3.4-7.2-7.1 0-.5.3-1 .8-1.1l1.7-.2.7 1.8-1 .9Z"/></svg></a>
+        <span class="footer-social-pending" role="img" aria-label="E-mail. Endereço oficial será adicionado depois" title="Adicionar o e-mail oficial depois"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+      </div>
+      <p class="footer-contact-note">Os links do Instagram e do e-mail serão adicionados depois.</p>
+    </div>
+    <div class="footer-payments">
+      <h2>Bandeiras de cartão previstas</h2>
+      <div class="footer-payment-logos" role="group" aria-label="Visa, Mastercard, Elo e American Express"><span class="payment-logo payment-visa" role="img" aria-label="Visa">VISA</span><span class="payment-logo payment-mastercard" role="img" aria-label="Mastercard"><span class="mastercard-symbol" aria-hidden="true"></span><span>mastercard</span></span><span class="payment-logo payment-elo" role="img" aria-label="Elo">elo</span><span class="payment-logo payment-amex" role="img" aria-label="American Express">AMERICAN<br>EXPRESS</span></div>
+      <p class="footer-payment-note">A disponibilidade depende da futura integração de pagamento.</p>
+    </div>
+    <div class="footer-brand"><a class="footer-brand-link" href="index.html" aria-label="Página inicial da RHEMA"><img src="imagens/logo-rhema-claro.png" alt="RHEMA" class="footer-logo"></a><p>Sal na terra e luz no mundo</p></div>
+    <p class="footer-legal">&copy; 2026 Rhema Streetwear. Todos os direitos reservados.</p>
+    <p class="footer-credit">Este site foi desenvolvido com ajuda do OpenAI Codex, assistente de IA, sob direção e revisão da pessoa responsável pela RHEMA.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/sobre-config.js"></script>
+  <script src="js/sobre.js"></script>
+</body>
+</html>
