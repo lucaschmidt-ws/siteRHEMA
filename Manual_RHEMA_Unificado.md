@@ -3705,6 +3705,25 @@ Parabéns! Você completou seu primeiro site. Você aprendeu:
 | Clipboard API | Recurso do navegador para copiar texto para a área de transferência via código |
 | `encodeURIComponent` | Converte um texto comum em um formato seguro para colocar dentro de um link |
 
+## Coleção Crônicas da Fé — mockups do verso
+
+Em 29/10/2026 foram criados dez mockups de camisetas pretas, seguindo o corte e o fundo de estúdio da camiseta já presente no catálogo. Cada nova arte aparece somente na parte de trás; a frente não recebeu uma estampa nova. Os mockups foram feitos com apoio do OpenAI Codex a partir das imagens fornecidas pelo responsável pelo projeto.
+
+| Arquivo | Tema da estampa |
+|---|---|
+| `imagens/colecao-cronicas-da-fe/01-jardim-do-eden-costas.png` | Jardim do Éden |
+| `imagens/colecao-cronicas-da-fe/02-jornada-da-fe-costas.png` | Panorama bíblico e jornada de fé |
+| `imagens/colecao-cronicas-da-fe/03-jonas-e-o-grande-peixe-costas.png` | Jonas e o grande peixe |
+| `imagens/colecao-cronicas-da-fe/04-jo-costas.png` | Jó |
+| `imagens/colecao-cronicas-da-fe/05-sansao-costas.png` | Sansão — Juízes 13–16 |
+| `imagens/colecao-cronicas-da-fe/06-leao-rhema-costas.png` | Leão RHEMA — 2 Timóteo 1:7 |
+| `imagens/colecao-cronicas-da-fe/07-nao-temas-costas.png` | “Não temas, porque eu sou contigo” — Isaías 41:10 |
+| `imagens/colecao-cronicas-da-fe/08-deus-amou-o-mundo-costas.png` | “Deus amou o mundo” — João 3:16 |
+| `imagens/colecao-cronicas-da-fe/09-tudo-contribui-para-o-bem-costas.png` | “Tudo contribui para o bem” — Romanos 8:28 |
+| `imagens/colecao-cronicas-da-fe/10-constancia-costas.png` | “Constância em todo processo” — Gálatas 6:9 |
+
+Os arquivos são mockups de apresentação, não fotos de peças físicas. Para incluir as camisetas no catálogo, cadastrar cada produto com nome, preço, disponibilidade e fotos da frente e do verso; então adicionar os caminhos das imagens ao produto correspondente em `js/main.js`.
+
 
 
 

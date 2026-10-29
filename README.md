@@ -11,7 +11,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `sobre.html`: história do fundador e interface para envio/leitura de testemunhos da comunidade.
 - `css/` e `js/`: estilos e funcionalidades do site.
 - `js/sobre.js` e `js/sobre-config.js`: mural de testemunhos e configuração da URL/chave publicável do Supabase; a chave `service_role` não deve ir ao navegador.
-- `imagens/`, `imagens/editorial/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage.
+- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage e dez mockups do verso da coleção Crônicas da Fé.
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
 
@@ -21,6 +21,10 @@ Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse 
 
 Abra `index.html` no navegador. Algumas funções do carrinho e do catálogo usam JavaScript local.
 O item “Histórias” leva à página `sobre.html`. O formulário do mural está preparado, mas permanece desativado até o projeto Supabase ser ativado e conectado; as etapas estão em `Manual_RHEMA_Unificado.md`.
+
+## Coleção Crônicas da Fé
+
+Dez mockups de camisetas pretas mostram as novas estampas somente no verso. As imagens estão em `imagens/colecao-cronicas-da-fe/`; a lista de temas e as orientações para futura inclusão no catálogo estão no `Manual_RHEMA_Unificado.md`. Os mockups foram criados com ajuda do OpenAI Codex a partir das artes enviadas e da camiseta já cadastrada.
 
 ## Créditos e transparência
 

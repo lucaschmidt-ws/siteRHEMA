@@ -1,6 +1,8 @@
 # Progresso do Projeto RHEMA
 
-**Última atualização:** 28/10/2026
+**Última atualização:** 29/10/2026
+
+**Nova coleção — Crônicas da Fé:** criados dez mockups de camisetas pretas, com as artes aplicadas somente no verso e seguindo o corte/fundo da camiseta já cadastrada. Os arquivos estão em `imagens/colecao-cronicas-da-fe/`. A geração usou as imagens enviadas pelo responsável pelo projeto e apoio do OpenAI Codex. Os produtos não foram cadastrados no catálogo porque ainda não foram informados preços, estoque e dados comerciais.
 
 **Fase 9:** microetapas 9.1–9.9 concluídas. O site exibe e compartilha o devocional, registra a sequência de leitura, mostra as passagens dos seis produtos, salva favoritos e oferece um mural de oração privado no navegador.
 
