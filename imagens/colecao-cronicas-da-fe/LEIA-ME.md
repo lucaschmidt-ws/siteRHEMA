@@ -1,6 +1,6 @@
 # Coleção Crônicas da Fé
 
-Conjunto visual de dez modelos da coleção Crônicas da Fé, cada um com imagens de frente, costas e lado. A pasta principal contém as camisetas pretas originais. As subpastas em `cores/` contêm as variações em branco, cinza, verde militar/musgo e marrom. Em cada cor, as dez frentes usam o mesmo símbolo RHEMA no peito, e cada estampa aparece nas costas; a vista lateral mostra o caimento e parte da arte.
+Conjunto visual de dez modelos da coleção Crônicas da Fé, cada um com imagens de frente, costas e lado. A pasta principal contém as camisetas pretas originais. As subpastas em `cores/` contêm as variações em branco, cinza, verde militar/musgo e marrom. Em cada cor, as dez frentes usam o mesmo símbolo RHEMA no peito, e cada estampa aparece nas costas; a vista lateral mostra o caimento e parte da arte. A pasta `pranchas-de-apresentacao/` reúne 50 pranchas no formato da referência visual: uma por estampa e por cor.
 
 As imagens foram criadas com ajuda do OpenAI Codex a partir das artes enviadas para o projeto. São mockups de apresentação, não fotos de peças físicas nem arquivos finais de produção. Na arte do Jardim do Éden, as figuras aparecem vestidas com túnicas.
 
@@ -14,6 +14,8 @@ Cada pasta contém `00-frente-comum.png` como referência da cor e dez conjuntos
 - `cores/marrom/` — marrom chocolate.
 
 As variações são recursos visuais para aprovação da coleção. Ainda não há seletor de cor no catálogo do site; preços, estoque e dados comerciais também precisam ser definidos antes do cadastro dos produtos.
+
+As pranchas combinam vistas grandes de frente e costas, cinco recortes de detalhes e quatro vistas menores na parte inferior. Elas são mockups editoriais; recortes de tecido, gola e costura são ilustrativos e não confirmam composição ou especificações de fabricação. Consulte `pranchas-de-apresentacao/LEIA-ME.md` para encontrar os 50 arquivos.
 
 | Estampa | Frente | Costas | Lado |
 |---|---|---|---|
