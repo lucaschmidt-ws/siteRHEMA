@@ -1,8 +1,18 @@
 # Coleção Crônicas da Fé
 
-Conjunto visual de dez camisetas pretas. Cada modelo tem seus próprios arquivos de frente, costas e lado. As dez frentes são cópias de `00-frente-comum-da-colecao.png`, com o pequeno símbolo RHEMA no peito, porque o desenho frontal não muda. A arte de cada modelo aparece somente nas costas; a vista lateral em ângulo traseiro mostra o caimento e parte dessa arte.
+Conjunto visual de dez modelos da coleção Crônicas da Fé, cada um com imagens de frente, costas e lado. A pasta principal contém as camisetas pretas originais. As subpastas em `cores/` contêm a variação em branco, cinza e verde militar/musgo. Em cada cor, as dez frentes usam o mesmo símbolo RHEMA no peito, e cada estampa aparece nas costas; a vista lateral mostra o caimento e parte da arte.
 
-As vistas de costas e de lado foram criadas com ajuda do OpenAI Codex a partir das imagens enviadas para o projeto. São mockups de apresentação, não fotos de peças físicas.
+As imagens foram criadas com ajuda do OpenAI Codex a partir das artes enviadas para o projeto. São mockups de apresentação, não fotos de peças físicas nem arquivos finais de produção. Na arte do Jardim do Éden, as figuras aparecem vestidas com túnicas.
+
+## Variações de cor
+
+Cada pasta contém `00-frente-comum.png` como referência da cor e dez conjuntos com os sufixos `-frente.png`, `-costas.png` e `-lado.png`:
+
+- `cores/branco/` — branco suave.
+- `cores/cinza/` — cinza mescla.
+- `cores/verde-militar-musgo/` — verde militar/musgo.
+
+As variações são recursos visuais para aprovação da coleção. Ainda não há seletor de cor no catálogo do site; preços, estoque e dados comerciais também precisam ser definidos antes do cadastro dos produtos.
 
 | Estampa | Frente | Costas | Lado |
 |---|---|---|---|

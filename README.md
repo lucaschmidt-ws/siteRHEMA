@@ -11,7 +11,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `sobre.html`: história do fundador e interface para envio/leitura de testemunhos da comunidade.
 - `css/` e `js/`: estilos e funcionalidades do site.
 - `js/sobre.js` e `js/sobre-config.js`: mural de testemunhos e configuração da URL/chave publicável do Supabase; a chave `service_role` não deve ir ao navegador.
-- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage e dez conjuntos com vistas frontal, traseira e lateral da coleção Crônicas da Fé.
+- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage e dez modelos da coleção Crônicas da Fé nas cores preto, branco, cinza e verde militar/musgo, cada um com vistas frontal, traseira e lateral.
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
 
@@ -24,7 +24,7 @@ O item “Histórias” leva à página `sobre.html`. O formulário do mural est
 
 ## Coleção Crônicas da Fé
 
-Cada uma das dez camisetas tem arquivos próprios de vista frontal, traseira e lateral em `imagens/colecao-cronicas-da-fe/`. As frentes repetem a camiseta já cadastrada, pois todas mantêm o mesmo símbolo RHEMA no peito; cada estampa aparece somente nas costas e tem sua própria vista lateral. O guia da coleção lista os arquivos e temas. As imagens foram preparadas com ajuda do OpenAI Codex a partir das artes enviadas e da camiseta já cadastrada.
+Cada um dos dez modelos tem imagens de frente, costas e lado nas pastas de cor preto, branco, cinza e verde militar/musgo dentro de `imagens/colecao-cronicas-da-fe/`. As frentes repetem o mesmo símbolo RHEMA no peito; cada estampa aparece nas costas e também é visível na vista lateral. O guia da coleção lista os arquivos e temas. São mockups preparados com ajuda do OpenAI Codex a partir das artes enviadas e da camiseta já cadastrada; ainda não são fotos de peças físicas. A seleção de cor não foi integrada ao catálogo do site.
 
 ## Créditos e transparência
 
