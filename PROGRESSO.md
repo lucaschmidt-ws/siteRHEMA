@@ -2,7 +2,7 @@
 
 **Última atualização:** 29/10/2026
 
-**Nova coleção — Crônicas da Fé:** conjunto visual de dez camisetas pretas com 21 imagens: uma frente compartilhada da peça já cadastrada, dez vistas de costas e dez vistas laterais próprias. As novas estampas aparecem somente nas costas. Os arquivos e temas estão descritos em `imagens/colecao-cronicas-da-fe/LEIA-ME.md`. As laterais foram criadas com apoio do OpenAI Codex a partir das artes enviadas. Os produtos não foram cadastrados no catálogo porque ainda não foram informados preços, estoque e dados comerciais.
+**Nova coleção — Crônicas da Fé:** conjunto visual de dez camisetas pretas com arquivos próprios de frente, costas e lado para cada estampa. As dez frentes usam a mesma imagem da camiseta já cadastrada, pois o símbolo do peito não muda; as estampas novas aparecem somente nas costas e cada uma tem sua vista lateral. Os arquivos e temas estão descritos em `imagens/colecao-cronicas-da-fe/LEIA-ME.md`. Os produtos não foram cadastrados no catálogo porque ainda não foram informados preços, estoque e dados comerciais.
 
 **Fase 9:** microetapas 9.1–9.9 concluídas. O site exibe e compartilha o devocional, registra a sequência de leitura, mostra as passagens dos seis produtos, salva favoritos e oferece um mural de oração privado no navegador.
 

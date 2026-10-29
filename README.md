@@ -11,7 +11,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `sobre.html`: história do fundador e interface para envio/leitura de testemunhos da comunidade.
 - `css/` e `js/`: estilos e funcionalidades do site.
 - `js/sobre.js` e `js/sobre-config.js`: mural de testemunhos e configuração da URL/chave publicável do Supabase; a chave `service_role` não deve ir ao navegador.
-- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage e as vistas da coleção Crônicas da Fé (frente comum, dez costas e dez laterais).
+- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage e dez conjuntos com vistas frontal, traseira e lateral da coleção Crônicas da Fé.
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
 
@@ -24,7 +24,7 @@ O item “Histórias” leva à página `sobre.html`. O formulário do mural est
 
 ## Coleção Crônicas da Fé
 
-Cada uma das dez camisetas tem vista frontal, traseira e lateral em `imagens/colecao-cronicas-da-fe/`. A frente é compartilhada porque todas mantêm o pequeno símbolo RHEMA no peito; cada estampa aparece somente nas costas e tem sua própria vista lateral. O guia da coleção lista os arquivos e temas. As vistas laterais foram criadas com ajuda do OpenAI Codex a partir das artes enviadas e da camiseta já cadastrada.
+Cada uma das dez camisetas tem arquivos próprios de vista frontal, traseira e lateral em `imagens/colecao-cronicas-da-fe/`. As frentes repetem a camiseta já cadastrada, pois todas mantêm o mesmo símbolo RHEMA no peito; cada estampa aparece somente nas costas e tem sua própria vista lateral. O guia da coleção lista os arquivos e temas. As imagens foram preparadas com ajuda do OpenAI Codex a partir das artes enviadas e da camiseta já cadastrada.
 
 ## Créditos e transparência
 
