@@ -2,9 +2,13 @@
 
 **Última atualização:** 04/11/2026
 
+**Políticas do site:** criadas páginas próprias para entrega, trocas e devoluções (`politicas.html`) e privacidade (`privacidade.html`); links foram adicionados aos rodapés. Os textos descrevem o site como catálogo sem checkout ou pagamento, orientam confirmar frete e prazo pelo WhatsApp, explicam o direito de arrependimento e defeitos, e documentam dados locais, fontes/hospedagem, WhatsApp, formulários inativos e direitos de privacidade. A identificação “RHEMA Streetwear” e o WhatsApp são provisórios, conforme informado pela pessoa responsável; razão social e endereço ainda não foram fornecidos.
+
+**Carrinho e estoque por tamanho:** a Camiseta Streetwear tem P 1, M 1, G 1 e GG 0; todos os tamanhos dos outros produtos estão em zero. A página do produto informa o saldo do tamanho selecionado, permite escolher quantidades até o saldo restante e apresenta uma faixa translúcida sobre a foto para estoque de 1 a 5 ou esgotado. O carrinho permite aumentar/diminuir quantidades, soma subtotais e total, e impede ultrapassar o saldo combinado entre cores. A sacola continua local e demonstrativa; não conclui pedidos nem sincroniza o estoque entre pessoas.
+
 **Nova coleção — Crônicas da Fé:** dez camisetas cadastradas no site (IDs 7 a 16), cada uma com opções preto, branco suave, cinza mescla, verde militar/musgo e marrom chocolate, tamanhos P–GG e preço de R$ 109,90. A página do produto troca as imagens conforme a cor escolhida e oferece zoom com navegação entre prancha, frente, costas e lado. Os cartões de produtos também abrem a ampliação ao clicar, e o carrinho conserva tamanho e cor. As 50 pranchas editoriais (uma por estampa e cor) e as vistas estão em `imagens/colecao-cronicas-da-fe/`; o guia detalha os arquivos. São mockups, não fotos de peças físicas nem especificações de fabricação.
 
-**Estoque inicial:** Camiseta Streetwear — 3 unidades; os outros 15 produtos — 0. Os cards mostram uma faixa “ESGOTADO” para saldo zero e exibem a quantidade quando restam de 1 a 5 unidades. A página do produto desativa a compra no saldo zero. Os saldos são números estáticos em `js/main.js`, sem sincronização de pedidos ou banco de dados.
+**Estoque inicial:** Camiseta Streetwear — P 1, M 1, G 1, GG 0; os outros produtos — saldo zero em todos os tamanhos. Os cards mostram uma faixa translúcida “ESGOTADO” para saldo zero e exibem a quantidade quando restam de 1 a 5 unidades. Na página de produto, a disponibilidade e o botão de compra acompanham o tamanho selecionado. Os saldos são estáticos em `js/main.js`, sem sincronização de pedidos ou banco de dados.
 
 **Fase 9:** microetapas 9.1–9.9 concluídas. O site exibe e compartilha o devocional, registra a sequência de leitura, mostra as passagens dos seis produtos, salva favoritos e oferece um mural de oração privado no navegador.
 
@@ -14,7 +18,7 @@
 
 **Página Sobre e mural:** criada `sobre.html` como página separada, com o testemunho do fundador, a apresentação do mural comunitário e um formulário que fica desativado até a conexão do banco online. O projeto Supabase conectado está com status `INACTIVE`; a lista de tabelas não pôde ser consultada e a publicação global ainda não está ativa. O SQL seguro para revisão/publicação manual está em `database/rhema_testimonies.sql`.
 
-**Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard, Elo e American Express. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
+**Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard e Elo. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
 
 **Planejamento futuro:** implementar criação de conta real somente depois de estruturar o banco de dados e o back-end. A autenticação demonstrativa descrita no manual não representa cadastro real.
 
@@ -40,7 +44,7 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] 8.9 — galeria dinâmica na página de produto, com fotos específicas por produto.
 - [x] Coleção Crônicas da Fé — dez modelos no catálogo e na vitrine, cinco cores por modelo, tamanhos P–GG, preço R$ 109,90 e cor/tamanho preservados no carrinho.
 - [x] Zoom de imagens — clique nos cartões da homepage e do catálogo, e na imagem principal do produto; galeria ampliada permite avançar/voltar e fechar com Escape.
-- [x] Estoque inicial e alertas — 3 unidades para Camiseta Streetwear; zero para os demais 15 produtos; quantidade baixa nos cards e aviso “ESGOTADO” com compra desativada.
+- [x] Estoque por tamanho — Camiseta Streetwear com P 1, M 1, G 1, GG 0; demais produtos sem saldo; alerta translúcido nos cards e bloqueio de compra por tamanho esgotado.
 - [x] 8.8 — ícones flutuantes sem emojis e contagem acessível no carrinho.
 - [x] Faixa “Streetwear com identidade” adicionada entre os benefícios e a vitrine.
 - [x] Fotos reais associadas aos cards da homepage e do catálogo.
@@ -95,7 +99,8 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 ## Pontos a acompanhar
 
 - As fotos da camiseta, calça, moletom, boné e jaqueta agora estão ligadas aos IDs correspondentes no catálogo. Confirme se cada arquivo representa a versão comercial que deseja mostrar.
-- Os saldos de estoque são estáticos no front-end; conectar a uma fonte de estoque confiável antes de processar pedidos reais.
+- Os saldos de estoque por tamanho são estáticos no front-end; conectar a uma fonte confiável e reserva de pedidos antes de vender pelo site.
+- Informar razão social e endereço comercial para substituir os dados provisórios nas políticas.
 - As cores e imagens da nova coleção estão disponíveis como mockups; confirmar cores comerciais antes de vender as peças.
 - Os produtos com uma foto cadastrada precisam de novas vistas antes de terem miniaturas.
 - As imagens dos cards usam a primeira foto cadastrada em `catalogo` no `js/main.js`; confira se cada foto representa a versão comercial que será vendida.

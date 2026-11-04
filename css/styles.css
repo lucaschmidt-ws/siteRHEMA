@@ -1363,12 +1363,68 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .mastercard-symbol::before { left: 0; background: #EB001B; }
 .mastercard-symbol::after { right: 0; background: rgba(247, 158, 27, .88); mix-blend-mode: multiply; }
 .payment-elo { color: #171717; font-size: 17px; font-weight: 900; letter-spacing: -.06em; }
-.payment-amex { color: #1667A8; font-size: 7px; line-height: 1.05; text-align: center; }
 .footer-payment-note { margin-top: 7px; color: #D9D7D1; font-size: 10px; }
 .site-footer-compact { grid-template-columns: 1.2fr 1.2fr 2fr; }
 .site-footer-compact .footer-payments { grid-column: auto; padding-top: 0; border-top: 0; }
 .site-footer-compact .footer-legal,
 .site-footer-compact .footer-credit { grid-column: 1 / -1; }
+
+/* Estoque, quantidades e páginas de informação */
+.stock-badge {
+  max-width: calc(100% - 24px);
+  padding: 8px 11px;
+  border: 1px solid rgba(224, 189, 103, .7);
+  border-radius: 2px;
+  background: rgba(8, 8, 8, .72);
+  color: #F2F0EA;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  text-align: left;
+  text-transform: none;
+  backdrop-filter: blur(5px);
+}
+.stock-badge:not(:empty) { cursor: inherit; }
+.product-stock-status { min-height: 1.5em; margin: -4px 0 14px; color: #E0BD67; font-size: 13px; font-weight: 600; }
+.product-stock-status.is-sold-out { color: #F0B5A9; }
+.quantity-option input[type="number"] { width: 92px; min-height: 42px; padding: 8px 10px; border: 1px solid rgba(201, 149, 46, .65); border-radius: 2px; background: #202020; color: #F2F0EA; font: inherit; }
+.quantity-option input:disabled { opacity: .55; }
+.cart-item { flex-wrap: wrap; }
+.cart-item-name { min-width: 180px; }
+.cart-quantity-controls { display: inline-flex; align-items: center; gap: 9px; }
+.cart-quantity-button { width: 34px; height: 34px; border: 1px solid var(--cor-dourado); background: transparent; color: var(--cor-dourado); font: inherit; font-size: 20px; line-height: 1; cursor: pointer; }
+.cart-quantity-button:disabled { opacity: .4; cursor: not-allowed; }
+.cart-quantity-value { min-width: 1.5em; text-align: center; }
+.cart-item-subtotal { min-width: 110px; text-align: right; }
+.cart-item-remove { font: inherit; }
+.site-footer-compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.site-footer .footer-help-links a { font-size: 12px; }
+.policy-page { width: min(100% - 40px, 960px); margin: 0 auto 64px; padding: clamp(28px, 6vw, 64px) 0; }
+.policy-page > .eyebrow { margin-bottom: 10px; color: var(--cor-dourado); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; }
+.policy-page > h1 { margin-bottom: 14px; font-family: var(--fonte-titulo); font-size: clamp(32px, 5vw, 48px); line-height: 1.12; }
+.policy-intro { max-width: 760px; margin-bottom: 34px; color: var(--cor-cinza-mineral); font-size: 16px; line-height: 1.8; }
+.policy-section, .policy-sources { margin: 18px 0; padding: clamp(20px, 4vw, 32px); border: 1px solid rgba(201, 149, 46, .28); background: rgba(8, 8, 8, .5); scroll-margin-top: 24px; }
+.policy-section h2, .policy-sources h2 { margin: 0 0 14px; color: var(--cor-dourado); font-size: 20px; }
+.policy-section h3 { margin: 22px 0 8px; color: var(--cor-texto-claro); font-size: 15px; }
+.policy-section p, .policy-sources p { margin: 0 0 14px; color: var(--cor-cinza-mineral); font-size: 14px; line-height: 1.8; }
+.policy-section p:last-child, .policy-sources p:last-child { margin-bottom: 0; }
+.policy-page a:not(.btn) { color: #E0BD67; text-underline-offset: 3px; }
+.policy-contact { margin-top: 20px !important; }
+.policy-contact .btn { color: var(--cor-dourado); }
+.policy-note { padding: 14px 16px; border-left: 2px solid var(--cor-dourado); background: rgba(201, 149, 46, .07); font-size: 12px !important; }
+.policy-sources { padding-block: 18px; }
+
+@media (max-width: 850px) {
+  .site-footer-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .site-footer-compact { grid-template-columns: 1fr; }
+  .cart-item { align-items: flex-start; gap: 10px 14px; }
+  .cart-item-name { flex-basis: 100%; }
+  .cart-item-subtotal { margin-left: auto; }
+  .cart-item-remove { margin-left: auto; }
+}
 
 @media (max-width: 850px) { .site-footer { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .site-footer { grid-template-columns: 1fr; } }

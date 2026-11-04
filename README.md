@@ -9,6 +9,8 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `produto.html`: página de detalhes do produto.
 - `carrinho.html`: carrinho de compras.
 - `sobre.html`: história do fundador e interface para envio/leitura de testemunhos da comunidade.
+- `politicas.html`: informações sobre entrega, trocas, devoluções e atendimento.
+- `privacidade.html`: dados usados pelo site, finalidades, serviços externos e direitos da pessoa usuária.
 - `css/` e `js/`: estilos e funcionalidades do site.
 - `js/sobre.js` e `js/sobre-config.js`: mural de testemunhos e configuração da URL/chave publicável do Supabase; a chave `service_role` não deve ir ao navegador.
 - `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage, dez modelos da coleção Crônicas da Fé em cinco cores e 50 pranchas editoriais de apresentação.
@@ -24,7 +26,11 @@ O item “Histórias” leva à página `sobre.html`. O formulário do mural est
 
 ## Coleção Crônicas da Fé
 
-Os dez modelos foram integrados ao catálogo e à vitrine inicial como camisetas com IDs 7 a 16. Cada um oferece preto, branco suave, cinza mescla, verde militar/musgo, marrom chocolate, tamanhos P a GG e preço de R$ 109,90. Na página do produto, a seleção de cor troca as imagens de frente, costas, lado e prancha de apresentação; a cor e o tamanho escolhidos são salvos no carrinho. As imagens também podem ser ampliadas ao clicar nos cartões da vitrine e do catálogo, ou na galeria do produto. O estoque inicial está em `js/main.js`: 3 unidades para Camiseta Streetwear e zero para os demais produtos. Os cartões mostram “ESGOTADO” quando o saldo é zero e a quantidade quando está entre 1 e 5; o botão de compra fica desativado para produtos esgotados. Esses saldos são uma configuração estática do site, ainda sem sincronização com um sistema de estoque. A pasta `pranchas-de-apresentacao/` contém uma prancha por estampa e cor, com frente, costas, detalhes ampliados e ângulos laterais no estilo da referência enviada. São mockups preparados com ajuda do OpenAI Codex; ainda não são fotos de peças físicas e os detalhes visuais não confirmam especificações de fabricação.
+Os dez modelos foram integrados ao catálogo e à vitrine inicial como camisetas com IDs 7 a 16. Cada um oferece preto, branco suave, cinza mescla, verde militar/musgo, marrom chocolate, tamanhos P a GG e preço de R$ 109,90. Na página do produto, a seleção de cor troca as imagens de frente, costas, lado e prancha de apresentação; a cor e o tamanho escolhidos são salvos no carrinho. A sacola permite ajustar quantidades, calcula subtotais e total, e bloqueia acréscimos acima do estoque restante para o tamanho selecionado, somando as cores. O contador mostra unidades. O estoque inicial está em `js/main.js`: Camiseta Streetwear — P 1, M 1, G 1 e GG 0; todos os tamanhos dos demais produtos estão em zero. Os cards mostram “ESGOTADO” ou, para saldos de 1 a 5, uma faixa translúcida sobre a imagem com a quantidade. O estoque é configuração estática local e ainda não se sincroniza entre clientes nem reserva unidades. A sacola não conclui pedidos ou pagamentos. A pasta `pranchas-de-apresentacao/` contém uma prancha por estampa e cor, com frente, costas, detalhes ampliados e ângulos laterais no estilo da referência enviada. São mockups preparados com ajuda do OpenAI Codex; ainda não são fotos de peças físicas e os detalhes visuais não confirmam especificações de fabricação.
+
+Os links de entrega e trocas/devoluções abrem as seções próprias em `politicas.html`; a política de privacidade está em `privacidade.html`. A identificação RHEMA Streetwear e o WhatsApp foram autorizados como provisórios; razão social e endereço comercial ainda precisam ser informados. Os formulários de newsletter e testemunhos permanecem inativos e não enviam dados.
+
+O rodapé exibe Visa, Mastercard e Elo como bandeiras previstas para uma futura integração. American Express foi removido; nenhuma bandeira representa um meio de pagamento já habilitado.
 
 ## Créditos e transparência
 

@@ -13,7 +13,7 @@ Cada pasta contém `00-frente-comum.png` como referência da cor e dez conjuntos
 - `cores/verde-militar-musgo/` — verde militar/musgo.
 - `cores/marrom/` — marrom chocolate.
 
-As variações visuais estão integradas como opções de cor na página dos produtos da coleção. O preço cadastrado é R$ 109,90 por modelo, igual ao da camiseta atual, e os tamanhos são P, M, G e GG. A disponibilidade real de estoque e de cada cor ainda deve ser confirmada antes da venda.
+As variações visuais estão integradas como opções de cor na página dos produtos da coleção. O preço cadastrado é R$ 109,90 por modelo, igual ao da camiseta atual, e os tamanhos são P, M, G e GG. O estoque inicial de todos os tamanhos desses modelos está em zero; confirme e atualize cada saldo em `estoquePorTamanho` no `js/main.js` antes de oferecer as peças. O saldo é compartilhado entre cores e ainda não sincroniza pedidos entre clientes.
 
 As pranchas combinam vistas grandes de frente e costas, cinco recortes de detalhes e quatro vistas menores na parte inferior. Elas são mockups editoriais; recortes de tecido, gola e costura são ilustrativos e não confirmam composição ou especificações de fabricação. Consulte `pranchas-de-apresentacao/LEIA-ME.md` para encontrar os 50 arquivos.
 
@@ -34,7 +34,7 @@ As pranchas combinam vistas grandes de frente e costas, cinco recortes de detalh
 
 Os dez modelos aparecem na vitrine inicial e na categoria Camisetas, com IDs 7 a 16. Em cada página de produto, o seletor de cor troca a prancha e as vistas de frente, costas e lado. O primeiro quadro é a prancha de apresentação; os três seguintes são as imagens individuais. Clique na imagem principal para ampliá-la e use as setas do visualizador para navegar. O zoom também está disponível nos cartões de produto da homepage e do catálogo.
 
-O estoque da coleção começa em zero. Os saldos são definidos pela propriedade `estoque` de cada produto em `js/main.js`; atualize esses números quando houver peças disponíveis. O site marca o saldo zero como esgotado e mostra a quantidade quando restam até cinco unidades.
+O estoque da coleção começa em zero. Os saldos são definidos em `estoquePorTamanho` de cada produto em `js/main.js`; por exemplo, use `{ P: 2, M: 1, G: 0, GG: 0 }` para registrar peças disponíveis por tamanho. Atualize esses números quando o estoque mudar. O site marca o saldo zero como esgotado e mostra uma faixa translúcida na imagem quando restam de 1 a 5 unidades.
 
 Os nomes, textos e referências dos dez modelos ficam em `modelosColecaoFe` em `js/main.js`. As cores ficam em `coresColecaoFe`, e os caminhos dos quatro arquivos por cor são gerados a partir do identificador do modelo e da cor. Ao acrescentar um modelo, use um ID único, uma pasta/slug no mesmo padrão e crie os arquivos correspondentes para as cinco cores, incluindo a prancha daquela combinação. O preço atual é definido junto à criação dos produtos em `produtosColecaoFe`.
 

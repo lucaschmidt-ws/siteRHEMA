@@ -8,7 +8,7 @@ const catalogo = [
     nome: 'Camiseta Streetwear',
     categoria: 'Camisetas',
     preco: 109.90,
-    estoque: 3,
+    estoquePorTamanho: { P: 1, M: 1, G: 1, GG: 0 },
     descricao: 'Camiseta Streetwear da RHEMA.',
     versiculo: 'Paráfrase de Gálatas 3:27: em Cristo recebemos uma nova identidade.',
     significado: 'A roupa compõe o estilo, mas a identidade de quem segue Jesus encontra seu fundamento nele e se expressa nas escolhas diárias.',
@@ -24,7 +24,7 @@ const catalogo = [
     nome: 'Calça Reta',
     categoria: 'Calças',
     preco: 189.90,
-    estoque: 0,
+    estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
     descricao: 'Calça reta da RHEMA.',
     versiculo: 'Paráfrase de Colossenses 2:6-7: continuem vivendo em Cristo, enraizados nele e firmes na fé.',
     significado: 'Cada passo pode ser uma oportunidade de caminhar com gratidão, mantendo a fé como fundamento.',
@@ -40,7 +40,7 @@ const catalogo = [
     nome: 'Moletom',
     categoria: 'Moletons',
     preco: 259.90,
-    estoque: 0,
+    estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
     descricao: 'Moletom da RHEMA.',
     versiculo: 'Paráfrase do Salmo 46:1: Deus é refúgio, força e auxílio presente nos momentos difíceis.',
     significado: 'Em dias de frio ou incerteza, esta peça lembra o convite a buscar em Deus amparo e coragem.',
@@ -54,7 +54,7 @@ const catalogo = [
     nome: 'Boné RHEMA',
     categoria: 'Acessórios',
     preco: 99.90,
-    estoque: 0,
+    estoquePorTamanho: { 'Único': 0 },
     descricao: 'Boné RHEMA.',
     versiculo: 'Paráfrase de 1 Coríntios 2:16: quem segue Cristo aprende a olhar a vida a partir dele.',
     significado: 'O boné acompanha o dia a dia; que os pensamentos também sejam guiados pela sabedoria e pelo caráter de Cristo.',
@@ -69,7 +69,7 @@ const catalogo = [
     nome: 'Hoodie',
     categoria: 'Moletons',
     preco: 129.90,
-    estoque: 0,
+    estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
     descricao: 'Hoodie da RHEMA.',
     versiculo: 'Paráfrase de Mateus 11:28-30: Jesus chama os cansados a se aproximarem dele e encontrarem descanso para a alma.',
     significado: 'O conforto pode lembrar o cuidado de Deus; o descanso que Jesus oferece à alma não significa ausência de dificuldades.',
@@ -83,7 +83,7 @@ const catalogo = [
     nome: 'Jaqueta',
     categoria: 'Lifestyle',
     preco: 199.90,
-    estoque: 0,
+    estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
     descricao: 'Jaqueta da RHEMA.',
     versiculo: 'Paráfrase de Colossenses 3:12-14: vistam-se de compaixão, bondade, humildade, mansidão, paciência e amor.',
     significado: 'A jaqueta se torna um lembrete simbólico para levar essas atitudes às relações do cotidiano.',
@@ -191,7 +191,7 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
     categoria: 'Camisetas',
     colecao: 'Crônicas da Fé',
     preco: 109.90,
-    estoque: 0,
+    estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
     descricao: modelo.descricao,
     versiculo: modelo.versiculo,
     significado: modelo.significado,
@@ -203,10 +203,37 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
 
 catalogo.push(...produtosColecaoFe);
 
-function obterEstoque(produto) {
-  if (!produto || produto.estoque === null || produto.estoque === undefined || produto.estoque === '') return null;
-  const quantidade = Number(produto.estoque);
-  return Number.isInteger(quantidade) && quantidade >= 0 ? quantidade : null;
+function obterEstoqueTamanho(produto, tamanho) {
+  if (!produto || !produto.estoquePorTamanho || !Object.prototype.hasOwnProperty.call(produto.estoquePorTamanho, tamanho)) return 0;
+  const quantidade = Number(produto.estoquePorTamanho[tamanho]);
+  return Number.isInteger(quantidade) && quantidade >= 0 ? quantidade : 0;
+}
+
+function obterEstoqueTotal(produto) {
+  if (!produto || !produto.estoquePorTamanho) return null;
+  return produto.tamanhos.reduce(function(total, tamanho) {
+    return total + obterEstoqueTamanho(produto, tamanho);
+  }, 0);
+}
+
+function obterCarrinho() {
+  try {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
+    return Array.isArray(carrinho) ? carrinho : [];
+  } catch (erro) {
+    return [];
+  }
+}
+
+function quantidadeNoCarrinho(produtoId, tamanho, ignorarIndice) {
+  return obterCarrinho().reduce(function(total, item, indice) {
+    if (indice === ignorarIndice || Number(item.id) !== Number(produtoId) || item.tamanho !== tamanho) return total;
+    return total + Math.max(1, Number(item.quantidade) || 1);
+  }, 0);
+}
+
+function obterEstoqueDisponivel(produto, tamanho, ignorarIndice) {
+  return Math.max(0, obterEstoqueTamanho(produto, tamanho) - quantidadeNoCarrinho(produto.id, tamanho, ignorarIndice));
 }
 
 function textoEstoqueBaixo(quantidade) {
@@ -217,7 +244,7 @@ function textoEstoqueBaixo(quantidade) {
 }
 
 function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
-  const quantidade = obterEstoque(produto);
+  const quantidade = obterEstoqueTotal(produto);
   const esgotado = quantidade === 0;
 
   if (botaoImagem) {
@@ -225,12 +252,16 @@ function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
     if (!faixa) {
       faixa = document.createElement('span');
       faixa.className = 'stock-badge';
-      faixa.textContent = 'ESGOTADO';
       botaoImagem.appendChild(faixa);
     }
-    faixa.hidden = !esgotado;
+    faixa.textContent = esgotado ? 'ESGOTADO' : textoEstoqueBaixo(quantidade);
+    faixa.hidden = !esgotado && (quantidade === null || quantidade > 5);
     const descricaoBase = `Ampliar imagens de ${produto.nome}`;
-    botaoImagem.setAttribute('aria-label', esgotado ? `${descricaoBase}; produto esgotado` : descricaoBase);
+    botaoImagem.setAttribute('aria-label', esgotado
+      ? `${descricaoBase}; produto esgotado`
+      : quantidade > 0 && quantidade <= 5
+        ? `${descricaoBase}; ${textoEstoqueBaixo(quantidade)}`
+        : descricaoBase);
   }
 
   if (textoEstoque) {
@@ -428,15 +459,7 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
   }
 
   if (botaoZoom) {
-    const artigoProduto = quadro.closest('.home-product-card, .product-card');
-    let textoEstoque = artigoProduto && artigoProduto.querySelector('.stock-count');
-    if (!textoEstoque) {
-      textoEstoque = document.createElement('p');
-      textoEstoque.className = 'stock-count';
-      textoEstoque.setAttribute('aria-live', 'polite');
-      botaoZoom.parentNode.insertBefore(textoEstoque, botaoZoom.nextSibling);
-    }
-    atualizarIndicadorEstoque(produto, botaoZoom, textoEstoque);
+    atualizarIndicadorEstoque(produto, botaoZoom, null);
   }
 });
 
@@ -487,10 +510,7 @@ function renderizarGaleria(produto, variante) {
   imagemPrincipal.src = imagens[0].src;
   imagemPrincipal.alt = `${produto.nome} — ${imagens[0].alt}`;
   if (botaoZoomPrincipal) {
-    const descricaoZoom = `Ampliar imagem de ${produto.nome}`;
-    botaoZoomPrincipal.setAttribute('aria-label', obterEstoque(produto) === 0
-      ? `${descricaoZoom}; produto esgotado`
-      : descricaoZoom);
+    botaoZoomPrincipal.setAttribute('aria-label', `Ampliar imagem de ${produto.nome}`);
   }
   miniaturas.hidden = imagens.length < 2;
   if (avisoSemFotos) avisoSemFotos.hidden = true;
@@ -546,6 +566,7 @@ if (botaoCarrinho) {
   const selectTamanho = document.getElementById('tamanho');
   const selectCor = document.getElementById('cor-produto');
   const opcaoCor = document.getElementById('opcao-cor');
+  const inputQuantidade = document.getElementById('quantidade-produto');
 
   if (!produtoAtual) {
     // Endereço com um id que não existe no catálogo
@@ -566,10 +587,45 @@ if (botaoCarrinho) {
     document.getElementById('produto-conteudo-fe').hidden = false;
     const textoEstoqueProduto = document.getElementById('estoque-produto');
     const botaoImagemProduto = document.getElementById('abrir-zoom-produto');
-    const quantidadeEstoque = obterEstoque(produtoAtual);
-    botaoCarrinho.disabled = quantidadeEstoque === 0;
-    botaoCarrinho.textContent = quantidadeEstoque === 0 ? 'Esgotado' : 'Adicionar ao Carrinho';
     let varianteSelecionada = null;
+
+    function atualizarDisponibilidadeSelecionada() {
+      const tamanho = selectTamanho.value;
+      const noEstoque = obterEstoqueTamanho(produtoAtual, tamanho);
+      const disponivel = obterEstoqueDisponivel(produtoAtual, tamanho);
+      const rotuloEstoque = noEstoque === 0
+        ? `Esgotado no tamanho ${tamanho}.`
+        : disponivel === 0
+          ? `As ${noEstoque} ${noEstoque === 1 ? 'unidade disponível está' : 'unidades disponíveis estão'} na sacola.`
+          : `${disponivel === 1 ? 'Resta' : 'Restam'} ${disponivel} ${disponivel === 1 ? 'unidade' : 'unidades'} no tamanho ${tamanho}.`;
+
+      textoEstoqueProduto.textContent = rotuloEstoque;
+      textoEstoqueProduto.classList.toggle('is-sold-out', disponivel === 0);
+      inputQuantidade.max = String(disponivel);
+      inputQuantidade.disabled = disponivel === 0;
+      if (disponivel === 0) inputQuantidade.value = '1';
+      else if (Number(inputQuantidade.value) > disponivel) inputQuantidade.value = String(disponivel);
+
+      botaoCarrinho.disabled = disponivel === 0;
+      botaoCarrinho.textContent = disponivel === 0 ? 'Esgotado neste tamanho' : 'Adicionar ao Carrinho';
+
+      let faixa = botaoImagemProduto.querySelector('.stock-badge');
+      if (!faixa) {
+        faixa = document.createElement('span');
+        faixa.className = 'stock-badge';
+        botaoImagemProduto.appendChild(faixa);
+      }
+      faixa.textContent = disponivel === 0
+        ? `ESGOTADO · ${tamanho}`
+        : `${textoEstoqueBaixo(disponivel)} · ${tamanho}`;
+      faixa.hidden = disponivel > 5;
+
+      const descricaoZoom = `Ampliar imagem de ${produtoAtual.nome}`;
+      botaoImagemProduto.setAttribute('aria-label', disponivel === 0
+        ? `${descricaoZoom}; tamanho ${tamanho} esgotado`
+        : `${descricaoZoom}; ${disponivel} ${disponivel === 1 ? 'unidade disponível' : 'unidades disponíveis'} no tamanho ${tamanho}`);
+      return disponivel;
+    }
 
     if (Array.isArray(produtoAtual.variantes) && produtoAtual.variantes.length && selectCor && opcaoCor) {
       opcaoCor.hidden = false;
@@ -589,13 +645,13 @@ if (botaoCarrinho) {
           return variante.slug === selectCor.value;
         }) || produtoAtual.variantes[0];
         renderizarGaleria(produtoAtual, varianteSelecionada);
+        atualizarDisponibilidadeSelecionada();
       });
     } else if (opcaoCor) {
       opcaoCor.hidden = true;
     }
 
     renderizarGaleria(produtoAtual, varianteSelecionada);
-    atualizarIndicadorEstoque(produtoAtual, botaoImagemProduto, textoEstoqueProduto);
 
     // Cria uma opção no seletor para cada tamanho do produto
     selectTamanho.innerHTML = '';
@@ -605,57 +661,57 @@ if (botaoCarrinho) {
       opcao.textContent = tamanho;
       selectTamanho.appendChild(opcao);
     });
+    selectTamanho.addEventListener('change', atualizarDisponibilidadeSelecionada);
+    inputQuantidade.addEventListener('input', function() {
+      const disponivel = obterEstoqueDisponivel(produtoAtual, selectTamanho.value);
+      const quantidade = Math.max(1, Math.min(disponivel || 1, Math.floor(Number(inputQuantidade.value) || 1)));
+      inputQuantidade.value = String(quantidade);
+    });
+    atualizarDisponibilidadeSelecionada();
 
     // Adicionar produto ao carrinho
     botaoCarrinho.addEventListener('click', function() {
       const tamanhoEscolhido = selectTamanho.value;
       const corEscolhida = varianteSelecionada ? varianteSelecionada.nome : '';
       const corSlugEscolhida = varianteSelecionada ? varianteSelecionada.slug : '';
+      const quantidadeSolicitada = Math.max(1, Math.floor(Number(inputQuantidade.value) || 1));
+      const carrinho = obterCarrinho();
+      const disponivel = obterEstoqueDisponivel(produtoAtual, tamanhoEscolhido);
 
-      // Pega o carrinho do localStorage ou cria um vazio se não existir
-      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-      const quantidadeNoCarrinho = carrinho.filter(function(item) {
-        return item.id === produtoAtual.id;
-      }).length;
-
-      if (quantidadeEstoque === 0) {
-        alert('Este produto está esgotado.');
+      if (quantidadeSolicitada > disponivel) {
+        alert(`Há somente ${disponivel} ${disponivel === 1 ? 'unidade disponível' : 'unidades disponíveis'} no tamanho ${tamanhoEscolhido}.`);
+        atualizarDisponibilidadeSelecionada();
         return;
       }
 
-      // Verifica se o mesmo produto, no mesmo tamanho, já está no carrinho
       const indexExistente = carrinho.findIndex(function(item) {
-        return item.id === produtoAtual.id
+        return Number(item.id) === produtoAtual.id
           && item.tamanho === tamanhoEscolhido
           && (item.corSlug || '') === corSlugEscolhida;
       });
 
       if (indexExistente !== -1) {
-        alert('Este produto nesta cor e tamanho já está no carrinho!');
-        return;
+        carrinho[indexExistente].quantidade = Math.max(1, Number(carrinho[indexExistente].quantidade) || 1) + quantidadeSolicitada;
+      } else {
+        carrinho.push({
+          id: produtoAtual.id,
+          nome: produtoAtual.nome,
+          preco: produtoAtual.preco,
+          tamanho: tamanhoEscolhido,
+          cor: corEscolhida,
+          corSlug: corSlugEscolhida,
+          quantidade: quantidadeSolicitada
+        });
       }
 
-      if (quantidadeEstoque !== null && quantidadeNoCarrinho >= quantidadeEstoque) {
-        alert('A quantidade disponível deste produto já está no carrinho.');
-        return;
-      }
-
-      // Adiciona o produto ao carrinho
-      carrinho.push({
-        id: produtoAtual.id,
-        nome: produtoAtual.nome,
-        preco: produtoAtual.preco,
-        tamanho: tamanhoEscolhido,
-        cor: corEscolhida,
-        corSlug: corSlugEscolhida
-      });
       // Salva o carrinho atualizado no navegador
       localStorage.setItem('carrinho', JSON.stringify(carrinho));
       atualizarContadorCarrinho();
+      atualizarDisponibilidadeSelecionada();
 
       // Avisa o usuário
       const detalheCor = corEscolhida ? `, ${corEscolhida}` : '';
-      alert(`"${produtoAtual.nome}" (${tamanhoEscolhido}${detalheCor}) adicionado ao carrinho!`);
+      alert(`${quantidadeSolicitada} × ${produtoAtual.nome} (${tamanhoEscolhido}${detalheCor}) adicionado ao carrinho.`);
     });
   }
 }
@@ -717,54 +773,115 @@ if (input) {
 document.addEventListener('DOMContentLoaded', function() {
   // Apenas executa se estivermos na página do carrinho
   if (document.getElementById('cart-items')) {
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotalElement = document.getElementById('cart-total');
 
-    if (carrinho.length === 0) {
-      cartItemsContainer.innerHTML = '<p>Carrinho vazio</p>';
-      cartTotalElement.textContent = 'Total: R$ 0,00';
-    } else {
+    function renderizarCarrinho() {
+      const carrinho = obterCarrinho();
       let total = 0;
-      cartItemsContainer.innerHTML = ''; // Limpa o conteúdo existente
+      cartItemsContainer.replaceChildren();
+
+      if (carrinho.length === 0) {
+        cartItemsContainer.textContent = 'Sua sacola está vazia.';
+        cartTotalElement.textContent = 'Total: R$ 0,00';
+        atualizarContadorCarrinho();
+        return;
+      }
 
       carrinho.forEach(function(item, index) {
-        // Itens antigos podem não ter cor ou tamanho; exibe somente o que existir.
+        const quantidade = Math.max(1, Number(item.quantidade) || 1);
         const detalhesVariacao = [item.cor, item.tamanho].filter(Boolean);
         const nomeComTamanho = detalhesVariacao.length
           ? `${item.nome} (${detalhesVariacao.join(', ')})`
           : item.nome;
+        const produto = catalogo.find(function(itemCatalogo) { return itemCatalogo.id === Number(item.id); });
+        const estoqueDisponivelParaSomar = produto
+          ? Math.max(0, obterEstoqueTamanho(produto, item.tamanho) - quantidadeNoCarrinho(item.id, item.tamanho, index))
+          : 0;
 
-        cartItemsContainer.innerHTML += `
-          <div class="cart-item">
-            <span class="cart-item-name">${nomeComTamanho}</span>
-            <span class="cart-item-price">R$ ${formatarPreco(item.preco)}</span>
-            <button class="cart-item-remove" data-index="${index}">Remover</button>
-          </div>
-        `;
-        total += item.preco;
+        const linha = document.createElement('div');
+        linha.className = 'cart-item';
+        const nome = document.createElement('span');
+        nome.className = 'cart-item-name';
+        nome.textContent = nomeComTamanho;
+        const unitario = document.createElement('span');
+        unitario.className = 'cart-item-price';
+        unitario.textContent = `R$ ${formatarPreco(Number(item.preco) || 0)} cada`;
+        const controles = document.createElement('div');
+        controles.className = 'cart-quantity-controls';
+        const diminuir = document.createElement('button');
+        diminuir.type = 'button';
+        diminuir.className = 'cart-quantity-button';
+        diminuir.dataset.cartAction = 'decrease';
+        diminuir.dataset.index = String(index);
+        diminuir.setAttribute('aria-label', `Diminuir quantidade de ${nomeComTamanho}`);
+        diminuir.textContent = '−';
+        diminuir.disabled = quantidade <= 1;
+        const quantidadeTexto = document.createElement('span');
+        quantidadeTexto.className = 'cart-quantity-value';
+        quantidadeTexto.setAttribute('aria-label', `Quantidade: ${quantidade}`);
+        quantidadeTexto.textContent = String(quantidade);
+        const aumentar = document.createElement('button');
+        aumentar.type = 'button';
+        aumentar.className = 'cart-quantity-button';
+        aumentar.dataset.cartAction = 'increase';
+        aumentar.dataset.index = String(index);
+        aumentar.setAttribute('aria-label', `Aumentar quantidade de ${nomeComTamanho}`);
+        aumentar.textContent = '+';
+        aumentar.disabled = estoqueDisponivelParaSomar <= 0;
+        controles.append(diminuir, quantidadeTexto, aumentar);
+        const subtotal = document.createElement('span');
+        subtotal.className = 'cart-item-price cart-item-subtotal';
+        subtotal.textContent = `R$ ${formatarPreco((Number(item.preco) || 0) * quantidade)}`;
+        const remover = document.createElement('button');
+        remover.type = 'button';
+        remover.className = 'cart-item-remove';
+        remover.dataset.cartAction = 'remove';
+        remover.dataset.index = String(index);
+        remover.textContent = 'Remover';
+        linha.append(nome, unitario, controles, subtotal, remover);
+        cartItemsContainer.appendChild(linha);
+        total += (Number(item.preco) || 0) * quantidade;
       });
 
       cartTotalElement.textContent = `Total: R$ ${formatarPreco(total)}`;
-
-      // Adiciona evento para os botões de remover
-      document.querySelectorAll('.cart-item-remove').forEach(function(button, index) {
-        button.addEventListener('click', function() {
-          const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-          carrinho.splice(index, 1); // Remove o item pelo índice
-          localStorage.setItem('carrinho', JSON.stringify(carrinho));
-          location.reload(); // Recarrega a página para atualizar a visualização
-        });
-      });
+      atualizarContadorCarrinho();
     }
+
+    cartItemsContainer.addEventListener('click', function(evento) {
+      const botao = evento.target.closest('[data-cart-action]');
+      if (!botao) return;
+      const carrinho = obterCarrinho();
+      const indice = Number(botao.dataset.index);
+      const item = carrinho[indice];
+      if (!item) return;
+      const quantidade = Math.max(1, Number(item.quantidade) || 1);
+
+      if (botao.dataset.cartAction === 'remove') carrinho.splice(indice, 1);
+      if (botao.dataset.cartAction === 'decrease' && quantidade > 1) item.quantidade = quantidade - 1;
+      if (botao.dataset.cartAction === 'increase') {
+        const produto = catalogo.find(function(itemCatalogo) { return itemCatalogo.id === Number(item.id); });
+        const disponivelAdicional = produto
+          ? obterEstoqueTamanho(produto, item.tamanho) - quantidadeNoCarrinho(item.id, item.tamanho, indice)
+          : 0;
+        if (disponivelAdicional > 0) item.quantidade = quantidade + 1;
+      }
+
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      renderizarCarrinho();
+    });
+
+    renderizarCarrinho();
   }
 });
 
 
 // Contadores da sacola no cabeçalho e no botão flutuante
 function atualizarContadorCarrinho() {
-  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-  const quantidade = carrinho.length;
+  const carrinho = obterCarrinho();
+  const quantidade = carrinho.reduce(function(total, item) {
+    return total + Math.max(1, Number(item.quantidade) || 1);
+  }, 0);
   document.querySelectorAll('[data-cart-count]').forEach(function(badge) {
     badge.textContent = quantidade;
   });

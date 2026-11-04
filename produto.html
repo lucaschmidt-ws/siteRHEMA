@@ -41,7 +41,6 @@
           <span class="stock-badge" id="badge-esgotado-produto" hidden>ESGOTADO</span>
           <span class="zoom-hint">Clique para ampliar</span>
         </button>
-        <p class="stock-count product-stock-count" id="estoque-produto" aria-live="polite" hidden></p>
         <p id="galeria-sem-fotos" class="gallery-empty" hidden>As fotos deste produto ainda não foram adicionadas.</p>
         <div class="thumbnails" id="miniaturas-produto" role="group" aria-label="Fotos do produto" hidden></div>
       </div>
@@ -73,7 +72,12 @@
               <option>GG</option>
             </select>
           </div>
+          <div class="product-option quantity-option">
+            <label for="quantidade-produto">Quantidade:</label>
+            <input id="quantidade-produto" type="number" min="1" step="1" value="1" inputmode="numeric">
+          </div>
         </div>
+        <p class="product-stock-status" id="estoque-produto" aria-live="polite"></p>
 
         <button class="btn btn-cart">Adicionar ao Carrinho</button>
       </div>
@@ -81,6 +85,12 @@
   </main>
 
   <footer class="site-footer site-footer-compact">
+    <div class="footer-help-links">
+      <h2>Políticas e ajuda</h2>
+      <a href="politicas.html#trocas-devolucoes">Trocas e devoluções</a>
+      <a href="politicas.html#entrega">Entrega</a>
+      <a href="privacidade.html">Privacidade</a>
+    </div>
     <div class="footer-contact">
       <h2>Atendimento</h2>
       <div class="footer-social-list" role="group" aria-label="Redes sociais e contato da RHEMA">
@@ -92,7 +102,7 @@
     </div>
     <div class="footer-payments">
       <h2>Bandeiras de cartão previstas</h2>
-      <div class="footer-payment-logos" role="group" aria-label="Visa, Mastercard, Elo e American Express"><span class="payment-logo payment-visa" role="img" aria-label="Visa">VISA</span><span class="payment-logo payment-mastercard" role="img" aria-label="Mastercard"><span class="mastercard-symbol" aria-hidden="true"></span><span>mastercard</span></span><span class="payment-logo payment-elo" role="img" aria-label="Elo">elo</span><span class="payment-logo payment-amex" role="img" aria-label="American Express">AMERICAN<br>EXPRESS</span></div>
+      <div class="footer-payment-logos" role="group" aria-label="Visa, Mastercard e Elo"><span class="payment-logo payment-visa" role="img" aria-label="Visa">VISA</span><span class="payment-logo payment-mastercard" role="img" aria-label="Mastercard"><span class="mastercard-symbol" aria-hidden="true"></span><span>mastercard</span></span><span class="payment-logo payment-elo" role="img" aria-label="Elo">elo</span></div>
       <p class="footer-payment-note">A disponibilidade depende da futura integração de pagamento.</p>
     </div>
     <div class="footer-brand"><a class="footer-brand-link" href="index.html" aria-label="Página inicial da RHEMA"><img src="imagens/logo-rhema-claro.png" alt="RHEMA" class="footer-logo"></a><p>Sal na terra e luz no mundo</p></div>
