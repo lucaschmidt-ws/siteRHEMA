@@ -34,6 +34,8 @@ As pranchas combinam vistas grandes de frente e costas, cinco recortes de detalh
 
 Os dez modelos aparecem na vitrine inicial e na categoria Camisetas, com IDs 7 a 16. Em cada página de produto, o seletor de cor troca a prancha e as vistas de frente, costas e lado. O primeiro quadro é a prancha de apresentação; os três seguintes são as imagens individuais. Clique na imagem principal para ampliá-la e use as setas do visualizador para navegar. O zoom também está disponível nos cartões de produto da homepage e do catálogo.
 
+O estoque da coleção começa em zero. Os saldos são definidos pela propriedade `estoque` de cada produto em `js/main.js`; atualize esses números quando houver peças disponíveis. O site marca o saldo zero como esgotado e mostra a quantidade quando restam até cinco unidades.
+
 Os nomes, textos e referências dos dez modelos ficam em `modelosColecaoFe` em `js/main.js`. As cores ficam em `coresColecaoFe`, e os caminhos dos quatro arquivos por cor são gerados a partir do identificador do modelo e da cor. Ao acrescentar um modelo, use um ID único, uma pasta/slug no mesmo padrão e crie os arquivos correspondentes para as cinco cores, incluindo a prancha daquela combinação. O preço atual é definido junto à criação dos produtos em `produtosColecaoFe`.
 
 As imagens são mockups para apresentação. Antes de comercializar, confirme cores, estoque, tecido, medidas e processo de impressão com a produção; as imagens de detalhes não certificam especificações físicas.

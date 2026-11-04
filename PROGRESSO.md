@@ -4,6 +4,8 @@
 
 **Nova coleção — Crônicas da Fé:** dez camisetas cadastradas no site (IDs 7 a 16), cada uma com opções preto, branco suave, cinza mescla, verde militar/musgo e marrom chocolate, tamanhos P–GG e preço de R$ 109,90. A página do produto troca as imagens conforme a cor escolhida e oferece zoom com navegação entre prancha, frente, costas e lado. Os cartões de produtos também abrem a ampliação ao clicar, e o carrinho conserva tamanho e cor. As 50 pranchas editoriais (uma por estampa e cor) e as vistas estão em `imagens/colecao-cronicas-da-fe/`; o guia detalha os arquivos. São mockups, não fotos de peças físicas nem especificações de fabricação.
 
+**Estoque inicial:** Camiseta Streetwear — 3 unidades; os outros 15 produtos — 0. Os cards mostram uma faixa “ESGOTADO” para saldo zero e exibem a quantidade quando restam de 1 a 5 unidades. A página do produto desativa a compra no saldo zero. Os saldos são números estáticos em `js/main.js`, sem sincronização de pedidos ou banco de dados.
+
 **Fase 9:** microetapas 9.1–9.9 concluídas. O site exibe e compartilha o devocional, registra a sequência de leitura, mostra as passagens dos seis produtos, salva favoritos e oferece um mural de oração privado no navegador.
 
 **Correção desta revisão:** removido o hero duplicado; corrigidos o link interno quebrado, o espaçamento do rodapé e a responsividade do hero e dos benefícios. A vitrine e o catálogo agora mostram fotos reais associadas aos produtos. Os atalhos de categoria filtram o catálogo, a busca ignora acentos, os botões flutuantes usam ícones lineares e a faixa “Streetwear com identidade” foi incluída.
@@ -38,6 +40,7 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] 8.9 — galeria dinâmica na página de produto, com fotos específicas por produto.
 - [x] Coleção Crônicas da Fé — dez modelos no catálogo e na vitrine, cinco cores por modelo, tamanhos P–GG, preço R$ 109,90 e cor/tamanho preservados no carrinho.
 - [x] Zoom de imagens — clique nos cartões da homepage e do catálogo, e na imagem principal do produto; galeria ampliada permite avançar/voltar e fechar com Escape.
+- [x] Estoque inicial e alertas — 3 unidades para Camiseta Streetwear; zero para os demais 15 produtos; quantidade baixa nos cards e aviso “ESGOTADO” com compra desativada.
 - [x] 8.8 — ícones flutuantes sem emojis e contagem acessível no carrinho.
 - [x] Faixa “Streetwear com identidade” adicionada entre os benefícios e a vitrine.
 - [x] Fotos reais associadas aos cards da homepage e do catálogo.
@@ -92,7 +95,8 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 ## Pontos a acompanhar
 
 - As fotos da camiseta, calça, moletom, boné e jaqueta agora estão ligadas aos IDs correspondentes no catálogo. Confirme se cada arquivo representa a versão comercial que deseja mostrar.
-- As cores e imagens da nova coleção estão disponíveis como mockups; confirmar disponibilidade de estoque e cores comerciais antes de vender as peças.
+- Os saldos de estoque são estáticos no front-end; conectar a uma fonte de estoque confiável antes de processar pedidos reais.
+- As cores e imagens da nova coleção estão disponíveis como mockups; confirmar cores comerciais antes de vender as peças.
 - Os produtos com uma foto cadastrada precisam de novas vistas antes de terem miniaturas.
 - As imagens dos cards usam a primeira foto cadastrada em `catalogo` no `js/main.js`; confira se cada foto representa a versão comercial que será vendida.
 - A categoria Lifestyle está associada ao produto Jaqueta por ser a opção disponível no catálogo atual; revise essa classificação quando a organização comercial estiver definida.

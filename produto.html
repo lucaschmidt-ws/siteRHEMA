@@ -38,8 +38,10 @@
       <div class="product-gallery-large">
         <button class="zoom-trigger zoom-trigger-large" id="abrir-zoom-produto" type="button" aria-label="Ampliar imagem do produto" hidden>
           <img id="imagem-principal" alt="" hidden>
+          <span class="stock-badge" id="badge-esgotado-produto" hidden>ESGOTADO</span>
           <span class="zoom-hint">Clique para ampliar</span>
         </button>
+        <p class="stock-count product-stock-count" id="estoque-produto" aria-live="polite" hidden></p>
         <p id="galeria-sem-fotos" class="gallery-empty" hidden>As fotos deste produto ainda não foram adicionadas.</p>
         <div class="thumbnails" id="miniaturas-produto" role="group" aria-label="Fotos do produto" hidden></div>
       </div>

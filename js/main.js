@@ -8,6 +8,7 @@ const catalogo = [
     nome: 'Camiseta Streetwear',
     categoria: 'Camisetas',
     preco: 109.90,
+    estoque: 3,
     descricao: 'Camiseta Streetwear da RHEMA.',
     versiculo: 'Paráfrase de Gálatas 3:27: em Cristo recebemos uma nova identidade.',
     significado: 'A roupa compõe o estilo, mas a identidade de quem segue Jesus encontra seu fundamento nele e se expressa nas escolhas diárias.',
@@ -23,6 +24,7 @@ const catalogo = [
     nome: 'Calça Reta',
     categoria: 'Calças',
     preco: 189.90,
+    estoque: 0,
     descricao: 'Calça reta da RHEMA.',
     versiculo: 'Paráfrase de Colossenses 2:6-7: continuem vivendo em Cristo, enraizados nele e firmes na fé.',
     significado: 'Cada passo pode ser uma oportunidade de caminhar com gratidão, mantendo a fé como fundamento.',
@@ -38,6 +40,7 @@ const catalogo = [
     nome: 'Moletom',
     categoria: 'Moletons',
     preco: 259.90,
+    estoque: 0,
     descricao: 'Moletom da RHEMA.',
     versiculo: 'Paráfrase do Salmo 46:1: Deus é refúgio, força e auxílio presente nos momentos difíceis.',
     significado: 'Em dias de frio ou incerteza, esta peça lembra o convite a buscar em Deus amparo e coragem.',
@@ -51,6 +54,7 @@ const catalogo = [
     nome: 'Boné RHEMA',
     categoria: 'Acessórios',
     preco: 99.90,
+    estoque: 0,
     descricao: 'Boné RHEMA.',
     versiculo: 'Paráfrase de 1 Coríntios 2:16: quem segue Cristo aprende a olhar a vida a partir dele.',
     significado: 'O boné acompanha o dia a dia; que os pensamentos também sejam guiados pela sabedoria e pelo caráter de Cristo.',
@@ -65,6 +69,7 @@ const catalogo = [
     nome: 'Hoodie',
     categoria: 'Moletons',
     preco: 129.90,
+    estoque: 0,
     descricao: 'Hoodie da RHEMA.',
     versiculo: 'Paráfrase de Mateus 11:28-30: Jesus chama os cansados a se aproximarem dele e encontrarem descanso para a alma.',
     significado: 'O conforto pode lembrar o cuidado de Deus; o descanso que Jesus oferece à alma não significa ausência de dificuldades.',
@@ -78,6 +83,7 @@ const catalogo = [
     nome: 'Jaqueta',
     categoria: 'Lifestyle',
     preco: 199.90,
+    estoque: 0,
     descricao: 'Jaqueta da RHEMA.',
     versiculo: 'Paráfrase de Colossenses 3:12-14: vistam-se de compaixão, bondade, humildade, mansidão, paciência e amor.',
     significado: 'A jaqueta se torna um lembrete simbólico para levar essas atitudes às relações do cotidiano.',
@@ -185,6 +191,7 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
     categoria: 'Camisetas',
     colecao: 'Crônicas da Fé',
     preco: 109.90,
+    estoque: 0,
     descricao: modelo.descricao,
     versiculo: modelo.versiculo,
     significado: modelo.significado,
@@ -195,6 +202,45 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
 });
 
 catalogo.push(...produtosColecaoFe);
+
+function obterEstoque(produto) {
+  if (!produto || produto.estoque === null || produto.estoque === undefined || produto.estoque === '') return null;
+  const quantidade = Number(produto.estoque);
+  return Number.isInteger(quantidade) && quantidade >= 0 ? quantidade : null;
+}
+
+function textoEstoqueBaixo(quantidade) {
+  if (quantidade === null || quantidade > 5) return '';
+  if (quantidade === 0) return 'Estoque: 0 unidades';
+  if (quantidade === 1) return 'Resta 1 unidade';
+  return `Restam ${quantidade} unidades`;
+}
+
+function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
+  const quantidade = obterEstoque(produto);
+  const esgotado = quantidade === 0;
+
+  if (botaoImagem) {
+    let faixa = botaoImagem.querySelector('.stock-badge');
+    if (!faixa) {
+      faixa = document.createElement('span');
+      faixa.className = 'stock-badge';
+      faixa.textContent = 'ESGOTADO';
+      botaoImagem.appendChild(faixa);
+    }
+    faixa.hidden = !esgotado;
+    const descricaoBase = `Ampliar imagens de ${produto.nome}`;
+    botaoImagem.setAttribute('aria-label', esgotado ? `${descricaoBase}; produto esgotado` : descricaoBase);
+  }
+
+  if (textoEstoque) {
+    const mensagem = textoEstoqueBaixo(quantidade);
+    textoEstoque.textContent = mensagem;
+    textoEstoque.hidden = mensagem === '';
+  }
+
+  return quantidade;
+}
 
 // Acrescenta os novos modelos ao catálogo e à vitrine inicial sem repetir
 // seus dados comerciais em HTML separado.
@@ -380,6 +426,18 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
       abrirZoom(produto.imagens, 0, botaoZoom, produto.nome);
     });
   }
+
+  if (botaoZoom) {
+    const artigoProduto = quadro.closest('.home-product-card, .product-card');
+    let textoEstoque = artigoProduto && artigoProduto.querySelector('.stock-count');
+    if (!textoEstoque) {
+      textoEstoque = document.createElement('p');
+      textoEstoque.className = 'stock-count';
+      textoEstoque.setAttribute('aria-live', 'polite');
+      botaoZoom.parentNode.insertBefore(textoEstoque, botaoZoom.nextSibling);
+    }
+    atualizarIndicadorEstoque(produto, botaoZoom, textoEstoque);
+  }
 });
 
 // Microetapa 8.9: cria a foto principal e as miniaturas do produto escolhido.
@@ -428,7 +486,12 @@ function renderizarGaleria(produto, variante) {
   }
   imagemPrincipal.src = imagens[0].src;
   imagemPrincipal.alt = `${produto.nome} — ${imagens[0].alt}`;
-  if (botaoZoomPrincipal) botaoZoomPrincipal.setAttribute('aria-label', `Ampliar imagem de ${produto.nome}`);
+  if (botaoZoomPrincipal) {
+    const descricaoZoom = `Ampliar imagem de ${produto.nome}`;
+    botaoZoomPrincipal.setAttribute('aria-label', obterEstoque(produto) === 0
+      ? `${descricaoZoom}; produto esgotado`
+      : descricaoZoom);
+  }
   miniaturas.hidden = imagens.length < 2;
   if (avisoSemFotos) avisoSemFotos.hidden = true;
 
@@ -501,6 +564,11 @@ if (botaoCarrinho) {
     document.getElementById('produto-versiculo').textContent = produtoAtual.versiculo;
     document.getElementById('produto-significado').textContent = produtoAtual.significado;
     document.getElementById('produto-conteudo-fe').hidden = false;
+    const textoEstoqueProduto = document.getElementById('estoque-produto');
+    const botaoImagemProduto = document.getElementById('abrir-zoom-produto');
+    const quantidadeEstoque = obterEstoque(produtoAtual);
+    botaoCarrinho.disabled = quantidadeEstoque === 0;
+    botaoCarrinho.textContent = quantidadeEstoque === 0 ? 'Esgotado' : 'Adicionar ao Carrinho';
     let varianteSelecionada = null;
 
     if (Array.isArray(produtoAtual.variantes) && produtoAtual.variantes.length && selectCor && opcaoCor) {
@@ -527,6 +595,7 @@ if (botaoCarrinho) {
     }
 
     renderizarGaleria(produtoAtual, varianteSelecionada);
+    atualizarIndicadorEstoque(produtoAtual, botaoImagemProduto, textoEstoqueProduto);
 
     // Cria uma opção no seletor para cada tamanho do produto
     selectTamanho.innerHTML = '';
@@ -545,6 +614,14 @@ if (botaoCarrinho) {
 
       // Pega o carrinho do localStorage ou cria um vazio se não existir
       const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const quantidadeNoCarrinho = carrinho.filter(function(item) {
+        return item.id === produtoAtual.id;
+      }).length;
+
+      if (quantidadeEstoque === 0) {
+        alert('Este produto está esgotado.');
+        return;
+      }
 
       // Verifica se o mesmo produto, no mesmo tamanho, já está no carrinho
       const indexExistente = carrinho.findIndex(function(item) {
@@ -553,27 +630,32 @@ if (botaoCarrinho) {
           && (item.corSlug || '') === corSlugEscolhida;
       });
 
-      if (indexExistente === -1) {
-        // Adiciona o produto ao carrinho
-        carrinho.push({
-          id: produtoAtual.id,
-          nome: produtoAtual.nome,
-          preco: produtoAtual.preco,
-          tamanho: tamanhoEscolhido,
-          cor: corEscolhida,
-          corSlug: corSlugEscolhida
-        });
-        // Salva o carrinho atualizado no navegador
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));
-        atualizarContadorCarrinho();
-
-        // Avisa o usuário
-        const detalheCor = corEscolhida ? `, ${corEscolhida}` : '';
-        alert(`"${produtoAtual.nome}" (${tamanhoEscolhido}${detalheCor}) adicionado ao carrinho!`);
-      } else {
-        // Avisa que o produto já está lá
+      if (indexExistente !== -1) {
         alert('Este produto nesta cor e tamanho já está no carrinho!');
+        return;
       }
+
+      if (quantidadeEstoque !== null && quantidadeNoCarrinho >= quantidadeEstoque) {
+        alert('A quantidade disponível deste produto já está no carrinho.');
+        return;
+      }
+
+      // Adiciona o produto ao carrinho
+      carrinho.push({
+        id: produtoAtual.id,
+        nome: produtoAtual.nome,
+        preco: produtoAtual.preco,
+        tamanho: tamanhoEscolhido,
+        cor: corEscolhida,
+        corSlug: corSlugEscolhida
+      });
+      // Salva o carrinho atualizado no navegador
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      atualizarContadorCarrinho();
+
+      // Avisa o usuário
+      const detalheCor = corEscolhida ? `, ${corEscolhida}` : '';
+      alert(`"${produtoAtual.nome}" (${tamanhoEscolhido}${detalheCor}) adicionado ao carrinho!`);
     });
   }
 }
