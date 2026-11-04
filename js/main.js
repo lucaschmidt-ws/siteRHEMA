@@ -88,6 +88,258 @@ const catalogo = [
   }
 ];
 
+// Modelos da coleção Crônicas da Fé. As imagens ficam organizadas por cor,
+// e cada prancha de apresentação abre junto das vistas individuais do produto.
+const coresColecaoFe = [
+  { slug: 'preta', nome: 'Preta' },
+  { slug: 'branco', nome: 'Branco suave' },
+  { slug: 'cinza', nome: 'Cinza mescla' },
+  { slug: 'verde-militar-musgo', nome: 'Verde militar / musgo' },
+  { slug: 'marrom', nome: 'Marrom chocolate' }
+];
+
+const modelosColecaoFe = [
+  {
+    id: 7, slug: '01-jardim-do-eden', nome: 'Camiseta Jardim do Éden',
+    descricao: 'Arte inspirada no Jardim do Éden e no início da narrativa bíblica.',
+    versiculo: 'Referência a Gênesis 2–3: a narrativa do jardim convida à reflexão sobre escolhas, responsabilidade e recomeço diante de Deus.',
+    significado: 'Uma estampa sobre origem, liberdade e a esperança de recomeçar, parte da coleção Crônicas da Fé.'
+  },
+  {
+    id: 8, slug: '02-jornada-da-fe', nome: 'Camiseta Jornada da Fé',
+    descricao: 'Colagem de histórias bíblicas que retratam jornadas de fé e perseverança.',
+    versiculo: 'Paráfrase de Hebreus 11:1: a fé é confiança naquilo que se espera e convicção quanto ao que ainda não se vê.',
+    significado: 'Uma lembrança visual de que cada caminhada pode ser vivida com confiança em Deus.'
+  },
+  {
+    id: 9, slug: '03-jonas-e-o-grande-peixe', nome: 'Camiseta Jonas e o Grande Peixe',
+    descricao: 'Estampa inspirada na história de Jonas e do grande peixe.',
+    versiculo: 'Paráfrase de Jonas 2:2: em sua angústia, Jonas clamou ao Senhor, e foi ouvido.',
+    significado: 'Mesmo nos momentos de fuga e dificuldade, ainda é possível clamar a Deus e buscar um novo caminho.'
+  },
+  {
+    id: 10, slug: '04-jo', nome: 'Camiseta Jó',
+    descricao: 'Arte inspirada na perseverança de Jó durante o sofrimento.',
+    versiculo: 'Paráfrase de Jó 19:25: Jó mantém esperança em seu Redentor mesmo em meio à dor.',
+    significado: 'Uma mensagem sobre permanecer em busca de Deus e de esperança em tempos difíceis.'
+  },
+  {
+    id: 11, slug: '05-sansao', nome: 'Camiseta Sansão',
+    descricao: 'Estampa inspirada na história de Sansão, narrada em Juízes 13–16.',
+    versiculo: 'Paráfrase de Juízes 16:28: Sansão clama ao Senhor por força em seu momento de necessidade.',
+    significado: 'A história de Sansão lembra que força, escolhas e propósito caminham juntos diante de Deus.'
+  },
+  {
+    id: 12, slug: '06-leao-rhema', nome: 'Camiseta Leão RHEMA',
+    descricao: 'Símbolo do leão com a mensagem RHEMA, inspirado em 2 Timóteo 1:7.',
+    versiculo: 'Paráfrase de 2 Timóteo 1:7: Deus nos chama à coragem, ao amor e ao equilíbrio.',
+    significado: 'Uma peça sobre viver com coragem e propósito, sem esquecer o amor e a sabedoria.'
+  },
+  {
+    id: 13, slug: '07-nao-temas', nome: 'Camiseta Não Temas',
+    descricao: 'Mensagem de coragem inspirada em Isaías 41:10.',
+    versiculo: 'Paráfrase de Isaías 41:10: Deus fortalece, ajuda e sustenta quem confia nele.',
+    significado: 'Uma lembrança de que a presença de Deus acompanha cada pessoa em sua caminhada.'
+  },
+  {
+    id: 14, slug: '08-deus-amou-o-mundo', nome: 'Camiseta Deus Amou o Mundo',
+    descricao: 'A mensagem do amor de Deus pelo mundo, inspirada em João 3:16.',
+    versiculo: 'Paráfrase de João 3:16: o amor de Deus pelo mundo se revela na dádiva de seu Filho.',
+    significado: 'Uma mensagem sobre o amor de Deus que alcança pessoas em todos os lugares.'
+  },
+  {
+    id: 15, slug: '09-tudo-contribui-para-o-bem', nome: 'Camiseta Tudo Contribui',
+    descricao: 'Arte com Bíblia aberta inspirada em Romanos 8:28.',
+    versiculo: 'Paráfrase de Romanos 8:28: Deus age em todas as coisas para o bem daqueles que o amam e vivem segundo seu propósito.',
+    significado: 'Uma mensagem de esperança para atravessar os processos sem perder a confiança em Deus.'
+  },
+  {
+    id: 16, slug: '10-constancia', nome: 'Camiseta Constância',
+    descricao: 'Mensagem sobre perseverança, inspirada em Gálatas 6:9.',
+    versiculo: 'Paráfrase de Gálatas 6:9: não desistamos de praticar o bem; a seu tempo haverá colheita.',
+    significado: 'Um incentivo a continuar fazendo o bem com paciência e fidelidade.'
+  }
+];
+
+const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
+  const variantes = coresColecaoFe.map(function(cor) {
+    const pasta = cor.slug === 'preta'
+      ? 'imagens/colecao-cronicas-da-fe'
+      : `imagens/colecao-cronicas-da-fe/cores/${cor.slug}`;
+
+    return {
+      slug: cor.slug,
+      nome: cor.nome,
+      imagens: [
+        { src: `imagens/colecao-cronicas-da-fe/pranchas-de-apresentacao/${modelo.slug}-${cor.slug}.png`, alt: `prancha da ${modelo.nome}, cor ${cor.nome}` },
+        { src: `${pasta}/${modelo.slug}-frente.png`, alt: `frente da ${modelo.nome}, cor ${cor.nome}` },
+        { src: `${pasta}/${modelo.slug}-costas.png`, alt: `costas da ${modelo.nome}, cor ${cor.nome}` },
+        { src: `${pasta}/${modelo.slug}-lado.png`, alt: `vista lateral da ${modelo.nome}, cor ${cor.nome}` }
+      ]
+    };
+  });
+
+  return {
+    id: modelo.id,
+    nome: modelo.nome,
+    categoria: 'Camisetas',
+    colecao: 'Crônicas da Fé',
+    preco: 109.90,
+    descricao: modelo.descricao,
+    versiculo: modelo.versiculo,
+    significado: modelo.significado,
+    tamanhos: ['P', 'M', 'G', 'GG'],
+    variantes: variantes,
+    imagens: variantes[0].imagens
+  };
+});
+
+catalogo.push(...produtosColecaoFe);
+
+// Acrescenta os novos modelos ao catálogo e à vitrine inicial sem repetir
+// seus dados comerciais em HTML separado.
+function criarCartaoProduto(produto, paginaInicial) {
+  const artigo = document.createElement('article');
+  artigo.className = paginaInicial ? 'home-product-card' : 'product-card';
+  artigo.dataset.productId = produto.id;
+
+  const botaoZoom = document.createElement('button');
+  botaoZoom.type = 'button';
+  botaoZoom.className = paginaInicial ? 'zoom-trigger home-image-zoom' : 'zoom-trigger product-image-zoom';
+  botaoZoom.setAttribute('aria-label', `Ampliar imagens de ${produto.nome}`);
+
+  const quadro = document.createElement('div');
+  quadro.className = paginaInicial ? 'product-photo' : 'product-gallery';
+  quadro.dataset.productId = produto.id;
+  botaoZoom.appendChild(quadro);
+
+  if (paginaInicial) {
+    const link = document.createElement('a');
+    link.className = 'home-product-info';
+    link.href = `produto.html?id=${produto.id}`;
+
+    const nome = document.createElement('h3');
+    nome.textContent = produto.nome;
+    const preco = document.createElement('p');
+    preco.textContent = `R$ ${formatarPreco(produto.preco)}`;
+    link.append(nome, preco);
+    artigo.append(botaoZoom, link);
+  } else {
+    const favorito = document.createElement('button');
+    favorito.type = 'button';
+    favorito.className = 'favorito';
+    favorito.dataset.id = produto.id;
+    favorito.setAttribute('aria-label', 'Favoritar produto');
+    favorito.setAttribute('aria-pressed', 'false');
+    favorito.textContent = '♡';
+
+    const nome = document.createElement('h3');
+    nome.textContent = produto.nome;
+    const preco = document.createElement('p');
+    preco.className = 'price';
+    preco.textContent = `R$ ${formatarPreco(produto.preco)}`;
+    const detalhes = document.createElement('a');
+    detalhes.href = `produto.html?id=${produto.id}`;
+    detalhes.className = 'btn-small';
+    detalhes.textContent = 'Ver Detalhes';
+    artigo.append(botaoZoom, favorito, nome, preco, detalhes);
+  }
+
+  return artigo;
+}
+
+const gradeCatalogo = document.querySelector('.product-grid');
+if (gradeCatalogo) {
+  produtosColecaoFe.forEach(function(produto) {
+    gradeCatalogo.appendChild(criarCartaoProduto(produto, false));
+  });
+}
+
+const trilhoInicial = document.getElementById('product-track');
+if (trilhoInicial) {
+  produtosColecaoFe.forEach(function(produto) {
+    trilhoInicial.appendChild(criarCartaoProduto(produto, true));
+  });
+}
+
+// Caixa de zoom acessível e reutilizada nos cards e na galeria do produto.
+const dialogoZoom = document.createElement('dialog');
+dialogoZoom.className = 'image-zoom-dialog';
+dialogoZoom.setAttribute('aria-label', 'Imagem ampliada do produto');
+dialogoZoom.innerHTML = `
+  <button class="image-zoom-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+  <div class="image-zoom-viewer">
+    <button class="image-zoom-step image-zoom-prev" type="button" aria-label="Imagem anterior">‹</button>
+    <figure class="image-zoom-figure">
+      <img class="image-zoom-image" alt="">
+      <figcaption class="image-zoom-caption"></figcaption>
+    </figure>
+    <button class="image-zoom-step image-zoom-next" type="button" aria-label="Próxima imagem">›</button>
+  </div>`;
+document.body.appendChild(dialogoZoom);
+
+const imagemZoom = dialogoZoom.querySelector('.image-zoom-image');
+const legendaZoom = dialogoZoom.querySelector('.image-zoom-caption');
+const botaoFecharZoom = dialogoZoom.querySelector('.image-zoom-close');
+const botaoAnteriorZoom = dialogoZoom.querySelector('.image-zoom-prev');
+const botaoProximoZoom = dialogoZoom.querySelector('.image-zoom-next');
+let imagensZoom = [];
+let indiceZoom = 0;
+let focoAnteriorZoom = null;
+
+function atualizarZoom() {
+  if (!imagensZoom.length) return;
+  const imagemAtual = imagensZoom[indiceZoom];
+  imagemZoom.src = imagemAtual.src;
+  imagemZoom.alt = imagemAtual.alt || 'Imagem do produto ampliada';
+  legendaZoom.textContent = `${legendaZoom.dataset.nome || 'Produto'} — ${indiceZoom + 1} de ${imagensZoom.length}`;
+  const temNavegacao = imagensZoom.length > 1;
+  botaoAnteriorZoom.hidden = !temNavegacao;
+  botaoProximoZoom.hidden = !temNavegacao;
+}
+
+function abrirZoom(imagens, indice, acionador, nomeProduto) {
+  if (!Array.isArray(imagens) || !imagens.length) return;
+  imagensZoom = imagens;
+  indiceZoom = Math.min(Math.max(Number(indice) || 0, 0), imagens.length - 1);
+  focoAnteriorZoom = acionador || document.activeElement;
+  legendaZoom.dataset.nome = nomeProduto || 'Produto';
+  atualizarZoom();
+
+  if (typeof dialogoZoom.showModal === 'function') {
+    dialogoZoom.showModal();
+    botaoFecharZoom.focus();
+  } else {
+    window.open(imagensZoom[indiceZoom].src, '_blank', 'noopener');
+  }
+}
+
+function navegarZoom(direcao) {
+  if (!imagensZoom.length) return;
+  indiceZoom = (indiceZoom + direcao + imagensZoom.length) % imagensZoom.length;
+  atualizarZoom();
+}
+
+botaoFecharZoom.addEventListener('click', function() { dialogoZoom.close(); });
+botaoAnteriorZoom.addEventListener('click', function() { navegarZoom(-1); });
+botaoProximoZoom.addEventListener('click', function() { navegarZoom(1); });
+dialogoZoom.addEventListener('click', function(evento) {
+  if (evento.target === dialogoZoom) dialogoZoom.close();
+});
+dialogoZoom.addEventListener('keydown', function(evento) {
+  if (evento.key === 'ArrowLeft') {
+    evento.preventDefault();
+    navegarZoom(-1);
+  }
+  if (evento.key === 'ArrowRight') {
+    evento.preventDefault();
+    navegarZoom(1);
+  }
+});
+dialogoZoom.addEventListener('close', function() {
+  if (focoAnteriorZoom && typeof focoAnteriorZoom.focus === 'function') focoAnteriorZoom.focus();
+});
+
 // Usa a foto principal cadastrada no catálogo nos cards da home e do catálogo.
 document.querySelectorAll('.product-gallery[data-product-id], .product-photo[data-product-id]').forEach(function(quadro) {
   const produto = catalogo.find(function(item) {
@@ -106,29 +358,77 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
 
   const card = quadro.closest('.product-card');
   if (card) card.dataset.category = produto.categoria;
+
+  // Os cards antigos do catálogo já tinham a galeria em HTML. Envolve a foto
+  // em um botão para dar a eles o mesmo zoom dos produtos recém-adicionados.
+  if (quadro.classList.contains('product-gallery') && !quadro.closest('.product-image-zoom')) {
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'zoom-trigger product-image-zoom';
+    botao.setAttribute('aria-label', `Ampliar imagens de ${produto.nome}`);
+    quadro.parentNode.insertBefore(botao, quadro);
+    botao.appendChild(quadro);
+  }
+
+  const botaoZoom = quadro.classList.contains('product-photo')
+    ? quadro.closest('.home-image-zoom')
+    : quadro.closest('.product-image-zoom');
+
+  if (botaoZoom && !botaoZoom.dataset.zoomBound) {
+    botaoZoom.dataset.zoomBound = 'true';
+    botaoZoom.addEventListener('click', function() {
+      abrirZoom(produto.imagens, 0, botaoZoom, produto.nome);
+    });
+  }
 });
 
 // Microetapa 8.9: cria a foto principal e as miniaturas do produto escolhido.
-function renderizarGaleria(produto) {
+let imagensGaleriaAtual = [];
+let indiceImagemGaleriaAtual = 0;
+let varianteGaleriaAtual = null;
+
+function renderizarGaleria(produto, variante) {
   const imagemPrincipal = document.getElementById('imagem-principal');
   const miniaturas = document.getElementById('miniaturas-produto');
   const avisoSemFotos = document.getElementById('galeria-sem-fotos');
+  const botaoZoomPrincipal = document.getElementById('abrir-zoom-produto');
 
   if (!imagemPrincipal || !miniaturas) return;
 
   miniaturas.replaceChildren();
-  const imagens = produto && Array.isArray(produto.imagens) ? produto.imagens : [];
+  const imagens = variante && Array.isArray(variante.imagens)
+    ? variante.imagens
+    : produto && Array.isArray(produto.imagens)
+      ? produto.imagens
+      : [];
+  imagensGaleriaAtual = imagens;
+  indiceImagemGaleriaAtual = 0;
+  varianteGaleriaAtual = variante || null;
 
   if (imagens.length === 0) {
     imagemPrincipal.hidden = true;
+    if (botaoZoomPrincipal) botaoZoomPrincipal.hidden = true;
     miniaturas.hidden = true;
     if (avisoSemFotos) avisoSemFotos.hidden = false;
     return;
   }
 
   imagemPrincipal.hidden = false;
+  if (botaoZoomPrincipal) {
+    botaoZoomPrincipal.hidden = false;
+    if (!botaoZoomPrincipal.dataset.zoomBound) {
+      botaoZoomPrincipal.dataset.zoomBound = 'true';
+      botaoZoomPrincipal.addEventListener('click', function() {
+        const nomeComCor = varianteGaleriaAtual && produto
+          ? `${produto.nome} — ${varianteGaleriaAtual.nome}`
+          : produto && produto.nome;
+        abrirZoom(imagensGaleriaAtual, indiceImagemGaleriaAtual, botaoZoomPrincipal, nomeComCor);
+      });
+    }
+  }
   imagemPrincipal.src = imagens[0].src;
   imagemPrincipal.alt = `${produto.nome} — ${imagens[0].alt}`;
+  if (botaoZoomPrincipal) botaoZoomPrincipal.setAttribute('aria-label', `Ampliar imagem de ${produto.nome}`);
   miniaturas.hidden = imagens.length < 2;
   if (avisoSemFotos) avisoSemFotos.hidden = true;
 
@@ -145,6 +445,7 @@ function renderizarGaleria(produto) {
     botao.appendChild(miniatura);
 
     botao.addEventListener('click', function() {
+      indiceImagemGaleriaAtual = indice;
       imagemPrincipal.src = imagem.src;
       imagemPrincipal.alt = `${produto.nome} — ${imagem.alt}`;
 
@@ -180,6 +481,8 @@ if (botaoCarrinho) {
   });
 
   const selectTamanho = document.getElementById('tamanho');
+  const selectCor = document.getElementById('cor-produto');
+  const opcaoCor = document.getElementById('opcao-cor');
 
   if (!produtoAtual) {
     // Endereço com um id que não existe no catálogo
@@ -198,7 +501,32 @@ if (botaoCarrinho) {
     document.getElementById('produto-versiculo').textContent = produtoAtual.versiculo;
     document.getElementById('produto-significado').textContent = produtoAtual.significado;
     document.getElementById('produto-conteudo-fe').hidden = false;
-    renderizarGaleria(produtoAtual);
+    let varianteSelecionada = null;
+
+    if (Array.isArray(produtoAtual.variantes) && produtoAtual.variantes.length && selectCor && opcaoCor) {
+      opcaoCor.hidden = false;
+      selectCor.replaceChildren();
+      produtoAtual.variantes.forEach(function(variante) {
+        const opcao = document.createElement('option');
+        opcao.value = variante.slug;
+        opcao.textContent = variante.nome;
+        selectCor.appendChild(opcao);
+      });
+      varianteSelecionada = produtoAtual.variantes.find(function(variante) {
+        return variante.slug === selectCor.value;
+      }) || produtoAtual.variantes[0];
+      selectCor.value = varianteSelecionada.slug;
+      selectCor.addEventListener('change', function() {
+        varianteSelecionada = produtoAtual.variantes.find(function(variante) {
+          return variante.slug === selectCor.value;
+        }) || produtoAtual.variantes[0];
+        renderizarGaleria(produtoAtual, varianteSelecionada);
+      });
+    } else if (opcaoCor) {
+      opcaoCor.hidden = true;
+    }
+
+    renderizarGaleria(produtoAtual, varianteSelecionada);
 
     // Cria uma opção no seletor para cada tamanho do produto
     selectTamanho.innerHTML = '';
@@ -212,13 +540,17 @@ if (botaoCarrinho) {
     // Adicionar produto ao carrinho
     botaoCarrinho.addEventListener('click', function() {
       const tamanhoEscolhido = selectTamanho.value;
+      const corEscolhida = varianteSelecionada ? varianteSelecionada.nome : '';
+      const corSlugEscolhida = varianteSelecionada ? varianteSelecionada.slug : '';
 
       // Pega o carrinho do localStorage ou cria um vazio se não existir
       const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
       // Verifica se o mesmo produto, no mesmo tamanho, já está no carrinho
       const indexExistente = carrinho.findIndex(function(item) {
-        return item.id === produtoAtual.id && item.tamanho === tamanhoEscolhido;
+        return item.id === produtoAtual.id
+          && item.tamanho === tamanhoEscolhido
+          && (item.corSlug || '') === corSlugEscolhida;
       });
 
       if (indexExistente === -1) {
@@ -227,17 +559,20 @@ if (botaoCarrinho) {
           id: produtoAtual.id,
           nome: produtoAtual.nome,
           preco: produtoAtual.preco,
-          tamanho: tamanhoEscolhido
+          tamanho: tamanhoEscolhido,
+          cor: corEscolhida,
+          corSlug: corSlugEscolhida
         });
         // Salva o carrinho atualizado no navegador
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
         atualizarContadorCarrinho();
 
         // Avisa o usuário
-        alert(`"${produtoAtual.nome}" (${tamanhoEscolhido}) adicionado ao carrinho!`);
+        const detalheCor = corEscolhida ? `, ${corEscolhida}` : '';
+        alert(`"${produtoAtual.nome}" (${tamanhoEscolhido}${detalheCor}) adicionado ao carrinho!`);
       } else {
         // Avisa que o produto já está lá
-        alert('Este produto neste tamanho já está no carrinho!');
+        alert('Este produto nesta cor e tamanho já está no carrinho!');
       }
     });
   }
@@ -312,8 +647,11 @@ document.addEventListener('DOMContentLoaded', function() {
       cartItemsContainer.innerHTML = ''; // Limpa o conteúdo existente
 
       carrinho.forEach(function(item, index) {
-        // Itens antigos não têm tamanho; só mostra o tamanho quando existe
-        const nomeComTamanho = item.tamanho ? `${item.nome} (${item.tamanho})` : item.nome;
+        // Itens antigos podem não ter cor ou tamanho; exibe somente o que existir.
+        const detalhesVariacao = [item.cor, item.tamanho].filter(Boolean);
+        const nomeComTamanho = detalhesVariacao.length
+          ? `${item.nome} (${detalhesVariacao.join(', ')})`
+          : item.nome;
 
         cartItemsContainer.innerHTML += `
           <div class="cart-item">

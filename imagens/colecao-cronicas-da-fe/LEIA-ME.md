@@ -13,7 +13,7 @@ Cada pasta contém `00-frente-comum.png` como referência da cor e dez conjuntos
 - `cores/verde-militar-musgo/` — verde militar/musgo.
 - `cores/marrom/` — marrom chocolate.
 
-As variações são recursos visuais para aprovação da coleção. Ainda não há seletor de cor no catálogo do site; preços, estoque e dados comerciais também precisam ser definidos antes do cadastro dos produtos.
+As variações visuais estão integradas como opções de cor na página dos produtos da coleção. O preço cadastrado é R$ 109,90 por modelo, igual ao da camiseta atual, e os tamanhos são P, M, G e GG. A disponibilidade real de estoque e de cada cor ainda deve ser confirmada antes da venda.
 
 As pranchas combinam vistas grandes de frente e costas, cinco recortes de detalhes e quatro vistas menores na parte inferior. Elas são mockups editoriais; recortes de tecido, gola e costura são ilustrativos e não confirmam composição ou especificações de fabricação. Consulte `pranchas-de-apresentacao/LEIA-ME.md` para encontrar os 50 arquivos.
 
@@ -30,4 +30,10 @@ As pranchas combinam vistas grandes de frente e costas, cinco recortes de detalh
 | “Tudo contribui para o bem” — Romanos 8:28 | `09-tudo-contribui-para-o-bem-frente.png` | `09-tudo-contribui-para-o-bem-costas.png` | `09-tudo-contribui-para-o-bem-lado.png` |
 | “Constância em todo processo” — Gálatas 6:9 | `10-constancia-frente.png` | `10-constancia-costas.png` | `10-constancia-lado.png` |
 
-Para cadastrar os modelos no site, associe os três caminhos correspondentes a cada produto em `js/main.js`. Adicione os dados comerciais de cada camiseta antes de publicar os produtos.
+## Uso no site
+
+Os dez modelos aparecem na vitrine inicial e na categoria Camisetas, com IDs 7 a 16. Em cada página de produto, o seletor de cor troca a prancha e as vistas de frente, costas e lado. O primeiro quadro é a prancha de apresentação; os três seguintes são as imagens individuais. Clique na imagem principal para ampliá-la e use as setas do visualizador para navegar. O zoom também está disponível nos cartões de produto da homepage e do catálogo.
+
+Os nomes, textos e referências dos dez modelos ficam em `modelosColecaoFe` em `js/main.js`. As cores ficam em `coresColecaoFe`, e os caminhos dos quatro arquivos por cor são gerados a partir do identificador do modelo e da cor. Ao acrescentar um modelo, use um ID único, uma pasta/slug no mesmo padrão e crie os arquivos correspondentes para as cinco cores, incluindo a prancha daquela combinação. O preço atual é definido junto à criação dos produtos em `produtosColecaoFe`.
+
+As imagens são mockups para apresentação. Antes de comercializar, confirme cores, estoque, tecido, medidas e processo de impressão com a produção; as imagens de detalhes não certificam especificações físicas.

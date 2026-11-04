@@ -24,7 +24,7 @@ O item “Histórias” leva à página `sobre.html`. O formulário do mural est
 
 ## Coleção Crônicas da Fé
 
-Cada um dos dez modelos tem imagens de frente, costas e lado nas cores preto, branco, cinza, verde militar/musgo e marrom dentro de `imagens/colecao-cronicas-da-fe/`. A pasta `pranchas-de-apresentacao/` contém uma prancha por estampa e cor, com frente, costas, detalhes ampliados e ângulos laterais no estilo da referência enviada. O guia da coleção lista os arquivos e temas. São mockups preparados com ajuda do OpenAI Codex; ainda não são fotos de peças físicas e os detalhes visuais não confirmam especificações de fabricação. A seleção de cor não foi integrada ao catálogo do site.
+Os dez modelos foram integrados ao catálogo e à vitrine inicial como camisetas com IDs 7 a 16. Cada um oferece preto, branco suave, cinza mescla, verde militar/musgo e marrom chocolate, tamanhos P a GG e preço de R$ 109,90. Na página do produto, a seleção de cor troca as imagens de frente, costas, lado e prancha de apresentação; a cor e o tamanho escolhidos são salvos no carrinho. As imagens também podem ser ampliadas ao clicar nos cartões da vitrine e do catálogo, ou na galeria do produto. A pasta `pranchas-de-apresentacao/` contém uma prancha por estampa e cor, com frente, costas, detalhes ampliados e ângulos laterais no estilo da referência enviada. São mockups preparados com ajuda do OpenAI Codex; ainda não são fotos de peças físicas e os detalhes visuais não confirmam especificações de fabricação.
 
 ## Créditos e transparência
 

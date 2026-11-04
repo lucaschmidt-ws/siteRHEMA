@@ -36,7 +36,10 @@
   <main>
     <div class="product-detail">
       <div class="product-gallery-large">
-        <img id="imagem-principal" alt="" hidden>
+        <button class="zoom-trigger zoom-trigger-large" id="abrir-zoom-produto" type="button" aria-label="Ampliar imagem do produto" hidden>
+          <img id="imagem-principal" alt="" hidden>
+          <span class="zoom-hint">Clique para ampliar</span>
+        </button>
         <p id="galeria-sem-fotos" class="gallery-empty" hidden>As fotos deste produto ainda não foram adicionadas.</p>
         <div class="thumbnails" id="miniaturas-produto" role="group" aria-label="Fotos do produto" hidden></div>
       </div>
@@ -55,13 +58,19 @@
         </section>
 
         <div class="product-options">
-          <label for="tamanho">Tamanho:</label>
-          <select id="tamanho">
-            <option>P</option>
-            <option>M</option>
-            <option>G</option>
-            <option>GG</option>
-          </select>
+          <div class="product-option" id="opcao-cor" hidden>
+            <label for="cor-produto">Cor:</label>
+            <select id="cor-produto"></select>
+          </div>
+          <div class="product-option">
+            <label for="tamanho">Tamanho:</label>
+            <select id="tamanho">
+              <option>P</option>
+              <option>M</option>
+              <option>G</option>
+              <option>GG</option>
+            </select>
+          </div>
         </div>
 
         <button class="btn btn-cart">Adicionar ao Carrinho</button>
