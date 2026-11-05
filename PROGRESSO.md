@@ -8,6 +8,8 @@
 
 **Catálogo separado:** criado `catalogo.html` para concentrar busca, filtros, produtos e zoom. A página `produtos.html` fica dedicada às categorias, ao espaço reservado para o vídeo e ao destaque RHEMA BLACK; o botão após o destaque abre o catálogo. Links de busca e categoria na navegação, homepage e página Roupas agora levam ao novo endereço, com a categoria escolhida aplicada.
 
+**Cabeçalho da homepage:** aplicado à página inicial o mesmo cabeçalho da página Roupas, com wordmark alinhado à esquerda, linha dourada, ícones de busca e sacola, e menu recolhível com navegação. O restante do conteúdo da homepage foi mantido.
+
 **Página Roupas — Manifesto Street:** a direção escolhida foi integrada à página `produtos.html`, preservando a navegação e a identidade escura e dourada da RHEMA. As categorias são Camisetas, Calças, Moletons, Casacos sem capuz e Acessórios. A antiga Jaqueta foi retirada do catálogo e substituída por um casaco/moletom de gola careca sem capuz; os atalhos da homepage acompanham as categorias. Os moletons com capuz e o casaco têm pranchas com vistas de frente, costas, laterais e detalhes; as pranchas do boné também apresentam seus ângulos. O botão editorial “Ver lifestyle” permanece compatível e filtra Casacos.
 
 **Vistas do catálogo:** foram incluídas pranchas para o moletom bege com capuz, o moletom preto com capuz e o Casaco RHEMA sem capuz em `imagens/catalogo-vistas/`. São mockups criados com ajuda do OpenAI Codex; não são fotos de peças físicas e não confirmam especificações de fabricação. O casaco substitui o produto Jaqueta no ID 6 e conserva o preço já associado a esse espaço (R$ 199,90) e o estoque zerado.

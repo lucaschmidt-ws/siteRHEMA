@@ -18,7 +18,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
 
-Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse ou navegar com teclado e removem o deslocamento quando o navegador pede movimento reduzido. O rótulo “Histórias” no cabeçalho abre `sobre.html`.
+O cabeçalho da página inicial usa a mesma identidade visual de Roupas: wordmark RHEMA à esquerda, linha dourada, busca, sacola e menu recolhível. Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse ou navegar com teclado e removem o deslocamento quando o navegador pede movimento reduzido. O item “Histórias” do menu abre `sobre.html`.
 
 ## Como visualizar
 
