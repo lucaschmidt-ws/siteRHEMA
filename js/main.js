@@ -29,6 +29,13 @@ if (menuRhema && alternadorMenuRhema) {
   });
 }
 
+// Filme de campanha: inicia sem som e respeita a preferência por movimento reduzido.
+const videoCampanhaRhema = document.querySelector('.rhema-film-video');
+if (videoCampanhaRhema) {
+  const prefereMovimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefereMovimentoReduzido) videoCampanhaRhema.play().catch(function() {});
+}
+
 // Lista de produtos do catálogo (os mesmos de produtos.html).
 // A página produto.html usa esta lista para mostrar o produto escolhido.
 const catalogo = [
