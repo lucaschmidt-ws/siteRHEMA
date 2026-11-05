@@ -5,82 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <title>Produtos | RHEMA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <title>Roupas | RHEMA</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-  <a class="brand" href="index.html" aria-label="RHEMA, página inicial">
-    <img src="imagens/logo-rhema-claro.png" alt="RHEMA">
-  </a>
-
-  <nav class="main-nav" aria-label="Navegação principal">
-    <a href="index.html">Início</a>
-    <a href="produtos.html" aria-current="page">Roupas</a>
-    <a href="index.html#lifestyle">Lifestyle</a>
-    <a href="sobre.html">Histórias</a>
-  </nav>
-
-  <div class="header-actions">
-    <a class="header-action" href="produtos.html#search-input" aria-label="Buscar produtos">
-      <span class="icon-search" aria-hidden="true"></span>
+  <header class="site-header clothing-site-header">
+    <a class="brand" href="index.html" aria-label="RHEMA, página inicial">
+      <span class="clothing-brand-wordmark" aria-hidden="true">RHEMA</span>
+      <span class="clothing-brand-caption" aria-hidden="true">Streetwear</span>
     </a>
-    <a class="header-action" href="carrinho.html" aria-label="Abrir sacola, 0 itens">
-      <span class="icon-bag" aria-hidden="true"></span>
-      <span class="cart-count" data-cart-count>0</span>
-    </a>
-  </div>
-</header>
+    <span class="clothing-header-rule" aria-hidden="true"></span>
+    <div class="header-actions" aria-label="Ações rápidas">
+      <a class="header-action" href="produtos.html#search-input" aria-label="Buscar produtos" title="Buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 5 5"></path></svg>
+      </a>
+      <a class="header-action" href="carrinho.html" aria-label="Abrir sacola, 0 itens" title="Sacola">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l1.2 12H4.3L5.5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <button class="header-action clothing-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="clothing-menu-panel" title="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+      </button>
+    </div>
+    <nav class="clothing-menu-panel" id="clothing-menu-panel" aria-label="Navegação principal" hidden>
+      <a href="index.html">Início</a>
+      <a href="produtos.html" aria-current="page">Roupas</a>
+      <a href="index.html#lifestyle">Lifestyle</a>
+      <a href="sobre.html">Histórias</a>
+    </nav>
+  </header>
 
   <main class="clothing-main">
-    <section class="clothing-hero" aria-labelledby="clothing-title">
-      <img class="clothing-hero-image" src="imagens/editorial/foto-lifestyle-rhema.png" alt="" aria-hidden="true" fetchpriority="high">
-      <div class="clothing-hero-content">
-        <p class="clothing-kicker">RHEMA / MANIFESTO STREET</p>
-        <h1 id="clothing-title">Fé em<br>movimento.</h1>
-        <p class="clothing-hero-copy">Arte, identidade e propósito para vestir a sua caminhada.</p>
-        <a class="clothing-hero-link" href="#categorias-roupas">Explorar categorias <span aria-hidden="true">↘</span></a>
+    <section class="clothing-categories rhema-category-section" id="categorias-roupas" aria-labelledby="clothing-categories-title">
+      <div class="clothing-section-heading rhema-category-heading">
+        <h1 id="clothing-categories-title">Roupas</h1>
+        <span class="rhema-title-rule" aria-hidden="true"></span>
       </div>
-      <p class="clothing-hero-index" aria-hidden="true">01 — RHEMA STREETWEAR</p>
-    </section>
-
-    <section class="clothing-categories" id="categorias-roupas" aria-labelledby="clothing-categories-title">
-      <div class="clothing-section-heading">
-        <p class="clothing-kicker">Encontre a sua expressão</p>
-        <h2 id="clothing-categories-title">Explore por categoria</h2>
-      </div>
-      <div class="clothing-category-grid">
-        <a class="clothing-category-card" href="produtos.html?categoria=Camisetas#catalogo" aria-label="Explorar camisetas">
-          <img src="imagens/camiseta%20preta/camiseta-preta-frente.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <span class="clothing-category-number" aria-hidden="true">01</span>
-          <span class="clothing-category-label">Camisetas</span>
-          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+      <div class="rhema-category-grid">
+        <a class="rhema-category-card rhema-category-card--shirts" href="produtos.html?categoria=Camisetas#catalogo" aria-label="Explorar camisetas RHEMA">
+          <img src="imagens/categorias-editoriais/camisetas-editorial.webp" alt="Modelo com camiseta RHEMA estampada, calça cargo oliva e tênis, sentado em cadeira vintage" fetchpriority="high">
+          <span class="rhema-category-content">
+            <span class="rhema-category-label">Camisetas</span>
+            <span class="rhema-category-rule" aria-hidden="true"></span>
+            <span class="rhema-category-action">Explorar <span aria-hidden="true">↗</span></span>
+          </span>
         </a>
-        <a class="clothing-category-card" href="produtos.html?categoria=Cal%C3%A7as#catalogo" aria-label="Explorar calças">
-          <img src="imagens/calças/streetwear-calça/Calça-Streetwear-frente.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <span class="clothing-category-number" aria-hidden="true">02</span>
-          <span class="clothing-category-label">Calças</span>
-          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        <a class="rhema-category-card rhema-category-card--pants" href="produtos.html?categoria=Cal%C3%A7as#catalogo" aria-label="Explorar calças RHEMA">
+          <img src="imagens/categorias-editoriais/calcas-editorial.webp" alt="Modelo usando calça cargo RHEMA verde militar, em enquadramento editorial" loading="lazy" decoding="async">
+          <span class="rhema-category-content">
+            <span class="rhema-category-label">Calças</span>
+            <span class="rhema-category-rule" aria-hidden="true"></span>
+            <span class="rhema-category-action">Explorar <span aria-hidden="true">↗</span></span>
+          </span>
         </a>
-        <a class="clothing-category-card" href="produtos.html?categoria=Moletons#catalogo" aria-label="Explorar moletons">
-          <img src="imagens/moleton/moleton-preto.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <span class="clothing-category-number" aria-hidden="true">03</span>
-          <span class="clothing-category-label">Moletons</span>
-          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        <a class="rhema-category-card rhema-category-card--hoodies" href="produtos.html?categoria=Moletons#catalogo" aria-label="Explorar moletons RHEMA">
+          <img src="imagens/categorias-editoriais/moletons-editorial.webp" alt="Moletom RHEMA oversized verde-musgo em estúdio" loading="lazy" decoding="async">
+          <span class="rhema-category-content">
+            <span class="rhema-category-label">Moletons</span>
+            <span class="rhema-category-rule" aria-hidden="true"></span>
+            <span class="rhema-category-action">Explorar <span aria-hidden="true">↗</span></span>
+          </span>
         </a>
-        <a class="clothing-category-card" href="produtos.html?categoria=Casacos#catalogo" aria-label="Explorar casacos">
-          <img src="imagens/catalogo-vistas/casaco-sem-capuz-prancha.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <span class="clothing-category-number" aria-hidden="true">04</span>
-          <span class="clothing-category-label">Casacos</span>
-          <span class="clothing-category-subtitle">Moletom sem capuz</span>
-          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        <a class="rhema-category-card rhema-category-card--jackets" href="produtos.html#catalogo" aria-label="Explorar a coleção RHEMA e futuras jaquetas">
+          <img src="imagens/categorias-editoriais/jaquetas-editorial.webp" alt="Jaqueta jeans escura RHEMA sobre cadeira vintage" loading="lazy" decoding="async">
+          <span class="rhema-category-content">
+            <span class="rhema-category-label">Jaquetas</span>
+            <span class="rhema-category-rule" aria-hidden="true"></span>
+            <span class="rhema-category-action">Explorar <span aria-hidden="true">↗</span></span>
+          </span>
         </a>
-        <a class="clothing-category-card" href="produtos.html?categoria=Acess%C3%B3rios#catalogo" aria-label="Explorar acessórios">
-          <img src="imagens/Nova%20pasta/bone-preto.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <span class="clothing-category-number" aria-hidden="true">05</span>
-          <span class="clothing-category-label">Acessórios</span>
-          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        <a class="rhema-category-card rhema-category-card--accessories" href="produtos.html?categoria=Acess%C3%B3rios#catalogo" aria-label="Explorar acessórios RHEMA">
+          <img src="imagens/categorias-editoriais/acessorios-editorial.webp" alt="Boné preto RHEMA, cinto preto e corrente metálica sobre pedestal de concreto" loading="lazy" decoding="async">
+          <span class="rhema-category-content">
+            <span class="rhema-category-label">Acessórios</span>
+            <span class="rhema-category-rule" aria-hidden="true"></span>
+            <span class="rhema-category-action">Explorar <span aria-hidden="true">↗</span></span>
+          </span>
         </a>
       </div>
     </section>
@@ -186,5 +187,32 @@
   </a>
 </div>
   <script src="js/main.js"></script>
+  <script>
+    (() => {
+      const toggle = document.querySelector('.clothing-menu-toggle');
+      const menu = document.querySelector('#clothing-menu-panel');
+      if (!toggle || !menu) return;
+
+      const closeMenu = () => {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu');
+      };
+
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+        menu.hidden = !open;
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!toggle.contains(event.target) && !menu.contains(event.target)) closeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
