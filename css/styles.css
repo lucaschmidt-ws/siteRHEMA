@@ -2211,11 +2211,33 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .rhema-black-collection .carousel-dot.active { background: #c9952e; }
 @keyframes rhema-black-reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
+.rhema-catalog-cta { display: flex; width: min(100% - 72px, 1510px); align-items: center; justify-content: space-between; gap: 22px; padding: clamp(22px, 3vw, 36px) clamp(18px, 3vw, 38px); margin: 0 auto clamp(42px, 6vw, 76px); border: 1px solid rgba(201,149,46,.45); background: linear-gradient(110deg, #10100f, #19150f 58%, #0d0d0c); }
+.rhema-catalog-cta p { margin: 0; color: #d6b877; font-size: 9px; font-weight: 700; letter-spacing: .24em; }
+.rhema-catalog-cta a { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; padding: 0 16px; border: 1px solid rgba(201,149,46,.75); color: #e7c27e; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; transition: gap .18s ease, background .18s ease; }
+.rhema-catalog-cta a:hover, .rhema-catalog-cta a:focus-visible { gap: 24px; background: rgba(201,149,46,.13); }
+.rhema-catalog-cta a:focus-visible { outline: 2px solid #f1d18d; outline-offset: 4px; }
+
+.catalog-page-intro { width: min(100% - 72px, 1510px); padding: clamp(34px, 5vw, 70px) 0 0; margin: 0 auto; }
+.catalog-page-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(201,149,46,.58); }
+.catalog-page-heading h1 { margin: 0; color: #f1e9dc; font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; font-size: clamp(60px, 9vw, 112px); font-weight: 800; letter-spacing: -.035em; line-height: .85; text-transform: uppercase; }
+.catalog-page-heading p { max-width: 390px; margin: 0 0 5px; color: #bcb4a6; font-size: 13px; line-height: 1.7; }
+.catalog-category-filters { display: flex; flex-wrap: wrap; gap: 9px; padding-top: 20px; }
+.catalog-category-filters a { display: inline-flex; min-height: 36px; align-items: center; padding: 0 13px; border: 1px solid rgba(201,149,46,.32); color: #ded5c6; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; transition: border-color .18s ease, color .18s ease, background .18s ease; }
+.catalog-category-filters a:hover, .catalog-category-filters a:focus-visible { border-color: #c9952e; background: rgba(201,149,46,.11); color: #e7c27e; }
+.catalog-category-filters a:focus-visible { outline: 2px solid #f1d18d; outline-offset: 3px; }
+.catalog-page .clothing-catalog { padding-top: clamp(24px, 3vw, 42px); }
+
 @media (min-width: 761px) and (max-width: 1050px) {
   .rhema-black-collection .home-product-card { flex-basis: calc((100% - 32px) / 3); }
 }
 
 @media (max-width: 760px) {
+  .rhema-catalog-cta { width: min(100% - 36px, 700px); align-items: flex-start; flex-direction: column; }
+  .catalog-page-intro { width: min(100% - 36px, 700px); }
+  .catalog-page-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .catalog-page-heading h1 { font-size: clamp(58px, 16vw, 90px); }
+  .catalog-category-filters { gap: 7px; }
+  .catalog-category-filters a { min-height: 34px; padding: 0 10px; font-size: 8px; }
   .rhema-film-reserve { width: min(100% - 36px, 700px); }
   .rhema-film-reserve-frame { min-height: 280px; aspect-ratio: 16 / 9; }
   .rhema-film-reserve-copy h2 { font-size: clamp(34px, 8vw, 54px); }

@@ -787,7 +787,7 @@ if (input) {
         const nomeCategoria = categoriaSolicitada === 'Lifestyle' ? 'Lifestyle (Casacos)' : categoriaAtiva;
         statusBusca.append(`Categoria: ${nomeCategoria}. `);
         const limparFiltro = document.createElement('a');
-        limparFiltro.href = 'produtos.html#search-input';
+        limparFiltro.href = 'catalogo.html#search-input';
         limparFiltro.textContent = 'Ver todas as categorias';
         statusBusca.appendChild(limparFiltro);
       } else if (termo) {
