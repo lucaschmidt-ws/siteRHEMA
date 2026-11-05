@@ -934,6 +934,20 @@ function atualizarContadorCarrinho() {
 
 document.addEventListener('DOMContentLoaded', atualizarContadorCarrinho);
 
+document.addEventListener('DOMContentLoaded', function() {
+  const palcoCampanha = document.getElementById('rhema-film-stage');
+  const botaoCampanha = document.getElementById('rhema-film-toggle');
+  if (!palcoCampanha || !botaoCampanha) return;
+
+  botaoCampanha.addEventListener('click', function() {
+    const pausado = palcoCampanha.classList.toggle('is-paused');
+    botaoCampanha.setAttribute('aria-pressed', String(pausado));
+    botaoCampanha.setAttribute('aria-label', pausado ? 'Reproduzir animação da campanha' : 'Pausar animação da campanha');
+    botaoCampanha.querySelector('.rhema-film-pause-icon').hidden = pausado;
+    botaoCampanha.querySelector('.rhema-film-play-icon').hidden = !pausado;
+  });
+});
+
 // Botão voltar ao topo: aparece depois de rolar
 const botaoTopo = document.getElementById('fab-top');
 
