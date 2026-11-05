@@ -2585,6 +2585,118 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   .site-footer .footer-brand { padding-top: 23px; }
   .site-footer .footer-brand img { width: 118px; }
   .site-footer .footer-credit { margin-top: -18px; }
+
+/* Biblioteca RHEMA: Sabedoria & Graça */
+.wisdom-feature {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: min(100% - 72px, 1510px);
+  min-height: clamp(320px, 34vw, 470px);
+  align-items: center;
+  overflow: hidden;
+  margin: clamp(44px, 6vw, 82px) auto;
+  border: 1px solid rgba(201, 149, 46, .55);
+  background: #0d0c0a;
+}
+.wisdom-feature::before,
+.wisdom-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 8, 8, .86) 0%, rgba(8, 8, 8, .76) 38%, rgba(8, 8, 8, .15) 100%), linear-gradient(0deg, rgba(8, 8, 8, .4), transparent 55%);
+  content: '';
+}
+.wisdom-feature > img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.wisdom-feature-copy {
+  width: min(650px, 62%);
+  padding: clamp(30px, 5vw, 72px);
+}
+.wisdom-kicker { margin: 0 0 14px; color: #d6b877; font-size: 9px; font-weight: 700; letter-spacing: .23em; line-height: 1.7; text-transform: uppercase; }
+.wisdom-feature h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(43px, 6vw, 76px); font-style: italic; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+.wisdom-feature h2 span { color: #d6b877; white-space: nowrap; }
+.wisdom-feature-copy > p:not(.wisdom-kicker) { max-width: 460px; margin: 18px 0 0; color: #e1ded7; font-size: clamp(14px, 1.5vw, 17px); line-height: 1.7; }
+.wisdom-feature-copy > a,
+.wisdom-link { display: inline-flex; min-height: 44px; align-items: center; gap: 14px; padding: 0 15px; margin-top: 24px; border: 1px solid rgba(201,149,46,.72); color: #e7c27e; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; transition: background .18s ease, color .18s ease, gap .18s ease; }
+.wisdom-feature-copy > a:hover,
+.wisdom-feature-copy > a:focus-visible,
+.wisdom-link:hover,
+.wisdom-link:focus-visible { gap: 20px; background: rgba(201,149,46,.12); color: #f2f0ea; }
+.wisdom-feature-copy > a:focus-visible,
+.wisdom-link:focus-visible { outline: 2px solid #f1d18d; outline-offset: 4px; }
+.wisdom-feature-copy > a span,
+.wisdom-link span { color: #d6b877; font-size: 15px; }
+.wisdom-feature-index { position: absolute; right: 20px; bottom: 18px; color: rgba(242,240,234,.72); font-size: 8px; letter-spacing: .2em; }
+
+.wisdom-main { width: 100%; max-width: none; padding: 0 0 88px; margin: 0 auto; }
+.wisdom-hero { position: relative; isolation: isolate; display: flex; min-height: clamp(490px, 54vw, 700px); align-items: center; overflow: hidden; border-bottom: 1px solid rgba(201,149,46,.72); background: #090908; }
+.wisdom-hero::before { background: linear-gradient(90deg, rgba(8,8,8,.88) 0%, rgba(8,8,8,.76) 36%, rgba(8,8,8,.18) 100%), linear-gradient(0deg, rgba(8,8,8,.42), transparent 60%); }
+.wisdom-hero-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.wisdom-hero-copy { width: min(790px, 70%); padding: clamp(54px, 8vw, 112px) 0; margin-left: clamp(24px, 8vw, 120px); }
+.wisdom-hero h1 { max-width: 760px; margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(56px, 9vw, 112px); font-style: italic; font-weight: 600; letter-spacing: -.055em; line-height: .98; }
+.wisdom-hero h1 span { color: #d6b877; white-space: nowrap; }
+.wisdom-hero-lead { max-width: 530px; margin: 23px 0 0; color: #e1ded7; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.7; }
+.wisdom-hero-index { position: absolute; right: clamp(18px, 4vw, 56px); bottom: 22px; color: rgba(242,240,234,.7); font-size: 8px; letter-spacing: .2em; }
+.wisdom-intro { width: min(100% - 48px, 840px); padding: clamp(66px, 8vw, 108px) 0 48px; margin: 0 auto; text-align: center; }
+.wisdom-intro .wisdom-kicker { margin-bottom: 12px; }
+.wisdom-intro h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(35px, 5vw, 58px); font-style: italic; font-weight: 600; letter-spacing: -.035em; line-height: 1.12; }
+.wisdom-intro h2 span { color: #d6b877; }
+.wisdom-intro > p:last-child { max-width: 690px; margin: 20px auto 0; color: #cbc6bb; font-size: 14px; line-height: 1.9; }
+.wisdom-pillars { display: grid; width: min(100% - 72px, 1250px); grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0 auto; }
+.wisdom-pillar { min-height: 270px; padding: clamp(22px, 3vw, 34px); border: 1px solid rgba(201,149,46,.3); background: linear-gradient(145deg, rgba(34,32,27,.86), rgba(17,17,15,.96)); }
+.wisdom-pillar-icon { display: grid; width: 46px; height: 46px; place-items: center; margin-bottom: 28px; border: 1px solid rgba(201,149,46,.48); color: #d6b877; }
+.wisdom-pillar-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.2; }
+.wisdom-pillar-number { margin: 0 0 7px; color: #b79a60; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
+.wisdom-pillar h3 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(22px, 2.2vw, 29px); font-style: italic; font-weight: 600; }
+.wisdom-pillar > p:last-child { margin: 12px 0 0; color: #c8c3b9; font-size: 12px; line-height: 1.8; }
+.wisdom-belief { width: min(100% - 48px, 920px); padding: clamp(52px, 7vw, 82px) 0; margin: clamp(56px, 7vw, 86px) auto 0; border-top: 1px solid rgba(201,149,46,.56); border-bottom: 1px solid rgba(201,149,46,.56); text-align: center; }
+.wisdom-belief h2 { max-width: 760px; margin: 0 auto; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(34px, 5vw, 56px); font-style: italic; font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
+.wisdom-belief > p:last-child { max-width: 700px; margin: 19px auto 0; color: #cbc6bb; font-size: 13px; line-height: 1.9; }
+.wisdom-coming { display: grid; width: min(100% - 72px, 1250px); grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: clamp(20px, 4vw, 54px); padding: clamp(26px, 4vw, 46px); margin: clamp(56px, 7vw, 88px) auto 0; border: 1px solid rgba(201,149,46,.36); background: radial-gradient(ellipse at 0 50%, rgba(201,149,46,.1), transparent 45%), #141310; }
+.wisdom-coming > span { color: rgba(214,184,119,.45); font-family: 'Playfair Display', Georgia, serif; font-size: clamp(52px, 8vw, 88px); font-style: italic; line-height: .8; }
+.wisdom-coming h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(23px, 3vw, 35px); font-style: italic; font-weight: 600; line-height: 1.15; }
+.wisdom-coming div > p:last-child { max-width: 650px; margin: 9px 0 0; color: #c6c0b4; font-size: 11px; line-height: 1.7; }
+.wisdom-coming .wisdom-link { margin: 0; white-space: nowrap; }
+
+@media (max-width: 760px) {
+  .wisdom-feature { width: min(100% - 36px, 700px); min-height: 380px; }
+  .wisdom-feature-copy { width: 80%; padding: 28px; }
+  .wisdom-feature-index { right: 12px; bottom: 12px; font-size: 7px; }
+  .wisdom-hero { min-height: 560px; }
+  .wisdom-hero-image { object-position: 60% center; }
+  .wisdom-hero::before { background: linear-gradient(90deg, rgba(8,8,8,.87), rgba(8,8,8,.55)), linear-gradient(0deg, rgba(8,8,8,.5), transparent 70%); }
+  .wisdom-hero-copy { width: min(100% - 40px, 620px); margin-left: 24px; }
+  .wisdom-pillars { width: min(100% - 36px, 700px); grid-template-columns: 1fr; }
+  .wisdom-pillar { min-height: auto; }
+  .wisdom-pillar-icon { margin-bottom: 20px; }
+  .wisdom-coming { width: min(100% - 36px, 700px); grid-template-columns: auto minmax(0,1fr); }
+  .wisdom-coming .wisdom-link { grid-column: 2; justify-self: start; }
+}
+@media (max-width: 480px) {
+  .wisdom-feature { min-height: 390px; }
+  .wisdom-feature > img { object-position: 62% center; }
+  .wisdom-feature::before { background: linear-gradient(90deg, rgba(8,8,8,.9), rgba(8,8,8,.72) 70%, rgba(8,8,8,.25)); }
+  .wisdom-feature-copy { width: 95%; padding: 22px; }
+  .wisdom-feature h2 { font-size: clamp(42px, 12vw, 56px); }
+  .wisdom-feature h2 span { white-space: normal; }
+  .wisdom-hero { min-height: 520px; }
+  .wisdom-hero-copy { margin-left: 20px; }
+  .wisdom-hero h1 { font-size: clamp(52px, 15vw, 74px); }
+  .wisdom-hero h1 span { white-space: normal; }
+  .wisdom-hero-index { right: 12px; bottom: 13px; font-size: 7px; }
+  .wisdom-intro { width: min(100% - 36px, 620px); }
+  .wisdom-coming { grid-template-columns: 1fr; gap: 18px; }
+  .wisdom-coming > span { font-size: 52px; }
+  .wisdom-coming .wisdom-link { grid-column: 1; }
+}
 }
 
 @media (prefers-reduced-motion: reduce) {

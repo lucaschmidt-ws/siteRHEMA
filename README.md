@@ -10,6 +10,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `produto.html`: página de detalhes do produto.
 - `carrinho.html`: carrinho de compras.
 - `sobre.html`: história do fundador e interface para envio/leitura de testemunhos da comunidade.
+- `sabedoria.html`: página editorial da Biblioteca RHEMA, com a proposta Sabedoria & Graça para livros, Bíblias e conteúdos de estudo.
 - `politicas.html`: informações sobre entrega, trocas, devoluções e atendimento.
 - `privacidade.html`: dados usados pelo site, finalidades, serviços externos e direitos da pessoa usuária.
 - `css/` e `js/`: estilos e funcionalidades do site.
@@ -17,6 +18,8 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `imagens/catalogo-vistas/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage, dez modelos da coleção Crônicas da Fé em cinco cores, 50 pranchas editoriais de apresentação e vistas dos moletons/casaco.
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
+
+A seção Sabedoria & Graça aparece como destaque na homepage e no menu global. A curadoria está em preparação; a página apresenta os temas da proposta e permite sugerir livros ou Bíblias pelo WhatsApp, sem anunciar títulos ou preços que ainda não foram definidos.
 
 Os cabeçalhos de Início e Histórias usam a mesma identidade visual de Roupas: wordmark RHEMA à esquerda, linha dourada, busca, sacola e menu recolhível. O menu separa navegação, categorias do catálogo e conteúdo institucional; cada categoria abre o catálogo já filtrado. Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse ou navegar com teclado e removem o deslocamento quando o navegador pede movimento reduzido.
 
