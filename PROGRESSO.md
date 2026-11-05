@@ -1,6 +1,8 @@
 # Progresso do Projeto RHEMA
 
-**Última atualização:** 04/11/2026
+**Última atualização:** 05/11/2026
+
+**Roupas — frame e RHEMA BLACK:** a seção “Coleção 2026 / PROPÓSITO” saiu da homepage e foi incorporada à página `produtos.html`, depois das categorias e do espaço reservado para o vídeo horizontal. A coleção foi renomeada para **RHEMA BLACK**, sem ano, e destaca camisetas, calça, moletom e casaco pretos do catálogo em um tratamento editorial escuro e dourado. O frame está reservado para um futuro vídeo real de campanha com movimento humano; não contém apresentação de imagens nem mídia provisória.
 
 **Página Roupas — Manifesto Street:** a direção escolhida foi integrada à página `produtos.html`, preservando a navegação e a identidade escura e dourada da RHEMA. As categorias são Camisetas, Calças, Moletons, Casacos sem capuz e Acessórios. A antiga Jaqueta foi retirada do catálogo e substituída por um casaco/moletom de gola careca sem capuz; os atalhos da homepage acompanham as categorias. Os moletons com capuz e o casaco têm pranchas com vistas de frente, costas, laterais e detalhes; as pranchas do boné também apresentam seus ângulos. O botão editorial “Ver lifestyle” permanece compatível e filtra Casacos.
 

@@ -359,7 +359,7 @@ if (gradeCatalogo) {
 }
 
 const trilhoInicial = document.getElementById('product-track');
-if (trilhoInicial) {
+if (trilhoInicial && trilhoInicial.children.length === 0) {
   produtosColecaoFe.forEach(function(produto) {
     trilhoInicial.appendChild(criarCartaoProduto(produto, true));
   });
