@@ -19,7 +19,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
 
-A seção Sabedoria & Graça aparece como destaque na homepage e no grupo Navegação do menu global. A página apresenta Bíblias e livros como categorias comerciais, com uma chamada para sugerir produtos pelo WhatsApp. Os primeiros títulos e preços dependem da definição da curadoria; por isso, nenhum item ou valor foi anunciado como disponível para compra.
+A seção Sabedoria & Graça aparece como destaque na homepage e no grupo Navegação do menu global. A página apresenta Bíblias e livros como categorias comerciais, com uma chamada para sugerir produtos pelo WhatsApp e uma imagem editorial urbana com a mensagem “Deus sempre tem um plano”. Os primeiros títulos e preços dependem da definição da curadoria; por isso, nenhum item ou valor foi anunciado como disponível para compra.
 
 Os cabeçalhos de Início e Histórias usam a mesma identidade visual de Roupas: wordmark RHEMA à esquerda, linha dourada, busca, sacola e menu recolhível. O menu separa navegação, categorias do catálogo e conteúdo institucional; cada categoria abre o catálogo já filtrado. Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse ou navegar com teclado e removem o deslocamento quando o navegador pede movimento reduzido.
 
