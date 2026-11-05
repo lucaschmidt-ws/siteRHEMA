@@ -70,7 +70,7 @@ const catalogo = [
   },
   {
     id: 3,
-    nome: 'Moletom Bege com Capuz',
+    nome: 'Moletom Discípulos com Capuz',
     categoria: 'Moletons',
     preco: 259.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
@@ -110,7 +110,7 @@ const catalogo = [
   },
   {
     id: 5,
-    nome: 'Moletom Preto com Capuz',
+    nome: 'Moletom RHEMA com Capuz',
     categoria: 'Moletons',
     preco: 129.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
@@ -146,14 +146,96 @@ const catalogo = [
   }
 ];
 
+// Variações de cor dos produtos básicos. Cada cor tem a própria imagem e
+// estoque por tamanho; cores sem saldo cadastrado permanecem indisponíveis.
+function criarVarianteProduto(produto, slug, nome, src, imagens, estoquePorTamanho) {
+  const imagemDestaque = { src: src, alt: `${produto.nome}, cor ${nome}` };
+  return {
+    slug: slug,
+    nome: nome,
+    imagemDestaque: imagemDestaque,
+    imagens: imagens || [imagemDestaque],
+    estoquePorTamanho: estoquePorTamanho || Object.fromEntries(produto.tamanhos.map(function(tamanho) {
+      return [tamanho, 0];
+    }))
+  };
+}
+
+function configurarVariantesProduto(id, definicoes) {
+  const produto = catalogo.find(function(item) { return item.id === id; });
+  if (!produto) return;
+  produto.variantes = definicoes.map(function(definicao) {
+    return criarVarianteProduto(
+      produto,
+      definicao.slug,
+      definicao.nome,
+      definicao.src,
+      definicao.imagens,
+      definicao.estoquePorTamanho
+    );
+  });
+  produto.imagemDestaque = produto.variantes[0].imagemDestaque;
+  produto.imagens = produto.variantes[0].imagens;
+}
+
+const estoqueCamisetaStreetwearPreta = { P: 1, M: 1, G: 1, GG: 0 };
+
+configurarVariantesProduto(1, [
+  { slug: 'preta', nome: 'Preta', src: 'imagens/camiseta%20preta/camiseta-preta.jpeg', imagens: catalogo[0].imagens, estoquePorTamanho: estoqueCamisetaStreetwearPreta },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/camiseta-streetwear/branca.jpg' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/camiseta%20off%20white/camiseta-off-principal.jpeg' },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/camiseta-streetwear/marrom.jpg' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/variantes-produtos/camiseta-streetwear/verde-musgo.jpg' }
+]);
+
+configurarVariantesProduto(2, [
+  { slug: 'preta', nome: 'Preta', src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', imagens: catalogo[1].imagens },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/calca-reta/branca.jpg' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/variantes-produtos/calca-reta/off-white.jpg' },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/calca-reta/marrom.jpg' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal-verde.png' }
+]);
+
+configurarVariantesProduto(3, [
+  { slug: 'preta', nome: 'Preta', src: 'imagens/variantes-produtos/moletom-historia/preta.jpg' },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/moletom-historia/branca.jpg' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/catalogo-vistas/moletom-capuz-areia-prancha.png', imagens: catalogo[2].imagens },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/moletom-historia/marrom.jpg' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/variantes-produtos/moletom-historia/verde-musgo.jpg' }
+]);
+
+configurarVariantesProduto(4, [
+  { slug: 'preta', nome: 'Preta', src: 'imagens/Nova%20pasta/bone-preto.jpeg', imagens: catalogo[3].imagens.slice(4) },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/bone-rhema/branca.jpg' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/variantes-produtos/bone-rhema/off-white.jpg' },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/bone-rhema/marrom.jpg' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/variantes-produtos/bone-rhema/verde-musgo.jpg' }
+]);
+
+configurarVariantesProduto(5, [
+  { slug: 'preta', nome: 'Preta', src: 'imagens/catalogo-vistas/moletom-capuz-preto-prancha.png', imagens: catalogo[4].imagens },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/moletom-capuz/branca.jpg' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/variantes-produtos/moletom-capuz/off-white.jpg' },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/moletom-capuz/marrom.jpg' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/variantes-produtos/moletom-capuz/verde-musgo.jpg' }
+]);
+
+configurarVariantesProduto(6, [
+  { slug: 'preta', nome: 'Preta', src: 'imagens/catalogo-vistas/casaco-sem-capuz-prancha.png', imagens: catalogo[5].imagens },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/casaco-sem-capuz/branca.jpg' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/variantes-produtos/casaco-sem-capuz/off-white.jpg' },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/casaco-sem-capuz/marrom.jpg' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/variantes-produtos/casaco-sem-capuz/verde-musgo.jpg' }
+]);
+
 // Modelos da coleção Crônicas da Fé. As imagens ficam organizadas por cor,
 // e cada prancha de apresentação abre junto das vistas individuais do produto.
 const coresColecaoFe = [
   { slug: 'preta', nome: 'Preta' },
-  { slug: 'branco', nome: 'Branco suave' },
-  { slug: 'cinza', nome: 'Cinza mescla' },
-  { slug: 'verde-militar-musgo', nome: 'Verde militar / musgo' },
-  { slug: 'marrom', nome: 'Marrom chocolate' }
+  { slug: 'branco', nome: 'Branca' },
+  { slug: 'off-white', nome: 'Off-white' },
+  { slug: 'marrom', nome: 'Marrom' },
+  { slug: 'verde-militar-musgo', nome: 'Verde musgo' }
 ];
 
 const modelosColecaoFe = [
@@ -225,12 +307,14 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
       ? 'imagens/colecao-cronicas-da-fe'
       : `imagens/colecao-cronicas-da-fe/cores/${cor.slug}`;
 
-    const prancha = { src: `imagens/colecao-cronicas-da-fe/pranchas-de-apresentacao/${modelo.slug}-${cor.slug}.png`, alt: `prancha da ${modelo.nome}, cor ${cor.nome}` };
+    const extensaoPrancha = cor.slug === 'off-white' ? 'jpg' : 'png';
+    const prancha = { src: `imagens/colecao-cronicas-da-fe/pranchas-de-apresentacao/${modelo.slug}-${cor.slug}.${extensaoPrancha}`, alt: `prancha da ${modelo.nome}, cor ${cor.nome}` };
     return {
       slug: cor.slug,
       nome: cor.nome,
+      estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
       imagemDestaque: prancha,
-      imagens: [
+      imagens: cor.slug === 'off-white' ? [prancha] : [
         { src: `${pasta}/${modelo.slug}-frente.png`, alt: `frente da ${modelo.nome}, cor ${cor.nome}` },
         { src: `${pasta}/${modelo.slug}-costas.png`, alt: `costas da ${modelo.nome}, cor ${cor.nome}` },
         { src: `${pasta}/${modelo.slug}-lado.png`, alt: `vista lateral da ${modelo.nome}, cor ${cor.nome}` },
@@ -258,16 +342,22 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
 
 catalogo.push(...produtosColecaoFe);
 
-function obterEstoqueTamanho(produto, tamanho) {
-  if (!produto || !produto.estoquePorTamanho || !Object.prototype.hasOwnProperty.call(produto.estoquePorTamanho, tamanho)) return 0;
-  const quantidade = Number(produto.estoquePorTamanho[tamanho]);
+function obterEstoqueTamanho(produto, tamanho, variante) {
+  const estoque = variante && variante.estoquePorTamanho
+    ? variante.estoquePorTamanho
+    : produto && produto.estoquePorTamanho;
+  if (!estoque || !Object.prototype.hasOwnProperty.call(estoque, tamanho)) return 0;
+  const quantidade = Number(estoque[tamanho]);
   return Number.isInteger(quantidade) && quantidade >= 0 ? quantidade : 0;
 }
 
-function obterEstoqueTotal(produto) {
-  if (!produto || !produto.estoquePorTamanho) return null;
+function obterEstoqueTotal(produto, variante) {
+  const estoque = variante && variante.estoquePorTamanho
+    ? variante.estoquePorTamanho
+    : produto && produto.estoquePorTamanho;
+  if (!produto || !estoque) return null;
   return produto.tamanhos.reduce(function(total, tamanho) {
-    return total + obterEstoqueTamanho(produto, tamanho);
+    return total + obterEstoqueTamanho(produto, tamanho, variante);
   }, 0);
 }
 
@@ -280,15 +370,20 @@ function obterCarrinho() {
   }
 }
 
-function quantidadeNoCarrinho(produtoId, tamanho, ignorarIndice) {
+function quantidadeNoCarrinho(produto, tamanho, variante, ignorarIndice) {
+  const slugPadrao = produto && Array.isArray(produto.variantes) && produto.variantes.length
+    ? produto.variantes[0].slug
+    : '';
+  const slugSelecionado = variante ? variante.slug : slugPadrao;
   return obterCarrinho().reduce(function(total, item, indice) {
-    if (indice === ignorarIndice || Number(item.id) !== Number(produtoId) || item.tamanho !== tamanho) return total;
+    const slugNoCarrinho = item.corSlug || slugPadrao;
+    if (indice === ignorarIndice || Number(item.id) !== Number(produto.id) || item.tamanho !== tamanho || slugNoCarrinho !== slugSelecionado) return total;
     return total + Math.max(1, Number(item.quantidade) || 1);
   }, 0);
 }
 
-function obterEstoqueDisponivel(produto, tamanho, ignorarIndice) {
-  return Math.max(0, obterEstoqueTamanho(produto, tamanho) - quantidadeNoCarrinho(produto.id, tamanho, ignorarIndice));
+function obterEstoqueDisponivel(produto, tamanho, variante, ignorarIndice) {
+  return Math.max(0, obterEstoqueTamanho(produto, tamanho, variante) - quantidadeNoCarrinho(produto, tamanho, variante, ignorarIndice));
 }
 
 function textoEstoqueBaixo(quantidade) {
@@ -311,8 +406,9 @@ function atualizarIconeFavorito(botao, favoritado) {
   botao.classList.toggle('favoritado', favoritado);
 }
 
-function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
-  const quantidade = obterEstoqueTotal(produto);
+function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque, variante) {
+  const variantePadrao = variante || (Array.isArray(produto.variantes) ? produto.variantes[0] : null);
+  const quantidade = obterEstoqueTotal(produto, variantePadrao);
   const esgotado = quantidade === 0;
 
   if (botaoImagem) {
@@ -667,8 +763,8 @@ if (botaoCarrinho) {
 
     function atualizarDisponibilidadeSelecionada() {
       const tamanho = selectTamanho.value;
-      const noEstoque = obterEstoqueTamanho(produtoAtual, tamanho);
-      const disponivel = obterEstoqueDisponivel(produtoAtual, tamanho);
+      const noEstoque = obterEstoqueTamanho(produtoAtual, tamanho, varianteSelecionada);
+      const disponivel = obterEstoqueDisponivel(produtoAtual, tamanho, varianteSelecionada);
       const rotuloEstoque = noEstoque === 0
         ? `Esgotado no tamanho ${tamanho}.`
         : disponivel === 0
@@ -739,7 +835,7 @@ if (botaoCarrinho) {
     });
     selectTamanho.addEventListener('change', atualizarDisponibilidadeSelecionada);
     inputQuantidade.addEventListener('input', function() {
-      const disponivel = obterEstoqueDisponivel(produtoAtual, selectTamanho.value);
+      const disponivel = obterEstoqueDisponivel(produtoAtual, selectTamanho.value, varianteSelecionada);
       const quantidade = Math.max(1, Math.min(disponivel || 1, Math.floor(Number(inputQuantidade.value) || 1)));
       inputQuantidade.value = String(quantidade);
     });
@@ -752,7 +848,7 @@ if (botaoCarrinho) {
       const corSlugEscolhida = varianteSelecionada ? varianteSelecionada.slug : '';
       const quantidadeSolicitada = Math.max(1, Math.floor(Number(inputQuantidade.value) || 1));
       const carrinho = obterCarrinho();
-      const disponivel = obterEstoqueDisponivel(produtoAtual, tamanhoEscolhido);
+      const disponivel = obterEstoqueDisponivel(produtoAtual, tamanhoEscolhido, varianteSelecionada);
 
       if (quantidadeSolicitada > disponivel) {
         alert(`Há somente ${disponivel} ${disponivel === 1 ? 'unidade disponível' : 'unidades disponíveis'} no tamanho ${tamanhoEscolhido}.`);
@@ -874,8 +970,11 @@ document.addEventListener('DOMContentLoaded', function() {
           ? `${item.nome} (${detalhesVariacao.join(', ')})`
           : item.nome;
         const produto = catalogo.find(function(itemCatalogo) { return itemCatalogo.id === Number(item.id); });
+        const varianteCarrinho = produto && Array.isArray(produto.variantes)
+          ? produto.variantes.find(function(variante) { return variante.slug === item.corSlug; }) || produto.variantes[0]
+          : null;
         const estoqueDisponivelParaSomar = produto
-          ? Math.max(0, obterEstoqueTamanho(produto, item.tamanho) - quantidadeNoCarrinho(item.id, item.tamanho, index))
+          ? obterEstoqueDisponivel(produto, item.tamanho, varianteCarrinho, index)
           : 0;
 
         const linha = document.createElement('div');
@@ -940,8 +1039,11 @@ document.addEventListener('DOMContentLoaded', function() {
       if (botao.dataset.cartAction === 'decrease' && quantidade > 1) item.quantidade = quantidade - 1;
       if (botao.dataset.cartAction === 'increase') {
         const produto = catalogo.find(function(itemCatalogo) { return itemCatalogo.id === Number(item.id); });
+        const varianteCarrinho = produto && Array.isArray(produto.variantes)
+          ? produto.variantes.find(function(variante) { return variante.slug === item.corSlug; }) || produto.variantes[0]
+          : null;
         const disponivelAdicional = produto
-          ? obterEstoqueTamanho(produto, item.tamanho) - quantidadeNoCarrinho(item.id, item.tamanho, indice)
+          ? obterEstoqueDisponivel(produto, item.tamanho, varianteCarrinho, indice)
           : 0;
         if (disponivelAdicional > 0) item.quantidade = quantidade + 1;
       }
