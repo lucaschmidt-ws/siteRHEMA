@@ -903,9 +903,7 @@ if (input) {
   const parametrosBusca = new URLSearchParams(window.location.search);
   const categoriasValidas = new Set(catalogo.map(function(produto) { return produto.categoria; }));
   const categoriaSolicitada = parametrosBusca.get('categoria');
-  // Mantém funcionando o atalho editorial Lifestyle já publicado na homepage.
-  const categoriaMapeada = categoriaSolicitada === 'Lifestyle' ? 'Casacos' : categoriaSolicitada;
-  const categoriaAtiva = categoriasValidas.has(categoriaMapeada) ? categoriaMapeada : '';
+  const categoriaAtiva = categoriasValidas.has(categoriaSolicitada) ? categoriaSolicitada : '';
   const statusBusca = document.getElementById('catalog-filter-status');
   input.value = parametrosBusca.get('busca') || '';
 
@@ -926,8 +924,7 @@ if (input) {
     if (statusBusca) {
       statusBusca.replaceChildren();
       if (categoriaAtiva) {
-        const nomeCategoria = categoriaSolicitada === 'Lifestyle' ? 'Lifestyle (Casacos)' : categoriaAtiva;
-        statusBusca.append(`Categoria: ${nomeCategoria}. `);
+        statusBusca.append(`Categoria: ${categoriaAtiva}. `);
         const limparFiltro = document.createElement('a');
         limparFiltro.href = 'catalogo.html#search-input';
         limparFiltro.textContent = 'Ver todas as categorias';
