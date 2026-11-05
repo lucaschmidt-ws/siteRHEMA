@@ -2586,119 +2586,137 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   .site-footer .footer-brand img { width: 118px; }
   .site-footer .footer-credit { margin-top: -18px; }
 
+}
+
 /* Biblioteca RHEMA: Sabedoria & Graça */
-.wisdom-feature {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  width: min(100% - 72px, 1510px);
-  min-height: clamp(320px, 34vw, 470px);
-  align-items: center;
-  overflow: hidden;
-  margin: clamp(44px, 6vw, 82px) auto;
-  border: 1px solid rgba(201, 149, 46, .55);
-  background: #0d0c0a;
-}
-.wisdom-feature::before,
-.wisdom-hero::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(8, 8, 8, .86) 0%, rgba(8, 8, 8, .76) 38%, rgba(8, 8, 8, .15) 100%), linear-gradient(0deg, rgba(8, 8, 8, .4), transparent 55%);
-  content: '';
-}
-.wisdom-feature > img {
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.wisdom-feature-copy {
-  width: min(650px, 62%);
-  padding: clamp(30px, 5vw, 72px);
-}
-.wisdom-kicker { margin: 0 0 14px; color: #d6b877; font-size: 9px; font-weight: 700; letter-spacing: .23em; line-height: 1.7; text-transform: uppercase; }
-.wisdom-feature h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(43px, 6vw, 76px); font-style: italic; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+.wisdom-page { color: #211d18; background: #e8e0d3; background-image: repeating-linear-gradient(0deg, rgba(87,65,38,.018) 0, rgba(87,65,38,.018) 1px, transparent 1px, transparent 4px); }
+.wisdom-main { width: 100%; max-width: none; padding: 0 0 clamp(58px,8vw,100px); margin: 0 auto; }
+.wisdom-hero { display: grid; width: min(100% - 72px,1510px); min-height: clamp(460px,45vw,650px); grid-template-columns: .88fr 1.12fr; align-items: center; gap: clamp(28px,5vw,78px); padding: clamp(42px,6vw,88px) 0; margin: 0 auto; border-bottom: 1px solid rgba(112,77,29,.35); }
+.wisdom-hero-copy { position: relative; z-index: 1; padding: 10px 0; }
+.wisdom-kicker { margin: 0 0 14px; color: #8a672e; font-size: 9px; font-weight: 700; letter-spacing: .21em; line-height: 1.7; text-transform: uppercase; }
+.wisdom-hero h1,.wisdom-shop-intro h2,.wisdom-manifesto h2,.wisdom-curation h2 { font-family: 'Playfair Display',Georgia,serif; font-weight: 600; font-style: italic; letter-spacing: -.045em; }
+.wisdom-hero h1 { max-width: 620px; margin: 0; color: #33251d; font-size: clamp(52px,7vw,92px); line-height: .98; }
+.wisdom-hero h1 span { color: #9a6b28; white-space: nowrap; }
+.wisdom-hero-lead { max-width: 500px; margin: 22px 0 0; color: #65594c; font-size: clamp(15px,1.45vw,18px); line-height: 1.8; }
+.wisdom-actions { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 26px; }
+.wisdom-link { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 13px; padding: 0 15px; border: 1px solid rgba(119,82,31,.55); color: #64491f; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; transition: background .2s ease,color .2s ease,gap .2s ease,border-color .2s ease; }
+.wisdom-link:hover,.wisdom-link:focus-visible { gap: 18px; border-color: #4b3522; background: #211a15; color: #f0dfbb; }
+.wisdom-link:focus-visible { outline: 2px solid #a87b35; outline-offset: 4px; }
+.wisdom-link span { color: #a47a36; font-size: 15px; }
+.wisdom-link:hover span,.wisdom-link:focus-visible span { color: #e6c47e; }
+.wisdom-hero-art { position: relative; min-width: 0; height: clamp(330px,37vw,520px); overflow: hidden; margin: 0; border: 1px solid rgba(115,79,32,.42); background: #191511; box-shadow: 0 22px 60px rgba(48,34,19,.16); }
+.wisdom-hero-art::after { position: absolute; inset: 48% 0 0; background: linear-gradient(0deg,rgba(8,7,6,.76),transparent); content: ''; pointer-events: none; }
+.wisdom-hero-image { width: 100%; height: 100%; object-fit: cover; object-position: 72% center; }
+.wisdom-hero-art figcaption { position: absolute; z-index: 1; right: 18px; bottom: 16px; left: 18px; display: flex; justify-content: space-between; gap: 16px; color: #eee5d6; font-size: 8px; letter-spacing: .19em; text-transform: uppercase; }
+.wisdom-quick-links { display: flex; width: min(100% - 72px,1510px); flex-wrap: wrap; gap: 10px; padding: 22px 0; margin: 0 auto; border-bottom: 1px solid rgba(112,77,29,.25); }
+.wisdom-quick-links a { padding: 11px 15px; border: 1px solid rgba(112,77,29,.3); color: #493a2d; font-size: 9px; font-weight: 700; letter-spacing: .11em; text-decoration: none; text-transform: uppercase; transition: background .2s ease,color .2s ease; }
+.wisdom-quick-links a:hover,.wisdom-quick-links a:focus-visible { background: #241c16; color: #f0dfbb; outline-color: #9a6b28; }
+.wisdom-quick-links a span { margin-left: 10px; color: #a47a36; }
+.wisdom-shop-intro { display: grid; width: min(100% - 72px,1240px); grid-template-columns: 1.1fr .9fr; align-items: end; gap: clamp(28px,7vw,100px); padding: clamp(65px,8vw,110px) 0 42px; margin: 0 auto; }
+.wisdom-shop-intro .wisdom-kicker { margin-bottom: 12px; }
+.wisdom-shop-intro h2 { max-width: 720px; margin: 0; color: #33251d; font-size: clamp(34px,5vw,59px); line-height: 1.08; }
+.wisdom-shop-intro h2 span { color: #9a6b28; }
+.wisdom-shop-intro > p { max-width: 530px; margin: 0 0 4px; color: #665b4e; font-size: 13px; line-height: 1.9; }
+.wisdom-categories { display: grid; width: min(100% - 72px,1240px); grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin: 0 auto; }
+.wisdom-category-card { display: grid; min-height: 300px; grid-template-columns: .92fr 1.08fr; overflow: hidden; border: 1px solid rgba(112,77,29,.28); background: rgba(247,242,233,.64); transition: border-color .25s ease,transform .25s ease,box-shadow .25s ease; }
+.wisdom-category-card:hover { transform: translateY(-3px); border-color: rgba(112,77,29,.58); box-shadow: 0 16px 36px rgba(48,34,19,.1); }
+.wisdom-category-art { position: relative; min-height: 100%; overflow: hidden; background: #d2c4ae; }
+.wisdom-category-art--bible img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; object-position: 76% center; }
+.wisdom-category-art--books { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 24px; background: radial-gradient(ellipse at 50% 35%,rgba(202,169,111,.35),transparent 53%),linear-gradient(145deg,#d8cbb5,#b9a88f); }
+.wisdom-category-art--books span { display: block; width: 25%; height: 58%; border: 1px solid rgba(241,222,182,.47); background: linear-gradient(90deg,rgba(0,0,0,.3),transparent 20%,rgba(255,255,255,.12) 50%,transparent 72%,rgba(0,0,0,.18)),#433629; box-shadow: 6px 8px 14px rgba(36,26,17,.2); transform: rotate(-7deg) translateY(12px); }
+.wisdom-category-art--books span:nth-child(2) { height: 70%; background-color: #786047; transform: rotate(2deg) translateY(-2px); }
+.wisdom-category-art--books span:nth-child(3) { height: 62%; background-color: #302923; transform: rotate(8deg) translateY(9px); }
+.wisdom-category-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(22px,3vw,38px); }
+.wisdom-category-index { margin: 0 0 13px; color: #94723b; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
+.wisdom-category-copy h3 { margin: 0; color: #2c241e; font-family: 'Playfair Display',Georgia,serif; font-size: clamp(27px,3vw,39px); font-style: italic; font-weight: 600; }
+.wisdom-category-copy > p:not(.wisdom-category-index) { max-width: 280px; margin: 10px 0 0; color: #665b4e; font-size: 12px; line-height: 1.75; }
+.wisdom-category-copy .wisdom-link { min-height: 40px; margin-top: 20px; padding: 0 12px; font-size: 8px; }
+.wisdom-manifesto { display: grid; width: 100%; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(30px,7vw,110px); padding: clamp(58px,8vw,104px) max(36px,calc((100vw - 1240px)/2)); margin-top: clamp(72px,9vw,120px); border-top: 1px solid rgba(198,155,82,.56); border-bottom: 1px solid rgba(198,155,82,.56); background: #171411; color: #eee7db; }
+.wisdom-manifesto .wisdom-kicker { color: #c8a466; }
+.wisdom-manifesto h2 { max-width: 700px; margin: 0; color: #f1eadf; font-size: clamp(37px,5.5vw,67px); line-height: 1.08; }
+.wisdom-manifesto h2 span { color: #d3b574; }
+.wisdom-manifesto-copy p { max-width: 540px; margin: 0; color: #c8c0b2; font-size: 13px; line-height: 1.95; }
+.wisdom-manifesto .wisdom-link { margin-top: 22px; border-color: rgba(211,181,116,.65); color: #e3c98e; }
+.wisdom-manifesto .wisdom-link:hover,.wisdom-manifesto .wisdom-link:focus-visible { background: rgba(211,181,116,.12); color: #fff7e8; }
+.wisdom-curation { display: flex; width: min(100% - 72px,1240px); align-items: center; justify-content: space-between; gap: 32px; padding: clamp(30px,5vw,56px); margin: clamp(64px,8vw,100px) auto 0; border: 1px solid rgba(112,77,29,.35); background: rgba(248,243,234,.6); }
+.wisdom-curation .wisdom-kicker { margin-bottom: 10px; }
+.wisdom-curation h2 { margin: 0; color: #33251d; font-size: clamp(29px,4vw,45px); line-height: 1.08; }
+.wisdom-curation div > p:last-child { max-width: 710px; margin: 13px 0 0; color: #665b4e; font-size: 12px; line-height: 1.85; }
+.wisdom-curation > .wisdom-link { flex: 0 0 auto; }
+
+/* Faixa de destaque da biblioteca na página inicial. */
+.wisdom-feature { position: relative; isolation: isolate; display: flex; width: min(100% - 72px,1510px); min-height: clamp(320px,34vw,470px); align-items: center; overflow: hidden; margin: clamp(44px,6vw,82px) auto; border: 1px solid rgba(201,149,46,.55); background: #0d0c0a; }
+.wisdom-feature::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,rgba(8,8,8,.86),rgba(8,8,8,.76) 38%,rgba(8,8,8,.15)),linear-gradient(0deg,rgba(8,8,8,.4),transparent 55%); content: ''; }
+.wisdom-feature > img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.wisdom-feature-copy { width: min(650px,62%); padding: clamp(30px,5vw,72px); }
+.wisdom-feature .wisdom-kicker { color: #d6b877; }
+.wisdom-feature h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display',Georgia,serif; font-size: clamp(43px,6vw,76px); font-style: italic; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
 .wisdom-feature h2 span { color: #d6b877; white-space: nowrap; }
-.wisdom-feature-copy > p:not(.wisdom-kicker) { max-width: 460px; margin: 18px 0 0; color: #e1ded7; font-size: clamp(14px, 1.5vw, 17px); line-height: 1.7; }
-.wisdom-feature-copy > a,
-.wisdom-link { display: inline-flex; min-height: 44px; align-items: center; gap: 14px; padding: 0 15px; margin-top: 24px; border: 1px solid rgba(201,149,46,.72); color: #e7c27e; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; transition: background .18s ease, color .18s ease, gap .18s ease; }
-.wisdom-feature-copy > a:hover,
-.wisdom-feature-copy > a:focus-visible,
-.wisdom-link:hover,
-.wisdom-link:focus-visible { gap: 20px; background: rgba(201,149,46,.12); color: #f2f0ea; }
-.wisdom-feature-copy > a:focus-visible,
-.wisdom-link:focus-visible { outline: 2px solid #f1d18d; outline-offset: 4px; }
-.wisdom-feature-copy > a span,
-.wisdom-link span { color: #d6b877; font-size: 15px; }
+.wisdom-feature-copy > p:not(.wisdom-kicker) { max-width: 460px; margin: 18px 0 0; color: #e1ded7; font-size: clamp(14px,1.5vw,17px); line-height: 1.7; }
+.wisdom-feature-copy > a { display: inline-flex; min-height: 44px; align-items: center; gap: 14px; padding: 0 15px; margin-top: 24px; border: 1px solid rgba(201,149,46,.72); color: #e7c27e; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; transition: background .18s ease,color .18s ease,gap .18s ease; }
+.wisdom-feature-copy > a:hover,.wisdom-feature-copy > a:focus-visible { gap: 20px; background: rgba(201,149,46,.12); color: #f2f0ea; }
+.wisdom-feature-copy > a:focus-visible { outline: 2px solid #f1d18d; outline-offset: 4px; }
+.wisdom-feature-copy > a span { color: #d6b877; font-size: 15px; }
 .wisdom-feature-index { position: absolute; right: 20px; bottom: 18px; color: rgba(242,240,234,.72); font-size: 8px; letter-spacing: .2em; }
-
-.wisdom-main { width: 100%; max-width: none; padding: 0 0 88px; margin: 0 auto; }
-.wisdom-hero { position: relative; isolation: isolate; display: flex; min-height: clamp(490px, 54vw, 700px); align-items: center; overflow: hidden; border-bottom: 1px solid rgba(201,149,46,.72); background: #090908; }
-.wisdom-hero::before { background: linear-gradient(90deg, rgba(8,8,8,.88) 0%, rgba(8,8,8,.76) 36%, rgba(8,8,8,.18) 100%), linear-gradient(0deg, rgba(8,8,8,.42), transparent 60%); }
-.wisdom-hero-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.wisdom-hero-copy { width: min(790px, 70%); padding: clamp(54px, 8vw, 112px) 0; margin-left: clamp(24px, 8vw, 120px); }
-.wisdom-hero h1 { max-width: 760px; margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(56px, 9vw, 112px); font-style: italic; font-weight: 600; letter-spacing: -.055em; line-height: .98; }
-.wisdom-hero h1 span { color: #d6b877; white-space: nowrap; }
-.wisdom-hero-lead { max-width: 530px; margin: 23px 0 0; color: #e1ded7; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.7; }
-.wisdom-hero-index { position: absolute; right: clamp(18px, 4vw, 56px); bottom: 22px; color: rgba(242,240,234,.7); font-size: 8px; letter-spacing: .2em; }
-.wisdom-intro { width: min(100% - 48px, 840px); padding: clamp(66px, 8vw, 108px) 0 48px; margin: 0 auto; text-align: center; }
-.wisdom-intro .wisdom-kicker { margin-bottom: 12px; }
-.wisdom-intro h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(35px, 5vw, 58px); font-style: italic; font-weight: 600; letter-spacing: -.035em; line-height: 1.12; }
-.wisdom-intro h2 span { color: #d6b877; }
-.wisdom-intro > p:last-child { max-width: 690px; margin: 20px auto 0; color: #cbc6bb; font-size: 14px; line-height: 1.9; }
-.wisdom-pillars { display: grid; width: min(100% - 72px, 1250px); grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0 auto; }
-.wisdom-pillar { min-height: 270px; padding: clamp(22px, 3vw, 34px); border: 1px solid rgba(201,149,46,.3); background: linear-gradient(145deg, rgba(34,32,27,.86), rgba(17,17,15,.96)); }
-.wisdom-pillar-icon { display: grid; width: 46px; height: 46px; place-items: center; margin-bottom: 28px; border: 1px solid rgba(201,149,46,.48); color: #d6b877; }
-.wisdom-pillar-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.2; }
-.wisdom-pillar-number { margin: 0 0 7px; color: #b79a60; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
-.wisdom-pillar h3 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(22px, 2.2vw, 29px); font-style: italic; font-weight: 600; }
-.wisdom-pillar > p:last-child { margin: 12px 0 0; color: #c8c3b9; font-size: 12px; line-height: 1.8; }
-.wisdom-belief { width: min(100% - 48px, 920px); padding: clamp(52px, 7vw, 82px) 0; margin: clamp(56px, 7vw, 86px) auto 0; border-top: 1px solid rgba(201,149,46,.56); border-bottom: 1px solid rgba(201,149,46,.56); text-align: center; }
-.wisdom-belief h2 { max-width: 760px; margin: 0 auto; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(34px, 5vw, 56px); font-style: italic; font-weight: 600; letter-spacing: -.03em; line-height: 1.12; }
-.wisdom-belief > p:last-child { max-width: 700px; margin: 19px auto 0; color: #cbc6bb; font-size: 13px; line-height: 1.9; }
-.wisdom-coming { display: grid; width: min(100% - 72px, 1250px); grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: clamp(20px, 4vw, 54px); padding: clamp(26px, 4vw, 46px); margin: clamp(56px, 7vw, 88px) auto 0; border: 1px solid rgba(201,149,46,.36); background: radial-gradient(ellipse at 0 50%, rgba(201,149,46,.1), transparent 45%), #141310; }
-.wisdom-coming > span { color: rgba(214,184,119,.45); font-family: 'Playfair Display', Georgia, serif; font-size: clamp(52px, 8vw, 88px); font-style: italic; line-height: .8; }
-.wisdom-coming h2 { margin: 0; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(23px, 3vw, 35px); font-style: italic; font-weight: 600; line-height: 1.15; }
-.wisdom-coming div > p:last-child { max-width: 650px; margin: 9px 0 0; color: #c6c0b4; font-size: 11px; line-height: 1.7; }
-.wisdom-coming .wisdom-link { margin: 0; white-space: nowrap; }
-
-@media (max-width: 760px) {
-  .wisdom-feature { width: min(100% - 36px, 700px); min-height: 380px; }
-  .wisdom-feature-copy { width: 80%; padding: 28px; }
-  .wisdom-feature-index { right: 12px; bottom: 12px; font-size: 7px; }
-  .wisdom-hero { min-height: 560px; }
-  .wisdom-hero-image { object-position: 60% center; }
-  .wisdom-hero::before { background: linear-gradient(90deg, rgba(8,8,8,.87), rgba(8,8,8,.55)), linear-gradient(0deg, rgba(8,8,8,.5), transparent 70%); }
-  .wisdom-hero-copy { width: min(100% - 40px, 620px); margin-left: 24px; }
-  .wisdom-pillars { width: min(100% - 36px, 700px); grid-template-columns: 1fr; }
-  .wisdom-pillar { min-height: auto; }
-  .wisdom-pillar-icon { margin-bottom: 20px; }
-  .wisdom-coming { width: min(100% - 36px, 700px); grid-template-columns: auto minmax(0,1fr); }
-  .wisdom-coming .wisdom-link { grid-column: 2; justify-self: start; }
+@media (max-width: 900px) {
+  .wisdom-hero { width: min(100% - 48px,760px); grid-template-columns: 1fr; gap: 28px; padding: 58px 0; }
+  .wisdom-hero-copy { max-width: 670px; }
+  .wisdom-hero-art { height: clamp(300px,56vw,470px); }
+  .wisdom-quick-links,.wisdom-shop-intro,.wisdom-categories,.wisdom-curation { width: min(100% - 48px,760px); }
+  .wisdom-shop-intro { grid-template-columns: 1fr; gap: 20px; }
+  .wisdom-category-card { grid-template-columns: 1fr; }
+  .wisdom-category-art { min-height: 220px; }
+  .wisdom-category-art--bible img { min-height: 220px; max-height: 260px; }
+  .wisdom-category-art--books { min-height: 220px; }
+  .wisdom-category-art--books span { max-width: 70px; }
+  .wisdom-manifesto { grid-template-columns: 1fr; padding-right: 36px; padding-left: 36px; }
+  .wisdom-curation { align-items: flex-start; flex-direction: column; }
+  .wisdom-feature { width: min(100% - 48px,760px); }
 }
-@media (max-width: 480px) {
-  .wisdom-feature { min-height: 390px; }
-  .wisdom-feature > img { object-position: 62% center; }
-  .wisdom-feature::before { background: linear-gradient(90deg, rgba(8,8,8,.9), rgba(8,8,8,.72) 70%, rgba(8,8,8,.25)); }
-  .wisdom-feature-copy { width: 95%; padding: 22px; }
-  .wisdom-feature h2 { font-size: clamp(42px, 12vw, 56px); }
-  .wisdom-feature h2 span { white-space: normal; }
-  .wisdom-hero { min-height: 520px; }
-  .wisdom-hero-copy { margin-left: 20px; }
-  .wisdom-hero h1 { font-size: clamp(52px, 15vw, 74px); }
+@media (max-width: 580px) {
+  .wisdom-main { padding-bottom: 58px; }
+  .wisdom-hero,.wisdom-quick-links,.wisdom-shop-intro,.wisdom-categories,.wisdom-curation { width: min(100% - 36px,520px); }
+  .wisdom-hero { min-height: 0; gap: 24px; padding: 43px 0 34px; }
+  .wisdom-hero h1 { font-size: clamp(48px,13vw,70px); }
   .wisdom-hero h1 span { white-space: normal; }
-  .wisdom-hero-index { right: 12px; bottom: 13px; font-size: 7px; }
-  .wisdom-intro { width: min(100% - 36px, 620px); }
-  .wisdom-coming { grid-template-columns: 1fr; gap: 18px; }
-  .wisdom-coming > span { font-size: 52px; }
-  .wisdom-coming .wisdom-link { grid-column: 1; }
+  .wisdom-hero-lead { margin-top: 16px; font-size: 14px; }
+  .wisdom-hero-art { height: 270px; }
+  .wisdom-hero-image { object-position: 68% center; }
+  .wisdom-hero-art figcaption { right: 12px; bottom: 12px; left: 12px; font-size: 7px; }
+  .wisdom-quick-links { padding: 15px 0; }
+  .wisdom-quick-links a { flex: 1 1 145px; text-align: center; }
+  .wisdom-shop-intro { padding-top: 55px; }
+  .wisdom-shop-intro h2 { font-size: 37px; }
+  .wisdom-shop-intro > p { font-size: 12px; }
+  .wisdom-categories { grid-template-columns: 1fr; gap: 13px; }
+  .wisdom-category-card { grid-template-columns: .85fr 1.15fr; min-height: 220px; }
+  .wisdom-category-art { min-height: 220px; }
+  .wisdom-category-art--bible img { min-height: 220px; height: 100%; }
+  .wisdom-category-art--books { padding: 12px; }
+  .wisdom-category-art--books span { width: 28%; height: 53%; }
+  .wisdom-category-copy { padding: 17px 14px; }
+  .wisdom-category-index { font-size: 7px; }
+  .wisdom-category-copy h3 { font-size: 27px; }
+  .wisdom-category-copy > p:not(.wisdom-category-index) { font-size: 10px; }
+  .wisdom-category-copy .wisdom-link { gap: 7px; padding: 0 8px; font-size: 7px; }
+  .wisdom-manifesto { gap: 22px; padding: 48px 22px; margin-top: 58px; }
+  .wisdom-manifesto h2 { font-size: 42px; }
+  .wisdom-manifesto-copy p { font-size: 12px; }
+  .wisdom-curation { gap: 22px; padding: 24px 20px; margin-top: 58px; }
+  .wisdom-curation h2 { font-size: 32px; }
+  .wisdom-curation div > p:last-child { font-size: 11px; }
+  .wisdom-feature { width: min(100% - 36px,520px); min-height: 390px; }
+  .wisdom-feature > img { object-position: 62% center; }
+  .wisdom-feature::before { background: linear-gradient(90deg,rgba(8,8,8,.9),rgba(8,8,8,.72) 70%,rgba(8,8,8,.25)); }
+  .wisdom-feature-copy { width: 95%; padding: 22px; }
+  .wisdom-feature h2 { font-size: clamp(42px,12vw,56px); }
+  .wisdom-feature h2 span { white-space: normal; }
+  .wisdom-feature-index { right: 12px; bottom: 12px; font-size: 7px; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .wisdom-feature-copy > a,.wisdom-link,.wisdom-category-card,.wisdom-quick-links a { transition: none; }
+  .wisdom-category-card:hover { transform: none; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .site-footer a,
   .site-footer .footer-social-link { transition: none; }
