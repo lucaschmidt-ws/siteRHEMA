@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore o Lifestyle RHEMA: fé na rotina, criatividade, movimento e comunidade em cada passo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  <title>Lifestyle | RHEMA</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="lifestyle-page">
+  <header class="site-header clothing-site-header">
+    <a class="brand" href="index.html" aria-label="RHEMA, página inicial">
+      <span class="clothing-brand-wordmark" aria-hidden="true">RHEMA</span>
+      <span class="clothing-brand-caption" aria-hidden="true">Streetwear</span>
+    </a>
+    <span class="clothing-header-rule" aria-hidden="true"></span>
+    <div class="header-actions" aria-label="Ações rápidas">
+      <a class="header-action" href="catalogo.html#search-input" aria-label="Buscar produtos" title="Buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 5 5"></path></svg>
+      </a>
+      <a class="header-action" href="carrinho.html" aria-label="Abrir sacola, 0 itens" title="Sacola">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l1.2 12H4.3L5.5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <button class="header-action clothing-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="clothing-menu-panel" title="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+      </button>
+    </div>
+    <nav class="clothing-menu-panel clothing-menu-panel--organized" id="clothing-menu-panel" aria-label="Navegação principal" hidden>
+      <div class="clothing-menu-group">
+        <h2>Navegação</h2>
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Roupas</a>
+        <a href="catalogo.html">Catálogo completo</a>
+        <a href="sabedoria.html">Sabedoria &amp; Graça</a>
+      </div>
+      <div class="clothing-menu-group">
+        <h2>Comprar por categoria</h2>
+        <a href="catalogo.html?categoria=Camisetas#catalogo">Camisetas</a>
+        <a href="catalogo.html?categoria=Cal%C3%A7as#catalogo">Calças</a>
+        <a href="catalogo.html?categoria=Moletons#catalogo">Moletons</a>
+        <a href="catalogo.html?categoria=Casacos#catalogo">Casacos</a>
+        <a href="catalogo.html?categoria=Acess%C3%B3rios#catalogo">Acessórios</a>
+      </div>
+      <div class="clothing-menu-group">
+        <h2>Explore e ajuda</h2>
+        <a href="lifestyle.html" aria-current="page">Lifestyle</a>
+        <a href="sobre.html">Histórias</a>
+        <a href="politicas.html#entrega">Entrega e trocas</a>
+        <a href="privacidade.html">Privacidade</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="lifestyle-main">
+    <section class="lifestyle-lookbook" id="lifestyle" aria-labelledby="lifestyle-title">
+      <div class="lifestyle-lookbook-inner">
+        <div class="lifestyle-lookbook-heading">
+          <div>
+            <p class="lifestyle-lookbook-kicker">RHEMA · LIFESTYLE</p>
+            <h1 id="lifestyle-title">Fé na rotina.<br><span>Estilo em cada passo.</span></h1>
+          </div>
+          <div class="lifestyle-lookbook-intro">
+            <p>O propósito também se expressa nas escolhas do dia a dia. Um olhar RHEMA sobre movimento, criatividade e comunidade.</p>
+            <a href="catalogo.html">Explorar as roupas <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="lifestyle-lookbook-grid">
+          <article class="lifestyle-lookbook-card lifestyle-lookbook-card-main">
+            <img src="imagens/editorial/foto-lifestyle-rhema.png" alt="Editorial de streetwear preto em uma rua urbana durante a luz dourada do fim da tarde" fetchpriority="high" decoding="async">
+            <div class="lifestyle-lookbook-card-copy"><p>01 / MOVIMENTO</p><h2>A cidade também é caminho.</h2><a href="catalogo.html">Explorar peças <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="lifestyle-lookbook-card">
+            <img src="imagens/editorial/lifestyle-criacao.jpg" alt="Editorial RHEMA em um estúdio criativo, com camiseta off-white e calça verde musgo" loading="lazy" decoding="async">
+            <div class="lifestyle-lookbook-card-copy"><p>02 / CRIAÇÃO</p><h2>Vista o que te move.</h2><a href="catalogo.html">Explorar peças <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="lifestyle-lookbook-card">
+            <img src="imagens/editorial/lifestyle-comunidade.jpg" alt="Três amigos reunidos ao ar livre em roupas streetwear pretas, off-white e verde musgo" loading="lazy" decoding="async">
+            <div class="lifestyle-lookbook-card-copy"><p>03 / COMUNIDADE</p><h2>Histórias que caminham juntas.</h2><a href="sobre.html#historia">Conheça a RHEMA <span aria-hidden="true">↗</span></a></div>
+          </article>
+        </div>
+        <p class="lifestyle-lookbook-note">Imagens editoriais de inspiração. Consulte cada produto no catálogo para ver suas fotos, cores e disponibilidade.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer-compact">
+    <div class="footer-help-links">
+      <h2>Políticas e ajuda</h2>
+      <a href="politicas.html#trocas-devolucoes">Trocas e devoluções</a>
+      <a href="politicas.html#entrega">Entrega</a>
+      <a href="privacidade.html">Privacidade</a>
+    </div>
+    <div class="footer-contact">
+      <h2>Atendimento</h2>
+      <a href="https://wa.me/5551999218124" target="_blank" rel="noopener noreferrer">WhatsApp RHEMA</a>
+      <p class="footer-contact-note">Instagram e e-mail oficiais serão adicionados depois.</p>
+    </div>
+    <div class="footer-payments">
+      <h2>Bandeiras de cartão previstas</h2>
+      <div class="footer-payment-logos" role="group" aria-label="Visa, Mastercard e Elo"><span class="payment-logo payment-visa" role="img" aria-label="Visa">VISA</span><span class="payment-logo payment-mastercard" role="img" aria-label="Mastercard"><span class="mastercard-symbol" aria-hidden="true"></span><span>mastercard</span></span><span class="payment-logo payment-elo" role="img" aria-label="Elo">elo</span></div>
+      <p class="footer-payment-note">A disponibilidade depende da futura integração de pagamento.</p>
+    </div>
+    <div class="footer-brand"><a class="footer-brand-link" href="index.html" aria-label="Página inicial da RHEMA"><img src="imagens/logo-rhema-claro.png" alt="RHEMA" class="footer-logo"></a><p>Sal na terra e luz no mundo</p></div>
+    <p class="footer-legal">&copy; 2026 Rhema Streetwear. Todos os direitos reservados.</p>
+    <p class="footer-credit">Este site foi desenvolvido com ajuda do OpenAI Codex, assistente de IA, sob direção e revisão da pessoa responsável pela RHEMA.</p>
+  </footer>
+  <div class="floating-buttons">
+    <a href="carrinho.html" class="fab fab-cart" aria-label="Ver carrinho"><span class="icon-bag" aria-hidden="true"></span><span class="fab-badge" id="fab-cart-count">0</span></a>
+    <button class="fab fab-top" id="fab-top" aria-label="Voltar ao topo">↑</button>
+    <a href="https://wa.me/5551999218124" class="fab fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp"><svg class="fab-chat-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.5Z"></path><path d="M9 9.2c.4 2.1 2 3.8 4.1 4.4l1-1 1.8.7-.2 1.7c-.1.5-.6.8-1.1.8-3.7-.4-6.8-3.4-7.2-7.1 0-.5.3-1 .8-1.1l1.7-.2.7 1.8-1 .9Z"></path></svg></a>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
