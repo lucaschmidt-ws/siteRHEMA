@@ -2605,9 +2605,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .wisdom-link span { color: #a47a36; font-size: 15px; }
 .wisdom-link:hover span,.wisdom-link:focus-visible span { color: #e6c47e; }
 .wisdom-hero-art { position: relative; min-width: 0; height: clamp(330px,37vw,520px); overflow: hidden; margin: 0; border: 1px solid rgba(115,79,32,.42); background: #191511; box-shadow: 0 22px 60px rgba(48,34,19,.16); }
-.wisdom-hero-art::after { position: absolute; inset: 48% 0 0; background: linear-gradient(0deg,rgba(8,7,6,.76),transparent); content: ''; pointer-events: none; }
 .wisdom-hero-image { width: 100%; height: 100%; object-fit: cover; object-position: 72% center; }
-.wisdom-hero-art figcaption { position: absolute; z-index: 1; right: 18px; bottom: 16px; left: 18px; display: flex; justify-content: space-between; gap: 16px; color: #eee5d6; font-size: 8px; letter-spacing: .19em; text-transform: uppercase; }
 .wisdom-quick-links { display: flex; width: min(100% - 72px,1510px); flex-wrap: wrap; gap: 10px; padding: 22px 0; margin: 0 auto; border-bottom: 1px solid rgba(112,77,29,.25); }
 .wisdom-quick-links a { padding: 11px 15px; border: 1px solid rgba(112,77,29,.3); color: #493a2d; font-size: 9px; font-weight: 700; letter-spacing: .11em; text-decoration: none; text-transform: uppercase; transition: background .2s ease,color .2s ease; }
 .wisdom-quick-links a:hover,.wisdom-quick-links a:focus-visible { background: #241c16; color: #f0dfbb; outline-color: #9a6b28; }
@@ -2622,10 +2620,8 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .wisdom-category-card:hover { transform: translateY(-3px); border-color: rgba(112,77,29,.58); box-shadow: 0 16px 36px rgba(48,34,19,.1); }
 .wisdom-category-art { position: relative; min-height: 100%; overflow: hidden; background: #d2c4ae; }
 .wisdom-category-art--bible img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; object-position: 76% center; }
-.wisdom-category-art--books { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 24px; background: radial-gradient(ellipse at 50% 35%,rgba(202,169,111,.35),transparent 53%),linear-gradient(145deg,#d8cbb5,#b9a88f); }
-.wisdom-category-art--books span { display: block; width: 25%; height: 58%; border: 1px solid rgba(241,222,182,.47); background: linear-gradient(90deg,rgba(0,0,0,.3),transparent 20%,rgba(255,255,255,.12) 50%,transparent 72%,rgba(0,0,0,.18)),#433629; box-shadow: 6px 8px 14px rgba(36,26,17,.2); transform: rotate(-7deg) translateY(12px); }
-.wisdom-category-art--books span:nth-child(2) { height: 70%; background-color: #786047; transform: rotate(2deg) translateY(-2px); }
-.wisdom-category-art--books span:nth-child(3) { height: 62%; background-color: #302923; transform: rotate(8deg) translateY(9px); }
+.wisdom-category-art--books { background: #f1eee8; }
+.wisdom-category-art--books img { display: block; width: 100%; height: 100%; min-height: 300px; object-fit: cover; object-position: center; }
 .wisdom-category-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(22px,3vw,38px); }
 .wisdom-category-index { margin: 0 0 13px; color: #94723b; font-size: 8px; font-weight: 700; letter-spacing: .18em; }
 .wisdom-category-copy h3 { margin: 0; color: #2c241e; font-family: 'Playfair Display',Georgia,serif; font-size: clamp(27px,3vw,39px); font-style: italic; font-weight: 600; }
@@ -2668,7 +2664,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   .wisdom-category-art { min-height: 220px; }
   .wisdom-category-art--bible img { min-height: 220px; max-height: 260px; }
   .wisdom-category-art--books { min-height: 220px; }
-  .wisdom-category-art--books span { max-width: 70px; }
+  .wisdom-category-art--books img { min-height: 220px; max-height: 260px; }
   .wisdom-manifesto { grid-template-columns: 1fr; padding-right: 36px; padding-left: 36px; }
   .wisdom-curation { align-items: flex-start; flex-direction: column; }
   .wisdom-feature { width: min(100% - 48px,760px); }
@@ -2682,7 +2678,6 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   .wisdom-hero-lead { margin-top: 16px; font-size: 14px; }
   .wisdom-hero-art { height: 270px; }
   .wisdom-hero-image { object-position: 68% center; }
-  .wisdom-hero-art figcaption { right: 12px; bottom: 12px; left: 12px; font-size: 7px; }
   .wisdom-quick-links { padding: 15px 0; }
   .wisdom-quick-links a { flex: 1 1 145px; text-align: center; }
   .wisdom-shop-intro { padding-top: 55px; }
@@ -2692,8 +2687,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   .wisdom-category-card { grid-template-columns: .85fr 1.15fr; min-height: 220px; }
   .wisdom-category-art { min-height: 220px; }
   .wisdom-category-art--bible img { min-height: 220px; height: 100%; }
-  .wisdom-category-art--books { padding: 12px; }
-  .wisdom-category-art--books span { width: 28%; height: 53%; }
+  .wisdom-category-art--books img { min-height: 220px; height: 100%; }
   .wisdom-category-copy { padding: 17px 14px; }
   .wisdom-category-index { font-size: 7px; }
   .wisdom-category-copy h3 { font-size: 27px; }
