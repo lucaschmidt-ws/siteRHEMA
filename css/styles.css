@@ -1876,7 +1876,8 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 }
 
 .clothing-site-header .header-action:hover,
-.clothing-site-header .header-action:focus-visible {
+.clothing-site-header .header-action:focus-visible,
+.clothing-site-header .header-action[aria-current="page"] {
   color: #e7c27e;
   transform: translateY(-1px);
 }
@@ -2237,6 +2238,139 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .catalog-category-filters a:hover, .catalog-category-filters a:focus-visible { border-color: #c9952e; background: rgba(201,149,46,.11); color: #e7c27e; }
 .catalog-category-filters a:focus-visible { outline: 2px solid #f1d18d; outline-offset: 3px; }
 .catalog-page .clothing-catalog { padding-top: clamp(24px, 3vw, 42px); }
+
+/* Catálogo RHEMA: imagens proporcionais, controles discretos e cartões consistentes. */
+.catalog-page .clothing-catalog .product-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+.catalog-page .clothing-catalog .product-card {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 14px;
+  border: 1px solid rgba(201, 149, 46, .26);
+  background: linear-gradient(180deg, #191815, #11110f);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .16);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.catalog-page .clothing-catalog .product-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 149, 46, .72);
+  box-shadow: 0 15px 34px rgba(0, 0, 0, .28);
+}
+.catalog-page .product-image-zoom {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #171613;
+}
+.catalog-page .product-image-zoom::after { content: none; }
+.catalog-page .product-image-zoom .product-gallery {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.catalog-page .product-image-zoom .catalog-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #171613;
+  transition: transform .35s ease;
+}
+.catalog-page .product-card:hover .catalog-card-image { transform: scale(1.025); }
+.catalog-page .favorito {
+  z-index: 4;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-color: rgba(242, 240, 234, .54);
+  background: rgba(15, 15, 14, .76);
+  color: #f2f0ea;
+  backdrop-filter: blur(6px);
+}
+.catalog-page .favorito svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+.catalog-page .favorito.favoritado svg { fill: currentColor; }
+.catalog-page .favorito:hover { color: #e7c27e; transform: scale(1.07); }
+.catalog-page .catalog-zoom-icon {
+  position: absolute;
+  z-index: 3;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(242, 240, 234, .54);
+  border-radius: 50%;
+  background: rgba(15, 15, 14, .76);
+  color: #f2f0ea;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity .18s ease, transform .18s ease;
+  backdrop-filter: blur(6px);
+}
+.catalog-page .catalog-zoom-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+.catalog-page .product-image-zoom:hover .catalog-zoom-icon,
+.catalog-page .product-image-zoom:focus-visible .catalog-zoom-icon { opacity: 1; transform: translateY(0); }
+.catalog-page .stock-badge { top: 12px; left: 12px; max-width: calc(100% - 66px); border-color: rgba(201,149,46,.66); background: rgba(12,12,11,.78); color: #f1d18d; backdrop-filter: blur(6px); }
+.catalog-page .product-card h3 { padding: 14px 14px 0; margin: 0; color: #f2f0ea; font-size: 15px; line-height: 1.45; }
+.catalog-page .product-card .price { padding: 0 14px; margin: 5px 0 14px; color: #d6b877; font-size: 14px; font-weight: 700; }
+.catalog-page .product-card > .stock-count { padding: 0 14px; margin: 8px 0 0; color: #e7c27e; }
+.catalog-page .product-card .btn-small {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 14px;
+  border-color: rgba(201, 149, 46, .72);
+  color: #e7c27e;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.catalog-page .product-card .btn-small:hover,
+.catalog-page .product-card .btn-small:focus-visible { border-color: #e7c27e; background: rgba(201,149,46,.14); color: #f2f0ea; }
+.catalog-page .product-card .btn-small:focus-visible { outline: 2px solid #f1d18d; outline-offset: 3px; }
+@media (hover: none), (pointer: coarse) {
+  .catalog-page .catalog-zoom-icon { opacity: 1; transform: none; }
+}
+@media (max-width: 768px) {
+  .catalog-page .clothing-catalog .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+}
+@media (max-width: 540px) {
+  .catalog-page .clothing-catalog .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .catalog-page .product-card h3 { padding: 11px 10px 0; font-size: 13px; }
+  .catalog-page .product-card .price { padding: 0 10px; margin-bottom: 11px; font-size: 13px; }
+  .catalog-page .product-card .btn-small { min-height: 38px; margin: 0 10px; font-size: 8px; }
+  .catalog-page .favorito { top: 8px; right: 8px; width: 34px; height: 34px; }
+  .catalog-page .catalog-zoom-icon { right: 8px; bottom: 8px; width: 34px; height: 34px; }
+  .catalog-page .stock-badge { top: 8px; left: 8px; padding: 6px 8px; font-size: 8px; }
+}
+@media (max-width: 380px) {
+  .catalog-page .clothing-catalog .product-grid { grid-template-columns: 1fr; }
+}
 
 @media (min-width: 761px) and (max-width: 1050px) {
   .rhema-black-collection .home-product-card { flex-basis: calc((100% - 32px) / 3); }

@@ -1,5 +1,34 @@
 // JavaScript para o projeto RHEMA
 
+// Cabeçalho unificado: mantém o menu acessível em todas as páginas do site.
+const menuRhema = document.querySelector('#clothing-menu-panel');
+const alternadorMenuRhema = document.querySelector('.clothing-menu-toggle');
+
+if (menuRhema && alternadorMenuRhema) {
+  const fecharMenuRhema = function() {
+    menuRhema.hidden = true;
+    alternadorMenuRhema.setAttribute('aria-expanded', 'false');
+    alternadorMenuRhema.setAttribute('aria-label', 'Abrir menu');
+  };
+
+  alternadorMenuRhema.addEventListener('click', function() {
+    const aberto = alternadorMenuRhema.getAttribute('aria-expanded') !== 'true';
+    menuRhema.hidden = !aberto;
+    alternadorMenuRhema.setAttribute('aria-expanded', String(aberto));
+    alternadorMenuRhema.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  });
+
+  document.addEventListener('click', function(evento) {
+    if (!alternadorMenuRhema.contains(evento.target) && !menuRhema.contains(evento.target)) {
+      fecharMenuRhema();
+    }
+  });
+
+  document.addEventListener('keydown', function(evento) {
+    if (evento.key === 'Escape') fecharMenuRhema();
+  });
+}
+
 // Lista de produtos do catálogo (os mesmos de produtos.html).
 // A página produto.html usa esta lista para mostrar o produto escolhido.
 const catalogo = [
@@ -269,6 +298,19 @@ function textoEstoqueBaixo(quantidade) {
   return `Restam ${quantidade} unidades`;
 }
 
+function criarIconeZoomCatalogo() {
+  const icone = document.createElement('span');
+  icone.className = 'catalog-zoom-icon';
+  icone.setAttribute('aria-hidden', 'true');
+  icone.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5M10.5 7.5v6M7.5 10.5h6"></path></svg>';
+  return icone;
+}
+
+function atualizarIconeFavorito(botao, favoritado) {
+  botao.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg>';
+  botao.classList.toggle('favoritado', favoritado);
+}
+
 function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
   const quantidade = obterEstoqueTotal(produto);
   const esgotado = quantidade === 0;
@@ -315,6 +357,7 @@ function criarCartaoProduto(produto, paginaInicial) {
   quadro.className = paginaInicial ? 'product-photo' : 'product-gallery';
   quadro.dataset.productId = produto.id;
   botaoZoom.appendChild(quadro);
+  if (!paginaInicial) botaoZoom.appendChild(criarIconeZoomCatalogo());
 
   if (paginaInicial) {
     const link = document.createElement('a');
@@ -334,7 +377,7 @@ function criarCartaoProduto(produto, paginaInicial) {
     favorito.dataset.id = produto.id;
     favorito.setAttribute('aria-label', 'Favoritar produto');
     favorito.setAttribute('aria-pressed', 'false');
-    favorito.textContent = '♡';
+    atualizarIconeFavorito(favorito, false);
 
     const nome = document.createElement('h3');
     nome.textContent = produto.nome;
@@ -472,6 +515,9 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
     botao.setAttribute('aria-label', `Ampliar imagens de ${produto.nome}`);
     quadro.parentNode.insertBefore(botao, quadro);
     botao.appendChild(quadro);
+    if (document.querySelector('.catalog-page')) {
+      botao.appendChild(criarIconeZoomCatalogo());
+    }
   }
 
   const botaoZoom = quadro.classList.contains('product-photo')
@@ -1584,8 +1630,7 @@ function carregarFavoritos() {
 }
 
 function atualizarBotaoFavorito(botao, favoritado) {
-  botao.classList.toggle('favoritado', favoritado);
-  botao.textContent = favoritado ? '♥' : '♡';
+  atualizarIconeFavorito(botao, favoritado);
   botao.setAttribute('aria-pressed', favoritado ? 'true' : 'false');
   botao.setAttribute('aria-label', favoritado ? 'Remover dos favoritos' : 'Favoritar produto');
 }
