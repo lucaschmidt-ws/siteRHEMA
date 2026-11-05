@@ -73,12 +73,6 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - O erro de declaração duplicada da galeria foi removido.
 - O manual unificado agora explica como incluir outra foto: copiar o arquivo para a pasta correta e adicionar um item `{ src, alt }` à lista `imagens` do produto.
 
-## Seção editorial em movimento
-
-- A página `produtos.html` ganhou, logo abaixo das categorias, um frame horizontal “Propósito em movimento”.
-- O frame alterna imagens editoriais em loop sem som, tem controle acessível de pausa/reprodução e respeita `prefers-reduced-motion`.
-- As imagens existentes servem como prévia; quando houver um vídeo próprio da RHEMA, a sequência pode ser substituída pelo arquivo de campanha.
-
 ## Arquivos atualizados na implementação 8.9 e nesta revisão
 
 - `index.html`
