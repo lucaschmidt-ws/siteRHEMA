@@ -2,6 +2,8 @@
 
 **Última atualização:** 05/11/2026
 
+**Rodapé:** refinado em todas as páginas sem alterar as informações ou o logo. O fundo agora tem mais contraste, as colunas respiram melhor, os títulos e divisórias usam dourado discreto, e o logo, slogan, direitos autorais e crédito de colaboração fecham o rodapé centralizados. O layout adapta as colunas para tablet e celular.
+
 **Roupas — frame e RHEMA BLACK:** a seção “Coleção 2026 / PROPÓSITO” saiu da homepage e foi incorporada à página `produtos.html`, depois das categorias e do espaço reservado para o vídeo horizontal. A coleção foi renomeada para **RHEMA BLACK**, sem ano, e destaca camisetas, calça, moletom e casaco pretos do catálogo em um tratamento editorial escuro e dourado. O frame está reservado para um futuro vídeo real de campanha com movimento humano; não contém apresentação de imagens nem mídia provisória.
 
 **Catálogo de roupas:** removido o cabeçalho “Peças com propósito / Vista a sua história” da página Roupas. A busca, os filtros e os produtos foram mantidos em `catalogo.html`.

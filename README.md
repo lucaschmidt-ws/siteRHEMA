@@ -20,6 +20,8 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 
 Os cabeçalhos de Início e Histórias usam a mesma identidade visual de Roupas: wordmark RHEMA à esquerda, linha dourada, busca, sacola e menu recolhível. O menu separa navegação, categorias do catálogo e conteúdo institucional; cada categoria abre o catálogo já filtrado. Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse ou navegar com teclado e removem o deslocamento quando o navegador pede movimento reduzido.
 
+O rodapé foi refinado em todas as páginas com fundo mais escuro para leitura, colunas alinhadas, títulos e linhas douradas discretas, e fechamento centralizado com o logo RHEMA, slogan, direitos autorais e crédito de colaboração. Os contatos, links institucionais e avisos de pagamento foram mantidos.
+
 ## Como visualizar
 
 Abra `index.html` no navegador. Algumas funções do carrinho e do catálogo usam JavaScript local.
