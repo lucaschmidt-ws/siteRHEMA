@@ -4,6 +4,8 @@
 
 **Roupas — frame e RHEMA BLACK:** a seção “Coleção 2026 / PROPÓSITO” saiu da homepage e foi incorporada à página `produtos.html`, depois das categorias e do espaço reservado para o vídeo horizontal. A coleção foi renomeada para **RHEMA BLACK**, sem ano, e destaca camisetas, calça, moletom e casaco pretos do catálogo em um tratamento editorial escuro e dourado. O frame está reservado para um futuro vídeo real de campanha com movimento humano; não contém apresentação de imagens nem mídia provisória.
 
+**Catálogo de roupas:** removido o cabeçalho “Peças com propósito / Vista a sua história”. A busca, os filtros e os cards dos produtos permanecem na página.
+
 **Página Roupas — Manifesto Street:** a direção escolhida foi integrada à página `produtos.html`, preservando a navegação e a identidade escura e dourada da RHEMA. As categorias são Camisetas, Calças, Moletons, Casacos sem capuz e Acessórios. A antiga Jaqueta foi retirada do catálogo e substituída por um casaco/moletom de gola careca sem capuz; os atalhos da homepage acompanham as categorias. Os moletons com capuz e o casaco têm pranchas com vistas de frente, costas, laterais e detalhes; as pranchas do boné também apresentam seus ângulos. O botão editorial “Ver lifestyle” permanece compatível e filtra Casacos.
 
 **Vistas do catálogo:** foram incluídas pranchas para o moletom bege com capuz, o moletom preto com capuz e o Casaco RHEMA sem capuz em `imagens/catalogo-vistas/`. São mockups criados com ajuda do OpenAI Codex; não são fotos de peças físicas e não confirmam especificações de fabricação. O casaco substitui o produto Jaqueta no ID 6 e conserva o preço já associado a esse espaço (R$ 199,90) e o estoque zerado.

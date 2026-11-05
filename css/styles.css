@@ -1489,7 +1489,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .clothing-category-card:hover .clothing-category-action, .clothing-category-card:focus-visible .clothing-category-action { color: #F2F0EA; border-color: var(--cor-dourado); }
 .clothing-paper-note { display: flex; min-height: 62px; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 34px); padding: 14px 24px; border-top: 1px solid rgba(201, 149, 46, .75); border-bottom: 1px solid rgba(201, 149, 46, .75); background-color: #E7E0D2; background-image: repeating-linear-gradient(2deg, rgba(75, 60, 39, .025) 0 1px, transparent 1px 4px); color: #171613; font-size: clamp(9px, 1.15vw, 12px); font-weight: 700; letter-spacing: .19em; text-align: center; text-transform: uppercase; }
 .clothing-paper-divider { color: var(--cor-dourado-contraste); font-size: 18px; }
-.clothing-catalog { padding: clamp(54px, 7vw, 92px) 0 clamp(68px, 8vw, 112px); scroll-margin-top: 28px; }
+.clothing-catalog { padding: clamp(32px, 4vw, 56px) 0 clamp(68px, 8vw, 112px); scroll-margin-top: 28px; }
 .clothing-catalog-heading { margin-bottom: 24px; }
 .clothing-all-link { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--cor-dourado); color: var(--cor-texto-claro); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
 .clothing-all-link span { color: var(--cor-dourado); font-size: 15px; }
