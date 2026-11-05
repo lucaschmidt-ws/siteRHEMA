@@ -5,7 +5,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 ## Estrutura
 
 - `index.html`: página inicial.
-- `produtos.html`: catálogo de produtos.
+- `produtos.html`: página de roupas com a direção visual Manifesto Street, cinco categorias filtráveis e catálogo pesquisável.
 - `produto.html`: página de detalhes do produto.
 - `carrinho.html`: carrinho de compras.
 - `sobre.html`: história do fundador e interface para envio/leitura de testemunhos da comunidade.
@@ -23,6 +23,10 @@ Os cartões em “Explore por categoria” têm estados sutis ao passar o mouse 
 
 Abra `index.html` no navegador. Algumas funções do carrinho e do catálogo usam JavaScript local.
 O item “Histórias” leva à página `sobre.html`. O formulário do mural está preparado, mas permanece desativado até o projeto Supabase ser ativado e conectado; as etapas estão em `Manual_RHEMA_Unificado.md`.
+
+## Página Roupas — Manifesto Street
+
+A página `produtos.html` combina a direção editorial em preto e branco com a identidade atual da RHEMA: fundo escuro, detalhes dourados e uma faixa clara inspirada em papel impresso. O destaque usa uma foto editorial que já pertence ao projeto; os cartões levam a Camisetas, Calças, Moletons, Jaquetas e Acessórios e filtram o catálogo existente. A Jaqueta está categorizada em Jaquetas. O botão editorial “Ver lifestyle” da homepage continua funcionando como atalho para essa categoria. As fotos e os produtos continuam sendo os arquivos já cadastrados; o tratamento monocromático é aplicado pelo CSS.
 
 ## Coleção Crônicas da Fé
 

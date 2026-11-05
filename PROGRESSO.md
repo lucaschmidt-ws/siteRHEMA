@@ -2,6 +2,8 @@
 
 **Última atualização:** 04/11/2026
 
+**Página Roupas — Manifesto Street:** a direção escolhida foi integrada à página `produtos.html`, preservando a navegação e a identidade escura e dourada da RHEMA. Um hero editorial monocromático apresenta a coleção; cartões com imagens existentes filtram Camisetas, Calças, Moletons, Jaquetas e Acessórios; uma faixa clara de textura impressa cria contraste com o tema atual. A busca e o catálogo continuam disponíveis abaixo. A Jaqueta agora pertence à categoria Jaquetas, que também substitui Lifestyle nos atalhos de categoria da homepage. O botão editorial “Ver lifestyle” continua filtrando Jaquetas para manter os links existentes compatíveis.
+
 **Políticas do site:** criadas páginas próprias para entrega, trocas e devoluções (`politicas.html`) e privacidade (`privacidade.html`); links foram adicionados aos rodapés. Os textos descrevem o site como catálogo sem checkout ou pagamento, orientam confirmar frete e prazo pelo WhatsApp, explicam o direito de arrependimento e defeitos, e documentam dados locais, fontes/hospedagem, WhatsApp, formulários inativos e direitos de privacidade. A identificação “RHEMA Streetwear” e o WhatsApp são provisórios, conforme informado pela pessoa responsável; razão social e endereço ainda não foram fornecidos.
 
 **Carrinho e estoque por tamanho:** a Camiseta Streetwear tem P 1, M 1, G 1 e GG 0; todos os tamanhos dos outros produtos estão em zero. A página do produto informa o saldo do tamanho selecionado, permite escolher quantidades até o saldo restante e apresenta uma faixa translúcida sobre a foto para estoque de 1 a 5 ou esgotado. O carrinho permite aumentar/diminuir quantidades, soma subtotais e total, e impede ultrapassar o saldo combinado entre cores. A sacola continua local e demonstrativa; não conclui pedidos nem sincroniza o estoque entre pessoas.
@@ -48,7 +50,7 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] 8.8 — ícones flutuantes sem emojis e contagem acessível no carrinho.
 - [x] Faixa “Streetwear com identidade” adicionada entre os benefícios e a vitrine.
 - [x] Fotos reais associadas aos cards da homepage e do catálogo.
-- [x] Os cinco atalhos de categoria filtram os produtos; a Jaqueta está marcada como Lifestyle.
+- [x] Os cartões da página Roupas e os atalhos da homepage filtram Camisetas, Calças, Moletons, Jaquetas e Acessórios; o botão editorial “Ver lifestyle” continua funcionando como acesso à categoria Jaquetas.
 - [x] Os cartões de categoria têm animações sutis e foco visível, com respeito à preferência por movimento reduzido.
 - [x] Busca aceita termos sem acento, como “bone” para encontrar “Boné”.
 - [x] Correções estruturais: hero duplicado removido, link interno consertado e rodapé ajustado.
@@ -104,7 +106,7 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 - As cores e imagens da nova coleção estão disponíveis como mockups; confirmar cores comerciais antes de vender as peças.
 - Os produtos com uma foto cadastrada precisam de novas vistas antes de terem miniaturas.
 - As imagens dos cards usam a primeira foto cadastrada em `catalogo` no `js/main.js`; confira se cada foto representa a versão comercial que será vendida.
-- A categoria Lifestyle está associada ao produto Jaqueta por ser a opção disponível no catálogo atual; revise essa classificação quando a organização comercial estiver definida.
+- O botão editorial “Ver lifestyle” permanece compatível com a categoria Jaquetas; novos produtos de lifestyle podem receber sua própria classificação quando forem cadastrados.
 - O catálogo ainda repete nome, preço e ID entre `produtos.html` e `js/main.js`; mantenha esses dados sincronizados.
 - A arte final do hero da etapa 8.4 ainda não foi fornecida.
 - As imagens editoriais de 8.7 estão em `imagens/editorial/`: editorial, lifestyle e textura para o símbolo original.

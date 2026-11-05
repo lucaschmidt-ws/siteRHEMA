@@ -33,15 +33,76 @@
   </div>
 </header>
 
-  <main>
-    <h1>Catálogo</h1>
+  <main class="clothing-main">
+    <section class="clothing-hero" aria-labelledby="clothing-title">
+      <img class="clothing-hero-image" src="imagens/editorial/foto-lifestyle-rhema.png" alt="" aria-hidden="true" fetchpriority="high">
+      <div class="clothing-hero-content">
+        <p class="clothing-kicker">RHEMA / MANIFESTO STREET</p>
+        <h1 id="clothing-title">Fé em<br>movimento.</h1>
+        <p class="clothing-hero-copy">Arte, identidade e propósito para vestir a sua caminhada.</p>
+        <a class="clothing-hero-link" href="#categorias-roupas">Explorar categorias <span aria-hidden="true">↘</span></a>
+      </div>
+      <p class="clothing-hero-index" aria-hidden="true">01 — RHEMA STREETWEAR</p>
+    </section>
 
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Buscar produtos...">
+    <section class="clothing-categories" id="categorias-roupas" aria-labelledby="clothing-categories-title">
+      <div class="clothing-section-heading">
+        <p class="clothing-kicker">Encontre a sua expressão</p>
+        <h2 id="clothing-categories-title">Explore por categoria</h2>
+      </div>
+      <div class="clothing-category-grid">
+        <a class="clothing-category-card" href="produtos.html?categoria=Camisetas#catalogo" aria-label="Explorar camisetas">
+          <img src="imagens/camiseta%20preta/camiseta-preta-frente.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="clothing-category-number" aria-hidden="true">01</span>
+          <span class="clothing-category-label">Camisetas</span>
+          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="clothing-category-card" href="produtos.html?categoria=Cal%C3%A7as#catalogo" aria-label="Explorar calças">
+          <img src="imagens/calças/streetwear-calça/Calça-Streetwear-frente.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="clothing-category-number" aria-hidden="true">02</span>
+          <span class="clothing-category-label">Calças</span>
+          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="clothing-category-card" href="produtos.html?categoria=Moletons#catalogo" aria-label="Explorar moletons">
+          <img src="imagens/moleton/moleton-preto.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="clothing-category-number" aria-hidden="true">03</span>
+          <span class="clothing-category-label">Moletons</span>
+          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="clothing-category-card" href="produtos.html?categoria=Jaquetas#catalogo" aria-label="Explorar jaquetas">
+          <img src="imagens/jaqueta/jaqueta.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="clothing-category-number" aria-hidden="true">04</span>
+          <span class="clothing-category-label">Jaquetas</span>
+          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="clothing-category-card" href="produtos.html?categoria=Acess%C3%B3rios#catalogo" aria-label="Explorar acessórios">
+          <img src="imagens/Nova%20pasta/bone-preto.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="clothing-category-number" aria-hidden="true">05</span>
+          <span class="clothing-category-label">Acessórios</span>
+          <span class="clothing-category-action">Explorar <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="clothing-paper-note" role="note">
+      <span>Propósito que se veste</span><span class="clothing-paper-divider" aria-hidden="true">✳</span><span>Fé que se compartilha</span>
     </div>
-    <p class="catalog-filter-status" id="catalog-filter-status" aria-live="polite"></p>
 
-    <div class="product-grid">
+    <section class="clothing-catalog" id="catalogo" aria-labelledby="catalog-title">
+      <div class="clothing-section-heading clothing-catalog-heading">
+        <div>
+          <p class="clothing-kicker">Peças com propósito</p>
+          <h2 id="catalog-title">Vista a sua história</h2>
+        </div>
+        <a class="clothing-all-link" href="produtos.html#catalogo">Ver coleção completa <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="search-container">
+        <label class="visually-hidden" for="search-input">Buscar produtos</label>
+        <input type="text" id="search-input" placeholder="Buscar produtos...">
+      </div>
+      <p class="catalog-filter-status" id="catalog-filter-status" aria-live="polite"></p>
+
+      <div class="product-grid">
       <article class="product-card" data-product-id="1">
         <div class="product-gallery" data-product-id="1"></div>
         <button class="favorito" type="button" data-id="1" aria-label="Favoritar produto" aria-pressed="false">♡</button>
@@ -84,7 +145,8 @@
         <p class="price">R$ 199,90</p>
         <a href="produto.html?id=6" class="btn-small">Ver Detalhes</a>
       </article>
-    </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer site-footer-compact">

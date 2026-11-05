@@ -81,7 +81,7 @@ const catalogo = [
   {
     id: 6,
     nome: 'Jaqueta',
-    categoria: 'Lifestyle',
+    categoria: 'Jaquetas',
     preco: 199.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
     descricao: 'Jaqueta da RHEMA.',
@@ -731,7 +731,10 @@ if (input) {
   const parametrosBusca = new URLSearchParams(window.location.search);
   const categoriasValidas = new Set(catalogo.map(function(produto) { return produto.categoria; }));
   const categoriaSolicitada = parametrosBusca.get('categoria');
-  const categoriaAtiva = categoriasValidas.has(categoriaSolicitada) ? categoriaSolicitada : '';
+  // Mantém funcionando o atalho Lifestyle já publicado na homepage; a jaqueta
+  // agora aparece na categoria de roupas correspondente.
+  const categoriaMapeada = categoriaSolicitada === 'Lifestyle' ? 'Jaquetas' : categoriaSolicitada;
+  const categoriaAtiva = categoriasValidas.has(categoriaMapeada) ? categoriaMapeada : '';
   const statusBusca = document.getElementById('catalog-filter-status');
   input.value = parametrosBusca.get('busca') || '';
 
@@ -752,7 +755,8 @@ if (input) {
     if (statusBusca) {
       statusBusca.replaceChildren();
       if (categoriaAtiva) {
-        statusBusca.append(`Categoria: ${categoriaAtiva}. `);
+        const nomeCategoria = categoriaSolicitada === 'Lifestyle' ? 'Lifestyle (Jaquetas)' : categoriaAtiva;
+        statusBusca.append(`Categoria: ${nomeCategoria}. `);
         const limparFiltro = document.createElement('a');
         limparFiltro.href = 'produtos.html#search-input';
         limparFiltro.textContent = 'Ver todas as categorias';
