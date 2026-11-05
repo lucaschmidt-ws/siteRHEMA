@@ -37,7 +37,7 @@ const catalogo = [
   },
   {
     id: 3,
-    nome: 'Moletom',
+    nome: 'Moletom Bege com Capuz',
     categoria: 'Moletons',
     preco: 259.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
@@ -46,7 +46,8 @@ const catalogo = [
     significado: 'Em dias de frio ou incerteza, esta peça lembra o convite a buscar em Deus amparo e coragem.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
-      { src: 'imagens/moleton/moleton-bege.jpeg', alt: 'moletom bege' }
+      { src: 'imagens/catalogo-vistas/moletom-capuz-areia-prancha.png', alt: 'prancha do moletom bege com capuz, frente, costas, laterais e detalhes' },
+      { src: 'imagens/moleton/moleton-bege.jpeg', alt: 'prancha original do moletom bege com capuz, frente e costas' }
     ]
   },
   {
@@ -60,36 +61,37 @@ const catalogo = [
     significado: 'O boné acompanha o dia a dia; que os pensamentos também sejam guiados pela sabedoria e pelo caráter de Cristo.',
     tamanhos: ['Único'],
     imagens: [
-      { src: 'imagens/Nova%20pasta/bone-bege.jpeg', alt: 'boné bege' },
-      { src: 'imagens/Nova%20pasta/bone-preto.jpeg', alt: 'boné preto' }
+      { src: 'imagens/Nova%20pasta/bone-bege.jpeg', alt: 'prancha do boné RHEMA bege com frente, costas, laterais e detalhes' },
+      { src: 'imagens/Nova%20pasta/bone-preto.jpeg', alt: 'prancha do boné RHEMA preto com frente, costas, laterais e detalhes' }
     ]
   },
   {
     id: 5,
-    nome: 'Hoodie',
+    nome: 'Moletom Preto com Capuz',
     categoria: 'Moletons',
     preco: 129.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
-    descricao: 'Hoodie da RHEMA.',
+    descricao: 'Moletom preto com capuz da RHEMA.',
     versiculo: 'Paráfrase de Mateus 11:28-30: Jesus chama os cansados a se aproximarem dele e encontrarem descanso para a alma.',
     significado: 'O conforto pode lembrar o cuidado de Deus; o descanso que Jesus oferece à alma não significa ausência de dificuldades.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
-      { src: 'imagens/moleton/moleton-preto.jpeg', alt: 'hoodie preto' }
+      { src: 'imagens/catalogo-vistas/moletom-capuz-preto-prancha.png', alt: 'prancha do moletom preto com capuz, frente, costas, laterais e detalhes' },
+      { src: 'imagens/moleton/moleton-preto.jpeg', alt: 'prancha original do moletom preto com capuz, frente, costas, laterais e detalhes' }
     ]
   },
   {
     id: 6,
-    nome: 'Jaqueta',
-    categoria: 'Jaquetas',
+    nome: 'Casaco RHEMA sem capuz',
+    categoria: 'Casacos',
     preco: 199.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
-    descricao: 'Jaqueta da RHEMA.',
+    descricao: 'Moletom de gola careca da RHEMA, sem capuz.',
     versiculo: 'Paráfrase de Colossenses 3:12-14: vistam-se de compaixão, bondade, humildade, mansidão, paciência e amor.',
-    significado: 'A jaqueta se torna um lembrete simbólico para levar essas atitudes às relações do cotidiano.',
+    significado: 'Uma peça para o dia a dia que acompanha a escolha de vestir compaixão, bondade, humildade e amor.',
     tamanhos: ['P', 'M', 'G', 'GG'],
     imagens: [
-      { src: 'imagens/jaqueta/jaqueta.jpeg', alt: 'jaqueta RHEMA, vistas e detalhes' }
+      { src: 'imagens/catalogo-vistas/casaco-sem-capuz-prancha.png', alt: 'prancha do casaco RHEMA sem capuz, frente, costas, laterais e detalhes' }
     ]
   }
 ];
@@ -731,9 +733,8 @@ if (input) {
   const parametrosBusca = new URLSearchParams(window.location.search);
   const categoriasValidas = new Set(catalogo.map(function(produto) { return produto.categoria; }));
   const categoriaSolicitada = parametrosBusca.get('categoria');
-  // Mantém funcionando o atalho Lifestyle já publicado na homepage; a jaqueta
-  // agora aparece na categoria de roupas correspondente.
-  const categoriaMapeada = categoriaSolicitada === 'Lifestyle' ? 'Jaquetas' : categoriaSolicitada;
+  // Mantém funcionando o atalho editorial Lifestyle já publicado na homepage.
+  const categoriaMapeada = categoriaSolicitada === 'Lifestyle' ? 'Casacos' : categoriaSolicitada;
   const categoriaAtiva = categoriasValidas.has(categoriaMapeada) ? categoriaMapeada : '';
   const statusBusca = document.getElementById('catalog-filter-status');
   input.value = parametrosBusca.get('busca') || '';
@@ -755,7 +756,7 @@ if (input) {
     if (statusBusca) {
       statusBusca.replaceChildren();
       if (categoriaAtiva) {
-        const nomeCategoria = categoriaSolicitada === 'Lifestyle' ? 'Lifestyle (Jaquetas)' : categoriaAtiva;
+        const nomeCategoria = categoriaSolicitada === 'Lifestyle' ? 'Lifestyle (Casacos)' : categoriaAtiva;
         statusBusca.append(`Categoria: ${nomeCategoria}. `);
         const limparFiltro = document.createElement('a');
         limparFiltro.href = 'produtos.html#search-input';

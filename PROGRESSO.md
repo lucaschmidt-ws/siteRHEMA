@@ -2,7 +2,9 @@
 
 **Última atualização:** 04/11/2026
 
-**Página Roupas — Manifesto Street:** a direção escolhida foi integrada à página `produtos.html`, preservando a navegação e a identidade escura e dourada da RHEMA. Um hero editorial monocromático apresenta a coleção; cartões com imagens existentes filtram Camisetas, Calças, Moletons, Jaquetas e Acessórios; uma faixa clara de textura impressa cria contraste com o tema atual. A busca e o catálogo continuam disponíveis abaixo. A Jaqueta agora pertence à categoria Jaquetas, que também substitui Lifestyle nos atalhos de categoria da homepage. O botão editorial “Ver lifestyle” continua filtrando Jaquetas para manter os links existentes compatíveis.
+**Página Roupas — Manifesto Street:** a direção escolhida foi integrada à página `produtos.html`, preservando a navegação e a identidade escura e dourada da RHEMA. As categorias são Camisetas, Calças, Moletons, Casacos sem capuz e Acessórios. A antiga Jaqueta foi retirada do catálogo e substituída por um casaco/moletom de gola careca sem capuz; os atalhos da homepage acompanham as categorias. Os moletons com capuz e o casaco têm pranchas com vistas de frente, costas, laterais e detalhes; as pranchas do boné também apresentam seus ângulos. O botão editorial “Ver lifestyle” permanece compatível e filtra Casacos.
+
+**Vistas do catálogo:** foram incluídas pranchas para o moletom bege com capuz, o moletom preto com capuz e o Casaco RHEMA sem capuz em `imagens/catalogo-vistas/`. São mockups criados com ajuda do OpenAI Codex; não são fotos de peças físicas e não confirmam especificações de fabricação. O casaco substitui o produto Jaqueta no ID 6 e conserva o preço já associado a esse espaço (R$ 199,90) e o estoque zerado.
 
 **Políticas do site:** criadas páginas próprias para entrega, trocas e devoluções (`politicas.html`) e privacidade (`privacidade.html`); links foram adicionados aos rodapés. Os textos descrevem o site como catálogo sem checkout ou pagamento, orientam confirmar frete e prazo pelo WhatsApp, explicam o direito de arrependimento e defeitos, e documentam dados locais, fontes/hospedagem, WhatsApp, formulários inativos e direitos de privacidade. A identificação “RHEMA Streetwear” e o WhatsApp são provisórios, conforme informado pela pessoa responsável; razão social e endereço ainda não foram fornecidos.
 
@@ -49,8 +51,8 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] Estoque por tamanho — Camiseta Streetwear com P 1, M 1, G 1, GG 0; demais produtos sem saldo; alerta translúcido nos cards e bloqueio de compra por tamanho esgotado.
 - [x] 8.8 — ícones flutuantes sem emojis e contagem acessível no carrinho.
 - [x] Faixa “Streetwear com identidade” adicionada entre os benefícios e a vitrine.
-- [x] Fotos reais associadas aos cards da homepage e do catálogo.
-- [x] Os cartões da página Roupas e os atalhos da homepage filtram Camisetas, Calças, Moletons, Jaquetas e Acessórios; o botão editorial “Ver lifestyle” continua funcionando como acesso à categoria Jaquetas.
+- [x] Imagens cadastradas associadas aos cards da homepage e do catálogo.
+- [x] Os cartões da página Roupas e os atalhos da homepage filtram Camisetas, Calças, Moletons, Casacos e Acessórios; o botão editorial “Ver lifestyle” continua funcionando como acesso à categoria Casacos.
 - [x] Os cartões de categoria têm animações sutis e foco visível, com respeito à preferência por movimento reduzido.
 - [x] Busca aceita termos sem acento, como “bone” para encontrar “Boné”.
 - [x] Correções estruturais: hero duplicado removido, link interno consertado e rodapé ajustado.
@@ -100,13 +102,14 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 
 ## Pontos a acompanhar
 
-- As fotos da camiseta, calça, moletom, boné e jaqueta agora estão ligadas aos IDs correspondentes no catálogo. Confirme se cada arquivo representa a versão comercial que deseja mostrar.
+- As imagens da camiseta, calça, moletons, boné e casaco sem capuz estão ligadas aos IDs correspondentes no catálogo. Confirme se cada arte representa a versão comercial que deseja mostrar.
 - Os saldos de estoque por tamanho são estáticos no front-end; conectar a uma fonte confiável e reserva de pedidos antes de vender pelo site.
 - Informar razão social e endereço comercial para substituir os dados provisórios nas políticas.
 - As cores e imagens da nova coleção estão disponíveis como mockups; confirmar cores comerciais antes de vender as peças.
 - Os produtos com uma foto cadastrada precisam de novas vistas antes de terem miniaturas.
 - As imagens dos cards usam a primeira foto cadastrada em `catalogo` no `js/main.js`; confira se cada foto representa a versão comercial que será vendida.
-- O botão editorial “Ver lifestyle” permanece compatível com a categoria Jaquetas; novos produtos de lifestyle podem receber sua própria classificação quando forem cadastrados.
+- O botão editorial “Ver lifestyle” permanece compatível com a categoria Casacos; novos produtos de lifestyle podem receber sua própria classificação quando forem cadastrados.
+- Confirmar o preço de R$ 199,90 do novo Casaco sem capuz antes de ativar vendas; ele foi herdado do cadastro da antiga Jaqueta.
 - O catálogo ainda repete nome, preço e ID entre `produtos.html` e `js/main.js`; mantenha esses dados sincronizados.
 - A arte final do hero da etapa 8.4 ainda não foi fornecida.
 - As imagens editoriais de 8.7 estão em `imagens/editorial/`: editorial, lifestyle e textura para o símbolo original.

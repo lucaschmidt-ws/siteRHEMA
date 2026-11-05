@@ -13,7 +13,7 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `privacidade.html`: dados usados pelo site, finalidades, serviços externos e direitos da pessoa usuária.
 - `css/` e `js/`: estilos e funcionalidades do site.
 - `js/sobre.js` e `js/sobre-config.js`: mural de testemunhos e configuração da URL/chave publicável do Supabase; a chave `service_role` não deve ir ao navegador.
-- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage, dez modelos da coleção Crônicas da Fé em cinco cores e 50 pranchas editoriais de apresentação.
+- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `imagens/catalogo-vistas/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage, dez modelos da coleção Crônicas da Fé em cinco cores, 50 pranchas editoriais de apresentação e vistas dos moletons/casaco.
 - `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
 - `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
 
@@ -26,7 +26,7 @@ O item “Histórias” leva à página `sobre.html`. O formulário do mural est
 
 ## Página Roupas — Manifesto Street
 
-A página `produtos.html` combina a direção editorial em preto e branco com a identidade atual da RHEMA: fundo escuro, detalhes dourados e uma faixa clara inspirada em papel impresso. O destaque usa uma foto editorial que já pertence ao projeto; os cartões levam a Camisetas, Calças, Moletons, Jaquetas e Acessórios e filtram o catálogo existente. A Jaqueta está categorizada em Jaquetas. O botão editorial “Ver lifestyle” da homepage continua funcionando como atalho para essa categoria. As fotos e os produtos continuam sendo os arquivos já cadastrados; o tratamento monocromático é aplicado pelo CSS.
+A página `produtos.html` combina a direção editorial em preto e branco com a identidade atual da RHEMA: fundo escuro, detalhes dourados e uma faixa clara inspirada em papel impresso. As categorias são Camisetas, Calças, Moletons, Casacos sem capuz e Acessórios. A antiga Jaqueta foi substituída no catálogo por um casaco/moletom de gola careca sem capuz. Os moletons com capuz e o casaco têm pranchas com vistas de frente, costas, laterais e detalhes; as imagens do boné também exibem seus ângulos. O botão editorial “Ver lifestyle” da homepage continua funcionando como atalho para Casacos. As imagens de `imagens/catalogo-vistas/` são mockups criados com ajuda do OpenAI Codex, não fotos de peças físicas nem confirmação das especificações de fabricação.
 
 ## Coleção Crônicas da Fé
 
