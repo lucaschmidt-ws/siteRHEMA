@@ -93,6 +93,36 @@ const catalogo = [
     imagens: [
       { src: 'imagens/catalogo-vistas/casaco-sem-capuz-prancha.png', alt: 'prancha do casaco RHEMA sem capuz, frente, costas, laterais e detalhes' }
     ]
+  },
+  {
+    id: 17,
+    nome: 'Meias RHEMA',
+    categoria: 'Acessórios',
+    preco: null,
+    emBreve: true,
+    estoquePorTamanho: {},
+    descricao: 'Mockup ilustrativo. Modelo, materiais, tamanhos, preço e disponibilidade serão confirmados antes do lançamento.',
+    versiculo: 'Paráfrase de Efésios 6:15: mantenham os pés preparados para anunciar o evangelho da paz.',
+    significado: 'As meias acompanham os passos do dia a dia e lembram o chamado a levar paz por onde caminhamos.',
+    tamanhos: [],
+    imagens: [
+      { src: 'imagens/acessorios/meias-rhema.webp', alt: 'mockup ilustrativo de um par de meias claras com emblema RHEMA' }
+    ]
+  },
+  {
+    id: 18,
+    nome: 'Gorro RHEMA',
+    categoria: 'Acessórios',
+    preco: null,
+    emBreve: true,
+    estoquePorTamanho: {},
+    descricao: 'Mockup ilustrativo. Modelo, materiais, tamanhos, preço e disponibilidade serão confirmados antes do lançamento.',
+    versiculo: 'Paráfrase do Salmo 121:8: o Senhor guarda a saída e a entrada, agora e para sempre.',
+    significado: 'O gorro acompanha os dias comuns e lembra a confiança no cuidado de Deus em cada caminho.',
+    tamanhos: [],
+    imagens: [
+      { src: 'imagens/acessorios/gorro-rhema.webp', alt: 'mockup ilustrativo de gorro preto RHEMA com emblema bordado' }
+    ]
   }
 ];
 
@@ -247,6 +277,7 @@ function textoEstoqueBaixo(quantidade) {
 
 function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
   const quantidade = obterEstoqueTotal(produto);
+  const emBreve = produto.emBreve === true;
   const esgotado = quantidade === 0;
 
   if (botaoImagem) {
@@ -256,20 +287,22 @@ function atualizarIndicadorEstoque(produto, botaoImagem, textoEstoque) {
       faixa.className = 'stock-badge';
       botaoImagem.appendChild(faixa);
     }
-    faixa.textContent = esgotado ? 'ESGOTADO' : textoEstoqueBaixo(quantidade);
-    faixa.hidden = !esgotado && (quantidade === null || quantidade > 5);
+    faixa.classList.toggle('is-coming-soon', emBreve);
+    faixa.textContent = emBreve ? 'EM BREVE' : esgotado ? 'ESGOTADO' : textoEstoqueBaixo(quantidade);
+    faixa.hidden = !emBreve && !esgotado && (quantidade === null || quantidade > 5);
     const descricaoBase = `Ampliar imagens de ${produto.nome}`;
     botaoImagem.setAttribute('aria-label', esgotado
-      ? `${descricaoBase}; produto esgotado`
+      ? emBreve ? `${descricaoBase}; lançamento em breve` : `${descricaoBase}; produto esgotado`
       : quantidade > 0 && quantidade <= 5
         ? `${descricaoBase}; ${textoEstoqueBaixo(quantidade)}`
         : descricaoBase);
   }
 
   if (textoEstoque) {
-    const mensagem = textoEstoqueBaixo(quantidade);
+    const mensagem = emBreve ? 'Lançamento em breve.' : textoEstoqueBaixo(quantidade);
     textoEstoque.textContent = mensagem;
     textoEstoque.hidden = mensagem === '';
+    textoEstoque.classList.toggle('is-coming-soon', emBreve);
   }
 
   return quantidade;
@@ -300,7 +333,8 @@ function criarCartaoProduto(produto, paginaInicial) {
     const nome = document.createElement('h3');
     nome.textContent = produto.nome;
     const preco = document.createElement('p');
-    preco.textContent = `R$ ${formatarPreco(produto.preco)}`;
+    preco.textContent = produto.emBreve ? 'Em breve' : `R$ ${formatarPreco(produto.preco)}`;
+    if (produto.emBreve) preco.classList.add('price-coming-soon');
     link.append(nome, preco);
     artigo.append(botaoZoom, link);
   } else {
@@ -316,7 +350,8 @@ function criarCartaoProduto(produto, paginaInicial) {
     nome.textContent = produto.nome;
     const preco = document.createElement('p');
     preco.className = 'price';
-    preco.textContent = `R$ ${formatarPreco(produto.preco)}`;
+    preco.textContent = produto.emBreve ? 'Em breve' : `R$ ${formatarPreco(produto.preco)}`;
+    if (produto.emBreve) preco.classList.add('price-coming-soon');
     const detalhes = document.createElement('a');
     detalhes.href = `produto.html?id=${produto.id}`;
     detalhes.className = 'btn-small';
@@ -582,7 +617,9 @@ if (botaoCarrinho) {
     // Preenche a página com os dados do produto
     document.title = produtoAtual.nome + ' | RHEMA';
     document.getElementById('produto-nome').textContent = produtoAtual.nome;
-    document.getElementById('produto-preco').textContent = 'R$ ' + formatarPreco(produtoAtual.preco);
+    const precoProduto = document.getElementById('produto-preco');
+    precoProduto.textContent = produtoAtual.emBreve ? 'Preço em breve' : 'R$ ' + formatarPreco(produtoAtual.preco);
+    precoProduto.classList.toggle('price-coming-soon', produtoAtual.emBreve === true);
     document.getElementById('produto-descricao').textContent = produtoAtual.descricao;
     document.getElementById('produto-versiculo').textContent = produtoAtual.versiculo;
     document.getElementById('produto-significado').textContent = produtoAtual.significado;
@@ -592,6 +629,29 @@ if (botaoCarrinho) {
     let varianteSelecionada = null;
 
     function atualizarDisponibilidadeSelecionada() {
+      if (produtoAtual.emBreve) {
+        textoEstoqueProduto.textContent = 'Lançamento em breve. Preço, tamanhos e estoque serão confirmados.';
+        textoEstoqueProduto.classList.remove('is-sold-out');
+        textoEstoqueProduto.classList.add('is-coming-soon');
+        document.querySelector('.product-options').style.display = 'none';
+        selectTamanho.disabled = true;
+        inputQuantidade.disabled = true;
+        botaoCarrinho.disabled = true;
+        botaoCarrinho.textContent = 'Em breve';
+
+        let faixaEmBreve = botaoImagemProduto.querySelector('.stock-badge');
+        if (!faixaEmBreve) {
+          faixaEmBreve = document.createElement('span');
+          faixaEmBreve.className = 'stock-badge';
+          botaoImagemProduto.appendChild(faixaEmBreve);
+        }
+        faixaEmBreve.classList.add('is-coming-soon');
+        faixaEmBreve.textContent = 'EM BREVE';
+        faixaEmBreve.hidden = false;
+        botaoImagemProduto.setAttribute('aria-label', `Ampliar imagem de ${produtoAtual.nome}; lançamento em breve`);
+        return 0;
+      }
+
       const tamanho = selectTamanho.value;
       const noEstoque = obterEstoqueTamanho(produtoAtual, tamanho);
       const disponivel = obterEstoqueDisponivel(produtoAtual, tamanho);
@@ -603,6 +663,7 @@ if (botaoCarrinho) {
 
       textoEstoqueProduto.textContent = rotuloEstoque;
       textoEstoqueProduto.classList.toggle('is-sold-out', disponivel === 0);
+      textoEstoqueProduto.classList.remove('is-coming-soon');
       inputQuantidade.max = String(disponivel);
       inputQuantidade.disabled = disponivel === 0;
       if (disponivel === 0) inputQuantidade.value = '1';
@@ -673,6 +734,7 @@ if (botaoCarrinho) {
 
     // Adicionar produto ao carrinho
     botaoCarrinho.addEventListener('click', function() {
+      if (produtoAtual.emBreve) return;
       const tamanhoEscolhido = selectTamanho.value;
       const corEscolhida = varianteSelecionada ? varianteSelecionada.nome : '';
       const corSlugEscolhida = varianteSelecionada ? varianteSelecionada.slug : '';
