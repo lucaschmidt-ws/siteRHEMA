@@ -13,10 +13,12 @@ const catalogo = [
     versiculo: 'Paráfrase de Gálatas 3:27: em Cristo recebemos uma nova identidade.',
     significado: 'A roupa compõe o estilo, mas a identidade de quem segue Jesus encontra seu fundamento nele e se expressa nas escolhas diárias.',
     tamanhos: ['P', 'M', 'G', 'GG'],
+    imagemDestaque: { src: 'imagens/camiseta%20preta/camiseta-preta.jpeg', alt: 'prancha de apresentação da camiseta preta com frente, costas, laterais e detalhes' },
     imagens: [
-      { src: 'imagens/camiseta%20preta/camiseta-preta-frente.png', alt: 'frente da camiseta preta' },
-      { src: 'imagens/camiseta%20preta/camiseta-preta-costas.png', alt: 'costas da camiseta preta' },
-      { src: 'imagens/camiseta%20preta/camiseta-preta.jpeg', alt: 'detalhes da camiseta preta' }
+      { src: 'imagens/camiseta%20preta/camiseta-preta-frente.png', alt: 'frente da camiseta preta RHEMA' },
+      { src: 'imagens/camiseta%20preta/camiseta-preta-costas.png', alt: 'costas da camiseta preta RHEMA' },
+      { src: 'imagens/produtos-vistas/camiseta-streetwear/lateral.jpg', alt: 'vista lateral da camiseta preta RHEMA' },
+      { src: 'imagens/camiseta%20preta/camiseta-preta.jpeg', alt: 'prancha da camiseta preta com todas as vistas' }
     ]
   },
   {
@@ -29,10 +31,12 @@ const catalogo = [
     versiculo: 'Paráfrase de Colossenses 2:6-7: continuem vivendo em Cristo, enraizados nele e firmes na fé.',
     significado: 'Cada passo pode ser uma oportunidade de caminhar com gratidão, mantendo a fé como fundamento.',
     tamanhos: ['P', 'M', 'G', 'GG'],
+    imagemDestaque: { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', alt: 'prancha de apresentação da calça preta RHEMA com frente, costas e laterais' },
     imagens: [
-      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', alt: 'calça preta, vista principal' },
-      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-frente.png', alt: 'frente da calça preta' },
-      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-costas.png', alt: 'costas da calça preta' }
+      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-frente.png', alt: 'frente da calça preta RHEMA' },
+      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-costas.png', alt: 'costas da calça preta RHEMA' },
+      { src: 'imagens/produtos-vistas/calca-reta/lateral.jpg', alt: 'vista lateral da calça preta RHEMA' },
+      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', alt: 'prancha da calça preta com todas as vistas' }
     ]
   },
   {
@@ -45,9 +49,12 @@ const catalogo = [
     versiculo: 'Paráfrase do Salmo 46:1: Deus é refúgio, força e auxílio presente nos momentos difíceis.',
     significado: 'Em dias de frio ou incerteza, esta peça lembra o convite a buscar em Deus amparo e coragem.',
     tamanhos: ['P', 'M', 'G', 'GG'],
+    imagemDestaque: { src: 'imagens/catalogo-vistas/moletom-capuz-areia-prancha.png', alt: 'prancha de apresentação do moletom areia com frente, costas, laterais e detalhes' },
     imagens: [
-      { src: 'imagens/catalogo-vistas/moletom-capuz-areia-prancha.png', alt: 'prancha do moletom bege com capuz, frente, costas, laterais e detalhes' },
-      { src: 'imagens/moleton/moleton-bege.jpeg', alt: 'prancha original do moletom bege com capuz, frente e costas' }
+      { src: 'imagens/produtos-vistas/moletom-areia/frente.jpg', alt: 'frente do moletom areia RHEMA' },
+      { src: 'imagens/produtos-vistas/moletom-areia/costas.jpg', alt: 'costas do moletom areia RHEMA' },
+      { src: 'imagens/produtos-vistas/moletom-areia/lateral.jpg', alt: 'vista lateral do moletom areia RHEMA' },
+      { src: 'imagens/catalogo-vistas/moletom-capuz-areia-prancha.png', alt: 'prancha do moletom areia com todas as vistas' }
     ]
   },
   {
@@ -60,9 +67,16 @@ const catalogo = [
     versiculo: 'Paráfrase de 1 Coríntios 2:16: quem segue Cristo aprende a olhar a vida a partir dele.',
     significado: 'O boné acompanha o dia a dia; que os pensamentos também sejam guiados pela sabedoria e pelo caráter de Cristo.',
     tamanhos: ['Único'],
+    imagemDestaque: { src: 'imagens/Nova%20pasta/bone-bege.jpeg', alt: 'prancha de apresentação do boné bege RHEMA com frente, costas, laterais e detalhes' },
     imagens: [
-      { src: 'imagens/Nova%20pasta/bone-bege.jpeg', alt: 'prancha do boné RHEMA bege com frente, costas, laterais e detalhes' },
-      { src: 'imagens/Nova%20pasta/bone-preto.jpeg', alt: 'prancha do boné RHEMA preto com frente, costas, laterais e detalhes' }
+      { src: 'imagens/produtos-vistas/bone-bege/frente.jpg', alt: 'frente do boné bege RHEMA' },
+      { src: 'imagens/produtos-vistas/bone-bege/costas.jpg', alt: 'costas do boné bege RHEMA' },
+      { src: 'imagens/produtos-vistas/bone-bege/lateral.jpg', alt: 'vista lateral do boné bege RHEMA' },
+      { src: 'imagens/Nova%20pasta/bone-bege.jpeg', alt: 'prancha do boné bege com todas as vistas' },
+      { src: 'imagens/produtos-vistas/bone-preto/frente.jpg', alt: 'frente do boné preto RHEMA' },
+      { src: 'imagens/produtos-vistas/bone-preto/costas.jpg', alt: 'costas do boné preto RHEMA' },
+      { src: 'imagens/produtos-vistas/bone-preto/lateral.jpg', alt: 'vista lateral do boné preto RHEMA' },
+      { src: 'imagens/Nova%20pasta/bone-preto.jpeg', alt: 'prancha do boné preto com todas as vistas' }
     ]
   },
   {
@@ -75,9 +89,12 @@ const catalogo = [
     versiculo: 'Paráfrase de Mateus 11:28-30: Jesus chama os cansados a se aproximarem dele e encontrarem descanso para a alma.',
     significado: 'O conforto pode lembrar o cuidado de Deus; o descanso que Jesus oferece à alma não significa ausência de dificuldades.',
     tamanhos: ['P', 'M', 'G', 'GG'],
+    imagemDestaque: { src: 'imagens/catalogo-vistas/moletom-capuz-preto-prancha.png', alt: 'prancha de apresentação do moletom preto com capuz e todas as vistas' },
     imagens: [
-      { src: 'imagens/catalogo-vistas/moletom-capuz-preto-prancha.png', alt: 'prancha do moletom preto com capuz, frente, costas, laterais e detalhes' },
-      { src: 'imagens/moleton/moleton-preto.jpeg', alt: 'prancha original do moletom preto com capuz, frente, costas, laterais e detalhes' }
+      { src: 'imagens/produtos-vistas/moletom-preto/frente.jpg', alt: 'frente do moletom preto RHEMA' },
+      { src: 'imagens/produtos-vistas/moletom-preto/costas.jpg', alt: 'costas do moletom preto RHEMA' },
+      { src: 'imagens/produtos-vistas/moletom-preto/lateral.jpg', alt: 'vista lateral do moletom preto RHEMA' },
+      { src: 'imagens/catalogo-vistas/moletom-capuz-preto-prancha.png', alt: 'prancha do moletom preto com todas as vistas' }
     ]
   },
   {
@@ -90,8 +107,12 @@ const catalogo = [
     versiculo: 'Paráfrase de Colossenses 3:12-14: vistam-se de compaixão, bondade, humildade, mansidão, paciência e amor.',
     significado: 'Uma peça para o dia a dia que acompanha a escolha de vestir compaixão, bondade, humildade e amor.',
     tamanhos: ['P', 'M', 'G', 'GG'],
+    imagemDestaque: { src: 'imagens/catalogo-vistas/casaco-sem-capuz-prancha.png', alt: 'prancha de apresentação do casaco preto sem capuz com todas as vistas' },
     imagens: [
-      { src: 'imagens/catalogo-vistas/casaco-sem-capuz-prancha.png', alt: 'prancha do casaco RHEMA sem capuz, frente, costas, laterais e detalhes' }
+      { src: 'imagens/produtos-vistas/casaco-gola-careca/frente.jpg', alt: 'frente do casaco preto RHEMA sem capuz' },
+      { src: 'imagens/produtos-vistas/casaco-gola-careca/costas.jpg', alt: 'costas do casaco preto RHEMA sem capuz' },
+      { src: 'imagens/produtos-vistas/casaco-gola-careca/lateral.jpg', alt: 'vista lateral do casaco preto RHEMA sem capuz' },
+      { src: 'imagens/catalogo-vistas/casaco-sem-capuz-prancha.png', alt: 'prancha do casaco sem capuz com todas as vistas' }
     ]
   }
 ];
@@ -175,14 +196,16 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
       ? 'imagens/colecao-cronicas-da-fe'
       : `imagens/colecao-cronicas-da-fe/cores/${cor.slug}`;
 
+    const prancha = { src: `imagens/colecao-cronicas-da-fe/pranchas-de-apresentacao/${modelo.slug}-${cor.slug}.png`, alt: `prancha da ${modelo.nome}, cor ${cor.nome}` };
     return {
       slug: cor.slug,
       nome: cor.nome,
+      imagemDestaque: prancha,
       imagens: [
-        { src: `imagens/colecao-cronicas-da-fe/pranchas-de-apresentacao/${modelo.slug}-${cor.slug}.png`, alt: `prancha da ${modelo.nome}, cor ${cor.nome}` },
         { src: `${pasta}/${modelo.slug}-frente.png`, alt: `frente da ${modelo.nome}, cor ${cor.nome}` },
         { src: `${pasta}/${modelo.slug}-costas.png`, alt: `costas da ${modelo.nome}, cor ${cor.nome}` },
-        { src: `${pasta}/${modelo.slug}-lado.png`, alt: `vista lateral da ${modelo.nome}, cor ${cor.nome}` }
+        { src: `${pasta}/${modelo.slug}-lado.png`, alt: `vista lateral da ${modelo.nome}, cor ${cor.nome}` },
+        prancha
       ]
     };
   });
@@ -199,6 +222,7 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
     significado: modelo.significado,
     tamanhos: ['P', 'M', 'G', 'GG'],
     variantes: variantes,
+    imagemDestaque: variantes[0].imagemDestaque,
     imagens: variantes[0].imagens
   };
 });
@@ -427,10 +451,11 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
 
   if (!produto || !produto.imagens.length) return;
 
+  const imagemDestaque = produto.imagemDestaque || produto.imagens[0];
   const imagem = document.createElement('img');
   imagem.className = 'catalog-card-image';
-  imagem.src = produto.imagens[0].src;
-  imagem.alt = `${produto.nome} — ${produto.imagens[0].alt}`;
+  imagem.src = imagemDestaque.src;
+  imagem.alt = `${produto.nome} — ${imagemDestaque.alt}`;
   imagem.loading = 'lazy';
   imagem.decoding = 'async';
   quadro.replaceChildren(imagem);
@@ -456,7 +481,10 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
   if (botaoZoom && !botaoZoom.dataset.zoomBound) {
     botaoZoom.dataset.zoomBound = 'true';
     botaoZoom.addEventListener('click', function() {
-      abrirZoom(produto.imagens, 0, botaoZoom, produto.nome);
+      const imagensZoomProduto = produto.imagemDestaque
+        ? [produto.imagemDestaque].concat(produto.imagens.filter(function(item) { return item.src !== produto.imagemDestaque.src; }))
+        : produto.imagens;
+      abrirZoom(imagensZoomProduto, 0, botaoZoom, produto.nome);
     });
   }
 

@@ -66,7 +66,9 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 
 - `produto.html` agora fornece um espaço para a foto principal e um contêiner vazio para as miniaturas.
 - `js/main.js` guarda as imagens junto aos dados dos produtos, escolhe as fotos conforme `produto.html?id=...` e cria as miniaturas automaticamente.
-- As imagens usam os arquivos já presentes em `imagens/`. Produtos com uma foto exibem apenas a foto principal; os botões de miniatura aparecem quando há duas ou mais fotos.
+- A galeria exibe vistas individuais de frente, costas e lateral e, por último, a prancha com todas as vistas. Nas camisetas da coleção, cada cor mantém sua própria sequência de imagens.
+- Os cards do catálogo usam a prancha como imagem de destaque; ao abrir o zoom, a prancha aparece primeiro, seguida pelas vistas individuais.
+- Foram adicionadas 17 imagens individuais para completar as vistas da camiseta Streetwear, da calça, dos dois moletons com capuz, do boné nas cores bege e preto e do casaco sem capuz. Os arquivos foram otimizados em JPEG para reduzir o peso total.
 - A foto principal agora acompanha a proporção natural do arquivo; somente as miniaturas permanecem quadradas.
 - O erro de declaração duplicada da galeria foi removido.
 - O manual unificado agora explica como incluir outra foto: copiar o arquivo para a pasta correta e adicionar um item `{ src, alt }` à lista `imagens` do produto.
@@ -106,8 +108,8 @@ As imagens fornecidas estão organizadas dentro de `imagens/` e não foram renom
 - Os saldos de estoque por tamanho são estáticos no front-end; conectar a uma fonte confiável e reserva de pedidos antes de vender pelo site.
 - Informar razão social e endereço comercial para substituir os dados provisórios nas políticas.
 - As cores e imagens da nova coleção estão disponíveis como mockups; confirmar cores comerciais antes de vender as peças.
-- Os produtos com uma foto cadastrada precisam de novas vistas antes de terem miniaturas.
-- As imagens dos cards usam a primeira foto cadastrada em `catalogo` no `js/main.js`; confira se cada foto representa a versão comercial que será vendida.
+- Confirme se as imagens individuais e pranchas representam as versões comerciais que deseja vender; por enquanto, são mockups de apresentação.
+- A galeria abre com a vista frontal e usa as miniaturas para alternar entre frente, costas, lateral e prancha; confira no navegador se essa sequência está clara em desktop e celular.
 - O botão editorial “Ver lifestyle” permanece compatível com a categoria Casacos; novos produtos de lifestyle podem receber sua própria classificação quando forem cadastrados.
 - Confirmar o preço de R$ 199,90 do novo Casaco sem capuz antes de ativar vendas; ele foi herdado do cadastro da antiga Jaqueta.
 - O catálogo ainda repete nome, preço e ID entre `produtos.html` e `js/main.js`; mantenha esses dados sincronizados.
