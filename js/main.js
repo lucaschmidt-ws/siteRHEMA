@@ -30,10 +30,12 @@ if (menuRhema && alternadorMenuRhema) {
 }
 
 // Filme de campanha: inicia sem som e respeita a preferência por movimento reduzido.
-const videoCampanhaRhema = document.querySelector('.rhema-film-video');
-if (videoCampanhaRhema) {
-  const prefereMovimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefereMovimentoReduzido) videoCampanhaRhema.play().catch(function() {});
+const videosCampanhaRhema = document.querySelectorAll('.rhema-film-video');
+const prefereMovimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefereMovimentoReduzido) {
+  videosCampanhaRhema.forEach(function(video) {
+    video.play().catch(function() {});
+  });
 }
 
 // Lista de produtos do catálogo (os mesmos de produtos.html).
