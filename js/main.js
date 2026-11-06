@@ -36,6 +36,13 @@ if (videoCampanhaRhema) {
   if (!prefereMovimentoReduzido) videoCampanhaRhema.play().catch(function() {});
 }
 
+// Bastidores Lifestyle: reprodução automática sem som, com controles e respeito à preferência de movimento.
+const videoLifestyleRhema = document.querySelector('.lifestyle-film-video');
+if (videoLifestyleRhema) {
+  const prefereMovimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefereMovimentoReduzido) videoLifestyleRhema.play().catch(function() {});
+}
+
 // Lista de produtos do catálogo (os mesmos de produtos.html).
 // A página produto.html usa esta lista para mostrar o produto escolhido.
 const catalogo = [

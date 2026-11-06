@@ -1162,6 +1162,17 @@ input:focus {
 .lifestyle-lookbook-card:not(.lifestyle-lookbook-card-main) .lifestyle-lookbook-card-copy h2 { max-width: 420px; font-size: clamp(20px, 2.1vw, 29px); }
 .lifestyle-lookbook-card-copy a { min-height: 32px; margin-top: 10px; font-size: 8px; }
 .lifestyle-lookbook-note { margin: 13px 0 0; color: rgba(242,240,234,.54); font-size: 9px; letter-spacing: .04em; line-height: 1.6; }
+.lifestyle-film { padding: clamp(44px, 7vw, 88px) 5%; background: #0b0b0a; color: #f2f0ea; }
+.lifestyle-film-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 360px); align-items: center; gap: clamp(32px, 8vw, 120px); width: min(100%, 1180px); margin: 0 auto; padding: clamp(22px, 4vw, 52px); border: 1px solid rgba(201,149,46,.38); background: radial-gradient(ellipse at 0 0, rgba(201,149,46,.11), transparent 46%), linear-gradient(135deg, #171512, #080808 68%); box-shadow: 0 24px 70px rgba(0,0,0,.26); }
+.lifestyle-film-copy h2 { margin: 0 0 20px; color: #f2f0ea; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(42px, 6.4vw, 78px); font-style: italic; font-weight: 500; letter-spacing: -.04em; line-height: .94; }
+.lifestyle-film-copy h2 span { color: #d6b877; }
+.lifestyle-film-copy > p:not(.lifestyle-lookbook-kicker) { max-width: 470px; margin: 0 0 22px; color: #c7c1b5; font-size: clamp(14px, 1.35vw, 17px); line-height: 1.8; }
+.lifestyle-film-copy > a { display: inline-flex; min-height: 42px; align-items: center; gap: 12px; border-bottom: 1px solid rgba(214,184,119,.7); color: #e6c47e; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; transition: gap .2s ease, color .2s ease; }
+.lifestyle-film-copy > a:hover,.lifestyle-film-copy > a:focus-visible { gap: 18px; color: #fff0cc; }
+.lifestyle-film-copy > a:focus-visible { outline: 2px solid #e6c47e; outline-offset: 4px; }
+.lifestyle-film-screen { position: relative; width: min(100%, 330px); justify-self: center; padding: 8px; border: 1px solid rgba(214,184,119,.76); background: #050505; box-shadow: 0 12px 44px rgba(0,0,0,.55), 0 0 32px rgba(201,149,46,.08); }
+.lifestyle-film-video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: #080808; object-fit: contain; }
+.lifestyle-film-caption { display: block; padding: 10px 6px 3px; color: #d6b877; font-size: 8px; font-weight: 700; letter-spacing: .2em; text-align: center; }
 .brand-story { position: relative; width: min(100% - 40px, 900px); margin: clamp(52px, 7vw, 96px) auto; padding: clamp(28px, 6vw, 64px); overflow: hidden; border: 1px solid rgba(201, 149, 46, .28); background: radial-gradient(circle at 50% 0%, rgba(201, 149, 46, .09), transparent 48%), linear-gradient(145deg, #151412, #080808 72%); color: var(--cor-texto-claro); }
 .brand-story::before { content: ''; position: absolute; top: 0; left: 50%; width: min(180px, 42%); height: 1px; transform: translateX(-50%); background: var(--cor-dourado); }
 .brand-story-content { position: relative; max-width: 720px; margin: 0 auto; }
@@ -1195,6 +1206,8 @@ input:focus {
   .lifestyle-lookbook-card-main { grid-row: auto; min-height: 360px; }
   .lifestyle-lookbook-card:not(.lifestyle-lookbook-card-main) { min-height: 270px; }
   .lifestyle-lookbook-card-copy { right: 18px; bottom: 18px; left: 18px; }
+  .lifestyle-film-inner { grid-template-columns: 1fr; gap: 30px; padding: 24px 18px; }
+  .lifestyle-film-screen { width: min(100%, 300px); }
   .brand-story-copy,
   .brand-story-signature { padding-right: 60px; }
   .category-shortcuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
