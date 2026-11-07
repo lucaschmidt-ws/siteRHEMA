@@ -731,6 +731,28 @@ function formatarPreco(valor) {
   return valor.toFixed(2).replace('.', ',');
 }
 
+let temporizadorAvisoCarrinho;
+function mostrarAvisoCarrinho(detalhe) {
+  let aviso = document.querySelector('.rhema-cart-toast');
+
+  if (!aviso) {
+    aviso = document.createElement('div');
+    aviso.className = 'rhema-cart-toast';
+    aviso.setAttribute('role', 'status');
+    aviso.setAttribute('aria-live', 'polite');
+    aviso.setAttribute('aria-atomic', 'true');
+    aviso.innerHTML = '<span class="rhema-cart-toast-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="m8 12.2 2.6 2.6 5.5-5.6"></path></svg></span><span class="rhema-cart-toast-copy"><strong>Adicionado ao carrinho</strong><span class="rhema-cart-toast-detail"></span></span>';
+    document.body.appendChild(aviso);
+  }
+
+  aviso.querySelector('.rhema-cart-toast-detail').textContent = detalhe;
+  aviso.classList.add('is-visible');
+  window.clearTimeout(temporizadorAvisoCarrinho);
+  temporizadorAvisoCarrinho = window.setTimeout(function() {
+    aviso.classList.remove('is-visible');
+  }, 3600);
+}
+
 // Microetapas 5.1 e R1.6: página do produto (só roda onde existe o botão)
 const botaoCarrinho = document.querySelector('.btn-cart');
 
@@ -890,9 +912,9 @@ if (botaoCarrinho) {
       atualizarContadorCarrinho();
       atualizarDisponibilidadeSelecionada();
 
-      // Avisa o usuário
+      // Confirma a adição com o aviso visual da identidade RHEMA.
       const detalheCor = corEscolhida ? `, ${corEscolhida}` : '';
-      alert(`${quantidadeSolicitada} × ${produtoAtual.nome} (${tamanhoEscolhido}${detalheCor}) adicionado ao carrinho.`);
+      mostrarAvisoCarrinho(`${produtoAtual.nome} · ${tamanhoEscolhido}${detalheCor} · ×${quantidadeSolicitada}`);
     });
   }
 }
