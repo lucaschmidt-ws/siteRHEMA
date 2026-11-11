@@ -14,7 +14,7 @@
   <header class="site-header clothing-site-header">
   <a class="brand" href="index.html" aria-label="RHEMA, página inicial">
     <span class="clothing-brand-wordmark" aria-hidden="true">RHEMA</span>
-    <span class="clothing-brand-caption" aria-hidden="true">Streetwear Cristão</span>
+    <span class="clothing-brand-caption" aria-hidden="true">Streetwear</span>
   </a>
   <span class="clothing-header-rule" aria-hidden="true"></span>
   <div class="header-actions" aria-label="Ações rápidas">
@@ -58,12 +58,13 @@
 
   <main class="clothing-main catalog-page">
     <section class="catalog-page-intro" aria-labelledby="catalog-page-title">
+      <p class="catalog-page-kicker">RHEMA / CATÁLOGO</p>
       <div class="catalog-page-heading">
         <h1 id="catalog-page-title">Catálogo</h1>
-        <p>Peças RHEMA para vestir sua identidade no dia a dia.</p>
+        <p>Peças com propósito. Escolha seu próximo essencial.</p>
       </div>
       <nav class="catalog-category-filters" aria-label="Filtrar catálogo por categoria">
-        <a href="catalogo.html#catalogo">Todas as peças</a>
+        <a href="catalogo.html#catalogo" aria-current="page">Todas as peças</a>
         <a href="catalogo.html?categoria=Camisetas#catalogo">Camisetas</a>
         <a href="catalogo.html?categoria=Cal%C3%A7as#catalogo">Calças</a>
         <a href="catalogo.html?categoria=Moletons#catalogo">Moletons</a>
@@ -75,52 +76,52 @@
     <section class="clothing-catalog" id="catalogo" aria-label="Produtos RHEMA">
       <div class="search-container">
         <label class="visually-hidden" for="search-input">Buscar produtos no catálogo</label>
-        <input type="text" id="search-input" placeholder="Buscar produtos...">
+        <input type="search" id="search-input" placeholder="Buscar uma peça">
       </div>
       <p class="catalog-filter-status" id="catalog-filter-status" aria-live="polite"></p>
 
       <div class="product-grid">
-        <article class="product-card" data-product-id="1">
+        <article class="product-card" data-product-id="1" data-category="Camisetas">
           <div class="product-gallery" data-product-id="1"></div>
           <button class="favorito" type="button" data-id="1" aria-label="Favoritar produto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg></button>
-          <h3>Camiseta Streetwear</h3>
-          <p class="price">R$ 109,90</p>
-          <a href="produto.html?id=1" class="btn-small">Ver Detalhes</a>
+          <div class="catalog-product-info"><div class="catalog-product-meta"><span>Camisetas</span><span>RHEMA</span></div>
+            <h3>Camiseta Streetwear</h3><p class="price">R$ 109,90</p><a href="produto.html?id=1" class="btn-small">Ver detalhes <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
-        <article class="product-card" data-product-id="2">
+        <article class="product-card" data-product-id="2" data-category="Calças">
           <div class="product-gallery" data-product-id="2"></div>
           <button class="favorito" type="button" data-id="2" aria-label="Favoritar produto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg></button>
-          <h3>Calça Reta</h3>
-          <p class="price">R$ 189,90</p>
-          <a href="produto.html?id=2" class="btn-small">Ver Detalhes</a>
+          <div class="catalog-product-info"><div class="catalog-product-meta"><span>Calças</span><span>RHEMA</span></div>
+            <h3>Calça Reta</h3><p class="price">R$ 189,90</p><a href="produto.html?id=2" class="btn-small">Ver detalhes <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
-        <article class="product-card" data-product-id="3">
+        <article class="product-card" data-product-id="3" data-category="Moletons">
           <div class="product-gallery" data-product-id="3"></div>
           <button class="favorito" type="button" data-id="3" aria-label="Favoritar produto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg></button>
-          <h3>Moletom Bege com Capuz</h3>
-          <p class="price">R$ 259,90</p>
-          <a href="produto.html?id=3" class="btn-small">Ver Detalhes</a>
+          <div class="catalog-product-info"><div class="catalog-product-meta"><span>Moletons</span><span>RHEMA</span></div>
+            <h3>Moletom Bege com Capuz</h3><p class="price">R$ 259,90</p><a href="produto.html?id=3" class="btn-small">Ver detalhes <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
-        <article class="product-card" data-product-id="4">
+        <article class="product-card" data-product-id="4" data-category="Acessórios">
           <div class="product-gallery" data-product-id="4"></div>
           <button class="favorito" type="button" data-id="4" aria-label="Favoritar produto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg></button>
-          <h3>Boné RHEMA</h3>
-          <p class="price">R$ 99,90</p>
-          <a href="produto.html?id=4" class="btn-small">Ver Detalhes</a>
+          <div class="catalog-product-info"><div class="catalog-product-meta"><span>Acessórios</span><span>RHEMA</span></div>
+            <h3>Boné RHEMA</h3><p class="price">R$ 99,90</p><a href="produto.html?id=4" class="btn-small">Ver detalhes <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
-        <article class="product-card" data-product-id="5">
+        <article class="product-card" data-product-id="5" data-category="Moletons">
           <div class="product-gallery" data-product-id="5"></div>
           <button class="favorito" type="button" data-id="5" aria-label="Favoritar produto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg></button>
-          <h3>Moletom Preto com Capuz</h3>
-          <p class="price">R$ 129,90</p>
-          <a href="produto.html?id=5" class="btn-small">Ver Detalhes</a>
+          <div class="catalog-product-info"><div class="catalog-product-meta"><span>Moletons</span><span>RHEMA</span></div>
+            <h3>Moletom Preto com Capuz</h3><p class="price">R$ 129,90</p><a href="produto.html?id=5" class="btn-small">Ver detalhes <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
-        <article class="product-card" data-product-id="6">
+        <article class="product-card" data-product-id="6" data-category="Casacos">
           <div class="product-gallery" data-product-id="6"></div>
           <button class="favorito" type="button" data-id="6" aria-label="Favoritar produto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5-8.8 11.3-8.8 11.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.9a4.7 4.7 0 0 1 8.8 1.8Z"></path></svg></button>
-          <h3>Casaco RHEMA sem capuz</h3>
-          <p class="price">R$ 199,90</p>
-          <a href="produto.html?id=6" class="btn-small">Ver Detalhes</a>
+          <div class="catalog-product-info"><div class="catalog-product-meta"><span>Casacos</span><span>RHEMA</span></div>
+            <h3>Casaco RHEMA sem capuz</h3><p class="price">R$ 199,90</p><a href="produto.html?id=6" class="btn-small">Ver detalhes <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
       </div>
     </section>

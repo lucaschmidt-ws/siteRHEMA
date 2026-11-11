@@ -484,6 +484,16 @@ function criarCartaoProduto(produto, paginaInicial) {
     favorito.setAttribute('aria-pressed', 'false');
     atualizarIconeFavorito(favorito, false);
 
+    const informacoes = document.createElement('div');
+    informacoes.className = 'catalog-product-info';
+    const meta = document.createElement('div');
+    meta.className = 'catalog-product-meta';
+    const categoria = document.createElement('span');
+    categoria.textContent = produto.categoria || 'RHEMA';
+    const marca = document.createElement('span');
+    marca.textContent = 'RHEMA';
+    meta.append(categoria, marca);
+
     const nome = document.createElement('h3');
     nome.textContent = produto.nome;
     const preco = document.createElement('p');
@@ -492,8 +502,14 @@ function criarCartaoProduto(produto, paginaInicial) {
     const detalhes = document.createElement('a');
     detalhes.href = `produto.html?id=${produto.id}`;
     detalhes.className = 'btn-small';
-    detalhes.textContent = 'Ver Detalhes';
-    artigo.append(botaoZoom, favorito, nome, preco, detalhes);
+    detalhes.append(document.createTextNode('Ver detalhes '));
+    const seta = document.createElement('span');
+    seta.setAttribute('aria-hidden', 'true');
+    seta.textContent = '↗';
+    detalhes.appendChild(seta);
+    informacoes.append(meta, nome, preco, detalhes);
+    artigo.dataset.category = produto.categoria || '';
+    artigo.append(botaoZoom, favorito, informacoes);
   }
 
   return artigo;
