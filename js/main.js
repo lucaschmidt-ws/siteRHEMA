@@ -721,15 +721,31 @@ function criarAmostrasCores(produto) {
   if (!Array.isArray(produto.variantes) || !produto.variantes.length) return null;
   const amostras = document.createElement('div');
   amostras.className = 'catalog-color-swatches';
-  amostras.setAttribute('role', 'img');
-  amostras.setAttribute('aria-label', `Amostras de cores: ${produto.variantes.map(function(variante) { return variante.nome; }).join(', ')}. Escolha a cor nos detalhes do produto.`);
+  amostras.setAttribute('role', 'group');
+  amostras.setAttribute('aria-label', `Escolha uma cor para ${produto.nome}`);
   produto.variantes.forEach(function(variante) {
-    const amostra = document.createElement('span');
-    amostra.className = `catalog-color-swatch catalog-color-swatch--${classeAmostraCor(variante)}`;
-    amostra.setAttribute('aria-hidden', 'true');
+    const amostra = document.createElement('button');
+    amostra.type = 'button';
+    amostra.className = 'catalog-color-choice';
+    amostra.dataset.variantSlug = variante.slug;
+    amostra.setAttribute('aria-label', `Mostrar ${variante.nome} de ${produto.nome}`);
+    amostra.setAttribute('aria-pressed', variante === produto.variantes[0] ? 'true' : 'false');
+    const circulo = document.createElement('span');
+    circulo.className = `catalog-color-swatch catalog-color-swatch--${classeAmostraCor(variante)}`;
+    circulo.setAttribute('aria-hidden', 'true');
+    amostra.appendChild(circulo);
     amostras.appendChild(amostra);
   });
   return amostras;
+}
+
+function obterImagemVarianteParaCard(variante) {
+  if (!variante) return null;
+  const imagens = Array.isArray(variante.imagens) ? variante.imagens : [];
+  return imagens.find(function(item) { return /costas/i.test(item.alt || ''); })
+    || variante.imagemDestaque
+    || imagens[0]
+    || null;
 }
 
 // Usa a imagem editorial de cada card; as vistas completas continuam no zoom e na página do produto.
@@ -767,6 +783,25 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
       const amostras = criarAmostrasCores(produto);
       if (amostras && detalhes) informacoes.insertBefore(amostras, detalhes);
       else if (amostras && !detalhes) informacoes.appendChild(amostras);
+      if (amostras) {
+        amostras.addEventListener('click', function(evento) {
+          const botaoAmostra = evento.target.closest('.catalog-color-choice[data-variant-slug]');
+          if (!botaoAmostra) return;
+          const variante = produto.variantes.find(function(item) {
+            return item.slug === botaoAmostra.dataset.variantSlug;
+          });
+          const imagemVariante = obterImagemVarianteParaCard(variante);
+          if (!imagemVariante) return;
+
+          imagem.src = imagemVariante.src;
+          imagem.alt = `${produto.nome} — ${imagemVariante.alt || `cor ${variante.nome}`}`;
+          amostras.querySelectorAll('.catalog-color-choice').forEach(function(item) {
+            const selecionado = item === botaoAmostra;
+            item.setAttribute('aria-pressed', String(selecionado));
+          });
+          if (detalhes) detalhes.href = `produto.html?id=${produto.id}&cor=${encodeURIComponent(variante.slug)}`;
+        });
+      }
       if (amostrasExistentes) amostrasExistentes.remove();
     }
   }
@@ -997,7 +1032,10 @@ if (botaoCarrinho) {
         opcao.textContent = variante.nome;
         selectCor.appendChild(opcao);
       });
+      const corSolicitada = params.get('cor');
       varianteSelecionada = produtoAtual.variantes.find(function(variante) {
+        return variante.slug === corSolicitada;
+      }) || produtoAtual.variantes.find(function(variante) {
         return variante.slug === selectCor.value;
       }) || produtoAtual.variantes[0];
       selectCor.value = varianteSelecionada.slug;
