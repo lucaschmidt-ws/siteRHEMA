@@ -3092,7 +3092,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .catalog-page .clothing-catalog .product-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 0; }
 .catalog-page .clothing-catalog .product-card { display: flex; flex-direction: column; padding: 0; border: 1px solid rgba(201,155,70,.23); background: #171613; box-shadow: none; }
 .catalog-page .clothing-catalog .product-card:hover { transform: translateY(-2px); border-color: rgba(201,155,70,.55); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
-.catalog-page .product-image-zoom { position: relative; aspect-ratio: 1.18 / 1; background: linear-gradient(145deg,#22201b,#131210); }
+.catalog-page .product-image-zoom { position: relative; aspect-ratio: 1 / 1; background: linear-gradient(145deg,#22201b,#131210); }
 .catalog-page .product-image-zoom::before { position: absolute; z-index: 1; inset: 0; background: radial-gradient(ellipse at 50% 42%,rgba(201,155,70,.09),transparent 48%); content: ""; pointer-events: none; }
 .catalog-page .product-image-zoom .product-gallery { position: relative; z-index: 0; }
 .catalog-page .product-image-zoom .catalog-card-image { background: transparent; }
@@ -3108,11 +3108,21 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
 .catalog-page .catalog-product-meta { display: flex; justify-content: space-between; gap: 8px; color: #c9a75f; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
 .catalog-page .catalog-product-info h3 { padding: 0; margin: 8px 0 4px; color: #eee7dc; font-size: 12px; font-weight: 500; letter-spacing: .04em; line-height: 1.4; }
 .catalog-page .catalog-product-info .price { padding: 0; margin: 0 0 14px; color: #eee7dc; font-size: 13px; font-weight: 600; }
+.catalog-page .catalog-color-swatches { display: flex; min-height: 18px; align-items: center; gap: 6px; margin: 0 0 12px; }
+.catalog-page .catalog-color-swatches::before { content: "Cores"; margin-right: 2px; color: #a9a195; font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
+.catalog-page .catalog-color-swatch { display: block; width: 12px; height: 12px; flex: 0 0 12px; border: 1px solid rgba(238,231,220,.54); border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.16); }
+.catalog-page .catalog-color-swatch--preto { background: #171717; }
+.catalog-page .catalog-color-swatch--branco { background: #f4f1e9; }
+.catalog-page .catalog-color-swatch--off-white { background: #d8cdb9; }
+.catalog-page .catalog-color-swatch--marrom { background: #70503b; }
+.catalog-page .catalog-color-swatch--verde { background: #565c42; }
+.catalog-page .catalog-color-swatch--cinza { background: #858582; }
 .catalog-page .catalog-product-info .stock-count { padding: 0; margin: auto 0 10px; color: #e9cb8a; font-size: 8px; }
 .catalog-page .catalog-product-info .btn-small { display: flex; min-height: 36px; align-items: center; justify-content: space-between; gap: 8px; padding: 0 10px; margin: auto 0 0; border: 1px solid rgba(201,155,70,.68); color: #e8ca8c; font-size: 8px; font-weight: 600; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }
 .catalog-page .catalog-product-info .btn-small span { font-size: 14px; }
 .catalog-page .catalog-product-info .btn-small:hover,
 .catalog-page .catalog-product-info .btn-small:focus-visible { background: rgba(201,155,70,.11); }
+.catalog-page .catalog-color-note { margin: 10px 0 0; color: #9d968a; font-size: 10px; line-height: 1.5; }
 
 @media (max-width: 700px) {
   .clothing-site-header { min-height: 68px; gap: 9px; padding: 7px max(12px,env(safe-area-inset-right)) 7px max(12px,env(safe-area-inset-left)); }

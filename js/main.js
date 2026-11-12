@@ -206,7 +206,10 @@ configurarVariantesProduto(2, [
 ]);
 
 configurarVariantesProduto(3, [
-  { slug: 'preta', nome: 'Preta', src: 'imagens/variantes-produtos/moletom-historia/preta.jpg' },
+  { slug: 'preta', nome: 'Preta', src: 'imagens/variantes-produtos/moletom-historia/preta.jpg', imagens: [
+    { src: 'imagens/produtos-vistas/moletom-discipulos-frente.png', alt: 'frente do moletom preto Discípulos RHEMA' },
+    { src: 'imagens/variantes-produtos/moletom-historia/preta.jpg', alt: 'prancha do moletom preto Discípulos com vistas e detalhes' }
+  ] },
   { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/moletom-historia/branca.jpg' },
   { slug: 'off-white', nome: 'Off-white', src: 'imagens/catalogo-vistas/moletom-capuz-areia-prancha.png', imagens: catalogo[2].imagens },
   { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/moletom-historia/marrom.jpg' },
@@ -607,7 +610,44 @@ dialogoZoom.addEventListener('close', function() {
   if (focoAnteriorZoom && typeof focoAnteriorZoom.focus === 'function') focoAnteriorZoom.focus();
 });
 
-// Usa a foto principal cadastrada no catálogo nos cards da home e do catálogo.
+function obterImagemLimpaCatalogo(produto) {
+  if (produto.imagemCard) return produto.imagemCard;
+  const variantePadrao = Array.isArray(produto.variantes) ? produto.variantes[0] : null;
+  const imagens = variantePadrao && Array.isArray(variantePadrao.imagens) && variantePadrao.imagens.length
+    ? variantePadrao.imagens
+    : produto.imagens;
+  return imagens.find(function(item) { return /frente|front/i.test(`${item.alt} ${item.src}`); })
+    || imagens.find(function(item) { return !/prancha|apresenta[cç][aã]o|todas as vistas/i.test(`${item.alt} ${item.src}`); })
+    || produto.imagemDestaque
+    || imagens[0];
+}
+
+function classeAmostraCor(variante) {
+  const nome = `${variante.slug || ''} ${variante.nome || ''}`.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (/verde|musgo/.test(nome)) return 'verde';
+  if (/off.?white/.test(nome)) return 'off-white';
+  if (/branc|white/.test(nome)) return 'branco';
+  if (/marrom|brown/.test(nome)) return 'marrom';
+  if (/cinza|gray|grey/.test(nome)) return 'cinza';
+  return 'preto';
+}
+
+function criarAmostrasCores(produto) {
+  if (!Array.isArray(produto.variantes) || !produto.variantes.length) return null;
+  const amostras = document.createElement('div');
+  amostras.className = 'catalog-color-swatches';
+  amostras.setAttribute('role', 'img');
+  amostras.setAttribute('aria-label', `Amostras de cores: ${produto.variantes.map(function(variante) { return variante.nome; }).join(', ')}. Escolha a cor nos detalhes do produto.`);
+  produto.variantes.forEach(function(variante) {
+    const amostra = document.createElement('span');
+    amostra.className = `catalog-color-swatch catalog-color-swatch--${classeAmostraCor(variante)}`;
+    amostra.setAttribute('aria-hidden', 'true');
+    amostras.appendChild(amostra);
+  });
+  return amostras;
+}
+
+// Usa uma foto frontal limpa nos cards; a sequência completa continua no zoom e na página do produto.
 document.querySelectorAll('.product-gallery[data-product-id], .product-photo[data-product-id]').forEach(function(quadro) {
   const produto = catalogo.find(function(item) {
     return item.id === Number(quadro.dataset.productId);
@@ -615,7 +655,7 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
 
   if (!produto || !produto.imagens.length) return;
 
-  const imagemDestaque = produto.imagemDestaque || produto.imagens[0];
+  const imagemDestaque = obterImagemLimpaCatalogo(produto);
   const imagem = document.createElement('img');
   imagem.className = 'catalog-card-image';
   imagem.src = imagemDestaque.src;
@@ -625,7 +665,26 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
   quadro.replaceChildren(imagem);
 
   const card = quadro.closest('.product-card');
-  if (card) card.dataset.category = produto.categoria;
+  if (card) {
+    card.dataset.category = produto.categoria;
+    const informacoes = card.querySelector('.catalog-product-info');
+    if (informacoes) {
+      const metadados = informacoes.querySelectorAll('.catalog-product-meta span');
+      if (metadados[0]) metadados[0].textContent = produto.categoria || 'RHEMA';
+      if (metadados[1]) metadados[1].textContent = 'RHEMA';
+      const nome = informacoes.querySelector('h3');
+      if (nome) nome.textContent = produto.nome;
+      const preco = informacoes.querySelector('.price');
+      if (preco) preco.textContent = `R$ ${formatarPreco(produto.preco)}`;
+      const detalhes = informacoes.querySelector('.btn-small');
+      if (detalhes) detalhes.href = `produto.html?id=${produto.id}`;
+      const amostrasExistentes = informacoes.querySelector('.catalog-color-swatches');
+      const amostras = criarAmostrasCores(produto);
+      if (amostras && detalhes) informacoes.insertBefore(amostras, detalhes);
+      else if (amostras && !detalhes) informacoes.appendChild(amostras);
+      if (amostrasExistentes) amostrasExistentes.remove();
+    }
+  }
 
   // Os cards antigos do catálogo já tinham a galeria em HTML. Envolve a foto
   // em um botão para dar a eles o mesmo zoom dos produtos recém-adicionados.
@@ -648,9 +707,7 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
   if (botaoZoom && !botaoZoom.dataset.zoomBound) {
     botaoZoom.dataset.zoomBound = 'true';
     botaoZoom.addEventListener('click', function() {
-      const imagensZoomProduto = produto.imagemDestaque
-        ? [produto.imagemDestaque].concat(produto.imagens.filter(function(item) { return item.src !== produto.imagemDestaque.src; }))
-        : produto.imagens;
+      const imagensZoomProduto = produto.imagens;
       abrirZoom(imagensZoomProduto, 0, botaoZoom, produto.nome);
     });
   }
