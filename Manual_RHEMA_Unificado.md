@@ -2564,6 +2564,10 @@ Há uma única função e uma única declaração de cada variável dentro dela.
 
 Os estilos da foto grande e das miniaturas já estão no fim de `css/styles.css`. Não cole o mesmo bloco novamente. A foto principal usa `width: 100%` e `height: auto`, então o quadro acompanha a proporção original de cada arquivo, sem cortar nem esticar a imagem. As miniaturas ficam quadradas de propósito para manter uma fileira alinhada; `object-fit: cover` preenche esses pequenos quadros. A miniatura ativa ganha uma borda dourada.
 
+**Zoom responsivo das imagens (correção de 12/11/2026)**
+
+O botão “Ampliar” abre um diálogo que ocupa a altura dinâmica da tela (`100dvh`, com `100vh` como alternativa). A foto mantém a proporção e cabe na área restante junto com a legenda e os botões de navegação. No celular, o diálogo respeita as áreas seguras do iOS e Android e os controles têm alvos de toque maiores. Para confirmar visualmente a publicação em produção, abra o site pelo endereço HTTPS da Netlify em telas de celular e desktop.
+
 **Como conferir**
 
 1. No terminal, na pasta do projeto, execute `node --check js/main.js`. Se não aparecer mensagem de erro, a sintaxe está correta.
