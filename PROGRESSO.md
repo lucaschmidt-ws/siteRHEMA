@@ -8,7 +8,7 @@
 
 **Roupas — frame e RHEMA BLACK:** a seção “Coleção 2026 / PROPÓSITO” saiu da homepage e foi incorporada à página `produtos.html`, depois das categorias e do espaço reservado para o vídeo horizontal. A coleção foi renomeada para **RHEMA BLACK**, sem ano, e destaca camisetas, calça, moletom e casaco pretos do catálogo em um tratamento editorial escuro e dourado. O frame está reservado para um futuro vídeo real de campanha com movimento humano; não contém apresentação de imagens nem mídia provisória.
 
-**Catálogo de roupas:** removido o cabeçalho “Peças com propósito / Vista a sua história” da página Roupas. A busca, os filtros e os produtos foram mantidos em `catalogo.html`.
+**Catálogo de roupas:** removido o cabeçalho “Peças com propósito / Vista a sua história” da página Roupas. A busca, os filtros e os produtos foram mantidos em `catalogo.html`. A Calça Reta de Veludo agora tem apenas a variante preta; como é a única cor, não aparece uma fileira de amostras no card.
 
 **Catálogo separado:** criado `catalogo.html` para concentrar busca, filtros, produtos e zoom. A página `produtos.html` fica dedicada às categorias, ao espaço reservado para o vídeo e ao destaque RHEMA BLACK; o botão após o destaque abre o catálogo. Links de busca e categoria na navegação, homepage e página Roupas agora levam ao novo endereço, com a categoria escolhida aplicada.
 

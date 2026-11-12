@@ -195,11 +195,7 @@ configurarVariantesProduto(1, [
 ]);
 
 configurarVariantesProduto(2, [
-  { slug: 'preta', nome: 'Preta', src: 'imagens/produto-cores/calca-reta-veludo-preta.png' },
-  { slug: 'branca', nome: 'Branca', src: 'imagens/produto-cores/calca-reta-veludo-branca.png' },
-  { slug: 'off-white', nome: 'Off-white', src: 'imagens/produto-cores/calca-reta-veludo-off-white.png' },
-  { slug: 'marrom', nome: 'Marrom', src: 'imagens/produto-cores/calca-reta-veludo-marrom.png' },
-  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/produto-cores/calca-reta-veludo-verde-musgo.png' }
+  { slug: 'preta', nome: 'Preta', src: 'imagens/produto-cores/calca-reta-veludo-preta.png' }
 ]);
 
 configurarVariantesProduto(3, [
@@ -262,11 +258,7 @@ const imagensVariantesProdutosRhema = {
     'verde-musgo': 'imagens/produto-cores/camiseta-streetwear-verde-musgo.png'
   },
   2: {
-    preta: 'imagens/produto-cores/calca-reta-veludo-preta.png',
-    branca: 'imagens/produto-cores/calca-reta-veludo-branca.png',
-    'off-white': 'imagens/produto-cores/calca-reta-veludo-off-white.png',
-    marrom: 'imagens/produto-cores/calca-reta-veludo-marrom.png',
-    'verde-musgo': 'imagens/produto-cores/calca-reta-veludo-verde-musgo.png'
+    preta: 'imagens/produto-cores/calca-reta-veludo-preta.png'
   },
   3: {
     preta: 'imagens/catalogo-cards/moletom-discipulos.png',
@@ -715,7 +707,7 @@ function classeAmostraCor(variante) {
 }
 
 function criarAmostrasCores(produto) {
-  if (!Array.isArray(produto.variantes) || !produto.variantes.length) return null;
+  if (!Array.isArray(produto.variantes) || produto.variantes.length < 2) return null;
   const amostras = document.createElement('div');
   amostras.className = 'catalog-color-swatches';
   amostras.setAttribute('role', 'group');
