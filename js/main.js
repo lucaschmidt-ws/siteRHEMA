@@ -61,20 +61,17 @@ const catalogo = [
   },
   {
     id: 2,
-    nome: 'Calça Reta',
+    nome: 'Calça Reta de Veludo',
     categoria: 'Calças',
     preco: 189.90,
     estoquePorTamanho: { P: 0, M: 0, G: 0, GG: 0 },
-    descricao: 'Calça reta da RHEMA.',
+    descricao: 'Calça reta de veludo cotelê da RHEMA, com modelagem ampla e acabamento premium.',
     versiculo: 'Paráfrase de Colossenses 2:6-7: continuem vivendo em Cristo, enraizados nele e firmes na fé.',
     significado: 'Cada passo pode ser uma oportunidade de caminhar com gratidão, mantendo a fé como fundamento.',
     tamanhos: ['P', 'M', 'G', 'GG'],
-    imagemDestaque: { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', alt: 'prancha de apresentação da calça preta RHEMA com frente, costas e laterais' },
+    imagemDestaque: { src: 'imagens/produto-cores/calca-reta-veludo-preta.png', alt: 'calça reta preta de veludo cotelê RHEMA' },
     imagens: [
-      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-frente.png', alt: 'frente da calça preta RHEMA' },
-      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-costas.png', alt: 'costas da calça preta RHEMA' },
-      { src: 'imagens/produtos-vistas/calca-reta/lateral.jpg', alt: 'vista lateral da calça preta RHEMA' },
-      { src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', alt: 'prancha da calça preta com todas as vistas' }
+      { src: 'imagens/produto-cores/calca-reta-veludo-preta.png', alt: 'frente da calça reta preta de veludo cotelê RHEMA' }
     ]
   },
   {
@@ -198,11 +195,11 @@ configurarVariantesProduto(1, [
 ]);
 
 configurarVariantesProduto(2, [
-  { slug: 'preta', nome: 'Preta', src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal.png', imagens: catalogo[1].imagens },
-  { slug: 'branca', nome: 'Branca', src: 'imagens/variantes-produtos/calca-reta/branca.jpg' },
-  { slug: 'off-white', nome: 'Off-white', src: 'imagens/variantes-produtos/calca-reta/off-white.jpg' },
-  { slug: 'marrom', nome: 'Marrom', src: 'imagens/variantes-produtos/calca-reta/marrom.jpg' },
-  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/calças/streetwear-calça/Calça-Streetwear-principal-verde.png' }
+  { slug: 'preta', nome: 'Preta', src: 'imagens/produto-cores/calca-reta-veludo-preta.png' },
+  { slug: 'branca', nome: 'Branca', src: 'imagens/produto-cores/calca-reta-veludo-branca.png' },
+  { slug: 'off-white', nome: 'Off-white', src: 'imagens/produto-cores/calca-reta-veludo-off-white.png' },
+  { slug: 'marrom', nome: 'Marrom', src: 'imagens/produto-cores/calca-reta-veludo-marrom.png' },
+  { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/produto-cores/calca-reta-veludo-verde-musgo.png' }
 ]);
 
 configurarVariantesProduto(3, [
@@ -243,7 +240,7 @@ configurarVariantesProduto(6, [
 // Imagens recortadas para os cards do catálogo, sobre o fundo escuro da vitrine.
 const imagensCardsRhema = {
   1: { src: 'imagens/catalogo-cards/streetwear-costas.png', alt: 'costas da camiseta Streetwear preta RHEMA' },
-  2: { src: 'imagens/catalogo-cards/calca-reta.png', alt: 'calça reta RHEMA preta' },
+  2: { src: 'imagens/produto-cores/calca-reta-veludo-preta.png', alt: 'calça reta de veludo cotelê RHEMA preta' },
   3: { src: 'imagens/catalogo-cards/moletom-discipulos.png', alt: 'frente do moletom Discípulos RHEMA' },
   4: { src: 'imagens/catalogo-cards/bone-rhema.png', alt: 'boné preto RHEMA' },
   5: { src: 'imagens/catalogo-cards/moletom-capuz.png', alt: 'frente do moletom RHEMA com capuz' },
@@ -265,11 +262,11 @@ const imagensVariantesProdutosRhema = {
     'verde-musgo': 'imagens/produto-cores/camiseta-streetwear-verde-musgo.png'
   },
   2: {
-    preta: 'imagens/catalogo-cards/calca-reta.png',
-    branca: 'imagens/produto-cores/calca-reta-branca.png',
-    'off-white': 'imagens/produto-cores/calca-reta-off-white.png',
-    marrom: 'imagens/produto-cores/calca-reta-marrom.png',
-    'verde-musgo': 'imagens/produto-cores/calca-reta-verde-musgo.png'
+    preta: 'imagens/produto-cores/calca-reta-veludo-preta.png',
+    branca: 'imagens/produto-cores/calca-reta-veludo-branca.png',
+    'off-white': 'imagens/produto-cores/calca-reta-veludo-off-white.png',
+    marrom: 'imagens/produto-cores/calca-reta-veludo-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/calca-reta-veludo-verde-musgo.png'
   },
   3: {
     preta: 'imagens/catalogo-cards/moletom-discipulos.png',
