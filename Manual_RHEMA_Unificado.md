@@ -1,12 +1,11 @@
 # Manual Unificado RHEMA
 
 **Guia passo a passo de desenvolvimento web**  
-**Versão:** 2.0  
-**Data:** 28/10/2026
+**Versão:** 2.1
+**Data:** 05/11/2026
+**Status:** Fases 1 a 9 e a microetapa 10.1 concluídas. A prévia da área de conta está pronta e não coleta dados. O login real permanece pendente da Fase 11: a conexão Supabase consultada em 12/11/2026 não retornou projetos acessíveis, então é preciso reconectar o projeto existente ou escolher/configurar um back-end antes de ativar autenticação.
 
-**Status:** Fases 1 a 7 e Revisão R1 mantidas como histórico. As microetapas 9.1 a 9.9 estão implementadas e revisadas. Na Fase 8, as etapas 8.1 a 8.3 e 8.5 a 8.10 têm implementação; 8.4 está parcial, e a revisão visual completa da homepage (8.11) continua pendente. A página Sobre tem interface própria e formulário de testemunhos; a publicação compartilhada aguarda a ativação do Supabase.
-
-> Este documento reúne o guia inicial do projeto e as etapas retificadas da identidade visual. Avance uma microetapa por vez. O site já contém a estrutura das etapas 8.4 a 8.10; confira o estado atual na tabela de progresso antes de repetir qualquer código. O item **Histórias** abre a página `sobre.html`, separada da homepage. O mural global depende de um banco online ativo; veja `database/rhema_testimonies.sql`.
+> Este documento reúne o guia inicial, as implementações feitas no site e o próximo roteiro de trabalho. As etapas 8 a 9 já foram executadas; leia os registros de atualização antes de reaproveitar trechos antigos. A etapa 10 começa com planejamento e protótipo sem coleta de credenciais. Não use LocalStorage para armazenar senha nem apresente o formulário como login real.
 
 ---
 
@@ -47,20 +46,20 @@ A RHEMA é uma marca de roupas **streetwear cristã** que você está criando co
 | Carrinho de compras | ✅ Concluído (o erro do botão foi corrigido na R1.2) |
 | Filtros e busca | Busca por nome (sem distinção de acentos) e filtro por categoria concluídos; filtro por tamanho ainda não existe |
 | Responsividade | ✅ Concluído (`viewport` na R1.1 e `@media` na R1.7) |
-| Visual luxuoso e clean | Etapas 8.1 a 8.3 e 8.5 a 8.10 implementadas; 8.4 parcial; 8.11 pendente |
-| Devocional diário e interatividade | ✅ Fase 9.1 a 9.9 implementadas e revisadas |
-| Sistema de login/cadastro | ⏳ Fase 10 escrita |
-| Back-end e banco de dados | ⏳ Fase 11 escrita |
+| Visual luxuoso e clean | Implementado no site; arte final do hero e revisão visual geral ainda podem ser refinadas |
+| Devocional diário e interatividade | ✅ Fase 9 concluída (9.1 a 9.9) |
+| Sistema de login/cadastro | ✅ 10.1 — jornada e prévia concluídas; login real aguarda banco e back-end |
+| Back-end e banco de dados | ⏳ Próximo pré-requisito para contas reais; o site atual está publicado como página estática |
 
 #### Categorias atuais da identidade
 
 1. Camisetas
-2. Moletons
-3. Calças
-4. Acessórios
-5. Lifestyle
+2. Calças
+3. Moletons
+4. Casacos sem capuz
+5. Acessórios
 
-Os cinco atalhos da homepage filtram o catálogo. A jaqueta está associada à categoria Lifestyle até a organização comercial ser definida. O arquivo de direção de arte em Word traz uma lista menor, com três atalhos; a versão do site segue a lista completa da identidade visual.
+Os atalhos da homepage e da página Roupas levam ao catálogo já filtrado. O antigo item Jaquetas foi substituído por Casacos sem capuz; o casaco RHEMA é um produto distinto dos moletons com capuz.
 
 #### Identidade visual:
 
@@ -1625,7 +1624,7 @@ Os arquivos panorâmicos abaixo são estudos de composição. Eles ajudam a orie
 
 ### Microetapa 8.1 — Retificar a paleta e consolidar os tokens CSS
 
-**Objetivo**  
+**Objetivo**
 Atualizar a paleta-base para a direção visual aprovada da RHEMA: preto ônix e grafite como base, branco suave para leitura e dourado como acento. Os nomes de variáveis já existem no projeto; esta retificação troca os valores antigos sem criar um segundo bloco `:root`.
 
 > **O que a análise encontrou:** `css/styles.css` já contém os tokens aprovados. A conferência confirmou um único `:root`, com a paleta atual da RHEMA, e o fundo e o texto global usam esses tokens.
@@ -1706,7 +1705,7 @@ body {
 
 ### Microetapa 8.2 — Tipografia sem serifa
 
-**Objetivo**  
+**Objetivo**
 Usar Manrope nos títulos e Inter nos textos e controles das quatro páginas, em linha com a direção de arte da RHEMA. O logotipo continua sendo a imagem original da marca.
 
 **Por que precisamos disso?**  
@@ -1738,10 +1737,10 @@ A tipografia sem serifa mantém a linguagem contemporânea e urbana indicada nos
 2. Confira que o logotipo continua sendo carregado como imagem.
 3. Reduza a largura da janela e verifique se os títulos continuam cabendo.
 
-**Resultado esperado**  
+**Resultado esperado**
 As quatro páginas carregam a mesma dupla tipográfica, com fontes de reserva e sem substituir o logotipo.
 
-**Próximo passo**  
+**Próximo passo**
 A etapa seguinte é 8.3, o cabeçalho com navegação e ações.
 
 ✅ **Checklist — implementação e conferência estrutural**
@@ -1754,8 +1753,8 @@ A etapa seguinte é 8.3, o cabeçalho com navegação e ações.
 
 ### Microetapa 8.3 — Cabeçalho com navegação e ações
 
-**O que vamos fazer?**  
-Reorganizar o cabeçalho para colocar a marca à esquerda, a navegação no centro e a busca e a sacola à direita, como no painel visual. A área da conta será conectada quando a microetapa 10.1 criar o formulário de login.
+**O que vamos fazer?**
+Reorganizar o cabeçalho para colocar a marca à esquerda, a navegação no centro e a busca e a sacola à direita, como no painel visual. A área da conta só será conectada depois de preparar o banco de dados e o back-end; a etapa 10.1 começa pelo planejamento, sem login ativo.
 
 **Por que precisamos disso?**  
 O cabeçalho é o ponto de orientação da loja. A pessoa deve entender onde está e chegar às páginas principais sem depender de controles decorativos.
@@ -1773,7 +1772,7 @@ No `index.html`, substitua o `<header>` atual e o `<nav class="main-nav">` separ
     <a href="index.html" aria-current="page">Início</a>
     <a href="produtos.html">Roupas</a>
     <a href="index.html#lifestyle">Lifestyle</a>
-    <a href="sobre.html">Histórias</a>
+    <a href="index.html#sobre">Sobre</a>
   </nav>
 
   <div class="header-actions">
@@ -1933,10 +1932,10 @@ O layout abaixo resume o que está aplicado no fim de `css/styles.css`. Mantenha
 3. Use Tab para percorrer links; o foco deve ficar visível.
 4. Repita a estrutura nos outros HTMLs e atualize `aria-current` para a página correspondente.
 
-**Resultado esperado**  
+**Resultado esperado**
 Cabeçalho organizado, com ações reconhecíveis e navegação funcional.
 
-**Próximo passo**  
+**Próximo passo**
 A implementação estrutural da 8.3 está concluída. Faça a conferência visual local quando abrir o projeto; depois, avance para a 8.4.
 
 - [x] Apliquei o cabeçalho nas quatro páginas e marquei corretamente a página ativa.
@@ -1947,7 +1946,7 @@ A implementação estrutural da 8.3 está concluída. Faça a conferência visua
 
 ### Microetapa 8.4 — Hero de campanha
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Transformar a área inicial em um banner editorial: texto curto à esquerda, símbolo e nome da marca em destaque e uma chamada para a coleção.
 
 **Por que precisamos disso?**  
@@ -2040,10 +2039,10 @@ O gradiente serve como fundo provisório. Quando existir uma arte de campanha ap
 2. Clique em Explorar coleção.
 3. Reduza a largura do navegador e confira que o título não invade o texto.
 
-**Resultado esperado**  
+**Resultado esperado**
 Hero editorial com um foco visual, slogan legível e acesso à coleção.
 
-**Próximo passo**  
+**Próximo passo**
 Depois do teste, avance para a faixa de benefícios da 8.5.
 
 ☐x Estruturei a hero  
@@ -2054,7 +2053,7 @@ Depois do teste, avance para a faixa de benefícios da 8.5.
 
 ### Microetapa 8.5 — Faixa de benefícios
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Adicionar uma faixa curta entre a campanha e a vitrine, com quatro informações que ajudem a entender o que a marca oferece.
 
 **Por que precisamos disso?**  
@@ -2120,10 +2119,10 @@ Os textos de envio e pagamento evitam prometer condições não confirmadas. Só
 **Teste**  
 Confira os quatro itens no desktop e leia os textos em voz alta para verificar se cada promessa está correta.
 
-**Resultado esperado**  
+**Resultado esperado**
 Faixa compacta, alinhada e sem afirmações comerciais não confirmadas.
 
-**Próximo passo**  
+**Próximo passo**
 Após confirmar os textos, avance para a vitrine da 8.6.
 
 ☐x Adicionei os quatro itens  
@@ -2133,7 +2132,7 @@ Após confirmar os textos, avance para a vitrine da 8.6.
 
 ### Microetapa 8.6 — Vitrine de produtos com carrossel
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Criar uma vitrine clara chamada “Essenciais”, com cards de produtos, setas, indicadores e rolagem horizontal que também funciona por gesto no celular. Ela fica depois da faixa de benefícios e do manifesto “Streetwear com identidade”.
 
 **Por que precisamos disso?**  
@@ -2304,10 +2303,10 @@ if (trilhoProdutos && botaoAnterior && botaoProximo) {
 3. No celular, arraste a vitrine com o dedo.
 4. Abra cada produto e confirme que o id da URL mostra o produto correto.
 
-**Resultado esperado**  
+**Resultado esperado**
 Vitrine em fundo claro, com navegação por setas, indicadores, toque e links reais para os produtos.
 
-**Próximo passo**  
+**Próximo passo**
 Quando as setas e o arrasto estiverem funcionando, avance para a 8.7.
 
 ☐x Montei os cards com dados reais do catálogo  
@@ -2319,44 +2318,30 @@ Quando as setas e o arrasto estiverem funcionando, avance para a 8.7.
 
 ### Microetapa 8.7 — Seções editoriais e categorias
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Adicionar blocos de campanha para propósito, detalhes da peça, história e lifestyle, além de cinco atalhos para as categorias da identidade.
 
 **Por que precisamos disso?**  
 Esses blocos dão ritmo à homepage e mostram a relação entre fé, cultura e estilo sem transformar cada seção em um anúncio.
 
 **Implementação**  
-Os três blocos editoriais e os cinco atalhos já estão na homepage. As imagens foram criadas para esta composição e estão em `imagens/editorial/`. O terceiro quadro usa como camada o arquivo original do símbolo em `Logo Rhema/image0 (1).png`; mantenha essa arte sem redesenhar ou distorcer. O item “Histórias” abre `sobre.html`, página própria com o testemunho do fundador e o mural da comunidade. Os cartões de categoria também têm respostas animadas sutis ao mouse e ao teclado.
+Em `index.html`, depois da vitrine, adicione estes blocos. As áreas de imagem continuam como placeholders até existirem fotos de campanha aprovadas.
 
-> **Estado atual:** etapa implementada. As três imagens carregam na homepage, os atalhos filtram o catálogo e os estados de foco/hover foram estilizados; o layout responde em desktop e celular. A arte final do hero da etapa 8.4 ainda é um item separado.
+> **Estado atual:** os blocos e os cinco atalhos já existem. Os atalhos filtram o catálogo. As imagens editoriais ainda são provisórias e aguardam fotos aprovadas.
 
 ```html
 <section class="editorial-grid" aria-label="História e lifestyle RHEMA">
   <article class="editorial-card editorial-large" id="sobre">
-    <div class="editorial-image">
-      <img class="editorial-photo editorial-photo-portrait"
-           src="imagens/editorial/foto-editorial-rhema.png"
-           alt="Modelo adulto com streetwear preto em um corredor de pedra iluminado por luz âmbar"
-           loading="lazy" decoding="async">
-    </div>
-    <div><p>Propósito também é estilo</p><a href="sobre.html#historia">Conheça a RHEMA</a></div>
+    <div class="editorial-image">[FOTO EDITORIAL RHEMA]</div>
+    <div><p>Propósito também é estilo</p><a href="index.html#historia">Conheça a RHEMA</a></div>
   </article>
   <article class="editorial-card" id="lifestyle">
-    <div class="editorial-image">
-      <img class="editorial-photo editorial-photo-lifestyle"
-           src="imagens/editorial/foto-lifestyle-rhema.png"
-           alt="Pessoa caminhando pela cidade usando streetwear preto no fim da tarde"
-           loading="lazy" decoding="async">
-    </div>
+    <div class="editorial-image">[FOTO DE LIFESTYLE]</div>
     <div><p>Fé na rotina. Estilo em cada passo.</p><a href="produtos.html?categoria=Lifestyle#search-input">Ver lifestyle</a></div>
   </article>
-  <article class="editorial-card" id="simbolo-rhema">
-    <div class="editorial-image editorial-symbol-scene">
-      <img class="editorial-photo" src="imagens/editorial/textura-simbolo-rhema.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <img class="editorial-symbol" src="Logo%20Rhema/image0%20%281%29.png"
-           alt="Símbolo original da RHEMA em dourado sobre tecido preto" loading="lazy" decoding="async">
-    </div>
-    <div><p>Sal na terra e luz no mundo</p><a href="sobre.html#historia">Nossa história</a></div>
+  <article class="editorial-card" id="historia">
+    <div class="editorial-image">[DETALHE DO SÍMBOLO ORIGINAL]</div>
+    <div><p>Sal na terra e luz no mundo</p><a href="index.html#sobre">Nossa história</a></div>
   </article>
 </section>
 
@@ -2378,85 +2363,49 @@ No CSS, adicione:
 .editorial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #202020; }
 .editorial-card { position: relative; min-height: 260px; overflow: hidden; background: #080808; color: #F2F0EA; }
 .editorial-large { grid-row: span 2; min-height: 520px; }
-.editorial-image { position: absolute; inset: 0; overflow: hidden; background: #080808; }
-.editorial-image::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(8,8,8,.9), rgba(8,8,8,.34) 42%, rgba(8,8,8,.04)); }
-.editorial-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-.editorial-photo-portrait { object-position: center 38%; }
-.editorial-photo-lifestyle { object-position: center 46%; }
-.editorial-card:hover .editorial-photo { transform: scale(1.035); }
-.editorial-symbol { position: absolute; left: 50%; top: 30%; z-index: 2; width: 46%; max-height: 42%; object-fit: contain; transform: translate(-50%, -50%); mix-blend-mode: screen; }
-.editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 3; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
+.editorial-image { position: absolute; inset: 0; background: radial-gradient(circle at 60% 40%, #493415, #111 50%, #080808); opacity: .75; }
+.editorial-card > div:last-child { position: absolute; left: 7%; bottom: 9%; z-index: 1; max-width: 80%; text-transform: uppercase; letter-spacing: .16em; }
 .editorial-card p { font-size: clamp(18px, 2.5vw, 30px); }
 .editorial-card a { display: inline-block; padding: 10px 16px; border: 1px solid var(--cor-dourado); color: inherit; text-decoration: none; }
-.brand-story { position: relative; width: min(100% - 40px, 900px); margin: clamp(52px, 7vw, 96px) auto; padding: clamp(28px, 6vw, 64px); overflow: hidden; border: 1px solid rgba(201,149,46,.28); background: radial-gradient(circle at 50% 0%, rgba(201,149,46,.09), transparent 48%), linear-gradient(145deg, #151412, #080808 72%); color: var(--cor-texto-claro); }
-.brand-story::before { content: ''; position: absolute; top: 0; left: 50%; width: min(180px, 42%); height: 1px; transform: translateX(-50%); background: var(--cor-dourado); }
-.brand-story-content { position: relative; max-width: 720px; margin: 0 auto; }
-.brand-story-kicker { margin: 0 0 14px; color: var(--cor-dourado); font-size: 12px; letter-spacing: .22em; text-align: center; text-transform: uppercase; }
-.brand-story h2 { margin: 0 auto 28px; color: var(--cor-texto-claro); font-size: clamp(24px, 4vw, 38px); font-weight: 500; line-height: 1.25; text-align: center; }
-.brand-story-copy { display: grid; gap: 16px; color: var(--cor-cinza-mineral); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.8; }
-.brand-story-copy p { margin: 0; }
-.brand-story-signature { margin: 30px 0 0; color: var(--cor-dourado); font-size: 12px; letter-spacing: .14em; text-align: center; text-transform: uppercase; }
 .category-shortcuts { padding: 40px 5%; background: #111; color: #F2F0EA; }
 .category-shortcuts h2 { font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
 .category-shortcuts-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
-.category-shortcuts-grid a { position: relative; overflow: hidden; min-height: 130px; padding: 18px; display: flex; flex-direction: column; justify-content: end; gap: 6px; background: linear-gradient(145deg, #27231c, #080808); border: 1px solid rgba(201,149,46,.35); color: inherit; text-decoration: none; text-transform: uppercase; letter-spacing: .12em; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
-.category-shortcuts-grid a::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--cor-dourado); opacity: 0; transform: scaleY(.45); transform-origin: bottom; transition: opacity .22s ease, transform .22s ease; }
-.category-shortcuts-grid a:hover,
-.category-shortcuts-grid a:focus-visible { transform: translateY(-3px); border-color: var(--cor-dourado); box-shadow: 0 8px 22px rgba(201,149,46,.13); }
-.category-shortcuts-grid a:hover::before,
-.category-shortcuts-grid a:focus-visible::before { opacity: 1; transform: scaleY(1); }
-.category-shortcuts-grid a:focus-visible { outline: 2px solid var(--cor-dourado); outline-offset: 3px; }
-.category-shortcuts-grid span { color: var(--cor-dourado); font-size: 11px; transition: color .22s ease, letter-spacing .22s ease; }
-.category-shortcuts-grid a:hover span,
-.category-shortcuts-grid a:focus-visible span { color: #E7BB66; letter-spacing: .16em; }
+.category-shortcuts-grid a { min-height: 130px; padding: 18px; display: flex; flex-direction: column; justify-content: end; gap: 6px; background: linear-gradient(145deg, #27231c, #080808); border: 1px solid rgba(201,149,46,.35); color: inherit; text-decoration: none; text-transform: uppercase; letter-spacing: .12em; }
+.category-shortcuts-grid span { color: var(--cor-dourado); font-size: 11px; }
 
 @media (max-width: 700px) {
   .editorial-grid { grid-template-columns: 1fr; }
   .editorial-large { grid-row: auto; min-height: 320px; }
-  .brand-story-copy,
-  .brand-story-signature { padding-right: 60px; }
   .category-shortcuts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .category-shortcuts-grid a:hover,
-  .category-shortcuts-grid a:focus-visible { transform: none; }
-  .category-shortcuts-grid a:hover::before,
-  .category-shortcuts-grid a:focus-visible::before { transform: none; }
-}
 ```
-
-Os estilos `.brand-story` mostrados no bloco CSS são usados na página Sobre, em `sobre.html`, e não precisam ser adicionados novamente à homepage.
 
 **Entendendo o código**
 
 - `grid-row: span 2` faz o bloco maior ocupar duas fileiras, como uma composição editorial.
-- `position: absolute` posiciona texto e símbolo sobre a fotografia; a camada escura em `::after` melhora o contraste do texto.
-- Os arquivos em `imagens/editorial/` são as três novas artes. O último quadro reaproveita o símbolo original da marca por cima de uma textura; não substitua o logo por uma geração artificial.
-- Os ids `sobre`, `lifestyle` e `simbolo-rhema` identificam os cards editoriais da homepage. O link `sobre.html#historia` abre a história do fundador na página separada; o devocional fica na Fase 9.
-- Nas categorias, o leve deslocamento, a borda dourada e a linha lateral aparecem com mouse ou foco de teclado. A regra `prefers-reduced-motion` remove o deslocamento para quem prefere menos movimento.
+- `position: absolute` posiciona o texto sobre a imagem; `z-index` mantém o texto legível.
+- Os ids `sobre`, `lifestyle` e `historia` transformam links internos em destinos reais. O devocional será criado na Fase 9; até lá, não use `#devocional` como destino.
 - Use imagens com luz e temperatura de cor consistentes; não altere o desenho do símbolo.
 
 **Teste**
 
-Clique nos links dos blocos e categorias. Cada um deve chegar a uma página ou seção existente. Passe o mouse e navegue com Tab pelas categorias para conferir a animação e o contorno de foco; com a preferência de movimento reduzido ativa, o cartão não deve saltar.
+Clique nos links dos blocos e categorias. Cada um deve chegar a uma página ou seção existente. Se o conteúdo de destino ainda não existe, aponte para a página de produtos e não deixe o link sem ação.
 
-**Resultado esperado**  
+**Resultado esperado**
 Homepage com áreas de storytelling e atalhos de categoria, mantendo poucos elementos por bloco.
 
-**Próximo passo**  
+**Próximo passo**
 Depois de testar os links, avance para a 8.8.
 
 ☐ Adicionei os blocos editoriais  
 ☐ Adicionei os atalhos de categoria  
-☐ Conferi hover, foco de teclado e movimento reduzido
 ☐ Testei cada link
 
 ---
 
 ### Microetapa 8.8 — Estados e interações dos controles
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Padronizar botões, links de campanha, busca e estados de foco para mouse e teclado.
 
 **Por que precisamos disso?**  
@@ -2518,10 +2467,10 @@ Revise os links `href="#"` do cabeçalho e do rodapé. Troque-os por uma página
 2. Navegue com Tab e pressione Enter em cada link.
 3. Tente enviar busca vazia e conferir se não ocorre uma ação falsa.
 
-**Resultado esperado**  
+**Resultado esperado**
 Controles consistentes, com foco visível e destinos funcionais.
 
-**Próximo passo**  
+**Próximo passo**
 Depois da revisão dos controles, avance para a galeria do produto na 8.9.
 
 ☐x Unifiquei os estilos dos botões  
@@ -2532,7 +2481,7 @@ Depois da revisão dos controles, avance para a galeria do produto na 8.9.
 
 ### Microetapa 8.9 — Galeria da página de produto
 
-**Objetivo**  
+**Objetivo**
 Mostrar uma foto grande e miniaturas do produto que a pessoa escolheu. Como a página lê `?id=1`, `?id=2` etc., cada produto precisa ter sua própria lista de fotos.
 
 **Como a galeria funciona**
@@ -2624,7 +2573,7 @@ Os estilos da foto grande e das miniaturas já estão no fim de `css/styles.css`
 5. Se uma imagem não carregar, confira o caminho completo, o nome da pasta, as letras maiúsculas/minúsculas e a extensão do arquivo.
 6. Use Tab e Enter para conferir as miniaturas pelo teclado.
 
-**Resultado esperado**  
+**Resultado esperado**
 A página do produto apresenta a galeria correspondente ao item escolhido, sem caminhos quebrados ou fotos de outro produto.
 
 **Checklist desta implementação**
@@ -2635,13 +2584,13 @@ A página do produto apresenta a galeria correspondente ao item escolhido, sem c
 - [x] Um produto com uma foto mostra apenas a imagem principal.
 - [ ] Conferi visualmente todas as galerias no navegador e em largura móvel.
 
-**Próximo passo**  
+**Próximo passo**
 A 8.9 está implementada. A revisão visual permanece pendente. Quando quiser, continue na microetapa 8.10.
 ---
 
 ### Microetapa 8.10 — Rodapé e redução de movimento
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Organizar o rodapé em colunas de links, atendimento, redes sociais e formulário de novidades, com o mesmo acabamento do cabeçalho. A inscrição ficará identificada como demonstração até existir integração com back-end.
 
 **Por que precisamos disso?**  
@@ -2656,7 +2605,7 @@ Substitua o conteúdo do `footer` da homepage por:
     <img src="imagens/logo-rhema-claro.png" alt="RHEMA">
     <p>Sal na terra e luz no mundo</p>
   </div>
-  <div><h2>Institucional</h2><a href="sobre.html#historia">Sobre a marca</a><a href="produtos.html">Coleções</a></div>
+  <div><h2>Institucional</h2><a href="#sobre">Sobre a marca</a><a href="produtos.html">Coleções</a></div>
   <div><h2>Ajuda</h2><a href="#atendimento">Trocas e devoluções</a><a href="#atendimento">Entrega</a></div>
   <div id="atendimento"><h2>Atendimento</h2><p>WhatsApp e e-mail oficiais da loja</p></div>
   <form class="newsletter" id="newsletter-form">
@@ -2718,21 +2667,50 @@ Substitua os destinos de contato por dados oficiais quando a marca os definir. N
 
 Envie um e-mail em formato válido e confira que a mensagem diz que o cadastro é demonstrativo. Reduza a tela para conferir as colunas e ative a preferência de movimento reduzido no navegador.
 
-**Resultado esperado**  
+**Resultado esperado**
 Rodapé organizado em desktop e celular, com aviso honesto sobre o formulário e movimento respeitando preferências.
 
-**Próximo passo**  
+**Próximo passo**
 Após conferir o rodapé, faça a revisão geral na 8.11.
 
 ☐x Atualizei o rodapé  
 ☐x Testei a mensagem do formulário  
 ☐x Conferi o layout estreito e movimento reduzido
 
+#### Registro da retificação aplicada em 05/11/2026 — acabamento do rodapé
+
+O rodapé atual foi refinado em todas as páginas sem trocar seu conteúdo HTML. As regras novas foram acrescentadas ao final de `css/styles.css`, para atualizar a apresentação compartilhada sem apagar os links e informações já existentes. **Não substitua o rodapé atual pelo exemplo simplificado acima:** aquele bloco é referência da primeira versão desta etapa.
+
+**O que foi feito, passo a passo**
+
+1. Mantivemos a arte de pedra escura com veios dourados e adicionamos uma camada escura mais forte para o texto ficar legível.
+2. Reorganizamos o rodapé em uma grade de 12 colunas no desktop. Na página inicial, Institucional e Ajuda ocupam duas colunas cada; Atendimento ocupa duas; novidades e bandeiras previstas ocupam três cada.
+3. Nas páginas internas, alinhamos Políticas e ajuda, Atendimento e bandeiras previstas em blocos proporcionais. Os ícones sociais continuam circulares, com bordas douradas discretas.
+4. Refinamos títulos, links, newsletter e bandeiras com tons marfim e dourado, espaçamento mais amplo e linhas finas. Os links continuam com estado de foco visível pelo teclado.
+5. Criamos uma área final centralizada para o logo RHEMA e o slogan; abaixo ficam os direitos autorais de 2026 e o crédito de que o projeto foi feito com ajuda do OpenAI Codex, sob direção e revisão da pessoa responsável pela marca.
+6. Adaptamos as colunas para tablet e celular: os links ficam lado a lado quando há espaço e Atendimento, newsletter e bandeiras passam a ocupar a largura disponível.
+7. Mantivemos os contatos, os links de políticas e privacidade, Visa, Mastercard e Elo, e os avisos de que Instagram/e-mail serão configurados depois e de que pagamento ainda depende de integração. American Express continua removido.
+8. Registramos a atualização em `README.md` e `PROGRESSO.md`, conferimos `git diff --check` e publicamos no GitHub no commit `873c358` (`Refine RHEMA footer with Codex assistance`).
+
+**Arquivos alterados**
+
+- `css/styles.css` — novas regras visuais responsivas compartilhadas.
+- `README.md` — resumo do acabamento do rodapé.
+- `PROGRESSO.md` — registro da atualização.
+
+**Verificação**
+
+A conferência estática do diff não apontou erros de formatação. Não foi executado teste automatizado nem conferência visual no navegador nesta alteração. O envio ao GitHub foi concluído; a publicação automática na Netlify depende de a integração do repositório estar ativa.
+
+**Resultado**
+
+O rodapé conserva as informações e o logo da RHEMA, com leitura melhor, hierarquia mais clara e um fechamento centralizado. Esta retificação já está integrada; não é necessário refazê-la antes de seguir o roteiro.
+
 ---
 
 ### Microetapa 8.11 — Revisão da homepage
 
-**O que vamos fazer?**  
+**O que vamos fazer?**
 Conferir a homepage contra a imagem e revisar links, navegação, legibilidade e responsividade antes de iniciar a Fase 9.
 
 **O que revisar**
@@ -2758,10 +2736,10 @@ Conferir a homepage contra a imagem e revisar links, navegação, legibilidade e
 4. Verifique os links do cabeçalho, cards e rodapé.
 5. Abra o Console do navegador e anote erros sem tentar corrigir vários ao mesmo tempo.
 
-**Resultado esperado**  
+**Resultado esperado**
 Homepage coerente com o painel de referência, com ações que funcionam e layout adaptado a telas pequenas.
 
-**Próximo passo**  
+**Próximo passo**
 Ao concluir esta revisão, continue na Fase 9. Faça uma microetapa por vez e pare para confirmar cada resultado.
 
 ☐x Revisei desktop e celular  
@@ -2772,7 +2750,7 @@ Ao concluir esta revisão, continue na Fase 9. Faça uma microetapa por vez e pa
 
 ## Fase 8 pronta para seguir
 
-Quando a homepage estiver revisada e os problemas registrados, comece a Fase 9. O conteúdo abaixo mantém o devocional diário, os produtos com conteúdo de fé, favoritos, mural local, autenticação demonstrativa e publicação planejada.
+O conteúdo da Fase 9 registra o devocional diário, produtos com conteúdo de fé, favoritos e mural local. Autenticação real permanece planejada para depois do banco de dados e do back-end.
 
 ## Fase 9: Fé e Interatividade
 
@@ -2790,20 +2768,20 @@ A RHEMA vende roupa, mas a marca é fé. O site deve convidar a pessoa a voltar 
 
 | Microetapa | O que entra | Mexe em |
 |-----------|-------------|---------|
-| 9.1 | ✅ Concluída — seção do devocional com ações acessíveis | `index.html` + `styles.css` |
+| 9.1 | Seção do devocional acima do rodapé da `index.html` (estrutura e estilo) | `index.html` + `styles.css` |
 | 9.2 | ✅ Concluída — lista autoral de 66 devocionais, um baseado em cada livro do cânon de 66 livros | `main.js` |
 | 9.3 | ✅ Concluída — mostrar o devocional do dia, escolhido pela data | `main.js` |
 | 9.4 | ✅ Concluída — botão "Li hoje" e contador de dias seguidos (LocalStorage) | `main.js` |
 | 9.5 | ✅ Concluída — compartilhar o devocional (WhatsApp e copiar texto) | `main.js` |
 | 9.6 | ✅ Concluída — versículo e significado de cada peça na página do produto | `main.js` + `produto.html` + `css/styles.css` |
-| 9.7 | ✅ Concluída — favoritos nos seis cards do catálogo, salvos no LocalStorage | `produtos.html` + `main.js` + `css/styles.css` |
-| 9.8 | ✅ Concluída — mural pessoal para salvar, consultar e excluir pedidos neste navegador | `index.html` + `main.js` + `styles.css` |
-| 9.9 | ✅ Concluída — revisão funcional, responsiva e de Console em todas as páginas | todos |
+| 9.7 | Favoritos: coração nos produtos, salvo no LocalStorage | `main.js` + CSS |
+| 9.8 | Mural de oração: a pessoa escreve um pedido e vê os pedidos *neste navegador* | `index.html` + `main.js` |
+| 9.9 | Revisão: todas as interações, no celular e sem erros no Console | todos |
 
 **Cuidados importantes**
 - **Versículos:** confira a referência na Bíblia escolhida pela RHEMA. Se usar o texto exato de uma tradução, confirme antes os direitos e as condições de reutilização; uma paráfrase original evita reproduzir a redação daquela tradução.
 - **Reflexões e orações:** você pode escrevê-las com suas próprias palavras. Peça ao Claude um rascunho e revise com o seu pastor ou líder, se quiser.
-- **Mural de oração (9.8):** sem back-end, os pedidos ficam no armazenamento local deste navegador e não são enviados para a RHEMA. Outra pessoa que usa o mesmo perfil do navegador pode ver ou excluir esses dados. Não escreva informações sensíveis. O mural compartilhado exige a Fase 11.
+- **Mural de oração (9.8):** sem back-end, os pedidos ficam só no navegador de quem escreveu, e ninguém mais os vê. O mural compartilhado de verdade exige a Fase 11. Por isso nunca peça dados sensíveis nele.
 
 ### 📍 Microetapa 9.1 — Seção do devocional
 
@@ -2930,7 +2908,7 @@ Os dados estão preparados. Ainda não há mudança visual nesta microetapa; mos
 
 ---
 
-### 📍 Microetapa 9.3 — Mostrar o devocional do dia — concluída
+### 📍 Microetapa 9.3 — Mostrar o devocional do dia
 
 **Objetivo**
 Escolher automaticamente um devocional da lista, baseado na data de hoje, e preencher a seção criada na 9.1.
@@ -2947,9 +2925,8 @@ Escolher automaticamente um devocional da lista, baseado na data de hoje, e pree
 ```javascript
 function obterDevocionalDeHoje() {
   const hoje = new Date();
-  const hojeEmUTC = Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
-  const inicioDoAnoEmUTC = Date.UTC(hoje.getFullYear(), 0, 1);
-  const diasPassados = Math.floor((hojeEmUTC - inicioDoAnoEmUTC) / 86400000);
+  const inicioDoAno = new Date(hoje.getFullYear(), 0, 1);
+  const diasPassados = Math.floor((hoje - inicioDoAno) / (1000 * 60 * 60 * 24));
   const indice = diasPassados % devocionais.length;
   return devocionais[indice];
 }
@@ -2969,8 +2946,9 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 
 **Entendendo o código**
-- `Date.UTC(...)`: transforma datas do calendário em números de dias padronizados, sem o horário local nem mudanças de horário de verão alterarem o resultado.
-- `hojeEmUTC - inicioDoAnoEmUTC`: subtrai os dois dias padronizados; dividir por `86400000` (milissegundos de 24 horas) resulta nos dias desde o início do ano.
+- `new Date(hoje.getFullYear(), 0, 1)`: cria a data do dia 1º de janeiro do ano atual (o `0` é o mês — em JavaScript, os meses começam em 0 para janeiro).
+- `hoje - inicioDoAno`: subtrair duas datas em JavaScript devolve a diferença em **milissegundos**.
+- `1000 * 60 * 60 * 24`: milissegundos de um dia inteiro (1000ms = 1s, × 60 = 1min, × 60 = 1h, × 24 = 1 dia). Dividir pela diferença em milissegundos converte para "quantos dias se passaram".
 - `Math.floor(...)`: arredonda para baixo, removendo casas decimais (já que "dias passados" tem que ser um número inteiro).
 - `diasPassados % devocionais.length`: o resto da divisão garante um índice válido entre `0` e `devocionais.length - 1`. Com os 66 itens atuais, os índices vão de `0` a `65`; se a lista crescer, o cálculo se ajusta sozinho — é o mesmo truque do `%` usado na galeria de fotos (8.6).
 - `if (elementoReferencia)`: só roda em páginas que têm a seção de devocional — hoje só a `index.html`.
@@ -2992,7 +2970,7 @@ Devocional do dia aparecendo corretamente, trocando automaticamente conforme a d
 
 ---
 
-### 📍 Microetapa 9.4 — Botão "Li hoje" e contador de dias seguidos — concluída
+### 📍 Microetapa 9.4 — Botão "Li hoje" e contador de dias seguidos
 
 **Objetivo**
 Fazer o botão "Já li hoje" guardar, no LocalStorage, a data da última leitura e quantos dias seguidos a pessoa leu o devocional.
@@ -3008,10 +2986,7 @@ Fazer o botão "Já li hoje" guardar, no LocalStorage, a data da última leitura
 **Fragmento (JavaScript)**
 ```javascript
 function formatarDataISO(data) {
-  const ano = data.getFullYear();
-  const mes = String(data.getMonth() + 1).padStart(2, '0');
-  const dia = String(data.getDate()).padStart(2, '0');
-  return `${ano}-${mes}-${dia}`;
+  return data.toISOString().split('T')[0]; // "AAAA-MM-DD"
 }
 
 function atualizarSequenciaDevocional() {
@@ -3035,7 +3010,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const ultimaLeitura = localStorage.getItem('devocional-ultima-leitura');
 
       if (ultimaLeitura === hojeTexto) {
-        mostrarStatusDevocional('Você já marcou a leitura de hoje.');
+        alert('Você já marcou a leitura de hoje!');
         return;
       }
 
@@ -3050,14 +3025,14 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('devocional-sequencia', sequencia);
 
       atualizarSequenciaDevocional();
-      mostrarStatusDevocional(`Leitura marcada. Sua sequência é de ${sequencia} dia(s).`);
+      alert(`Leitura marcada! Sequência: ${sequencia} dia(s) 🙏`);
     });
   }
 });
 ```
 
 **Entendendo o código**
-- `formatarDataISO()`: monta o texto com a data do calendário local. Evita usar `toISOString()`, que converte para UTC e pode trocar o dia perto da meia-noite.
+- `data.toISOString()`: converte a data para um texto padrão tipo `"2026-10-15T20:45:00.000Z"`. `.split('T')[0]` pega só a parte antes do `T`, ou seja, `"2026-10-15"`.
 - `atualizarSequenciaDevocional()`: função separada, reutilizável — chamada tanto ao carregar a página quanto depois de marcar "li hoje", para o texto da sequência atualizar na hora.
 - `if (ultimaLeitura === hojeTexto) { ...; return; }`: se a pessoa já leu hoje, mostra aviso e **para a função ali** (`return` dentro de uma função encerra sua execução imediatamente).
 - `ontem.setDate(ontem.getDate() - 1)`: pega a data de hoje e subtrai 1 dia — o JavaScript lida sozinho com casos como virar o mês (ex.: dia 1 menos 1 vira o último dia do mês anterior).
@@ -3065,9 +3040,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 **Como Testar**
 1. Adicione o código
-2. Abra `index.html`, clique em "Já li hoje": deve aparecer na página a confirmação da leitura e da sequência
-3. Clique de novo no mesmo botão: deve avisar na própria página que você já leu hoje
-4. Para simular uma leitura ontem sem esperar: no DevTools → Console, rode `const ontem = new Date(); ontem.setDate(ontem.getDate() - 1); localStorage.setItem('devocional-ultima-leitura', [ontem.getFullYear(), String(ontem.getMonth() + 1).padStart(2, '0'), String(ontem.getDate()).padStart(2, '0')].join('-'))` — ao clicar em "Já li hoje", a sequência deve aumentar
+2. Abra `index.html`, clique em "Já li hoje": deve aparecer o alerta de sucesso com "Sequência: 1 dia(s)"
+3. Clique de novo no mesmo botão: deve avisar que você já leu hoje
+4. Para simular o dia seguinte sem esperar: no DevTools → Console, rode `localStorage.setItem('devocional-ultima-leitura', '2026-10-14')` (um dia antes de hoje) e recarregue a página — ao clicar em "Já li hoje", a sequência deve ir para 2
 
 **Resultado Esperado**
 - Primeira marcação do dia: sequência soma
@@ -3082,17 +3057,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ---
 
-### 📍 Microetapa 9.5 — Compartilhar o devocional — concluída
+### 📍 Microetapa 9.5 — Compartilhar o devocional
 
 **Objetivo**
 Adicionar dois botões para compartilhar o devocional do dia: um que abre o WhatsApp com o texto pronto, e outro que copia o texto para a área de transferência.
 
-**Versão implementada**
-O botão do WhatsApp abre uma nova aba protegida contra acesso à página de origem. O botão de cópia tenta a Clipboard API e depois usa uma alternativa de compatibilidade. Os dois informam o resultado numa mensagem acessível, sem depender de alertas.
-
 **Conceito Novo**
 - **`encodeURIComponent()`**: função que transforma um texto comum em um formato seguro para ir dentro de um link (substitui espaços, quebras de linha e acentuação por códigos especiais que a URL entende).
-- **Clipboard API (`navigator.clipboard`)**: recurso do navegador que permite copiar texto para a área de transferência (o "Ctrl+C" por código). Como alguns navegadores exigem uma conexão segura, o site também tenta uma cópia de compatibilidade e informa quando não consegue copiar.
+- **Clipboard API (`navigator.clipboard`)**: recurso do navegador que permite copiar texto para a área de transferência (o "Ctrl+C" por código).
 
 **Onde Digitar**
 📁 Arquivo: `index.html`
@@ -3142,8 +3114,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const devocionalHoje = obterDevocionalDeHoje();
       const texto = montarTextoDevocional(devocionalHoje);
       const link = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-      window.open(link, '_blank', 'noopener,noreferrer');
-      mostrarStatusDevocional('Abrindo o compartilhamento do WhatsApp.');
+      window.open(link, '_blank');
     });
   }
 
@@ -3152,10 +3123,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const devocionalHoje = obterDevocionalDeHoje();
       const texto = montarTextoDevocional(devocionalHoje);
 
-      copiarTextoComFallback(texto).then(function() {
-        mostrarStatusDevocional('Texto do devocional copiado.');
-      }).catch(function() {
-        mostrarStatusDevocional('Não foi possível copiar automaticamente. Selecione e copie o texto manualmente.');
+      navigator.clipboard.writeText(texto).then(function() {
+        alert('Texto copiado!');
       });
     });
   }
@@ -3166,28 +3135,28 @@ document.addEventListener('DOMContentLoaded', function() {
 - `montarTextoDevocional(devocional)`: função que monta o texto final a ser compartilhado, juntando referência, versículo e reflexão num único bloco de texto. `\n` cria uma quebra de linha dentro da template string.
 - `https://wa.me/?text=...`: o link oficial do WhatsApp para "compartilhar", sem precisar escolher um contato específico — abre o WhatsApp (ou WhatsApp Web) já com o texto preenchido, pronto para a pessoa escolher para quem enviar.
 - `encodeURIComponent(texto)`: sem isso, espaços, acentos e quebras de linha quebrariam o link. Essa função "traduz" o texto para um formato seguro de URL.
-- `navigator.clipboard.writeText(texto)`: tenta copiar o texto para a área de transferência. É uma operação **assíncrona**; a mensagem de sucesso só aparece quando a cópia termina. Se o navegador negar a permissão, o site tenta o método de compatibilidade e mostra uma orientação caso também não consiga.
+- `navigator.clipboard.writeText(texto)`: copia o texto para a área de transferência do sistema. É uma operação **assíncrona** (não acontece instantaneamente), por isso usamos `.then(function() {...})` — "quando terminar de copiar, então mostra o alerta".
 
 **Como Testar**
 1. Adicione o HTML, o CSS e o JavaScript
 2. Clique em "Compartilhar no WhatsApp": deve abrir uma nova aba com o WhatsApp e o texto do devocional já preenchido
-3. Clique em "Copiar texto": a página confirma o resultado; cole (Ctrl+V) em qualquer lugar para conferir
+3. Clique em "Copiar texto": deve aparecer o alerta "Texto copiado!" — cole (Ctrl+V) em qualquer lugar para conferir
 
 **Resultado Esperado**
 Os dois botões de compartilhamento funcionando, com o texto do devocional do dia.
 
 ✅ Checklist
-- [x] Adicionei os botões no HTML
-- [x] Adicionei o CSS
-- [x] Adicionei o JavaScript
-- [x] Testei o botão do WhatsApp
-- [x] Testei o botão de copiar e a alternativa para navegadores sem Clipboard API
+- [x ] Adicionei os botões no HTML
+- [x ] Adicionei o CSS
+- [ x] Adicionei o JavaScript
+- [x ] Testei o botão do WhatsApp
+- [ x] Testei o botão de copiar
 
 ---
 
 ### 📍 Microetapa 9.6 — Versículo e significado em cada produto — concluída
 
-**Objetivo**  
+**Objetivo**
 Mostrar uma passagem bíblica e uma aplicação breve para cada peça, na página de detalhes do produto.
 
 **O que foi implementado**
@@ -3214,7 +3183,7 @@ Mostrar uma passagem bíblica e uma aplicação breve para cada peça, na págin
 2. O bloco `produto-faith` contém os espaços `produto-versiculo` e `produto-significado`.
 3. O código que já identifica `produtoAtual` pela URL escreve os dois campos nos elementos da página. O uso de `textContent` mantém o conteúdo como texto simples.
 
-**Resultado esperado**  
+**Resultado esperado**
 Cada URL `produto.html?id=1` até `produto.html?id=6` mostra a passagem parafraseada e seu significado, correspondentes à peça escolhida.
 
 ✅ Checklist da implementação
@@ -3223,72 +3192,140 @@ Cada URL `produto.html?id=1` até `produto.html?id=6` mostra a passagem parafras
 - [x] Integrei o preenchimento dos dados ao produto selecionado.
 - [x] Apliquei o estilo secundário e dourado, mantendo o contraste.
 - [x] Deixei as paráfrases identificadas e registrei as referências usadas.
-- [x] Conferi visualmente os seis produtos no navegador durante a microetapa 9.9.
+- [ ] Conferi visualmente os seis produtos no navegador; essa revisão ficará para a microetapa 9.9.
 
 **Próxima microetapa**  
-9.7 — Favoritos no catálogo (concluída; detalhes abaixo).
+9.7 — Favoritos: incluir um coração nos produtos e guardar as escolhas no LocalStorage.
 
 ---
 
-### 📍 Microetapa 9.7 — Favoritos (coração nos produtos) — concluída
+### 📍 Microetapa 9.7 — Favoritos (coração nos produtos)
 
 **Objetivo**
+Adicionar um ícone de coração em cada card de produto, que a pessoa pode clicar para favoritar, salvo no LocalStorage.
 
+**Onde Digitar**
+📁 Arquivo: `produtos.html`
+📍 Local: dentro de cada `.product-card`, antes do `h3`
 
-Permitir favoritar ou desfavoritar cada produto e lembrar a escolha neste navegador.
+**Fragmento 1 (HTML)**
+```html
+<button class="favorito" data-id="1" aria-label="Favoritar produto" aria-pressed="false">♡</button>
+```
 
-**O que foi implementado**
-- Cada um dos seis cards de `produtos.html` tem um botão de coração com o `data-id` correspondente ao produto.
-- O botão é do tipo `button`, tem área de toque de 44 × 44 px e mostra um contorno de foco ao navegar pelo teclado.
-- `js/main.js` lê e salva uma lista de IDs inteiros positivos na chave `favoritos` do `localStorage`. Dados inválidos ou que não sejam uma lista são tratados como lista vazia.
-- Ao carregar o catálogo, cada botão recupera seu estado. Ao clicar, alterna entre coração vazado e preenchido, cor dourada, `aria-pressed` e rótulo acessível.
-- O fundo escuro circular do botão mantém contraste quando ele aparece sobre as fotos.
+**Onde Digitar**
+📁 Arquivo: `css/styles.css`
 
-**Como o estado funciona**
-1. O `data-id` liga cada botão ao ID do item no catálogo.
-2. `carregarFavoritos()` lê a lista e filtra valores inválidos ou repetidos.
-3. `atualizarBotaoFavorito()` mantém ícone, estilo e atributos acessíveis em sincronia.
-4. O clique salva a nova lista no `localStorage`; uma nova carga da página restaura os corações salvos.
+**Fragmento 2 (CSS)**
+```css
+.favorito {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s;
+}
 
-**Como conferir no navegador**
-1. Abra `produtos.html` e favorize um produto: o coração deve ficar cheio e dourado, e o rótulo acessível deve indicar “Remover dos favoritos”.
-2. Recarregue a página: o coração deve continuar favoritado.
-3. Clique novamente: o coração deve voltar ao estado vazado e o ID sair da lista salva.
-4. Use Tab para chegar ao botão e confirme que o foco fica visível.
+.favorito:hover {
+  transform: scale(1.15);
+}
 
-**Resultado esperado**
+.favorito:focus-visible {
+  outline: 2px solid var(--cor-dourado);
+  outline-offset: 3px;
+}
 
+.favorito.favoritado {
+  color: var(--cor-dourado);
+}
 
-Os seis favoritos alternam individualmente, são identificáveis por leitores de tela e persistem entre recarregamentos no mesmo navegador.
+.product-card {
+  position: relative;
+}
+```
 
-✅ Checklist da implementação
-- [x] Adicionei botões com IDs correspondentes nos seis cards.
-- [x] Adicionei estados visuais, foco de teclado e área de toque acessível.
-- [x] Implementei leitura, alternância e gravação no LocalStorage.
-- [x] Tratei conteúdo inválido na chave de favoritos.
-- [x] Conferi alternância, estado acessível e persistência em teste isolado do JavaScript.
-- [x] Conferi visualmente o catálogo no navegador durante a microetapa 9.9.
+**Explicação**
+- `data-id="1"`: guarda qual produto aquele coração representa (igual ao `data-index` usado no botão "Remover" do carrinho, na 7.2) — troque o número para cada produto.
+- `.product-card { position: relative; }`: necessário para o `.favorito` (que é `absolute`) se posicionar em relação ao card, e não à página inteira — mesma lógica da 8.3.
+- `♡` é o coração vazado (não favoritado); vamos trocar para `♥` (preenchido) via JavaScript quando favoritado.
+- `aria-pressed` informa o estado do botão a leitores de tela. O ícone, o rótulo acessível e a cor mudam juntos, então a seleção não depende apenas do dourado. `:focus-visible` deixa claro onde o teclado está.
 
-**Próxima microetapa**
+**Onde Digitar**
+📁 Arquivo: `js/main.js`
+📍 Local: no final do arquivo
 
-9.8 — Mural de oração local (concluída; detalhes abaixo).
+**Fragmento 3 (JavaScript)**
+```javascript
+function carregarFavoritos() {
+  return JSON.parse(localStorage.getItem('favoritos')) || [];
+}
+
+document.querySelectorAll('.favorito').forEach(function(botao) {
+  const id = Number(botao.dataset.id);
+  const favoritos = carregarFavoritos();
+
+  if (favoritos.includes(id)) {
+    botao.classList.add('favoritado');
+    botao.textContent = '♥';
+    botao.setAttribute('aria-pressed', 'true');
+    botao.setAttribute('aria-label', 'Remover dos favoritos');
+  }
+
+  botao.addEventListener('click', function() {
+    let favoritos = carregarFavoritos();
+
+    if (favoritos.includes(id)) {
+      favoritos = favoritos.filter(function(favId) { return favId !== id; });
+      botao.classList.remove('favoritado');
+      botao.textContent = '♡';
+      botao.setAttribute('aria-pressed', 'false');
+      botao.setAttribute('aria-label', 'Favoritar produto');
+    } else {
+      favoritos.push(id);
+      botao.classList.add('favoritado');
+      botao.textContent = '♥';
+      botao.setAttribute('aria-pressed', 'true');
+      botao.setAttribute('aria-label', 'Remover dos favoritos');
+    }
+
+    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+  });
+});
+```
+
+**Entendendo o código**
+- `carregarFavoritos()`: função pequena e reutilizável que lê a lista de ids favoritados do LocalStorage (ou devolve uma lista vazia).
+- `favoritos.includes(id)`: verifica se aquele id já está na lista de favoritos.
+- Ao carregar a página, cada coração já verifica se o seu produto está favoritado e ajusta a aparência (`♥` dourado) — assim o favorito "lembra" mesmo depois de fechar e reabrir o navegador.
+- `favoritos.filter(function(favId) { return favId !== id; })`: cria uma nova lista **sem** aquele id — é a forma mais comum em JavaScript de "remover um item de um array mantendo os outros".
+- O `addEventListener('click', ...)` alterna (toggle) entre favoritar e desfavoritar, dependendo do estado atual.
+
+**Como Testar**
+1. Adicione o botão de coração em cada card (trocando o `data-id`), o CSS e o JavaScript
+2. Abra `produtos.html`: clique num coração — deve ficar dourado e preenchido
+3. Recarregue a página: o coração deve continuar favoritado
+4. Clique de novo: deve voltar ao estado normal (vazado)
+
+**Resultado Esperado**
+Favoritos funcionando e persistindo entre recarregamentos da página.
+
+✅ Checklist
+- [ x] Adicionei o botão de coração nos cards
+- [ x] Adicionei o CSS
+- [x ] Adicionei o JavaScript
+- [x ] Testei favoritar e desfavoritar
+- [x ] Testei que o favorito persiste ao recarregar
 
 ---
 
-### 📍 Microetapa 9.8 — Mural de oração — concluída
+### 📍 Microetapa 9.8 — Mural de oração
 
 **Objetivo**
 Criar um espaço onde a pessoa escreve um pedido de oração e vê os pedidos que ela mesma escreveu (guardados só no navegador dela).
-
-**Implementação concluída**
-- O formulário identifica o campo, informa a quantidade de caracteres e aceita pedidos de até 500 caracteres.
-- A lista fica na chave `muralOracao` do LocalStorage, limitada a 100 pedidos para evitar crescimento sem controle.
-- O pedido mais recente aparece primeiro; cada item mostra a data local e tem um botão acessível para excluí-lo.
-- O texto é inserido com `textContent`, nunca interpretado como HTML. Dados salvos inválidos são ignorados sem interromper a página.
-- O status informa quando um pedido foi salvo, removido, rejeitado vazio ou não pôde ser gravado.
-- O aviso explica que os dados ficam somente neste navegador e orienta a não escrever informações sensíveis. O mural não envia nem sincroniza pedidos.
-
-O HTML, o CSS e o JavaScript abaixo servem para entender os elementos principais. A versão completa do projeto também inclui limite de tamanho, contador, estados acessíveis, exclusão e tratamento de falhas de armazenamento.
 
 **Onde Digitar**
 📁 Arquivo: `index.html`
@@ -3421,31 +3458,30 @@ document.addEventListener('DOMContentLoaded', function() {
 **Entendendo o código**
 - `carregarOracoes()` e `renderizarOracoes()`: seguem o mesmo padrão já usado no carrinho (7.2) — uma função lê os dados salvos, outra desenha eles na tela.
 - `textContent` trata o pedido digitado como texto literal. Assim, marcas como `<` e `>` são exibidas sem serem interpretadas pelo navegador como HTML.
-- `e.preventDefault()`: impede o formulário de recarregar a página ao enviar (igual ao login da Fase 10).
+- `e.preventDefault()`: impede o formulário de recarregar a página ao enviar.
 - `campoTexto.value.trim()`: pega o texto digitado e remove espaços em branco do início/fim. `if (texto === '') return;` evita salvar um pedido vazio.
 - `oracoes.unshift({...})`: parecido com `push()` (que vimos antes), mas `unshift` adiciona no **começo** do array, não no fim — assim o pedido mais recente aparece primeiro na lista.
 - `new Date().toLocaleDateString('pt-BR')`: formata a data atual no padrão brasileiro (`dd/mm/aaaa`), diferente do formato ISO (`aaaa-mm-dd`) usado na 9.4 — aqui é só para exibição, então o formato brasileiro é mais natural de ler.
 
 **Como Testar**
-1. Abra `index.html`, escreva um pedido e clique em "Salvar pedido"
-2. O pedido deve aparecer na lista, com a data de hoje
-3. Recarregue a página: o pedido deve continuar lá
-4. Tente enviar o formulário vazio: nada deve ser adicionado
-5. Use "Excluir pedido": o item deve desaparecer e deixar de ficar salvo
+1. Adicione o HTML, CSS e JavaScript
+2. Abra `index.html`, escreva um pedido e clique em "Enviar pedido"
+3. O pedido deve aparecer na lista, com a data de hoje
+4. Recarregue a página: o pedido deve continuar lá
+5. Tente enviar o formulário vazio: nada deve ser adicionado
 
 **Resultado Esperado**
 Mural funcionando, guardando e mostrando os pedidos de oração daquele navegador.
 
 ✅ Checklist
-- [x] Adicionei o HTML, CSS e JavaScript
-- [x] Testei enviar um pedido e exibir texto literal sem interpretar HTML
-- [x] Testei a persistência após recarregar
-- [x] Testei a rejeição de pedido vazio
-- [x] Testei excluir pedidos e recuperar dados inválidos
+- [ ] Adicionei o HTML, CSS e JavaScript
+- [ ] Testei enviar um pedido
+- [ ] Testei que ele persiste ao recarregar
+- [ ] Testei que não envia vazio
 
 ---
 
-### 📍 Microetapa 9.9 — Revisão final da Fase 9 — concluída
+### 📍 Microetapa 9.9 — Revisão final da Fase 9
 
 **Objetivo**
 Conferir toda a Fase 9 funcionando junto, sem erros, em desktop e celular.
@@ -3460,7 +3496,7 @@ Conferir toda a Fase 9 funcionando junto, sem erros, em desktop e celular.
 | Versículo e significado em cada produto | `produto.html` (todos os ids) |
 | Favoritos marcando/desmarcando e persistindo | `produtos.html` |
 | Mural de oração enviando e listando pedidos | `index.html` |
-| Nenhum erro de execução do JavaScript no Console | Todas as páginas |
+| Nenhum erro no Console (F12) | Todas as páginas |
 | Tudo funcionando no modo celular do DevTools | Todas as páginas |
 | Contraste e leitura claros, sem usar só o dourado para indicar estados | Todas as páginas |
 | Foco visível ao navegar com Tab e botões fáceis de tocar | Todas as páginas |
@@ -3474,127 +3510,101 @@ Conferir toda a Fase 9 funcionando junto, sem erros, em desktop e celular.
 4. Navegue também com a tecla Tab e confira o foco visível; confira que o estado dos favoritos continua compreensível sem depender só da cor.
 
 **Resultado Esperado**
-As páginas da Fase 9 funcionam em desktop e celular, sem erros de execução do JavaScript — prontas para a Fase 10 (autenticação demonstrativa).
-
-**Registro da revisão (28/10/2026)**
-- Conferidos `index.html`, `produtos.html`, `produto.html?id=1` até `?id=6` e `carrinho.html` no Chrome, com largura de celular de 390 px. Não houve rolagem horizontal.
-- Testados devocional, marcação diária, continuidade da sequência, URL do WhatsApp, cópia principal e alternativa, seis conteúdos de produto, favoritos, mural, persistência, exclusão, campo vazio e dados inválidos.
-- As fotos principais dos seis produtos carregaram. As capturas do mural e do card de favorito foram conferidas em desktop e celular; foco, contraste e áreas de toque foram revisados.
-- Não ocorreram exceções de JavaScript. O teste isolado não conseguiu buscar as fontes do Google porque o ambiente bloqueou a conexão externa; o navegador mostrou a fonte alternativa. Com conexão normal, Manrope e Inter carregam pelos links já existentes.
+Site com conteúdo de fé e interatividade — pronto para planejar a experiência de conta na Fase 10.1. Isso ainda não ativa autenticação.
 
 ✅ Checklist
-- [x] Revisei os itens funcionais da tabela nas quatro páginas
-- [x] Testei no modo celular e confirmei ausência de rolagem horizontal
-- [x] Conferi o Console: sem exceções de JavaScript; falha de rede das fontes externas anotada acima
+- [x] Revisei todos os itens da tabela
+- [x] Testei no modo celular
+- [x] Conferi o Console sem erros
 
 ---
 
 ## ✅ Fase 9 Concluída!
 
-O site agora conversa com o público através do devocional, dos versículos nos produtos, dos favoritos e do mural de oração. Próximo passo: Fase 10 (login e cadastro).
+O site agora conversa com o público através do devocional, dos versículos nos produtos, dos favoritos e do mural de oração. Próximo passo: planejar a jornada de conta na Microetapa 10.1; login e cadastro reais aguardam o banco de dados e o back-end.
 
 ---
 
-## Fase 10: Autenticação
+## Registro consolidado das atualizações recentes — 05/11/2026
 
-*Objetivo: Criar sistema de login e cadastro*
+As alterações abaixo já estão integradas ao projeto. Consulte também o registro completo da retificação do rodapé dentro da Microetapa 8.10.
 
-### 📍 Microetapa 10.1 — Formulário de login ⏳
+1. **Cabeçalho e navegação:** os cabeçalhos de Início, Roupas, Catálogo e Histórias foram alinhados ao padrão RHEMA, com o wordmark à esquerda, linha dourada, sacola e menu. O menu organiza navegação, categorias de compra e conteúdo institucional; os atalhos de categoria abrem o catálogo filtrado.
+2. **Catálogo separado:** a busca, os filtros e a listagem completa de produtos estão em `catalogo.html`. A página `produtos.html` funciona como entrada editorial de Roupas e direciona as categorias para o catálogo.
+3. **Página Roupas:** a seção de categorias apresenta Camisetas, Calças, Moletons, Casacos sem capuz e Acessórios, com animações discretas e suporte a foco pelo teclado. A área reservada para vídeo horizontal permanece vazia até haver um vídeo de campanha adequado.
+4. **Destaque RHEMA BLACK:** o destaque foi colocado depois do frame reservado na página Roupas, sem indicar um ano de coleção. Os produtos continuam acessíveis no catálogo.
+5. **Rodapé:** as informações e o logo foram mantidos e receberam o tratamento escuro e dourado, colunas reorganizadas, layout responsivo e fechamento centralizado. Os detalhes e arquivos estão documentados na Microetapa 8.10.
+
+**Arquivos principais desta atualização**
+`index.html`, `produtos.html`, `catalogo.html`, `sobre.html`, `css/styles.css`, `README.md` e `PROGRESSO.md`. O rodapé mantém a marcação existente e foi refinado em `css/styles.css`.
+
+**Estado de publicação**
+O código foi enviado ao repositório GitHub `lucaschmidt-ws/siteRHEMA`. A atualização mais recente do rodapé está no commit `873c358`. O site está publicado como página estática na Netlify; a ativação de cadastro, pagamento e banco de dados ainda depende das respectivas integrações.
+
+## Fase 10: Experiência de conta e preparação da autenticação
+
+*Objetivo: planejar a área de conta da RHEMA sem anunciar um login real antes de existir banco de dados e back-end.*
+
+**Decisão do projeto**
+A pessoa responsável pela RHEMA definiu que a criação de contas reais será implementada depois do banco de dados. O site atual é estático e não autentica pessoas. A etapa 10 começa pelo planejamento do fluxo e pode incluir um protótipo visual claramente identificado como demonstração.
+
+> **Segurança:** não use `localStorage` para armazenar senhas, não trate um e-mail salvo no navegador como login e não publique o formulário antigo de demonstração como se fosse uma conta funcional. O exemplo anterior da etapa 10.1 foi retirado porque não conferia senhas e não era autenticação.
+
+### 📍 Microetapa 10.1 — Planejar a jornada da conta ✅ Concluída
 
 **O que vamos fazer?**
-Criar um formulário de login no `index.html` com campos de email e senha obrigatórios, usando JavaScript e LocalStorage.
+Definir o que a pessoa poderá fazer na área da conta e como serão as telas antes de integrar um provedor de autenticação.
 
-**Por que precisamos disso?**
-Permite que o usuário tenha uma conta, veja seu histórico e personalize a experiência. É a base para área do usuário e pedidos.
+**Passo a passo**
 
-**Implementação**
+1. Liste as ações necessárias: criar conta, entrar, sair e recuperar acesso. Acrescente histórico de pedidos ou dados de perfil só se forem necessários para a loja.
+2. Defina quais dados serão indispensáveis. Evite pedir informações sem uma finalidade clara.
+3. Desenhe a sequência das telas: entrada, cadastro, confirmação de e-mail, recuperação de acesso e área da conta. Indique o que a pessoa vê quando ainda não está autenticada.
+4. Se quiser criar apenas uma prévia visual, faça uma tela estática com os estilos da RHEMA. Inclua um aviso visível como “Prévia: cadastro ainda não disponível”. Não conecte o envio, não grave os campos e não diga que a conta foi criada.
+5. Antes da autenticação real, prepare o banco de dados e o back-end na Fase 11, defina as regras de acesso e atualize a política de privacidade. Depois, retorne à Fase 10 para integrar um provedor de autenticação apropriado.
 
-No `index.html`, adicione uma nova seção antes do `<footer>`:
+**O que a etapa 10.1 deve entregar**
 
-```html
-<div class="auth-container">
-  <h2>Entrar</h2>
-  <form id="login-form">
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Senha" required>
-    <button type="submit">Entrar</button>
-  </form>
-</div>
-```
+- [x] Fluxos de criar conta, entrar, sair e recuperar acesso descritos.
+- [x] Campos mínimos e finalidade de cada dado definidos.
+- [x] A prévia informa que o cadastro/login não estão ativos; a política será ajustada novamente antes de ativar o provedor escolhido.
+- [x] O protótipo é visual; os campos estão desativados e não enviam nem guardam informações.
+- [x] Nenhuma senha ou sessão é salva manualmente em `localStorage`.
 
-No `js/main.js`, adicione:
-
-```javascript
-const loginForm = document.getElementById('login-form');
-
-if (loginForm) {
-  loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = this.querySelector('input[type="email"]').value;
-
-    const user = JSON.parse(localStorage.getItem(email)) || null;
-
-    if (user) {
-      alert('Login realizado!');
-      localStorage.setItem('usuarioLogado', JSON.stringify(user));
-    } else {
-      alert('Usuário não encontrado');
-    }
-  });
-}
-```
-
-**Entendendo o código**
-- `getElementById('login-form')` guardado em `loginForm` — o formulário só existe em `index.html`
-- `if (loginForm)` — evita erro nas outras páginas, onde o formulário não existe
-- `required` — o navegador não deixa enviar com campo vazio
-- `e.preventDefault()` — impede o recarregamento da página ao submeter o formulário
-- `querySelector('input[type="email"]')` — pega o campo de email dentro do formulário
-- `localStorage.getItem(email)` — busca usuário salvo com o email como chave
-- `setItem('usuarioLogado', ...)` — guarda o usuário logado na sessão atual
-
-> **Aviso de segurança:** nesta etapa a **senha não é conferida**, e o LocalStorage pode ser lido por qualquer pessoa que use o navegador. Serve só para aprender. Login de verdade exige back-end e banco de dados (Fase 11).
-
-**Direção visual Rhema:** preserve os campos simples e legíveis, o contraste alto, os rótulos claros e o foco de teclado. Reutilize os tokens do site; o formulário não deve introduzir outra paleta ou competir com o conteúdo principal.
-
-**Teste**
-1. Primeiro cadastre um usuário no LocalStorage do navegador (DevTools → Application → LocalStorage):
-   ```javascript
-   localStorage.setItem('teste@email.com', JSON.stringify({email: 'teste@email.com', nome: 'Teste'}))
-   ```
-2. Abra `index.html`
-3. Digite o email e senha
-4. Clique em Entrar — deve aparecer alert "Login realizado!"
-
-**Resultado esperado**
-- Formulário de login funcional
-- Alert de sucesso ou erro
-- Usuário salvo no LocalStorage
+**Direção visual RHEMA**
+Use fundo escuro, contraste alto, detalhes dourados discretos, rótulos claros e foco de teclado visível. Mantenha a tela simples e coerente com os cabeçalhos e rodapés atuais.
 
 **Próximo passo**
-Fase 11 — preparar deploy.
+Prepare o banco de dados e o back-end na Fase 11. Quando estiverem configurados, retorne à Fase 10 para implementar e validar a autenticação real. Não habilite cadastro público antes de testar as regras de acesso, a recuperação de conta e as informações de privacidade.
 
 ---
 
-## Fase 11: Back-end e Deploy
+## Fase 11: Banco de dados, back-end e publicação
 
-*Objetivo: Publicar o site na internet*
+*Objetivo: preparar a camada de dados e manter o site publicado.*
 
-### Página Sobre e mural de testemunhos
+**Estado atual e sequência**
+O site está publicado na Netlify como site estático. A publicação atual não fornece banco de dados nem autenticação. Antes de voltar à Fase 10 para construir contas reais, escolha e configure um back-end/banco de dados, defina quais dados serão necessários e restrinja o acesso com regras apropriadas. Não coloque chaves secretas no HTML ou no JavaScript público. Depois de validar a conexão e as regras, retorne à Fase 10.
 
-`sobre.html` é a página separada para a história do fundador e as histórias da comunidade. O formulário já está desenhado, mas fica desativado enquanto não houver conexão com o banco. O Supabase conectado estava `INACTIVE` nesta revisão; a tabela ainda não foi criada.
+### 📍 Microetapa 11.1 — Preparar banco de dados e back-end ⏳
 
-Quando o projeto estiver ativo:
+**Objetivo**
+Preparar uma camada de dados segura antes de ativar cadastro, login, testemunhos públicos ou pagamentos.
 
-1. Execute `database/rhema_testimonies.sql` no SQL Editor do projeto.
-2. Confirme que `public.rhema_testimonies` está exposta na Data API.
-3. Preencha `url` e `publishableKey` em `js/sobre-config.js` usando a URL e a chave publicável do projeto. **Nunca use a chave `service_role` no navegador.**
-4. Envie um relato de teste. Ele deve entrar com status `pending`; revise-o no painel e altere o status para `published` para torná-lo público.
-5. Confirme que visitantes conseguem ler apenas relatos aprovados e que não conseguem alterar ou apagar relatos.
+**Passo a passo**
 
-O SQL ativa RLS, limita os campos que visitantes podem enviar e mantém novos relatos pendentes. O Supabase altera o padrão de exposição de tabelas na Data API em 30/10/2026; por isso, confirme a exposição explicitamente nas configurações do projeto ([aviso do Supabase](https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically)).
+1. Confira o estado atual do projeto de banco de dados que a RHEMA já possui. Em 12/11/2026, a conexão Supabase consultada não listou projetos acessíveis; reconecte o projeto existente ou escolha/configure um back-end antes de planejar a integração.
+2. Escolha o provedor e o ambiente de desenvolvimento. Leia a documentação oficial atual antes de criar tabelas, chaves ou políticas, pois telas e configurações do serviço podem mudar.
+3. Liste apenas os dados necessários para cada recurso. Separe dados de perfil, pedidos e testemunhos; não armazene dados de cartão de pagamento no site.
+4. Defina quem pode ler, criar, alterar e excluir cada dado. Registros privados devem começar privados; qualquer conteúdo público precisa de aprovação e regras de acesso explícitas.
+5. Configure as chaves públicas permitidas no cliente e mantenha chaves administrativas/secretas apenas no back-end. Nunca publique uma chave `service_role` em `index.html`, `js/` ou outro arquivo entregue ao navegador.
+6. Teste as regras com usuário não autenticado e autenticado antes de conectar formulários. Atualize a política de privacidade para refletir o tratamento real dos dados.
+7. Só depois desses passos, retorne à Fase 10 para implementar autenticação com o serviço escolhido.
 
-### 📍 Microetapa 11.1: Preparar para deploy
+**Resultado esperado**
+O projeto tem ambiente de desenvolvimento identificado, estrutura mínima de dados documentada, regras de acesso revisadas e nenhum segredo no código público. Cadastro de clientes e pagamentos continuam desativados até a integração correspondente ser concluída.
+
+### 📍 Microetapa 11.2: Preparar para deploy
 
 **Objetivo**
 Verificar se todos os arquivos estão prontos para publicar.
@@ -3606,7 +3616,7 @@ Verificar se todos os arquivos estão prontos para publicar.
 - [ ] Nomes de arquivos de imagem sem espaços nem parênteses, e com as mesmas maiúsculas e minúsculas do código
 - [ ] Sem erros no console do navegador
 
-### 📍 Microetapa 11.2: Hospedagem gratuita
+### 📍 Microetapa 11.3: Hospedagem e publicação
 
 **Opções gratuitas:**
 1. **GitHub Pages** - Ideal para sites estáticos
@@ -3615,7 +3625,7 @@ Verificar se todos os arquivos estão prontos para publicar.
 
 > **Confira as condições antes de publicar.** Os planos e limites mudam. Na documentação consultada em 22/10/2026, GitHub Pages está disponível em repositórios públicos do GitHub Free e tem limites de uso; o plano Free da Netlify tem cota mensal e pode pausar o projeto ao atingir o limite; o Vercel Hobby é gratuito para projetos pessoais e não deve ser tratado como hospedagem da loja comercial RHEMA. Leia as regras atuais antes de escolher: [GitHub Pages](https://docs.github.com/en/pages/quickstart), [limites do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits), [planos da Netlify](https://www.netlify.com/pricing/), [Vercel Hobby](https://vercel.com/docs/plans/hobby).
 
-**Passos para GitHub Pages:**
+**Passos para GitHub Pages (alternativa; o site da RHEMA já está na Netlify):**
 1. Crie conta no GitHub
 2. Crie repositório chamado `rhema`
 3. Adicione todos os arquivos
@@ -3704,25 +3714,6 @@ Parabéns! Você completou seu primeiro site. Você aprendeu:
 | Sequência (streak) | Contagem de dias seguidos em que uma ação foi feita, reiniciada se um dia for pulado |
 | Clipboard API | Recurso do navegador para copiar texto para a área de transferência via código |
 | `encodeURIComponent` | Converte um texto comum em um formato seguro para colocar dentro de um link |
-
-## Coleção Crônicas da Fé — mockups do verso
-
-Em 29/10/2026 foram criados dez mockups de camisetas pretas, seguindo o corte e o fundo de estúdio da camiseta já presente no catálogo. Cada nova arte aparece somente na parte de trás; a frente não recebeu uma estampa nova. Os mockups foram feitos com apoio do OpenAI Codex a partir das imagens fornecidas pelo responsável pelo projeto.
-
-| Arquivo | Tema da estampa |
-|---|---|
-| `imagens/colecao-cronicas-da-fe/01-jardim-do-eden-costas.png` | Jardim do Éden |
-| `imagens/colecao-cronicas-da-fe/02-jornada-da-fe-costas.png` | Panorama bíblico e jornada de fé |
-| `imagens/colecao-cronicas-da-fe/03-jonas-e-o-grande-peixe-costas.png` | Jonas e o grande peixe |
-| `imagens/colecao-cronicas-da-fe/04-jo-costas.png` | Jó |
-| `imagens/colecao-cronicas-da-fe/05-sansao-costas.png` | Sansão — Juízes 13–16 |
-| `imagens/colecao-cronicas-da-fe/06-leao-rhema-costas.png` | Leão RHEMA — 2 Timóteo 1:7 |
-| `imagens/colecao-cronicas-da-fe/07-nao-temas-costas.png` | “Não temas, porque eu sou contigo” — Isaías 41:10 |
-| `imagens/colecao-cronicas-da-fe/08-deus-amou-o-mundo-costas.png` | “Deus amou o mundo” — João 3:16 |
-| `imagens/colecao-cronicas-da-fe/09-tudo-contribui-para-o-bem-costas.png` | “Tudo contribui para o bem” — Romanos 8:28 |
-| `imagens/colecao-cronicas-da-fe/10-constancia-costas.png` | “Constância em todo processo” — Gálatas 6:9 |
-
-Os arquivos são mockups de apresentação, não fotos de peças físicas. Para incluir as camisetas no catálogo, cadastrar cada produto com nome, preço, disponibilidade e fotos da frente e do verso; então adicionar os caminhos das imagens ao produto correspondente em `js/main.js`.
 
 
 

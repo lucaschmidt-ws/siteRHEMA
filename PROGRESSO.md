@@ -1,6 +1,8 @@
 # Progresso do Projeto RHEMA
 
-**Última atualização:** 05/11/2026
+**Última atualização:** 12/11/2026
+
+**Manual e próxima etapa:** Fases 1–9 e a microetapa 10.1 estão concluídas. `conta.html` mostra a prévia da área de conta sem coletar ou armazenar credenciais, e a jornada futura e os dados mínimos estão documentados. A autenticação real depende da Fase 11; em 12/11/2026, a conexão Supabase consultada não listou projetos acessíveis. O site atual está publicado na Netlify como página estática.
 
 **Rodapé:** refinado em todas as páginas sem alterar as informações ou o logo. O fundo agora tem mais contraste, as colunas respiram melhor, os títulos e divisórias usam dourado discreto, e o logo, slogan, direitos autorais e crédito de colaboração fecham o rodapé centralizados. O layout adapta as colunas para tablet e celular.
 
@@ -38,7 +40,9 @@
 
 **Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard e Elo. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
 
-**Planejamento futuro:** implementar criação de conta real somente depois de estruturar o banco de dados e o back-end. A autenticação demonstrativa descrita no manual não representa cadastro real.
+**Etapa 10 — área de conta:** concluída a 10.1, com página responsiva `conta.html`, aviso de prévia, campos desativados, jornadas de cadastro/entrada/saída/recuperação descritas e modelo de dados mínimo. Nenhuma informação é enviada ou armazenada. A autenticação real não pode ser ativada enquanto o projeto de banco/back-end não estiver disponível e conectado.
+
+**Próxima ação necessária:** reconectar o projeto Supabase existente para que fique visível na integração ou escolher/configurar o back-end da Fase 11. Depois disso, revisar a política de privacidade, configurar regras de acesso e retornar à Etapa 10 para implementar e validar login, cadastro, confirmação de e-mail, recuperação e encerramento de sessão.
 
 ## Estado atual
 
@@ -136,4 +140,4 @@ As Fases 1 a 7 e as correções R1 continuam registradas nos documentos anterior
 
 ## Próximo passo
 
-A Fase 9 está concluída. O próximo trabalho de desenvolvimento é a Fase 10; o cadastro real deve aguardar o banco de dados e o back-end da Fase 11. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage. O mural de testemunhos só poderá receber e mostrar relatos entre visitantes quando o Supabase estiver ativo e a tabela for exposta à Data API.
+A microetapa 10.1 está concluída. Para terminar a autenticação real, siga pela Fase 11 e conecte um projeto de banco/back-end; então retome a Etapa 10. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage. O mural de testemunhos só poderá receber e mostrar relatos entre visitantes quando o Supabase estiver ativo e a tabela for exposta à Data API.
