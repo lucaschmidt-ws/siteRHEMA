@@ -255,6 +255,72 @@ Object.entries(imagensCardsRhema).forEach(function([id, imagem]) {
   if (produto) produto.imagemCard = imagem;
 });
 
+// Cada cor abre sua própria foto recortada; o fundo carvão vem da galeria.
+const imagensVariantesProdutosRhema = {
+  1: {
+    preta: 'imagens/catalogo-cards/streetwear-costas.png',
+    branca: 'imagens/produto-cores/camiseta-streetwear-branca.png',
+    'off-white': 'imagens/produto-cores/camiseta-streetwear-off-white.png',
+    marrom: 'imagens/produto-cores/camiseta-streetwear-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/camiseta-streetwear-verde-musgo.png'
+  },
+  2: {
+    preta: 'imagens/catalogo-cards/calca-reta.png',
+    branca: 'imagens/produto-cores/calca-reta-branca.png',
+    'off-white': 'imagens/produto-cores/calca-reta-off-white.png',
+    marrom: 'imagens/produto-cores/calca-reta-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/calca-reta-verde-musgo.png'
+  },
+  3: {
+    preta: 'imagens/catalogo-cards/moletom-discipulos.png',
+    branca: 'imagens/produto-cores/moletom-discipulos-branca.png',
+    'off-white': 'imagens/produto-cores/moletom-discipulos-off-white.png',
+    marrom: 'imagens/produto-cores/moletom-discipulos-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/moletom-discipulos-verde-musgo.png'
+  },
+  4: {
+    preta: 'imagens/catalogo-cards/bone-rhema.png',
+    branca: 'imagens/produto-cores/bone-rhema-branca.png',
+    'off-white': 'imagens/produto-cores/bone-rhema-off-white.png',
+    marrom: 'imagens/produto-cores/bone-rhema-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/bone-rhema-verde-musgo.png'
+  },
+  5: {
+    preta: 'imagens/catalogo-cards/moletom-capuz.png',
+    branca: 'imagens/produto-cores/moletom-capuz-branca.png',
+    'off-white': 'imagens/produto-cores/moletom-capuz-off-white.png',
+    marrom: 'imagens/produto-cores/moletom-capuz-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/moletom-capuz-verde-musgo.png'
+  },
+  6: {
+    preta: 'imagens/catalogo-cards/moletom-sem-capuz.png',
+    branca: 'imagens/produto-cores/casaco-sem-capuz-branca.png',
+    'off-white': 'imagens/produto-cores/casaco-sem-capuz-off-white.png',
+    marrom: 'imagens/produto-cores/casaco-sem-capuz-marrom.png',
+    'verde-musgo': 'imagens/produto-cores/casaco-sem-capuz-verde-musgo.png'
+  }
+};
+
+Object.entries(imagensVariantesProdutosRhema).forEach(function([id, imagensPorCor]) {
+  const produto = catalogo.find(function(item) { return item.id === Number(id); });
+  if (!produto || !Array.isArray(produto.variantes)) return;
+
+  produto.variantes.forEach(function(variante) {
+    const src = imagensPorCor[variante.slug];
+    if (!src) return;
+    const vista = produto.id === 1 ? 'costas' : 'frente';
+    const imagem = {
+      src: src,
+      alt: `${vista} do produto ${produto.nome} na cor ${variante.nome}`
+    };
+    variante.imagemDestaque = imagem;
+    variante.imagens = [imagem];
+  });
+
+  produto.imagemDestaque = produto.variantes[0].imagemDestaque;
+  produto.imagens = produto.variantes[0].imagens;
+});
+
 // Modelos da coleção Crônicas da Fé. As imagens ficam organizadas por cor,
 // e cada prancha de apresentação abre junto das vistas individuais do produto.
 const coresColecaoFe = [
