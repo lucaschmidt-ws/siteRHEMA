@@ -244,7 +244,7 @@ configurarVariantesProduto(6, [
 const imagensCardsRhema = {
   1: { src: 'imagens/catalogo-cards/streetwear-costas.png', alt: 'costas da camiseta Streetwear preta RHEMA' },
   2: { src: 'imagens/catalogo-cards/calca-reta.png', alt: 'calça reta RHEMA preta' },
-  3: { src: 'imagens/produtos-vistas/moletom-discipulos-frente.png', alt: 'frente do moletom Discípulos RHEMA' },
+  3: { src: 'imagens/catalogo-cards/moletom-discipulos.png', alt: 'frente do moletom Discípulos RHEMA' },
   4: { src: 'imagens/catalogo-cards/bone-rhema.png', alt: 'boné preto RHEMA' },
   5: { src: 'imagens/catalogo-cards/moletom-capuz.png', alt: 'frente do moletom RHEMA com capuz' },
   6: { src: 'imagens/catalogo-cards/moletom-sem-capuz.png', alt: 'frente do moletom RHEMA sem capuz' }
