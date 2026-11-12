@@ -2459,6 +2459,7 @@ select { max-width: 100%; padding: 10px 12px; border: 1px solid #8A6728; backgro
   box-shadow: 0 10px 28px rgba(0, 0, 0, .16);
   transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
 }
+.catalog-page .clothing-catalog .product-card[hidden] { display: none !important; }
 .catalog-page .clothing-catalog .product-card:hover {
   transform: translateY(-3px);
   border-color: rgba(201, 149, 46, .72);

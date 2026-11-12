@@ -1164,9 +1164,23 @@ if (input) {
   const parametrosBusca = new URLSearchParams(window.location.search);
   const categoriasValidas = new Set(catalogo.map(function(produto) { return produto.categoria; }));
   const categoriaSolicitada = parametrosBusca.get('categoria');
-  const categoriaAtiva = categoriasValidas.has(categoriaSolicitada) ? categoriaSolicitada : '';
+  const chaveCategoriaSolicitada = categoriaSolicitada ? normalizarTexto(categoriaSolicitada.trim()) : '';
+  const categoriaAtiva = Array.from(categoriasValidas).find(function(categoria) {
+    return normalizarTexto(categoria) === chaveCategoriaSolicitada;
+  }) || '';
   const statusBusca = document.getElementById('catalog-filter-status');
+  const filtrosCategoria = document.querySelectorAll('.catalog-category-filters a');
   input.value = parametrosBusca.get('busca') || '';
+
+  filtrosCategoria.forEach(function(link) {
+    const urlFiltro = new URL(link.href, window.location.href);
+    const categoriaDoLink = urlFiltro.searchParams.get('categoria') || '';
+    const selecionado = categoriaAtiva
+      ? normalizarTexto(categoriaDoLink) === normalizarTexto(categoriaAtiva)
+      : !categoriaDoLink;
+    if (selecionado) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
 
   function filtrarProdutos() {
     const termo = normalizarTexto(input.value.trim());
@@ -1175,7 +1189,8 @@ if (input) {
     produtos.forEach(function(produto) {
       const nome = normalizarTexto(produto.querySelector('h3').textContent);
       const correspondeAoTermo = nome.includes(termo);
-      const correspondeACategoria = !categoriaAtiva || produto.dataset.category === categoriaAtiva;
+      const categoriaDoProduto = normalizarTexto((produto.dataset.category || '').trim());
+      const correspondeACategoria = !categoriaAtiva || categoriaDoProduto === normalizarTexto(categoriaAtiva);
       const visivel = correspondeAoTermo && correspondeACategoria;
 
       produto.hidden = !visivel;
@@ -1186,6 +1201,7 @@ if (input) {
       statusBusca.replaceChildren();
       if (categoriaAtiva) {
         statusBusca.append(`Categoria: ${categoriaAtiva}. `);
+        if (quantidadeVisivel === 0) statusBusca.append('Nenhum produto disponível nesta categoria. ');
         const limparFiltro = document.createElement('a');
         limparFiltro.href = 'catalogo.html#search-input';
         limparFiltro.textContent = 'Ver todas as categorias';
