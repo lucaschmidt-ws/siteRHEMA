@@ -240,6 +240,21 @@ configurarVariantesProduto(6, [
   { slug: 'verde-musgo', nome: 'Verde musgo', src: 'imagens/variantes-produtos/casaco-sem-capuz/verde-musgo.jpg' }
 ]);
 
+// Imagens recortadas para os cards do catálogo, sobre o fundo escuro da vitrine.
+const imagensCardsRhema = {
+  1: { src: 'imagens/catalogo-cards/streetwear-costas.png', alt: 'costas da camiseta Streetwear preta RHEMA' },
+  2: { src: 'imagens/catalogo-cards/calca-reta.png', alt: 'calça reta RHEMA preta' },
+  3: { src: 'imagens/produtos-vistas/moletom-discipulos-frente.png', alt: 'frente do moletom Discípulos RHEMA' },
+  4: { src: 'imagens/catalogo-cards/bone-rhema.png', alt: 'boné preto RHEMA' },
+  5: { src: 'imagens/catalogo-cards/moletom-capuz.png', alt: 'frente do moletom RHEMA com capuz' },
+  6: { src: 'imagens/catalogo-cards/moletom-sem-capuz.png', alt: 'frente do moletom RHEMA sem capuz' }
+};
+
+Object.entries(imagensCardsRhema).forEach(function([id, imagem]) {
+  const produto = catalogo.find(function(item) { return item.id === Number(id); });
+  if (produto) produto.imagemCard = imagem;
+});
+
 // Modelos da coleção Crônicas da Fé. As imagens ficam organizadas por cor,
 // e cada prancha de apresentação abre junto das vistas individuais do produto.
 const coresColecaoFe = [
@@ -348,7 +363,11 @@ const produtosColecaoFe = modelosColecaoFe.map(function(modelo) {
     tamanhos: ['P', 'M', 'G', 'GG'],
     variantes: variantes,
     imagemDestaque: variantes[0].imagemDestaque,
-    imagens: variantes[0].imagens
+    imagens: variantes[0].imagens,
+    imagemCard: {
+      src: `imagens/catalogo-cards/${modelo.slug}-costas.png`,
+      alt: `costas da ${modelo.nome} com estampa em destaque`
+    }
   };
 });
 
@@ -647,7 +666,7 @@ function criarAmostrasCores(produto) {
   return amostras;
 }
 
-// Usa uma foto frontal limpa nos cards; a sequência completa continua no zoom e na página do produto.
+// Usa a imagem editorial de cada card; as vistas completas continuam no zoom e na página do produto.
 document.querySelectorAll('.product-gallery[data-product-id], .product-photo[data-product-id]').forEach(function(quadro) {
   const produto = catalogo.find(function(item) {
     return item.id === Number(quadro.dataset.productId);
