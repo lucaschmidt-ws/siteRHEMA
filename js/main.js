@@ -745,6 +745,35 @@ function obterImagemVarianteParaCard(variante) {
     || null;
 }
 
+function prepararImagensZoomDoCard(produto, variante, imagemVisivel) {
+  const imagens = variante && Array.isArray(variante.imagens) && variante.imagens.length
+    ? variante.imagens
+    : produto && Array.isArray(produto.imagens)
+      ? produto.imagens
+      : [];
+  const srcVisivel = imagemVisivel && (imagemVisivel.currentSrc || imagemVisivel.src);
+  if (!srcVisivel) return imagens.slice();
+
+  const chaveSrc = function(src) {
+    try {
+      return new URL(src, document.baseURI).href;
+    } catch (erro) {
+      return String(src || '');
+    }
+  };
+  const chaveVisivel = chaveSrc(srcVisivel);
+  const indiceVisivel = imagens.findIndex(function(item) {
+    return chaveSrc(item.src) === chaveVisivel;
+  });
+  const imagemSelecionada = indiceVisivel >= 0
+    ? imagens[indiceVisivel]
+    : { src: srcVisivel, alt: imagemVisivel.alt || `Imagem selecionada de ${produto.nome}` };
+
+  return [imagemSelecionada].concat(imagens.filter(function(item, indice) {
+    return indice !== indiceVisivel && chaveSrc(item.src) !== chaveVisivel;
+  }));
+}
+
 // Usa a imagem editorial de cada card; as vistas completas continuam no zoom e na página do produto.
 document.querySelectorAll('.product-gallery[data-product-id], .product-photo[data-product-id]').forEach(function(quadro) {
   const produto = catalogo.find(function(item) {
@@ -752,6 +781,7 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
   });
 
   if (!produto || !produto.imagens.length) return;
+  let varianteSelecionadaNoCard = Array.isArray(produto.variantes) ? produto.variantes[0] : null;
 
   const imagemDestaque = obterImagemLimpaCatalogo(produto);
   const imagem = document.createElement('img');
@@ -790,8 +820,11 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
           const imagemVariante = obterImagemVarianteParaCard(variante);
           if (!imagemVariante) return;
 
+          varianteSelecionadaNoCard = variante;
           imagem.src = imagemVariante.src;
           imagem.alt = `${produto.nome} — ${imagemVariante.alt || `cor ${variante.nome}`}`;
+          const acionadorZoom = quadro.closest('.product-image-zoom, .home-image-zoom');
+          if (acionadorZoom) acionadorZoom.setAttribute('aria-label', `Ampliar imagens de ${produto.nome}, cor ${variante.nome}`);
           amostras.querySelectorAll('.catalog-color-choice').forEach(function(item) {
             const selecionado = item === botaoAmostra;
             item.setAttribute('aria-pressed', String(selecionado));
@@ -824,8 +857,12 @@ document.querySelectorAll('.product-gallery[data-product-id], .product-photo[dat
   if (botaoZoom && !botaoZoom.dataset.zoomBound) {
     botaoZoom.dataset.zoomBound = 'true';
     botaoZoom.addEventListener('click', function() {
-      const imagensZoomProduto = produto.imagens;
-      abrirZoom(imagensZoomProduto, 0, botaoZoom, produto.nome);
+      const imagemVisivel = quadro.querySelector('img');
+      const imagensZoomProduto = prepararImagensZoomDoCard(produto, varianteSelecionadaNoCard, imagemVisivel);
+      const nomeComCor = varianteSelecionadaNoCard
+        ? `${produto.nome} — ${varianteSelecionadaNoCard.nome}`
+        : produto.nome;
+      abrirZoom(imagensZoomProduto, 0, botaoZoom, nomeComCor);
     });
   }
 

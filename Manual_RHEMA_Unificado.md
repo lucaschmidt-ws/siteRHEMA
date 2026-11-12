@@ -2568,6 +2568,8 @@ Os estilos da foto grande e das miniaturas já estão no fim de `css/styles.css`
 
 O botão “Ampliar” abre um diálogo que ocupa a altura dinâmica da tela (`100dvh`, com `100vh` como alternativa). A foto mantém a proporção e cabe na área restante junto com a legenda e os botões de navegação. No celular, o diálogo respeita as áreas seguras do iOS e Android e os controles têm alvos de toque maiores. Para confirmar visualmente a publicação em produção, abra o site pelo endereço HTTPS da Netlify em telas de celular e desktop.
 
+Nos cards, o zoom começa pela mesma foto que aparece no card e utiliza a lista de imagens da cor selecionada. Se a foto editorial não estiver na galeria da variante, ela é incluída primeiro; as setas continuam na mesma peça e cor.
+
 **Como conferir**
 
 1. No terminal, na pasta do projeto, execute `node --check js/main.js`. Se não aparecer mensagem de erro, a sintaxe está correta.

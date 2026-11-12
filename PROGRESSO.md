@@ -86,6 +86,7 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - `js/main.js` guarda as imagens junto aos dados dos produtos, escolhe as fotos conforme `produto.html?id=...` e cria as miniaturas automaticamente.
 - A galeria exibe vistas individuais de frente, costas e lateral e, por último, a prancha com todas as vistas. Nas camisetas da coleção, cada cor mantém sua própria sequência de imagens.
 - Os cards do catálogo usam a prancha como imagem de destaque; ao abrir o zoom, a prancha aparece primeiro, seguida pelas vistas individuais.
+- O zoom do card começa pela foto exata exibida e continua apenas pelas vistas do mesmo produto e da cor selecionada.
 - Ajustado o zoom para ocupar a altura dinâmica disponível, manter imagem e legenda dentro da tela, respeitar áreas seguras de iOS/Android e oferecer controles de toque de 44 px. O cache de CSS/JS foi renovado nas páginas Início, Roupas, Catálogo e Produto.
 - Foram adicionadas 17 imagens individuais para completar as vistas da camiseta Streetwear, da calça, dos dois moletons com capuz, do boné nas cores bege e preto e do casaco sem capuz. Os arquivos foram otimizados em JPEG para reduzir o peso total.
 - A foto principal agora acompanha a proporção natural do arquivo; somente as miniaturas permanecem quadradas.
