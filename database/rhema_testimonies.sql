@@ -10,18 +10,31 @@ create table if not exists public.rhema_testimonies (
     check (char_length(trim(display_name)) between 1 and 50),
   testimony text not null
     check (char_length(trim(testimony)) between 20 and 1200),
+  consent_confirmed boolean not null default false
+    check (consent_confirmed is true),
+  consent_at timestamptz not null default now(),
   status text not null default 'pending'
     check (status in ('pending', 'published')),
   created_at timestamptz not null default now()
 );
 
+-- Mantém o script seguro para um banco que já tenha recebido a tabela inicial.
+alter table public.rhema_testimonies
+  add column if not exists consent_confirmed boolean not null default false,
+  add column if not exists consent_at timestamptz not null default now();
+alter table public.rhema_testimonies
+  drop constraint if exists rhema_testimonies_consent_confirmed_check;
+alter table public.rhema_testimonies
+  add constraint rhema_testimonies_consent_confirmed_check
+  check (consent_confirmed is true);
+
 alter table public.rhema_testimonies enable row level security;
 
 grant usage on schema public to anon, authenticated;
 revoke all on table public.rhema_testimonies from anon, authenticated;
-grant select (id, display_name, testimony, created_at)
+grant select (id, display_name, testimony, status, created_at)
   on table public.rhema_testimonies to anon, authenticated;
-grant insert (display_name, testimony)
+grant insert (display_name, testimony, consent_confirmed)
   on table public.rhema_testimonies to anon, authenticated;
 
 drop policy if exists "Anyone can read approved RHEMA testimonies"
@@ -38,4 +51,4 @@ create policy "Visitors can submit pending RHEMA testimonies"
   on public.rhema_testimonies
   for insert
   to anon, authenticated
-  with check (status = 'pending');
+  with check (status = 'pending' and consent_confirmed is true);

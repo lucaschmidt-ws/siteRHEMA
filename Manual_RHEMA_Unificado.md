@@ -1,9 +1,9 @@
 # Manual Unificado RHEMA
 
 **Guia passo a passo de desenvolvimento web**  
-**Versão:** 2.1
-**Data:** 05/11/2026
-**Status:** Fases 1 a 9 e a microetapa 10.1 concluídas. A prévia da área de conta está pronta e não coleta dados. O login real permanece pendente da Fase 11: a conexão Supabase consultada em 12/11/2026 não retornou projetos acessíveis, então é preciso reconectar o projeto existente ou escolher/configurar um back-end antes de ativar autenticação.
+**Versão:** 2.2
+**Data:** 12/11/2026
+**Status:** Fases 1 a 9 e a microetapa 10.1 concluídas. A prévia da área de conta não coleta dados. O projeto Supabase RHEMA STREETWEAR está ativo e conectado ao mural de testemunhos com RLS e autorização registrada; a autenticação real ainda depende da configuração dos URLs de retorno para o domínio HTTPS publicado.
 
 > Este documento reúne o guia inicial, as implementações feitas no site e o próximo roteiro de trabalho. As etapas 8 a 9 já foram executadas; leia os registros de atualização antes de reaproveitar trechos antigos. A etapa 10 começa com planejamento e protótipo sem coleta de credenciais. Não use LocalStorage para armazenar senha nem apresente o formulário como login real.
 
@@ -48,8 +48,8 @@ A RHEMA é uma marca de roupas **streetwear cristã** que você está criando co
 | Responsividade | ✅ Concluído (`viewport` na R1.1 e `@media` na R1.7) |
 | Visual luxuoso e clean | Implementado no site; arte final do hero e revisão visual geral ainda podem ser refinadas |
 | Devocional diário e interatividade | ✅ Fase 9 concluída (9.1 a 9.9) |
-| Sistema de login/cadastro | ✅ 10.1 — jornada e prévia concluídas; login real aguarda banco e back-end |
-| Back-end e banco de dados | ⏳ Próximo pré-requisito para contas reais; o site atual está publicado como página estática |
+| Sistema de login/cadastro | 🟡 10.1 — jornada e prévia concluídas; Auth no Supabase aguarda domínio e URLs de retorno |
+| Back-end e banco de dados | 🟡 Supabase ativo e mural conectado; contas e pagamentos seguem desativados |
 
 #### Categorias atuais da identidade
 
@@ -2756,7 +2756,7 @@ Ao concluir esta revisão, continue na Fase 9. Faça uma microetapa por vez e pa
 
 ## Fase 8 pronta para seguir
 
-O conteúdo da Fase 9 registra o devocional diário, produtos com conteúdo de fé, favoritos e mural local. Autenticação real permanece planejada para depois do banco de dados e do back-end.
+O conteúdo da Fase 9 registra o devocional diário, produtos com conteúdo de fé, favoritos e mural local. O Supabase agora também atende o mural público de testemunhos; autenticação real permanece desativada até configurar os URLs de retorno do domínio publicado.
 
 ## Fase 9: Fé e Interatividade
 
@@ -3527,11 +3527,11 @@ Site com conteúdo de fé e interatividade — pronto para planejar a experiênc
 
 ## ✅ Fase 9 Concluída!
 
-O site agora conversa com o público através do devocional, dos versículos nos produtos, dos favoritos e do mural de oração. Próximo passo: planejar a jornada de conta na Microetapa 10.1; login e cadastro reais aguardam o banco de dados e o back-end.
+O site conversa com o público através do devocional, dos versículos nos produtos, dos favoritos e do mural de oração. O projeto Supabase está ativo e conectado ao mural público de testemunhos. O próximo passo da conta é confirmar o domínio HTTPS publicado e configurar os URLs de retorno permitidos antes de implementar autenticação real.
 
 ---
 
-## Registro consolidado das atualizações recentes — 05/11/2026
+## Registro consolidado das atualizações recentes — 12/11/2026
 
 As alterações abaixo já estão integradas ao projeto. Consulte também o registro completo da retificação do rodapé dentro da Microetapa 8.10.
 
@@ -3545,14 +3545,14 @@ As alterações abaixo já estão integradas ao projeto. Consulte também o regi
 `index.html`, `produtos.html`, `catalogo.html`, `sobre.html`, `css/styles.css`, `README.md` e `PROGRESSO.md`. O rodapé mantém a marcação existente e foi refinado em `css/styles.css`.
 
 **Estado de publicação**
-O código foi enviado ao repositório GitHub `lucaschmidt-ws/siteRHEMA`. A atualização mais recente do rodapé está no commit `873c358`. O site está publicado como página estática na Netlify; a ativação de cadastro, pagamento e banco de dados ainda depende das respectivas integrações.
+O código está no repositório GitHub `lucaschmidt-ws/siteRHEMA`. A interface continua hospedada como site estático na Netlify; o Supabase fornece o banco e a API do mural. Cadastro, checkout e pagamentos continuam desativados.
 
 ## Fase 10: Experiência de conta e preparação da autenticação
 
-*Objetivo: planejar a área de conta da RHEMA sem anunciar um login real antes de existir banco de dados e back-end.*
+*Objetivo: implementar uma área de conta segura com o provedor de autenticação escolhido, sem simular login nem guardar senhas no navegador.*
 
 **Decisão do projeto**
-A pessoa responsável pela RHEMA definiu que a criação de contas reais será implementada depois do banco de dados. O site atual é estático e não autentica pessoas. A etapa 10 começa pelo planejamento do fluxo e pode incluir um protótipo visual claramente identificado como demonstração.
+A pessoa responsável pela RHEMA definiu que a criação de contas reais viria depois do banco. A base Supabase agora está ativa para o mural de testemunhos, mas o site ainda não autentica pessoas. `conta.html` permanece como prévia visual claramente identificada. Antes do login, confirme o domínio publicado e configure os URLs de retorno e as opções de Auth.
 
 > **Segurança:** não use `localStorage` para armazenar senhas, não trate um e-mail salvo no navegador como login e não publique o formulário antigo de demonstração como se fosse uma conta funcional. O exemplo anterior da etapa 10.1 foi retirado porque não conferia senhas e não era autenticação.
 
@@ -3567,7 +3567,7 @@ Definir o que a pessoa poderá fazer na área da conta e como serão as telas an
 2. Defina quais dados serão indispensáveis. Evite pedir informações sem uma finalidade clara.
 3. Desenhe a sequência das telas: entrada, cadastro, confirmação de e-mail, recuperação de acesso e área da conta. Indique o que a pessoa vê quando ainda não está autenticada.
 4. Se quiser criar apenas uma prévia visual, faça uma tela estática com os estilos da RHEMA. Inclua um aviso visível como “Prévia: cadastro ainda não disponível”. Não conecte o envio, não grave os campos e não diga que a conta foi criada.
-5. Antes da autenticação real, prepare o banco de dados e o back-end na Fase 11, defina as regras de acesso e atualize a política de privacidade. Depois, retorne à Fase 10 para integrar um provedor de autenticação apropriado.
+5. Antes da autenticação real, confirme que o back-end da Fase 11 está disponível, defina as regras de acesso e atualize a política de privacidade para contas. Em seguida, configure os URLs de retorno e integre o provedor de autenticação.
 
 **O que a etapa 10.1 deve entregar**
 
@@ -3581,7 +3581,7 @@ Definir o que a pessoa poderá fazer na área da conta e como serão as telas an
 Use fundo escuro, contraste alto, detalhes dourados discretos, rótulos claros e foco de teclado visível. Mantenha a tela simples e coerente com os cabeçalhos e rodapés atuais.
 
 **Próximo passo**
-Prepare o banco de dados e o back-end na Fase 11. Quando estiverem configurados, retorne à Fase 10 para implementar e validar a autenticação real. Não habilite cadastro público antes de testar as regras de acesso, a recuperação de conta e as informações de privacidade.
+O back-end da Fase 11 está conectado ao mural. Para retomar a autenticação, confirme o domínio HTTPS publicado e os URLs de retorno do Supabase; mantenha o cadastro fechado até validar as regras de acesso, a recuperação de conta e as informações de privacidade.
 
 ---
 
@@ -3590,25 +3590,24 @@ Prepare o banco de dados e o back-end na Fase 11. Quando estiverem configurados,
 *Objetivo: preparar a camada de dados e manter o site publicado.*
 
 **Estado atual e sequência**
-O site está publicado na Netlify como site estático. A publicação atual não fornece banco de dados nem autenticação. Antes de voltar à Fase 10 para construir contas reais, escolha e configure um back-end/banco de dados, defina quais dados serão necessários e restrinja o acesso com regras apropriadas. Não coloque chaves secretas no HTML ou no JavaScript público. Depois de validar a conexão e as regras, retorne à Fase 10.
+O site continua publicado na Netlify como site estático; o Supabase fornece o banco e as APIs, não hospeda os arquivos da loja. O projeto `RHEMA STREETWEAR` (`krlbsysaokwzjtayqzul`) está ativo na região `us-east-1` e conectado ao mural de testemunhos. Contas, checkout e pagamentos ainda não estão ativos. Nunca coloque chaves administrativas/secretas no HTML ou JavaScript público; use apenas chave publishable com RLS para chamadas do navegador.
 
-### 📍 Microetapa 11.1 — Preparar banco de dados e back-end ⏳
+### 📍 Microetapa 11.1 — Preparar banco de dados e back-end 🟡 Parcialmente concluída
 
 **Objetivo**
 Preparar uma camada de dados segura antes de ativar cadastro, login, testemunhos públicos ou pagamentos.
 
 **Passo a passo**
 
-1. Confira o estado atual do projeto de banco de dados que a RHEMA já possui. Em 12/11/2026, a conexão Supabase consultada não listou projetos acessíveis; reconecte o projeto existente ou escolha/configure um back-end antes de planejar a integração.
-2. Escolha o provedor e o ambiente de desenvolvimento. Leia a documentação oficial atual antes de criar tabelas, chaves ou políticas, pois telas e configurações do serviço podem mudar.
-3. Liste apenas os dados necessários para cada recurso. Separe dados de perfil, pedidos e testemunhos; não armazene dados de cartão de pagamento no site.
-4. Defina quem pode ler, criar, alterar e excluir cada dado. Registros privados devem começar privados; qualquer conteúdo público precisa de aprovação e regras de acesso explícitas.
-5. Configure as chaves públicas permitidas no cliente e mantenha chaves administrativas/secretas apenas no back-end. Nunca publique uma chave `service_role` em `index.html`, `js/` ou outro arquivo entregue ao navegador.
-6. Teste as regras com usuário não autenticado e autenticado antes de conectar formulários. Atualize a política de privacidade para refletir o tratamento real dos dados.
-7. Só depois desses passos, retorne à Fase 10 para implementar autenticação com o serviço escolhido.
+1. Projeto verificado: Supabase `RHEMA STREETWEAR`, estado ativo, região `us-east-1`.
+2. Tabela `public.rhema_testimonies` criada com campos mínimos para nome de exibição, relato, autorização, horário e estado de moderação.
+3. RLS limita leituras públicas aos relatos publicados e inserções a relatos pendentes com autorização confirmada; visitantes não podem alterar estado nem excluir/modificar registros.
+4. URL e chave publishable estão em `js/sobre-config.js`; nunca publique `service_role` ou outra chave secreta.
+5. O formulário de `sobre.html` envia relatos para revisão, registra a autorização e informa a região de armazenamento; a política de privacidade descreve o tratamento e o canal de remoção.
+6. Antes de liberar cadastro/login, confirme o domínio HTTPS e configure os URLs de retorno permitidos no Supabase. Teste envio, aprovação e remoção de testemunhos no site publicado.
 
 **Resultado esperado**
-O projeto tem ambiente de desenvolvimento identificado, estrutura mínima de dados documentada, regras de acesso revisadas e nenhum segredo no código público. Cadastro de clientes e pagamentos continuam desativados até a integração correspondente ser concluída.
+O projeto tem ambiente ativo e uma tabela pública de testemunhos documentada e protegida por RLS. A conexão do formulário precisa ser conferida na publicação. Cadastro de clientes, checkout e pagamentos continuam desativados até a integração correspondente ser concluída.
 
 ### 📍 Microetapa 11.2: Preparar para deploy
 

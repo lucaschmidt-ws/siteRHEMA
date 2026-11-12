@@ -12,8 +12,8 @@
   const publishableKey = typeof config.publishableKey === 'string' ? config.publishableKey.trim() : '';
 
   if (!projectUrl || !publishableKey) {
-    formStatus.textContent = 'O envio e o mural público serão liberados quando o banco online da RHEMA estiver ativo.';
-    feedStatus.textContent = 'Ainda não há testemunhos públicos. O mural será conectado ao banco online da RHEMA antes de receber relatos.';
+    formStatus.textContent = 'O envio está indisponível no momento. Seu relato não foi enviado; tente novamente mais tarde.';
+    feedStatus.textContent = 'O mural está indisponível no momento. Tente novamente mais tarde.';
     return;
   }
 
@@ -23,7 +23,7 @@
     Authorization: `Bearer ${publishableKey}`
   };
   fields.disabled = false;
-  formStatus.textContent = 'Seu relato será revisado antes de aparecer no mural.';
+  formStatus.textContent = 'Seu nome e relato serão enviados ao Supabase para revisão. Só serão publicados se aprovados; consulte a política de privacidade.';
 
   function createStatus(message) {
     const status = document.createElement('p');
@@ -91,9 +91,10 @@
     const submit = form.querySelector('button[type="submit"]');
     const displayName = form.elements.display_name.value.trim();
     const testimony = form.elements.testimony.value.trim();
+    const consentConfirmed = form.elements.consent.checked;
 
-    if (displayName.length < 1 || displayName.length > 50 || testimony.length < 20 || testimony.length > 1200) {
-      formStatus.textContent = 'Confira o nome e o tamanho do testemunho antes de enviar.';
+    if (displayName.length < 1 || displayName.length > 50 || testimony.length < 20 || testimony.length > 1200 || !consentConfirmed) {
+      formStatus.textContent = 'Confira o nome, o tamanho do testemunho e marque a autorização antes de enviar.';
       return;
     }
 
@@ -104,7 +105,7 @@
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-        body: JSON.stringify({ display_name: displayName, testimony })
+        body: JSON.stringify({ display_name: displayName, testimony, consent_confirmed: consentConfirmed })
       });
       if (!response.ok) throw new Error('Não foi possível enviar o relato.');
 

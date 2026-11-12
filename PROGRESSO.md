@@ -2,7 +2,7 @@
 
 **Última atualização:** 12/11/2026
 
-**Manual e próxima etapa:** Fases 1–9 e a microetapa 10.1 estão concluídas. `conta.html` mostra a prévia da área de conta sem coletar ou armazenar credenciais, e a jornada futura e os dados mínimos estão documentados. A autenticação real depende da Fase 11; em 12/11/2026, a conexão Supabase consultada não listou projetos acessíveis. O site atual está publicado na Netlify como página estática.
+**Manual e próxima etapa:** Fases 1–9 e a microetapa 10.1 estão concluídas. O projeto Supabase RHEMA STREETWEAR está ativo, e a página de testemunhos foi conectada a uma tabela protegida por RLS; novos relatos exigem autorização e ficam pendentes de revisão. A autenticação real continua na Fase 10 e depende da configuração de URLs de retorno para o endereço publicado do site. O site permanece publicado como página estática na Netlify.
 
 **Rodapé:** refinado em todas as páginas sem alterar as informações ou o logo. O fundo agora tem mais contraste, as colunas respiram melhor, os títulos e divisórias usam dourado discreto, e o logo, slogan, direitos autorais e crédito de colaboração fecham o rodapé centralizados. O layout adapta as colunas para tablet e celular.
 
@@ -36,13 +36,13 @@
 
 **Categorias da homepage:** adicionados estados sutis de hover e foco por teclado aos cinco cartões: elevação leve, borda dourada e filete lateral. A preferência por movimento reduzido desativa o deslocamento.
 
-**Página Sobre e mural:** criada `sobre.html` como página separada, com o testemunho do fundador, a apresentação do mural comunitário e um formulário que fica desativado até a conexão do banco online. O projeto Supabase conectado está com status `INACTIVE`; a lista de tabelas não pôde ser consultada e a publicação global ainda não está ativa. O SQL seguro para revisão/publicação manual está em `database/rhema_testimonies.sql`.
+**Página Sobre e mural:** `sobre.html` está conectada ao projeto Supabase RHEMA STREETWEAR (`krlbsysaokwzjtayqzul`), região `us-east-1`. A tabela `public.rhema_testimonies` grava nome de exibição, relato, confirmação e horário da autorização; RLS limita a leitura pública aos relatos aprovados e a inserção a relatos pendentes. A chave publishable está em `js/sobre-config.js`; nenhuma chave administrativa é usada no navegador. A política de privacidade e o aviso do formulário informam sobre a coleta, a publicação após aprovação e o armazenamento nos Estados Unidos. A estrutura de referência está em `database/rhema_testimonies.sql`.
 
 **Ajuste complementar do rodapé:** incluídos ícones de Instagram, WhatsApp e e-mail, além das bandeiras Visa, Mastercard e Elo. O link do WhatsApp usa o número já existente no site. Instagram e e-mail ficam sem link até serem informados; as bandeiras são previstas para uma futura integração de pagamento.
 
-**Etapa 10 — área de conta:** concluída a 10.1, com página responsiva `conta.html`, aviso de prévia, campos desativados, jornadas de cadastro/entrada/saída/recuperação descritas e modelo de dados mínimo. Nenhuma informação é enviada ou armazenada. A autenticação real não pode ser ativada enquanto o projeto de banco/back-end não estiver disponível e conectado.
+**Etapa 10 — área de conta:** concluída a 10.1, com página responsiva `conta.html`, aviso de prévia, campos desativados, jornadas de cadastro/entrada/saída/recuperação descritas e modelo de dados mínimo. Nenhuma informação de conta é enviada ou armazenada. O Supabase está ativo, mas a autenticação ainda não foi ligada; antes, confirme o domínio HTTPS e configure os URLs de retorno permitidos.
 
-**Próxima ação necessária:** reconectar o projeto Supabase existente para que fique visível na integração ou escolher/configurar o back-end da Fase 11. Depois disso, revisar a política de privacidade, configurar regras de acesso e retornar à Etapa 10 para implementar e validar login, cadastro, confirmação de e-mail, recuperação e encerramento de sessão.
+**Próxima ação necessária:** conferir o mural no endereço publicado, revisar e aprovar relatos pelo painel Supabase e atender pedidos de remoção pelo WhatsApp. Para login/cadastro, confirmar o domínio HTTPS do site e configurar os URLs de retorno no Supabase antes de ativar a Etapa 10. O checkout e pagamentos continuam desativados.
 
 ## Estado atual
 
@@ -75,8 +75,10 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] Busca aceita termos sem acento, como “bone” para encontrar “Boné”.
 - [x] Correções estruturais: hero duplicado removido, link interno consertado e rodapé ajustado.
 - [x] Item “Histórias” abre uma página separada com o testemunho do fundador e a interface responsiva do mural em `sobre.html`.
-- [x] Script SQL do mural preparado com RLS: visitantes só poderão ler relatos aprovados e enviar novos relatos como pendentes depois da ativação do banco.
-- [ ] Ativar o projeto Supabase, executar `database/rhema_testimonies.sql`, expor a tabela na Data API e configurar a chave pública em `js/sobre-config.js`; testar envio e aprovação antes de liberar o mural.
+- [x] Tabela `public.rhema_testimonies` criada no projeto Supabase ativo, com RLS, autorização registrada e moderação antes da publicação.
+- [x] Página de testemunhos ligada à URL e à chave publishable do projeto; chave `service_role` não é entregue ao navegador.
+- [x] Política de privacidade atualizada para descrever envio, revisão, publicação, remoção solicitada e armazenamento na região dos Estados Unidos.
+- [ ] Conferir no endereço publicado que o Data API está acessível, enviar um relato de teste com autorização e validar o fluxo de aprovação/remoção.
 - [x] Verificação de sintaxe do `js/main.js` e existência dos caminhos cadastrados no catálogo.
 - [ ] Conferência visual do zoom publicado em desktop e celular; requer o endereço HTTPS do site.
 
@@ -142,4 +144,4 @@ As Fases 1 a 7 e as correções R1 continuam registradas nos documentos anterior
 
 ## Próximo passo
 
-A microetapa 10.1 está concluída. Para terminar a autenticação real, siga pela Fase 11 e conecte um projeto de banco/back-end; então retome a Etapa 10. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage. O mural de testemunhos só poderá receber e mostrar relatos entre visitantes quando o Supabase estiver ativo e a tabela for exposta à Data API.
+A microetapa 10.1 está concluída. A fundação Supabase e o mural estão conectados; para autenticação real, confirme o domínio HTTPS da publicação e configure URLs de retorno permitidas, então retome a Etapa 10. Na Fase 8, seguem pendentes a arte final do hero e a revisão completa da homepage.

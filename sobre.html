@@ -85,12 +85,12 @@
       </div>
 
       <div class="testimony-feed" id="testimony-feed" aria-live="polite" aria-busy="false">
-        <p class="testimony-feed-status" id="testimony-feed-status" role="status">O mural público será ativado quando o banco online da RHEMA estiver conectado.</p>
+        <p class="testimony-feed-status" id="testimony-feed-status" role="status">Carregando os testemunhos publicados pela comunidade...</p>
       </div>
 
       <form class="testimony-form" id="testimony-form">
         <h3>Compartilhe seu testemunho</h3>
-        <p class="testimony-form-intro">Você pode assinar com seu primeiro nome ou escolher “Anônimo”. Não inclua telefone, endereço ou outras informações privadas.</p>
+        <p class="testimony-form-intro">Você pode assinar com seu primeiro nome ou escolher “Anônimo”. Não inclua telefone, endereço, dados de saúde ou informações privadas. O nome e o relato serão enviados ao Supabase, cuja base está na região US East, nos Estados Unidos; só serão exibidos publicamente se forem aprovados.</p>
 
         <fieldset class="testimony-fields" id="testimony-fields" disabled>
           <label for="testimony-name">Como gostaria de assinar?</label>
@@ -101,14 +101,14 @@
 
           <label class="testimony-consent">
             <input id="testimony-consent" name="consent" type="checkbox" required>
-            <span>Autorizo que meu nome de exibição e meu testemunho sejam publicados caso o relato seja aprovado.</span>
+            <span>Autorizo a RHEMA a receber e revisar meu nome de exibição e testemunho, armazená-los no Supabase nos Estados Unidos e publicar o nome e o relato se forem aprovados. Posso pedir a remoção pelo WhatsApp.</span>
           </label>
 
           <button class="btn btn-primary" type="submit">Enviar para revisão</button>
         </fieldset>
 
         <p class="testimony-consent-note" id="testimony-consent-note">Os relatos ficarão pendentes até serem revisados. Compartilhe apenas o que você se sente à vontade em tornar público.</p>
-        <p class="testimony-form-status" id="testimony-form-status" role="status" aria-live="polite">O envio será liberado quando o banco online estiver ativo.</p>
+        <p class="testimony-form-status" id="testimony-form-status" role="status" aria-live="polite">O formulário precisa de JavaScript para enviar o relato com segurança.</p>
       </form>
     </section>
   </main>
@@ -141,7 +141,7 @@
 
   <script src="js/main.js"></script>
 
-  <script src="js/sobre-config.js"></script>
-  <script src="js/sobre.js"></script>
+  <script src="js/sobre-config.js?v=20261112-supabase"></script>
+  <script src="js/sobre.js?v=20261112-supabase"></script>
 </body>
 </html>
