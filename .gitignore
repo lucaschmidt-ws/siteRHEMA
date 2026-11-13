@@ -1,0 +1,13 @@
+# Dependências e cache local
+node_modules/
+.netlify/
+
+# Estudos visuais locais, fora da publicação do site
+/visualizacoes/
+
+# Arquivos temporários do sistema e do editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.tmp

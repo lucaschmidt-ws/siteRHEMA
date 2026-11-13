@@ -2588,10 +2588,10 @@ A página do produto apresenta a galeria correspondente ao item escolhido, sem c
 - [x] Os caminhos cadastrados correspondem a arquivos que existem no projeto.
 - [x] As miniaturas são criadas pelo JavaScript e funcionam por clique.
 - [x] Um produto com uma foto mostra apenas a imagem principal.
-- [ ] Conferi visualmente todas as galerias no navegador e em largura móvel.
+- [ ] Conferi visualmente todas as galerias em largura móvel e no endereço publicado.
 
 **Próximo passo**
-A 8.9 está implementada. A revisão visual permanece pendente. Quando quiser, continue na microetapa 8.10.
+A 8.9 está implementada. Em 13/11/2026, foi corrigido e conferido no Chrome local o posicionamento do zoom de produtos com uma única imagem. Ainda falta revisar em tela estreita, conferir galerias com várias imagens e validar a versão publicada após o deploy. Depois, continue na microetapa 8.10.
 ---
 
 ### Microetapa 8.10 — Rodapé e redução de movimento
@@ -3609,10 +3609,10 @@ Preparar uma camada de dados segura antes de ativar cadastro, login, testemunhos
 **Resultado esperado**
 O projeto tem ambiente ativo e uma tabela pública de testemunhos documentada e protegida por RLS. A conexão do formulário precisa ser conferida na publicação. Cadastro de clientes, checkout e pagamentos continuam desativados até a integração correspondente ser concluída.
 
-### 📍 Microetapa 11.2: Preparar para deploy
+### 📍 Microetapa 11.2: Revisão contínua da publicação
 
 **Objetivo**
-Verificar se todos os arquivos estão prontos para publicar.
+O site já está publicado na Netlify. Use esta lista para conferir a publicação e repetir as verificações depois de cada mudança relevante; não representa uma etapa inicial de hospedagem ainda não feita.
 
 **Checklist de lançamento**
 - [ ] Todos os links funcionam
@@ -3621,7 +3621,9 @@ Verificar se todos os arquivos estão prontos para publicar.
 - [ ] Nomes de arquivos de imagem sem espaços nem parênteses, e com as mesmas maiúsculas e minúsculas do código
 - [ ] Sem erros no console do navegador
 
-### 📍 Microetapa 11.3: Hospedagem e publicação
+### 📍 Microetapa 11.3: Hospedagem e publicação — concluída
+
+O site está publicado como site estático na Netlify e o repositório está no GitHub. As instruções abaixo para GitHub Pages são apenas uma alternativa e não descrevem o estado atual.
 
 **Opções gratuitas:**
 1. **GitHub Pages** - Ideal para sites estáticos
@@ -3639,11 +3641,7 @@ Verificar se todos os arquivos estão prontos para publicar.
 **Resultado:**
 Seu site estará acessível em: `https://seunome.github.io/rhema/`
 
-✅ Checklist
-- [ ] Escolhi plataforma de hospedagem
-- [ ] Testei site em dispositivo móvel
-- [ ] Preparei repositório
-- [ ] Publiquei o site
+**Estado atual:** plataforma escolhida (Netlify), repositório preparado (GitHub) e site publicado. A revisão após as mudanças recentes continua pendente; consulte o checklist da microetapa 11.2 e o `PROGRESSO.md`.
 
 ---
 

@@ -1,6 +1,8 @@
 # Progresso do Projeto RHEMA
 
-**Última atualização:** 12/11/2026
+**Última atualização:** 13/11/2026
+
+**Revisão — 13/11/2026:** reproduzido e corrigido no zoom um erro de layout que deslocava a imagem e a legenda para a coluna lateral quando havia apenas uma imagem (setas ocultas). A conferência visual local no Chrome confirmou a imagem centralizada e a legenda legível. Ainda falta revisar o zoom em telas estreitas, testar galerias com várias imagens e conferir a versão publicada depois do deploy.
 
 **Manual e próxima etapa:** Fases 1–9 e a microetapa 10.1 estão concluídas. O projeto Supabase RHEMA STREETWEAR está ativo, e a página de testemunhos foi conectada a uma tabela protegida por RLS; novos relatos exigem autorização e ficam pendentes de revisão. A autenticação real continua na Fase 10 e depende da configuração de URLs de retorno para o endereço publicado do site. O site permanece publicado como página estática na Netlify.
 
@@ -42,7 +44,7 @@
 
 **Etapa 10 — área de conta:** concluída a 10.1, com página responsiva `conta.html`, aviso de prévia, campos desativados, jornadas de cadastro/entrada/saída/recuperação descritas e modelo de dados mínimo. Nenhuma informação de conta é enviada ou armazenada. O Supabase está ativo, mas a autenticação ainda não foi ligada; antes, confirme o domínio HTTPS e configure os URLs de retorno permitidos.
 
-**Próxima ação necessária:** conferir o mural no endereço publicado, revisar e aprovar relatos pelo painel Supabase e atender pedidos de remoção pelo WhatsApp. Para login/cadastro, confirmar o domínio HTTPS do site e configurar os URLs de retorno no Supabase antes de ativar a Etapa 10. O checkout e pagamentos continuam desativados.
+**Próximas ações:** concluir a conferência do zoom corrigido em telas largas e estreitas; conferir mural e zoom na versão publicada; revisar e aprovar relatos pelo painel Supabase e atender pedidos de remoção pelo WhatsApp. Para login/cadastro, confirmar o domínio HTTPS do site e configurar os URLs de retorno no Supabase antes de ativar a Etapa 10. Checkout e pagamentos continuam desativados.
 
 ## Estado atual
 
@@ -78,9 +80,9 @@ As microetapas 8.1, 8.2, 8.3 e 8.5 a 8.10 estão implementadas. A etapa 8.7 foi 
 - [x] Tabela `public.rhema_testimonies` criada no projeto Supabase ativo, com RLS, autorização registrada e moderação antes da publicação.
 - [x] Página de testemunhos ligada à URL e à chave publishable do projeto; chave `service_role` não é entregue ao navegador.
 - [x] Política de privacidade atualizada para descrever envio, revisão, publicação, remoção solicitada e armazenamento na região dos Estados Unidos.
-- [ ] Conferir no endereço publicado que o Data API está acessível, enviar um relato de teste com autorização e validar o fluxo de aprovação/remoção.
+- [ ] Conferir no endereço publicado que o Data API está acessível e validar o fluxo de aprovação/remoção com um relato de teste autorizado.
 - [x] Verificação de sintaxe do `js/main.js` e existência dos caminhos cadastrados no catálogo.
-- [ ] Conferência visual do zoom publicado em desktop e celular; requer o endereço HTTPS do site.
+- [ ] Conferência visual do zoom publicado em desktop e celular após publicar a correção de 13/11/2026.
 
 ## O que mudou na 8.9
 

@@ -14,10 +14,18 @@ Projeto do site da RHEMA Streetwear, incluindo páginas da loja, catálogo, carr
 - `politicas.html`: informações sobre entrega, trocas, devoluções e atendimento.
 - `privacidade.html`: dados usados pelo site, finalidades, serviços externos e direitos da pessoa usuária.
 - `css/` e `js/`: estilos e funcionalidades do site.
+- `imagens/`, `cabeçalhos/` e `Logo Rhema/`: imagens usadas pelo site. Os caminhos atuais são mantidos para não quebrar as páginas.
+- `database/`: SQL de referência do mural de testemunhos.
+- `documentacao/`: materiais de identidade visual, direção de arte, planejamento da conta e prompt de desenvolvimento.
+- `visualizacoes/`: prévias e estudos visuais locais, fora do pacote publicado do site.
 - `js/sobre.js` e `js/sobre-config.js`: mural de testemunhos e configuração da URL/chave publicável do Supabase; a chave `service_role` não deve ir ao navegador.
-- `imagens/`, `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/`, `imagens/catalogo-vistas/`, `cabeçalhos/` e `Logo Rhema/`: imagens e recursos visuais, incluindo as três artes editoriais da homepage, dez modelos da coleção Crônicas da Fé em cinco cores, 50 pranchas editoriais de apresentação e vistas dos moletons/casaco.
-- `database/rhema_testimonies.sql`: estrutura preparada para o mural público; depende de ativar o Supabase e configurar a Data API antes de receber relatos.
-- `Manual_RHEMA_Unificado.md`, `PROGRESSO.md` e documentos Word: manuais e acompanhamento do projeto.
+- `imagens/editorial/`, `imagens/colecao-cronicas-da-fe/` e `imagens/catalogo-vistas/`: artes editoriais, modelos da coleção e vistas dos produtos.
+- `database/rhema_testimonies.sql`: estrutura de referência da tabela do mural público, já criada no projeto Supabase e protegida por RLS.
+- `Manual_RHEMA_Unificado.md` e `PROGRESSO.md`: manual principal e acompanhamento atualizado do projeto.
+
+## Publicação na Netlify
+
+O projeto é um site estático e não precisa de etapa de compilação. O arquivo `netlify.toml` configura a raiz do repositório como pasta de publicação. A Netlify pode publicar a branch `main` conectada ao GitHub; as páginas HTML ficam na raiz e os recursos mantêm seus caminhos atuais.
 
 A seção Sabedoria & Graça aparece como destaque na homepage e no grupo Navegação do menu global. A página apresenta Bíblias e livros como categorias comerciais, com uma chamada para sugerir produtos pelo WhatsApp e uma imagem editorial urbana com a mensagem “Deus sempre tem um plano”. Os primeiros títulos e preços dependem da definição da curadoria; por isso, nenhum item ou valor foi anunciado como disponível para compra.
 
@@ -28,7 +36,7 @@ O rodapé foi refinado em todas as páginas com fundo mais escuro para leitura, 
 ## Como visualizar
 
 Abra `index.html` no navegador. Algumas funções do carrinho e do catálogo usam JavaScript local.
-O item “Histórias” leva à página `sobre.html`. O formulário do mural está preparado, mas permanece desativado até o projeto Supabase ser ativado e conectado; as etapas estão em `Manual_RHEMA_Unificado.md`.
+O item “Histórias” leva à página `sobre.html`. O mural está conectado ao Supabase: relatos enviados com autorização ficam pendentes até a revisão e aprovação. O fluxo ainda precisa ser conferido no endereço publicado. Consulte `PROGRESSO.md` e `Manual_RHEMA_Unificado.md` para o estado e as próximas etapas.
 
 ## Página Roupas — Manifesto Street
 
@@ -40,7 +48,7 @@ Depois das categorias, a página reserva um frame horizontal para um futuro víd
 
 Os dez modelos foram integrados ao catálogo como camisetas com IDs 7 a 16. Cada um oferece preto, branco suave, cinza mescla, verde militar/musgo, marrom chocolate, tamanhos P a GG e preço de R$ 109,90. Na página do produto, a seleção de cor troca as imagens de frente, costas, lado e prancha de apresentação; a cor e o tamanho escolhidos são salvos no carrinho. A sacola permite ajustar quantidades, calcula subtotais e total, e bloqueia acréscimos acima do estoque restante para o tamanho selecionado, somando as cores. O contador mostra unidades. O estoque inicial está em `js/main.js`: Camiseta Streetwear — P 1, M 1, G 1 e GG 0; todos os tamanhos dos demais produtos estão em zero. Os cards mostram “ESGOTADO” ou, para saldos de 1 a 5, uma faixa translúcida sobre a imagem com a quantidade. O estoque é configuração estática local e ainda não se sincroniza entre clientes nem reserva unidades. A sacola não conclui pedidos ou pagamentos. A pasta `pranchas-de-apresentacao/` contém uma prancha por estampa e cor, com frente, costas, detalhes ampliados e ângulos laterais no estilo da referência enviada. São mockups preparados com ajuda do OpenAI Codex; ainda não são fotos de peças físicas e os detalhes visuais não confirmam especificações de fabricação.
 
-Os links de entrega e trocas/devoluções abrem as seções próprias em `politicas.html`; a política de privacidade está em `privacidade.html`. A identificação RHEMA Streetwear e o WhatsApp foram autorizados como provisórios; razão social e endereço comercial ainda precisam ser informados. Os formulários de newsletter e testemunhos permanecem inativos e não enviam dados.
+Os links de entrega e trocas/devoluções abrem as seções próprias em `politicas.html`; a política de privacidade está em `privacidade.html`. A identificação RHEMA Streetwear e o WhatsApp foram autorizados como provisórios; razão social e endereço comercial ainda precisam ser informados. A newsletter permanece inativa; o formulário de testemunhos envia relatos para moderação no Supabase.
 
 O rodapé exibe Visa, Mastercard e Elo como bandeiras previstas para uma futura integração. American Express foi removido; nenhuma bandeira representa um meio de pagamento já habilitado.
 
