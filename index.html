@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
   <title>Início | RHEMA</title>
-  <link rel="stylesheet" href="css/styles.css?v=20261113-zoom-fix">
+  <link rel="stylesheet" href="css/styles.css?v=20261113-header-nav-centered">
 </head>
 <body class="home-page">
   <header class="site-header clothing-site-header">
@@ -15,7 +15,13 @@
     <span class="clothing-brand-wordmark" aria-hidden="true">RHEMA</span>
     <span class="clothing-brand-caption" aria-hidden="true">Streetwear</span>
   </a>
-  <span class="clothing-header-rule" aria-hidden="true"></span>
+      <nav class="hero-primary-nav" aria-label="Navegação principal">
+        <a href="index.html" aria-current="page">Início</a>
+        <a href="produtos.html">Roupas</a>
+        <a href="catalogo.html">Catálogo completo</a>
+        <a href="conta.html">Minha conta · prévia</a>
+        <a href="sabedoria.html">Sabedoria &amp; Graça</a>
+      </nav>
   <div class="header-actions" aria-label="Ações rápidas">
     <a class="header-action" href="catalogo.html#search-input" aria-label="Buscar produtos" title="Buscar">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 5 5"></path></svg>
@@ -29,14 +35,6 @@
     </button>
   </div>
   <nav class="clothing-menu-panel clothing-menu-panel--organized" id="clothing-menu-panel" aria-label="Navegação principal" hidden>
-    <div class="clothing-menu-group">
-      <h2>Navegação</h2>
-      <a href="index.html" aria-current="page">Início</a>
-      <a href="produtos.html">Roupas</a>
-      <a href="catalogo.html">Catálogo completo</a>
-      <a href="conta.html">Minha conta · prévia</a>
-            <a href="sabedoria.html">Sabedoria &amp; Graça</a>
-    </div>
     <div class="clothing-menu-group">
       <h2>Comprar por categoria</h2>
       <a href="catalogo.html?categoria=Camisetas#catalogo">Camisetas</a>
@@ -58,7 +56,8 @@
   <main>
     <!-- hero apresenta a identidade da RHEMA -->
     <section class="hero hero--streetwear" aria-labelledby="hero-title">
-      <img src="imagens/editorial/foto-editorial-rhema.png" alt="Modelo RHEMA em streetwear preto em um cenário urbano de pedra e luz âmbar" fetchpriority="high">
+      <img src="imagens/editorial/hero-rhema-banner.png" alt="Modelo RHEMA em streetwear preto em um cenário urbano de pedra e luz âmbar" fetchpriority="high">
+
       <div class="hero-copy">
         <span class="hero-stamp">RHEMA · fé em movimento</span>
         <h1 id="hero-title">Vista sua fé.<br><span>Caminhe com</span><br>propósito.</h1>
@@ -84,8 +83,8 @@
         <a class="cta" href="catalogo.html?categoria=Camisetas#catalogo">Ver coleção <span aria-hidden="true">↗</span></a>
       </div>
       <div class="collection-promo-art">
-        <img src="imagens/colecao-cronicas-da-fe/03-jonas-e-o-grande-peixe-costas.png" alt="Costas de camiseta preta com arte de Jonas e o grande peixe" loading="lazy" decoding="async">
-        <img src="imagens/camiseta%20preta/camiseta-preta-frente.png" alt="Frente da camiseta preta RHEMA" loading="lazy" decoding="async">
+        <img src="imagens/colecao-cronicas-da-fe/03-jonas-costas-transparente.png" alt="Costas de camiseta preta com arte de Jonas e o grande peixe" loading="lazy" decoding="async">
+        <img src="imagens/camiseta%20preta/camiseta-preta-frente-transparente.png" alt="Frente da camiseta preta RHEMA" loading="lazy" decoding="async">
       </div>
     </section>
 
